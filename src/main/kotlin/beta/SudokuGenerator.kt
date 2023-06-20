@@ -2,6 +2,92 @@ package beta
 
 import kotlin.random.Random
 
+enum class Difficulty {
+    EASY,
+    MEDIUM,
+    HARD,
+    EXTREME,
+}
+
+data class Sudoku(
+    val puzzle: String,
+    val solvedPuzzle: String,
+    val seed: Long,
+    val difficulty: Difficulty,
+    val sudokuType: SudokuType,
+)
+
+@Deprecated(
+    "Use Sudoku as it implements all the relevant elements", replaceWith = ReplaceWith(
+        "Sudoku", imports = ["beta.Sudoku"]
+    )
+)
+data class SudokuOld(
+    val puzzle: Array<IntArray>,
+    val solution: Array<IntArray>
+) {
+    fun getFormattedPuzzle(): String {
+        val sb = StringBuilder()
+
+        for (row in puzzle) {
+            for (cell in row) {
+                val formattedCell = if (cell == 0) {
+                    "_"
+                } else {
+                    val charList = mutableListOf<Char>()
+                    var value = cell
+                    while (value > 0) {
+                        val digit = (value % 10)
+                        val char = if (digit == 0) {
+                            ('a' + 9).toChar()
+                        } else {
+                            ('a'.toInt() + digit - 1).toChar()
+                        }
+                        charList.add(0, char)
+                        value /= 10
+                    }
+
+                    charList[0] = charList[0].uppercaseChar()
+                    charList.joinToString("")
+                }
+                sb.append(formattedCell).append("")
+            }
+            sb.append("\\")
+        }
+
+        sb.deleteCharAt(sb.length - 1)
+        return sb.toString()
+    }
+
+    fun createSudokuFromFormattedString(formattedString: String): Array<IntArray> {
+        val rows = formattedString.trim().split("\\")
+        val size = rows[0].length
+
+        val puzzle = Array(rows.size) { IntArray(size) }
+
+        for (i in rows.indices) {
+            val row = rows[i].trim()
+
+            for (j in row.indices) {
+                val cellValue = row[j]
+
+                val cell = if (cellValue == '_') {
+                    0
+                } else {
+                    val charIndex = cellValue.uppercaseChar().code - 'A'.code
+                    val value = (if (charIndex > 9) charIndex - 9 else charIndex) + 1
+                    value
+                }
+
+                puzzle[i][j] = cell
+            }
+        }
+
+        return puzzle
+    }
+
+}
+
 class SudokuGenerator(
     private val type: SudokuType,
     private val seed: Long = System.currentTimeMillis()
@@ -157,13 +243,6 @@ class SudokuGenerator(
     private data class Cell(val row: Int, val col: Int)
 }
 
-enum class Difficulty {
-    EASY,
-    MEDIUM,
-    HARD,
-    EXTREME,
-}
-
 enum class SudokuType(val rows: Int, val cols: Int) {
     TWO_BY_TWO(2, 2),
     TWO_BY_THREE(2, 3),
@@ -178,85 +257,6 @@ enum class SudokuType(val rows: Int, val cols: Int) {
     SEVEN_BY_SEVEN(7, 7),
     EIGHT_BY_EIGHT(8, 8),
     NINE_BY_NINE(9, 9)
-}
-
-data class Sudoku(
-    val puzzle: String,
-    val solvedPuzzle: String,
-    val seed: Long,
-    val difficulty: Difficulty,
-    val sudokuType: SudokuType,
-)
-
-@Deprecated(
-    "Use Sudoku as it implements all the relevant elements", replaceWith = ReplaceWith(
-        "Sudoku", imports = ["beta.Sudoku"]
-    )
-)
-data class SudokuOld(
-    val puzzle: Array<IntArray>,
-    val solution: Array<IntArray>
-) {
-    fun getFormattedPuzzle(): String {
-        val sb = StringBuilder()
-
-        for (row in puzzle) {
-            for (cell in row) {
-                val formattedCell = if (cell == 0) {
-                    "_"
-                } else {
-                    val charList = mutableListOf<Char>()
-                    var value = cell
-                    while (value > 0) {
-                        val digit = (value % 10)
-                        val char = if (digit == 0) {
-                            ('a' + 9).toChar()
-                        } else {
-                            ('a'.toInt() + digit - 1).toChar()
-                        }
-                        charList.add(0, char)
-                        value /= 10
-                    }
-
-                    charList[0] = charList[0].uppercaseChar()
-                    charList.joinToString("")
-                }
-                sb.append(formattedCell).append("")
-            }
-            sb.append("\\")
-        }
-
-        sb.deleteCharAt(sb.length - 1)
-        return sb.toString()
-    }
-
-    fun createSudokuFromFormattedString(formattedString: String): Array<IntArray> {
-        val rows = formattedString.trim().split("\\")
-        val size = rows[0].length
-
-        val puzzle = Array(rows.size) { IntArray(size) }
-
-        for (i in rows.indices) {
-            val row = rows[i].trim()
-
-            for (j in row.indices) {
-                val cellValue = row[j]
-
-                val cell = if (cellValue == '_') {
-                    0
-                } else {
-                    val charIndex = cellValue.uppercaseChar().code - 'A'.code
-                    val value = (if (charIndex > 9) charIndex - 9 else charIndex) + 1
-                    value
-                }
-
-                puzzle[i][j] = cell
-            }
-        }
-
-        return puzzle
-    }
-
 }
 
 fun main() {
