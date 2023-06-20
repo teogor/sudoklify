@@ -97,15 +97,6 @@ class SudokuGenerator(
     private val size: Int = numRows * numCols
     private val random: Random = Random(seed)
 
-    @Deprecated("in favor of Difficulty", replaceWith = ReplaceWith(
-        expression = "Difficulty",
-        imports = ["beta.Difficulty"]
-    )
-    )
-    enum class Difficulty {
-        EASY, MEDIUM, HARD, EXTREME
-    }
-
     fun generate(difficulty: Difficulty): SudokuOld {
         val puzzle = Array(size) { IntArray(size) }
         val solution = Array(size) { IntArray(size) }
@@ -268,7 +259,7 @@ enum class SudokuType(val rows: Int, val cols: Int) {
 fun main() {
     val type = SudokuType.THREE_BY_THREE
     val seed = 0L
-    val difficulty = SudokuGenerator.Difficulty.MEDIUM
+    val difficulty = Difficulty.MEDIUM
 
     val generator = SudokuGenerator(type, seed)
     val sudoku = generator.generate(difficulty)
