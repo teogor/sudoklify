@@ -37,6 +37,10 @@ class Puzzle(private val type: SudokuType) {
         return puzzle[row][col]
     }
 
+    fun getSize(): Int {
+        return size
+    }
+
     override fun toString(): String {
         val sb = StringBuilder()
         for (row in puzzle.indices) {
