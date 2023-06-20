@@ -1,33 +1,34 @@
 import beta.Difficulty
-import beta.Puzzle
+import beta.Sudoku
 import beta.SudokuGenerator
-import beta.SudokuSolver
 import beta.SudokuType
+import com.google.gson.Gson
+import java.io.File
 
 fun main() {
+    val startTime = System.currentTimeMillis()
+    val sudokus: MutableSet<Sudoku> = mutableSetOf()
+    val sudokusData: MutableSet<String> = mutableSetOf()
+
     val type = SudokuType.THREE_BY_THREE
-    val seed = 0L
-    val difficulty = Difficulty.MEDIUM
+    val difficulty = Difficulty.EASY
+    for (seed in 0L..1000L) {
+        val generator = SudokuGenerator(type, seed)
+        val sudoku = generator.generate(difficulty)
+        sudokus.add(sudoku)
+        sudokusData.add(sudoku.puzzle.formatAsString())
 
-    val generator = SudokuGenerator(type, seed)
-    val sudoku = generator.generate(difficulty)
-
-    println("Generated Puzzle:")
-    printSudoku(sudoku.puzzle)
-
-    println("Solution:")
-    printSudoku(sudoku.solution)
-
-    val solver = SudokuSolver(sudoku)
-    val isSolved = solver.solve()
-
-    if (isSolved) {
-        println("Sudoku solved.")
-    } else {
-        println("No solution found for the Sudoku.")
+        println("sudoku:\n${sudoku.puzzle}")
     }
-}
 
-fun printSudoku(puzzle: Puzzle) {
-    println(puzzle.toString())
+    val gson = Gson()
+    val json = gson.toJson(sudokus)
+    val file = File("sudokus.json")
+    file.writeText(json)
+
+    val endTime = System.currentTimeMillis()
+    val generationTime = endTime - startTime
+
+    println("Sudoku List Generation Time: $generationTime ms")
+    println("Sudokus size ${sudokus.size} (${sudokusData.size})")
 }

@@ -6,7 +6,7 @@ class SudokuSolver(private val sudoku: Sudoku) {
 
     fun solve(): Boolean {
         val board = sudoku.puzzle
-        val size = sudoku.size
+        val size = sudoku.digitsCount
         return solveSudoku(board.puzzle, size)
     }
 
