@@ -95,7 +95,7 @@ fun String.asSudoku(): Array<IntArray> {
 
 class SudokuGenerator(
     private val type: SudokuType,
-    private val seed: Long = System.currentTimeMillis()
+    private val seed: Long,
 ) {
     private val numRows: Int = type.rows
     private val numCols: Int = type.cols
