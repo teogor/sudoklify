@@ -159,8 +159,9 @@ class SudokuGenerator(
 
 enum class Difficulty(val cluesToRemove: Int) {
     EASY(30),
-    NORMAL(40),
-    DIFFICULT(50)
+    MEDIUM(40),
+    HARD(50),
+    EXTREME(60),
 }
 
 enum class SudokuType(val a: Int, val b: Int) {
