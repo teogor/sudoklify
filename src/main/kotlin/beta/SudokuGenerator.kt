@@ -15,7 +15,7 @@ class SudokuGenerator(
         EASY, MEDIUM, HARD
     }
 
-    fun generate(difficulty: Difficulty): Sudoku {
+    fun generate(difficulty: Difficulty): SudokuOld {
         val puzzle = Array(size) { IntArray(size) }
         val solution = Array(size) { IntArray(size) }
 
@@ -25,7 +25,7 @@ class SudokuGenerator(
         val cluesToRemove = calculateCluesToRemove(difficulty, size)
         removeClues(puzzle, cluesToRemove)
 
-        return Sudoku(puzzle, solution)
+        return SudokuOld(puzzle, solution)
     }
 
     private fun fillDiagonalBoxes(puzzle: Array<IntArray>, solution: Array<IntArray>) {
@@ -157,7 +157,42 @@ class SudokuGenerator(
     private data class Cell(val row: Int, val col: Int)
 }
 
+enum class Difficulty(val cluesToRemove: Int) {
+    EASY(30),
+    NORMAL(40),
+    DIFFICULT(50)
+}
+
+enum class SudokuType(val a: Int, val b: Int) {
+    TWO_BY_TWO(2, 2),
+    TWO_BY_THREE(2, 3),
+    TWO_BY_FOUR(2, 4),
+    THREE_BY_THREE(3, 3),
+    TWO_BY_FIVE(2, 5),
+    THREE_BY_FOUR(3, 4),
+    THREE_BY_FIVE(3, 5),
+    FOUR_BY_FOUR(4, 4),
+    FIVE_BY_FIVE(5, 5),
+    SIX_BY_SIX(6, 6),
+    SEVEN_BY_SEVEN(7, 7),
+    EIGHT_BY_EIGHT(8, 8),
+    NINE_BY_NINE(9, 9)
+}
+
 data class Sudoku(
+    val puzzle: String,
+    val solvedPuzzle: String,
+    val seed: Long,
+    val difficulty: Difficulty,
+    val sudokuType: SudokuType,
+)
+
+@Deprecated(
+    "Use Sudoku as it implements all the relevant elements", replaceWith = ReplaceWith(
+        "Sudoku", imports = ["beta.Sudoku"]
+    )
+)
+data class SudokuOld(
     val puzzle: Array<IntArray>,
     val solution: Array<IntArray>
 ) {
@@ -190,13 +225,42 @@ data class Sudoku(
             sb.append("\\")
         }
 
+        sb.deleteCharAt(sb.length - 1)
         return sb.toString()
     }
+
+    fun createSudokuFromFormattedString(formattedString: String): Array<IntArray> {
+        val rows = formattedString.trim().split("\\")
+        val size = rows[0].length
+
+        val puzzle = Array(rows.size) { IntArray(size) }
+
+        for (i in rows.indices) {
+            val row = rows[i].trim()
+
+            for (j in row.indices) {
+                val cellValue = row[j]
+
+                val cell = if (cellValue == '_') {
+                    0
+                } else {
+                    val charIndex = cellValue.uppercaseChar().code - 'A'.code
+                    val value = (if (charIndex > 9) charIndex - 9 else charIndex) + 1
+                    value
+                }
+
+                puzzle[i][j] = cell
+            }
+        }
+
+        return puzzle
+    }
+
 }
 
 fun main() {
     val numRows = 3
-    val numCols = 4
+    val numCols = 3
     val seed = 12345L
     val difficulty = SudokuGenerator.Difficulty.MEDIUM
 
@@ -209,8 +273,16 @@ fun main() {
     println("Solution:")
     printSudoku(sudoku.solution)
 
+    val sudokuString = sudoku.getFormattedPuzzle()
+    val sudokuConverted = sudoku.createSudokuFromFormattedString(sudokuString)
+
     println("Sudoku String")
-    println(sudoku.getFormattedPuzzle())
+    println(sudokuString)
+
+    println("Sudoku Converted")
+    printSudoku(sudokuConverted)
+
+
 }
 
 fun printSudoku(puzzle: Array<IntArray>) {
