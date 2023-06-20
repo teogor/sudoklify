@@ -28,7 +28,7 @@ class Puzzle(private val type: SudokuType) {
         return sb.toString()
     }
 
-    fun asString(): String {
+    fun formatAsString(): String {
         val sb = StringBuilder()
 
         for (row in puzzle) {
@@ -62,7 +62,7 @@ class Puzzle(private val type: SudokuType) {
     }
 
     companion object {
-        fun asPuzzle(content: String): Array<IntArray> {
+        fun from(content: String): Array<IntArray> {
             val rows = content.trim().split("\\")
             val size = rows[0].length
 
