@@ -13,9 +13,9 @@ fun main() {
     val type = SudokuType.THREE_BY_THREE
     val difficulty = Difficulty.EASY
     val startSeed = 0L
-    val endSeed = 2000L
+    val endSeed = 10000L
     val iterationStep = 100L
-    val totalIterations = 2000L / iterationStep
+    val totalIterations = endSeed / iterationStep
 
     var stepStartTime = System.currentTimeMillis()
     for (seed in startSeed until endSeed) {
