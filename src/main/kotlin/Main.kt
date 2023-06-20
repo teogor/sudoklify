@@ -12,7 +12,7 @@ fun main() {
 
     val type = SudokuType.THREE_BY_THREE
     val difficulty = Difficulty.EASY
-    for (seed in 0L..1000L) {
+    for (seed in 0L until 10000L) {
         val generator = SudokuGenerator(type, seed)
         val sudoku = generator.generate(difficulty)
         sudokus.add(sudoku)
