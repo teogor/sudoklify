@@ -1,8 +1,12 @@
 package beta
 
-class Puzzle(private val type: SudokuType) {
+class Puzzle(
+    private val puzzle: Array<IntArray>,
+    private val type: SudokuType,
+) {
+    constructor(type: SudokuType) : this(Array(type.rows * type.cols) { IntArray(type.rows * type.cols) }, type)
+
     private val size: Int = type.rows * type.cols
-    private val puzzle: Array<IntArray> = Array(size) { IntArray(size) }
 
     fun setValue(row: Int, col: Int, value: Int) {
         puzzle[row][col] = value
@@ -87,6 +91,18 @@ class Puzzle(private val type: SudokuType) {
             }
 
             return puzzle
+        }
+
+        fun from(puzzle: IntArray, type: SudokuType): Puzzle {
+            val puzzleArray = Array(type.rows) { IntArray(type.cols) }
+
+            for (row in 0 until type.rows) {
+                for (col in 0 until type.cols) {
+                    puzzleArray[row][col] = puzzle[row * type.cols + col]
+                }
+            }
+
+            return Puzzle(puzzleArray, type)
         }
     }
 }
