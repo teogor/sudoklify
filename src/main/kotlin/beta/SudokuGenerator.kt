@@ -97,8 +97,13 @@ class SudokuGenerator(
     private val size: Int = numRows * numCols
     private val random: Random = Random(seed)
 
+    @Deprecated("in favor of Difficulty", replaceWith = ReplaceWith(
+        expression = "Difficulty",
+        imports = ["beta.Difficulty"]
+    )
+    )
     enum class Difficulty {
-        EASY, MEDIUM, HARD
+        EASY, MEDIUM, HARD, EXTREME
     }
 
     fun generate(difficulty: Difficulty): SudokuOld {
@@ -206,6 +211,7 @@ class SudokuGenerator(
             Difficulty.EASY -> size * size / 3
             Difficulty.MEDIUM -> size * size / 2
             Difficulty.HARD -> size * size / 1.5.toInt()
+            Difficulty.EXTREME -> size * size
         }
     }
 
