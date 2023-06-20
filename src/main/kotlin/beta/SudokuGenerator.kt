@@ -3,12 +3,12 @@ package beta
 import kotlin.random.Random
 
 class SudokuGenerator(
-    private val numRows: Int,
-    private val numCols: Int,
+    private val type: SudokuType,
     private val seed: Long = System.currentTimeMillis()
 ) {
+    private val numRows: Int = type.rows
+    private val numCols: Int = type.cols
     private val size: Int = numRows * numCols
-    private val boxSize: Int = numCols * numRows
     private val random: Random = Random(seed)
 
     enum class Difficulty {
@@ -157,14 +157,14 @@ class SudokuGenerator(
     private data class Cell(val row: Int, val col: Int)
 }
 
-enum class Difficulty(val cluesToRemove: Int) {
-    EASY(30),
-    MEDIUM(40),
-    HARD(50),
-    EXTREME(60),
+enum class Difficulty {
+    EASY,
+    MEDIUM,
+    HARD,
+    EXTREME,
 }
 
-enum class SudokuType(val a: Int, val b: Int) {
+enum class SudokuType(val rows: Int, val cols: Int) {
     TWO_BY_TWO(2, 2),
     TWO_BY_THREE(2, 3),
     TWO_BY_FOUR(2, 4),
@@ -260,12 +260,11 @@ data class SudokuOld(
 }
 
 fun main() {
-    val numRows = 3
-    val numCols = 3
-    val seed = 12345L
+    val type = SudokuType.THREE_BY_THREE
+    val seed = 0L
     val difficulty = SudokuGenerator.Difficulty.MEDIUM
 
-    val generator = SudokuGenerator(numRows, numCols, seed)
+    val generator = SudokuGenerator(type, seed)
     val sudoku = generator.generate(difficulty)
 
     println("Generated Puzzle:")
