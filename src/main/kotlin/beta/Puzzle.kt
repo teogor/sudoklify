@@ -1,8 +1,8 @@
 package beta
 
 class Puzzle(
-    private val puzzle: Array<IntArray>,
-    private val type: SudokuType,
+    val puzzle: Array<IntArray>,
+    val type: SudokuType,
 ) {
     constructor(type: SudokuType) : this(Array(type.rows * type.cols) { IntArray(type.rows * type.cols) }, type)
 

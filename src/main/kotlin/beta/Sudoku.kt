@@ -6,4 +6,6 @@ data class Sudoku(
     val seed: Long,
     val difficulty: Difficulty,
     val sudokuType: SudokuType,
-)
+) {
+    val size: Int = sudokuType.rows * sudokuType.cols
+}
