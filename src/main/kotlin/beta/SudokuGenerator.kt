@@ -160,7 +160,39 @@ class SudokuGenerator(
 data class Sudoku(
     val puzzle: Array<IntArray>,
     val solution: Array<IntArray>
-)
+) {
+    fun getFormattedPuzzle(): String {
+        val sb = StringBuilder()
+
+        for (row in puzzle) {
+            for (cell in row) {
+                val formattedCell = if (cell == 0) {
+                    "_"
+                } else {
+                    val charList = mutableListOf<Char>()
+                    var value = cell
+                    while (value > 0) {
+                        val digit = (value % 10)
+                        val char = if (digit == 0) {
+                            ('a' + 9).toChar()
+                        } else {
+                            ('a'.toInt() + digit - 1).toChar()
+                        }
+                        charList.add(0, char)
+                        value /= 10
+                    }
+
+                    charList[0] = charList[0].uppercaseChar()
+                    charList.joinToString("")
+                }
+                sb.append(formattedCell).append("")
+            }
+            sb.append("\\")
+        }
+
+        return sb.toString()
+    }
+}
 
 fun main() {
     val numRows = 3
@@ -176,6 +208,9 @@ fun main() {
 
     println("Solution:")
     printSudoku(sudoku.solution)
+
+    println("Sudoku String")
+    println(sudoku.getFormattedPuzzle())
 }
 
 fun printSudoku(puzzle: Array<IntArray>) {
