@@ -1,5 +1,20 @@
 package beta
 
+import com.google.gson.JsonElement
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
+import java.lang.reflect.Type
+
+class PuzzleSerializer : JsonSerializer<Puzzle> {
+    override fun serialize(
+        puzzle: Puzzle,
+        typeOfSrc: Type,
+        context: JsonSerializationContext
+    ): JsonElement {
+        return context.serialize(puzzle.formatAsString())
+    }
+}
+
 class Puzzle(
     val puzzle: Array<IntArray>,
     val type: SudokuType,
@@ -66,7 +81,7 @@ class Puzzle(
     }
 
     companion object {
-        fun from(content: String): Array<IntArray> {
+        fun from(content: String, type: SudokuType): Puzzle {
             val rows = content.trim().split("\\")
             val size = rows[0].length
 
@@ -90,7 +105,7 @@ class Puzzle(
                 }
             }
 
-            return puzzle
+            return Puzzle(puzzle, type)
         }
 
         fun from(puzzle: IntArray, type: SudokuType): Puzzle {
