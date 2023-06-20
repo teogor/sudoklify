@@ -12,6 +12,7 @@ class SudokuGenerator(
     private val random: Random = Random(seed)
 
     fun generate(difficulty: Difficulty): Sudoku {
+        // todo convert to puzzle after we have them
         val puzzle = Puzzle(type)
         val solution = Puzzle(type)
 
@@ -22,11 +23,11 @@ class SudokuGenerator(
         removeClues(puzzle, cluesToRemove)
 
         return Sudoku(
-            puzzle,
-            solution,
-            seed,
-            difficulty,
-            type
+            puzzle = puzzle,
+            solution = solution,
+            seed = seed,
+            difficulty = difficulty,
+            sudokuType = type,
         )
     }
 
