@@ -21,7 +21,7 @@ fun main() = runBlocking {
     // val difficulties = arrayOf(Difficulty.EASY, Difficulty.MEDIUM, Difficulty.HARD)
     val difficulties = arrayOf(Difficulty.HARD)
     var index = 1
-    val setOf = 1000000L
+    val setOf = 10000L
     for (difficulty in difficulties) {
         val type = SudokuType.THREE_BY_THREE
         val startSeed = index * setOf
@@ -30,7 +30,7 @@ fun main() = runBlocking {
         val totalIterations = endSeed / iterationStep
 
         var stepStartTime = System.currentTimeMillis()
-        val parallelism = 10
+        val parallelism = 1
         val job = launch(Dispatchers.Default) {
             val chunkSize = (endSeed - startSeed) / parallelism
             val ranges = (startSeed until endSeed).chunked(chunkSize.toInt())

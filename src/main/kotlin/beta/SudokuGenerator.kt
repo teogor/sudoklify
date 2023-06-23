@@ -12,15 +12,18 @@ class SudokuGenerator(
     private val random: Random = Random(seed)
 
     fun generate(difficulty: Difficulty): Sudoku {
+        println("----------------------------")
         // todo convert to puzzle after we have them
         val puzzle = Puzzle(type)
         val solution = Puzzle(type)
+        val triedCells = mutableSetOf<Cell>()
 
         fillDiagonalBoxes(puzzle, solution)
-        solve(puzzle, solution)
+        solve(puzzle, solution, triedCells)
 
         val cluesToRemove = calculateCluesToRemove(difficulty, size)
         removeClues(puzzle, cluesToRemove)
+        println("clues removed")
 
         return Sudoku(
             puzzle = puzzle,
@@ -50,7 +53,7 @@ class SudokuGenerator(
         }
     }
 
-    private fun solve(puzzle: Puzzle, solution: Puzzle): Boolean {
+    private fun solve(puzzle: Puzzle, solution: Puzzle, triedCells: MutableSet<Cell>): Boolean {
         val emptyCell = findEmptyCell(puzzle) ?: return true
 
         val row = emptyCell.row
@@ -61,14 +64,48 @@ class SudokuGenerator(
             if (isSafe(puzzle, row, col, value)) {
                 puzzle.setValue(row, col, value)
                 solution.setValue(row, col, value)
+
+                val currentCell = Cell(row, col)
+                triedCells.add(currentCell)
+
+                if (solve(puzzle, solution, triedCells)) {
+                    return true
+                }
+
+                puzzle.setValue(row, col, 0)
+                solution.setValue(row, col, 0)
+                triedCells.remove(currentCell)
+            }
+        }
+
+        return false
+    }
+
+
+    private fun solve(puzzle: Puzzle, solution: Puzzle): Boolean {
+        val emptyCell = findEmptyCell(puzzle) ?: return true
+
+        val row = emptyCell.row
+        val col = emptyCell.col
+
+        val shuffledValues = (1..size).toList().shuffled(random)
+        for (value in shuffledValues) {
+            println("Trying value $value at row $row, col $col")
+
+            if (isSafe(puzzle, row, col, value)) {
+                puzzle.setValue(row, col, value)
+                solution.setValue(row, col, value)
+                println("Value $value is safe. Continuing with the next empty cell.")
                 if (solve(puzzle, solution)) {
                     return true
                 }
                 puzzle.setValue(row, col, 0)
                 solution.setValue(row, col, 0)
+                println("Value $value didn't lead to a solution. Backtracking.")
             }
         }
 
+        println("No value worked at row $row, col $col. Backtracking to the previous cell.")
         return false
     }
 
@@ -129,35 +166,61 @@ class SudokuGenerator(
 
     private fun removeClues(puzzle: Puzzle, cluesToRemove: Int) {
         var cluesRemoved = 0
+        val maxAttempts = 1000 // Maximum number of attempts to remove clues
 
-        while (cluesRemoved < cluesToRemove) {
+        var attempts = 0 // Counter for the number of attempts made
+
+        while (cluesRemoved < cluesToRemove && attempts < maxAttempts) {
             val row = random.nextInt(size)
             val col = random.nextInt(size)
 
+            println("cluesRemoved loop")
             if (puzzle.getValue(row, col) != 0) {
                 val temp = puzzle.getValue(row, col)
                 puzzle.setValue(row, col, 0)
 
                 if (!isPuzzleUnique(puzzle)) {
                     puzzle.setValue(row, col, temp)
+                    println("Not unique at row: $row, col: $col. Restoring value: $temp")
                 } else {
                     cluesRemoved++
+                    println("Clue removed at row: $row, col: $col")
                 }
+
+                attempts++
             }
+        }
+
+        if (cluesRemoved < cluesToRemove) {
+            println("Unable to remove the required number of clues. Stuck at $cluesRemoved clues.")
         }
     }
 
     private fun isPuzzleUnique(puzzle: Puzzle): Boolean {
         val solution = Puzzle(type)
         val puzzleCopy = Puzzle(type)
+        val triedCells = mutableSetOf<Cell>()
 
+        println("isPuzzleUnique forLoop --s")
         for (row in 0 until size) {
             for (col in 0 until size) {
                 puzzleCopy.setValue(row, col, puzzle.getValue(row, col))
             }
         }
+        println("isPuzzleUnique forLoop --e")
 
-        return solve(puzzleCopy, solution)
+        val isSolved = solve(puzzle, solution, triedCells)
+
+        if (isSolved) {
+            println("Sudoku puzzle solved!")
+            // Handle the solved puzzle here
+            // You can access the solved puzzle using the 'puzzle' or 'solution' variables
+        } else {
+            println("Unable to solve the Sudoku puzzle.")
+            // Handle the unsolved puzzle here
+        }
+
+        return isSolved
     }
 
     private data class Cell(val row: Int, val col: Int)
