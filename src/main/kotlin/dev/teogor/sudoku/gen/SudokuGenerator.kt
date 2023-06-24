@@ -39,7 +39,7 @@ data class Sudoku(
     val puzzle: PuzzleString,
     val solution: SolutionString,
     val difficulty: Difficulty,
-    val gridSize: Int,
+    val type: Type,
 )
 
 class SudokuGenerator(
@@ -74,7 +74,7 @@ class SudokuGenerator(
         val puzzle = getSequence(layout, seed.puzzle, tokenMap)
         val solution = getSequence(layout, seed.solution, tokenMap)
 
-        return Sudoku(puzzle, solution, seed.difficulty, gridSize)
+        return Sudoku(puzzle, solution, seed.difficulty, type)
     }
 
     private fun boardToSequence(board: Board): String = board.joinToString("") { it.joinToString("") }
@@ -162,7 +162,7 @@ class SudokuGenerator(
         seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
 
     private fun getSeedsBySize(seeds: Array<Sudoku>, size: Int): Array<Sudoku> =
-        seeds.filter { seed -> seed.gridSize == size }.toTypedArray()
+        seeds.filter { seed -> seed.type.cols * seed.type.rows == size }.toTypedArray()
 
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
         items[random.nextInt(items.size)]
