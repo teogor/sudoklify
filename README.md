@@ -1,19 +1,5 @@
-**Sudoklify - A Powerful Sudoku Puzzle Generation Library**
-
-Sudoklify is a versatile and intuitive Sudoku puzzle generation library written in Kotlin. It provides a comprehensive set of tools and algorithms for generating Sudoku puzzles of various grid sizes and difficulty levels. With Sudoklify, you can effortlessly create, manipulate, and solve Sudoku puzzles for your applications, games, or educational projects.
-
-Key Features:
-- Efficient and customizable Sudoku puzzle generation algorithms
-- Support for different grid sizes, including 4x4, 9x9, 16x16, and more
-- Multiple difficulty levels - Easy, Medium, Hard, and Expert
-- Flexible token mapping system for personalized puzzle representation
-- Intuitive API for puzzle generation, population, and solution retrieval
-- Randomization techniques for puzzle layout and digit placement
-- Well-documented codebase with comprehensive examples and usage guidelines
-
-Explore the possibilities of Sudoklify and unleash your creativity in crafting challenging and engaging Sudoku puzzles. Whether you're building a Sudoku game, developing educational resources, or experimenting with puzzle algorithms, Sudoklify provides the tools you need to generate high-quality Sudoku puzzles effortlessly.
-
-# Sudoklify - A Powerful Sudoku Puzzle Generation Library
+# Sudoklify
+## A Powerful Sudoku Puzzle Generation Library
 
 Sudoklify is a versatile and intuitive Sudoku puzzle generation library written in Kotlin. It provides a comprehensive set of tools and algorithms for generating Sudoku puzzles of various grid sizes and difficulty levels.
 
