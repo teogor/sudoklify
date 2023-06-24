@@ -1,4 +1,4 @@
-package dev.teogor.sudoku.gen
+package dev.teogor.sudoklify
 
 val SEEDS: Array<Sudoku> = arrayOf(
     Sudoku(

@@ -1,4 +1,4 @@
-package dev.teogor.sudoku.gen
+package dev.teogor.sudoklify
 
 import kotlin.math.sqrt
 import kotlin.random.Random

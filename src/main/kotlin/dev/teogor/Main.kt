@@ -1,9 +1,9 @@
 package dev.teogor
 
-import dev.teogor.sudoku.gen.Difficulty
-import dev.teogor.sudoku.gen.Sudoku
-import dev.teogor.sudoku.gen.SudokuGenerator
-import dev.teogor.sudoku.gen.Type
+import dev.teogor.sudoklify.Difficulty
+import dev.teogor.sudoklify.Sudoku
+import dev.teogor.sudoklify.SudokuGenerator
+import dev.teogor.sudoklify.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
