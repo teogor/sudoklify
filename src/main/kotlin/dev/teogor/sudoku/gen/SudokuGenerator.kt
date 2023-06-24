@@ -1,5 +1,6 @@
 package dev.teogor.sudoku.gen
 
+import kotlin.math.sqrt
 import kotlin.random.Random
 
 typealias SudokuString = String
@@ -23,19 +24,6 @@ data class Sudoku(
     val difficulty: Difficulty
 )
 
-val BASE_LAYOUT: Layout = arrayOf(
-    intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8),
-    intArrayOf(9, 10, 11, 12, 13, 14, 15, 16, 17),
-    intArrayOf(18, 19, 20, 21, 22, 23, 24, 25, 26),
-    intArrayOf(27, 28, 29, 30, 31, 32, 33, 34, 35),
-    intArrayOf(36, 37, 38, 39, 40, 41, 42, 43, 44),
-    intArrayOf(45, 46, 47, 48, 49, 50, 51, 52, 53),
-    intArrayOf(54, 55, 56, 57, 58, 59, 60, 61, 62),
-    intArrayOf(63, 64, 65, 66, 67, 68, 69, 70, 71),
-    intArrayOf(72, 73, 74, 75, 76, 77, 78, 79, 80)
-)
-val GRID_SIZE: Int = 9
-val LINE_CONTAINER: List<List<String>> = List(GRID_SIZE) { emptyList() }
 val SEEDS: Array<Sudoku> = arrayOf(
     Sudoku(
         puzzle = "G--D--CAF---G----II-F--HG-BB-IAEDHGC--AFCG--D-G-B-----F-D--ABC---B------C--H-BFIA",
@@ -60,20 +48,35 @@ val SEEDS: Array<Sudoku> = arrayOf(
 )
 
 class SudokuGenerator(
-    private val random: Random
+    private val random: Random,
+    private val gridSize: Int = 9,
 ) {
     companion object {
-        fun getSudoku(difficulty: Difficulty, seed: Long): Sudoku {
+        fun getSudoku(difficulty: Difficulty, seed: Long, gridSize: Int): Sudoku {
             val sudokuGenerator = SudokuGenerator(
-                random = Random(seed)
+                random = Random(seed),
+                gridSize = gridSize,
             )
             return sudokuGenerator.getSudoku(difficulty)
         }
     }
 
+    private val gridArea = gridSize * gridSize
+    private val baseLayout: Layout = generateBaseLayout()
+
+    private fun generateBaseLayout(): Layout {
+        val baseLayout = Array(gridSize) { IntArray(gridSize) }
+        for (i in 0 until gridSize) {
+            for (j in 0 until gridSize) {
+                baseLayout[i][j] = i * gridSize + j
+            }
+        }
+        return baseLayout
+    }
+
     private fun getSudoku(difficulty: Difficulty): Sudoku {
         val seed = getSeed(SEEDS, difficulty)
-        val layout = getLayout(BASE_LAYOUT)
+        val layout = getLayout(baseLayout)
         val tokenMap = getTokenMap()
 
         val puzzle = getSequence(layout, seed.puzzle, tokenMap)
@@ -98,7 +101,7 @@ class SudokuGenerator(
 
     private fun sequenceToBoard(sequence: String): Board {
         val board = mutableListOf<Array<Char>>()
-        sequence.chunked(GRID_SIZE).forEach { chunk ->
+        sequence.chunked(gridSize).forEach { chunk ->
             board.add(chunk.toList().toTypedArray())
         }
         return board.toTypedArray()
@@ -108,11 +111,15 @@ class SudokuGenerator(
 
     private fun getLayout(baseLayout: Layout): Layout = shuffleLayout(rotateLayout(baseLayout))
 
-    private fun getLayoutBands(layout: Layout): Array<Array<IntArray>> = arrayOf(
-        arrayOf(layout[0], layout[1], layout[2]),
-        arrayOf(layout[3], layout[4], layout[5]),
-        arrayOf(layout[6], layout[7], layout[8])
-    )
+    private fun getLayoutBands(layout: Layout): Array<Array<IntArray>> {
+        val bandSize = sqrt(gridSize.toDouble()).toInt()
+        val bands = mutableListOf<Array<IntArray>>()
+        for (i in 0 until gridSize step bandSize) {
+            val band = layout.slice(i until i + bandSize).toTypedArray()
+            bands.add(band)
+        }
+        return bands.toTypedArray()
+    }
 
     private fun populateLayout(layout: Layout, sequence: String): Board =
         layout.map { row -> row.map { cell -> sequence[cell] }.toTypedArray() }.toTypedArray()

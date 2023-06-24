@@ -18,6 +18,7 @@ fun main() = runBlocking {
             val sudoku = SudokuGenerator.getSudoku(
                 difficulty = Difficulty.EASY,
                 seed = seed,
+                gridSize = 9,
             )
             println(sudoku.solution)
             sudokus.add(sudoku)
@@ -36,6 +37,7 @@ fun main() = runBlocking {
                         val sudoku = SudokuGenerator.getSudoku(
                             difficulty = Difficulty.EASY,
                             seed = System.currentTimeMillis(),
+                            gridSize = 9,
                         )
                         println(sudoku.solution)
                         sudokus.add(sudoku)
