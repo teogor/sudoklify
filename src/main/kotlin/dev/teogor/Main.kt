@@ -12,19 +12,36 @@ fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
     val sudokus: MutableSet<Sudoku> = mutableSetOf()
     val singleSpace = true
+    val sudokusSize = listOf(
+        4,
+        9
+    )
+    val sudokusResult = listOf(
+        // 4x4
+        "4312321442314123",
+        // 9x9
+        "924761835658923417371485296743598621892146573516237948437652189285319764169874352"
+    )
     if (singleSpace) {
         // 4x4 = 4312321442314123
         // 9x9 = 924761835658923417371485296743598621892146573516237948437652189285319764169874352
         // 16x16 = todo
         val seed = 0L
-        repeat(2) {
-            val sudoku = SudokuGenerator.getSudoku(
-                difficulty = Difficulty.EASY,
-                seed = seed,
-                gridSize = 9,
-            )
-            println(sudoku.solution)
-            sudokus.add(sudoku)
+        sudokusSize.forEachIndexed { index, gridSize ->
+            repeat(2) {
+                val sudoku = SudokuGenerator.getSudoku(
+                    difficulty = Difficulty.EASY,
+                    seed = seed,
+                    gridSize = gridSize,
+                )
+                sudokus.add(sudoku)
+                val solution = sudoku.solution
+                if (solution != sudokusResult[index]) {
+                    println("test constraint failed for $gridSize")
+                } else {
+                    println("test constraint passed for $gridSize")
+                }
+            }
         }
     } else {
         val parallelism = 1

@@ -119,13 +119,9 @@ class SudokuGenerator(
     private val baseLayout: Layout = generateBaseLayout()
 
     private fun generateBaseLayout(): Layout {
-        val baseLayout = Array(gridSize) { IntArray(gridSize) }
-        for (i in 0 until gridSize) {
-            for (j in 0 until gridSize) {
-                baseLayout[i][j] = i * gridSize + j
-            }
+        return Array(gridSize) { i ->
+            IntArray(gridSize) { j -> i * gridSize + j }
         }
-        return baseLayout
     }
 
     private fun getSudoku(difficulty: Difficulty): Sudoku {
@@ -154,11 +150,9 @@ class SudokuGenerator(
     }
 
     private fun sequenceToBoard(sequence: String): Board {
-        val board = mutableListOf<Array<Cell>>()
-        sequence.chunked(gridSize).forEach { chunk ->
-            board.add(chunk.map { it.toString() }.toList().toTypedArray())
-        }
-        return board.toTypedArray()
+        return sequence.chunked(gridSize)
+            .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
+            .toTypedArray()
     }
 
     private fun sortRandom(): Int = if (random.nextDouble() < 0.5) 1 else -1
@@ -260,7 +254,6 @@ class SudokuGenerator(
             val value = if (index < gridSize) (index + 1).toString() else (index - gridSize + 1).toString()
             token to value
         }
-        println("tokenMap")
         return tokenMap
     }
 }
