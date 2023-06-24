@@ -1,4 +1,4 @@
-package dev.teogor
+package dev.teogor.demo
 
 import dev.teogor.sudoklify.Difficulty
 import dev.teogor.sudoklify.Sudoku
@@ -9,11 +9,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-    val sudoku = SudokuGenerator.getSudoku(
-        difficulty = Difficulty.EASY,
-        seed = 0L,
-        type = Type.THREE_BY_THREE,
-    )
     val startTime = System.currentTimeMillis()
     val sudokus: MutableSet<Sudoku> = mutableSetOf()
     val singleSpace = true
