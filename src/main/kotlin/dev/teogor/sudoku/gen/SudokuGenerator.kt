@@ -147,7 +147,7 @@ class SudokuGenerator(
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
         items[random.nextInt(items.size)]
 
-    fun getTokenMap(): TokenMap {
+    private fun getTokenMap(): TokenMap {
         val gridList = (1..gridSize)
         val tokenList = gridList.withIndex().map { (index, _) ->
             val value = if (index < gridSize) (index + 1) else (index - gridSize + 1)
