@@ -155,21 +155,20 @@ class SudokuGenerator(
     }
 
     fun getTokenMap(): TokenMap {
-        val gridList = (1..1000).take(gridSize)
-        val tokenList: MutableList<String> = mutableListOf()
-        gridList.withIndex().forEachIndexed { index, _ ->
+        val gridList = (1..gridSize)
+        val tokenList = gridList.withIndex().map { (index, _) ->
             val value = if (index < gridSize) (index + 1) else (index - gridSize + 1)
-            tokenList.add(numberToToken(value))
-        }
-        val shuffledList = tokenList.shuffled(random)
-        val tokenMap = shuffledList.withIndex().associate { (index, token) ->
+            numberToToken(value)
+        }.shuffled(random)
+
+        val tokenMap = tokenList.withIndex().associate { (index, token) ->
             val value = if (index < gridSize) (index + 1).toString() else (index - gridSize + 1).toString()
             token to value
         }
         return tokenMap
     }
 
-    private fun numberToToken(value: Int): Cell {
+    private fun numberToToken(value: Int): Token {
         var valueCopy = value
         val charList = mutableListOf<Char>()
         while (valueCopy > 0) {
