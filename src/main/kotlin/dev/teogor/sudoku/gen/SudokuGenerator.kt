@@ -198,9 +198,38 @@ class SudokuGenerator(
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
         items[random.nextInt(items.size)]
 
-    private fun getTokenMap(): TokenMap {
+    @Deprecated("use getTokenMap()")
+    private fun getTokenMapLegacy(): TokenMap {
         val tokenList = ('A'..'Z').take(gridSize)
         val shuffledList = tokenList.shuffled(random)
         return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
+    }
+
+    fun getTokenMap(): TokenMap {
+        val gridList = (1..1000).take(gridSize)
+        val tokenList: MutableList<String> = mutableListOf()
+        gridList.withIndex().forEachIndexed { index, token ->
+            var value = if (index < gridSize) (index + 1) else (index - gridSize + 1)
+            val charList = mutableListOf<Char>()
+            while (value > 0) {
+                val digit = (value % 10)
+                val char = if (digit == 0) {
+                    ('a' + 9)
+                } else {
+                    ('a'.code + digit - 1).toChar()
+                }
+                charList.add(0, char)
+                value /= 10
+            }
+
+            charList[0] = charList[0].uppercaseChar()
+            tokenList.add(charList.joinToString(""))
+        }
+        val shuffledList = tokenList.shuffled(random)
+        val tokenMap = shuffledList.withIndex().associate { (index, token) ->
+            val value = if (index < gridSize) (index + 1).toString() else (index - gridSize + 1).toString()
+            token to value
+        }
+        return tokenMap
     }
 }
