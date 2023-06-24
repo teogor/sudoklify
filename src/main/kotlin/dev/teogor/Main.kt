@@ -15,12 +15,13 @@ fun main() = runBlocking {
     if (singleSpace) {
         // 4x4 = 4312321442314123
         // 9x9 = 924761835658923417371485296743598621892146573516237948437652189285319764169874352
+        // 16x16 = todo
         val seed = 0L
         repeat(2) {
             val sudoku = SudokuGenerator.getSudoku(
                 difficulty = Difficulty.EASY,
                 seed = seed,
-                gridSize = 4,
+                gridSize = 9,
             )
             println(sudoku.solution)
             sudokus.add(sudoku)
