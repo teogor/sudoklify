@@ -10,26 +10,40 @@ import toFormattedTime
 fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
     val sudokus: MutableSet<Sudoku> = mutableSetOf()
-    val parallelism = 100
-    val setOf = 10000000L
-    val startSeed = 0 * setOf
-    val endSeed = startSeed + setOf
-    val job = launch(Dispatchers.Default) {
-        val chunkSize = (endSeed - startSeed) / parallelism
-        val ranges = (startSeed until endSeed).chunked(chunkSize.toInt())
-        for (range in ranges) {
-            launch {
-                repeat(parallelism) {
-                    val sudoku = SudokuGenerator.getSudoku(
-                        difficulty = "easy",
-                        seed = System.currentTimeMillis(),
-                    )
-                    sudokus.add(sudoku)
+    val singleSpace = true
+    if (singleSpace) {
+        val seed = 0L
+        repeat(10) {
+            val sudoku = SudokuGenerator.getSudoku(
+                difficulty = "easy",
+                seed = seed,
+            )
+            println(sudoku.solution)
+            sudokus.add(sudoku)
+        }
+    } else {
+        val parallelism = 1
+        val setOf = 10L
+        val startSeed = 0 * setOf
+        val endSeed = startSeed + setOf
+        val job = launch(Dispatchers.Default) {
+            val chunkSize = (endSeed - startSeed) / parallelism
+            val ranges = (startSeed until endSeed).chunked(chunkSize.toInt())
+            for (range in ranges) {
+                launch {
+                    repeat(parallelism) {
+                        val sudoku = SudokuGenerator.getSudoku(
+                            difficulty = "easy",
+                            seed = System.currentTimeMillis(),
+                        )
+                        println(sudoku.solution)
+                        sudokus.add(sudoku)
+                    }
                 }
             }
         }
+        job.join()
     }
-    job.join()
     val endTime = System.currentTimeMillis()
     val generationTime = endTime - startTime
 

@@ -84,7 +84,7 @@ class SudokuGenerator(
 
     private fun boardToSequence(board: Board): String = board.joinToString("") { it.joinToString("") }
 
-    private fun <T> getRandomItem(items: List<T>): T = items.random()
+    private fun <T> getRandomItem(items: List<T>): T = items.random(random)
 
     private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): String {
         val populatedLayout = populateLayout(layout, replaceTokens(seedSequence, tokenMap))
@@ -104,7 +104,7 @@ class SudokuGenerator(
         return board.toTypedArray()
     }
 
-    private fun sortRandom(): Int = if (Math.random() < 0.5) 1 else -1
+    private fun sortRandom(): Int = if (random.nextDouble() < 0.5) 1 else -1
 
     private fun getLayout(baseLayout: Layout): Layout = shuffleLayout(rotateLayout(baseLayout))
 
@@ -147,7 +147,7 @@ class SudokuGenerator(
         rotateLayout270(shuffleLayoutBands(rotateLayout90(layout)))
 
     private fun getRandomItem(items: List<(Layout) -> Layout>): (Layout) -> Layout =
-        items.shuffled().first()
+        items.shuffled(random).first()
 
     private fun getSeed(seeds: Array<Sudoku>, difficulty: Difficulty?): Sudoku =
         getRandomItem(getSeedsByDifficulty(seeds, difficulty))
@@ -156,11 +156,10 @@ class SudokuGenerator(
         seeds.filter { seed -> difficulty == null || seed.difficulty == difficulty }.toTypedArray()
 
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
-        items[(Math.random() * items.size).toInt()]
+        items[random.nextInt(items.size)]
     
     private fun getTokenMap(): TokenMap {
         val tokenList = "abcdefghi".toList()
-        val random = Random(sortRandom())
         val shuffledList = tokenList.shuffled(random)
         return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
     }
