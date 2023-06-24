@@ -10,7 +10,7 @@ typealias SolutionString = SudokuString
 typealias Token = String
 typealias Board = Array<Array<Cell>>
 typealias Layout = Array<IntArray>
-typealias TokenMap = Map<Token, String>
+typealias TokenMap = Map<Token, Cell>
 
 enum class Difficulty {
     EASY,
@@ -157,22 +157,9 @@ class SudokuGenerator(
     fun getTokenMap(): TokenMap {
         val gridList = (1..1000).take(gridSize)
         val tokenList: MutableList<String> = mutableListOf()
-        gridList.withIndex().forEachIndexed { index, token ->
-            var value = if (index < gridSize) (index + 1) else (index - gridSize + 1)
-            val charList = mutableListOf<Char>()
-            while (value > 0) {
-                val digit = (value % 10)
-                val char = if (digit == 0) {
-                    ('a' + 9)
-                } else {
-                    ('a'.code + digit - 1).toChar()
-                }
-                charList.add(0, char)
-                value /= 10
-            }
-
-            charList[0] = charList[0].uppercaseChar()
-            tokenList.add(charList.joinToString(""))
+        gridList.withIndex().forEachIndexed { index, _ ->
+            val value = if (index < gridSize) (index + 1) else (index - gridSize + 1)
+            tokenList.add(numberToToken(value))
         }
         val shuffledList = tokenList.shuffled(random)
         val tokenMap = shuffledList.withIndex().associate { (index, token) ->
@@ -180,5 +167,23 @@ class SudokuGenerator(
             token to value
         }
         return tokenMap
+    }
+
+    private fun numberToToken(value: Int): Cell {
+        var valueCopy = value
+        val charList = mutableListOf<Char>()
+        while (valueCopy > 0) {
+            val digit = (valueCopy % 10)
+            val char = if (digit == 0) {
+                ('a' + 9)
+            } else {
+                ('a'.code + digit - 1).toChar()
+            }
+            charList.add(0, char)
+            valueCopy /= 10
+        }
+
+        charList[0] = charList[0].uppercaseChar()
+        return charList.joinToString("")
     }
 }
