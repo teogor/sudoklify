@@ -60,9 +60,7 @@ class SudokuGenerator(
         fun getSudoku(difficulty: Difficulty?, seed: Long): Sudoku {
             val sudokuGenerator = SudokuGenerator(
                 random = Random(seed)
-            ).apply {
-
-            }
+            )
             return sudokuGenerator.getSudoku(difficulty)
         }
     }
@@ -157,13 +155,13 @@ class SudokuGenerator(
 
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
         items[random.nextInt(items.size)]
-    
+
     private fun getTokenMap(): TokenMap {
         val tokenList = "abcdefghi".toList()
         val shuffledList = tokenList.shuffled(random)
         return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
     }
-    
+
     private fun validateDifficulty(difficulty: Any): Boolean {
         return DIFFICULTY_LEVELS.contains(difficulty)
     }
