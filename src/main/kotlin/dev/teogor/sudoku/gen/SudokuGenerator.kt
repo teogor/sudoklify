@@ -21,7 +21,8 @@ enum class Difficulty {
 data class Sudoku(
     val puzzle: PuzzleString,
     val solution: SolutionString,
-    val difficulty: Difficulty
+    val difficulty: Difficulty,
+    val gridSize: Int,
 )
 
 val SEEDS: Array<Sudoku> = arrayOf(
@@ -29,27 +30,55 @@ val SEEDS: Array<Sudoku> = arrayOf(
         puzzle = "G--D--CAF---G----II-F--HG-BB-IAEDHGC--AFCG--D-G-B-----F-D--ABC---B------C--H-BFIA",
         solution = "GBHDIECAFACEGBFDHIIDFCAHGEBBFIAEDHGCEHAFCGIBDDGCBHIAFEFIDEGABCHHABIFCEDGCEGHDBFIA",
         difficulty = Difficulty.EASY,
+        gridSize = 9,
     ),
     Sudoku(
         puzzle = "G-HEDCF---I-F--A--E--A-----C--I-DEH-I-------G--G--E---A----F--C-CF-E-GI-B-------E",
         solution = "GAHEDCFBIDICFBGAEHEFBAIHCGDCBAIGDEHFIHEBFADCGFDGHCEIABAEIGHFBDCHCFDEBGIABGDCAIHFE",
         difficulty = Difficulty.MEDIUM,
+        gridSize = 9,
     ),
     Sudoku(
         puzzle = "-------HG-----H-D-A-G---EI--CE--DG--DBF---------BFID--HG---F----D--H---C--A-EG---",
         solution = "BEDFIACHGFICEGHBDAAHGDBCEIFICEHADGFBDBFGCEIAHGAHBFIDCEHGBCDFAEIEDIAHBFGCCFAIEGHBD",
         difficulty = Difficulty.HARD,
+        gridSize = 9,
     ),
     Sudoku(
         puzzle = "-BI-------C----E---------AF---EBA-----A-I-G------C--I----H-E--D-E------GC-B--F---",
         solution = "FBIAEGDHCACHDFBEGIEDGCHIBAFGICEBAFDHBHAFIDGCEDFEGCHAIBIAFHGECBDHEDBACIFGCGBIDFHEA",
         difficulty = Difficulty.EXPERT,
+        gridSize = 9,
+    ),
+    Sudoku(
+        puzzle = "ABCD----CDAB----",
+        solution = "ABCDDBACBCADCDAB",
+        difficulty = Difficulty.EASY,
+        gridSize = 4,
+    ),
+    Sudoku(
+        puzzle = "BADC----CABD----",
+        solution = "BACDADBCDBACCDAB",
+        difficulty = Difficulty.MEDIUM,
+        gridSize = 4,
+    ),
+    Sudoku(
+        puzzle = "CDBA----ABCD----",
+        solution = "CDBACDABABCDABCD",
+        difficulty = Difficulty.HARD,
+        gridSize = 4,
+    ),
+    Sudoku(
+        puzzle = "DCBA----BADC----",
+        solution = "DCBAADCBBADCABCD",
+        difficulty = Difficulty.EXPERT,
+        gridSize = 4,
     ),
 )
 
 class SudokuGenerator(
     private val random: Random,
-    private val gridSize: Int = 9,
+    private val gridSize: Int,
 ) {
     companion object {
         fun getSudoku(difficulty: Difficulty, seed: Long, gridSize: Int): Sudoku {
@@ -82,7 +111,7 @@ class SudokuGenerator(
         val puzzle = getSequence(layout, seed.puzzle, tokenMap)
         val solution = getSequence(layout, seed.solution, tokenMap)
 
-        return Sudoku(puzzle, solution, seed.difficulty)
+        return Sudoku(puzzle, solution, seed.difficulty, gridSize)
     }
 
     private fun boardToSequence(board: Board): String = board.joinToString("") { it.joinToString("") }
@@ -157,17 +186,20 @@ class SudokuGenerator(
     private fun getRandomItem(items: List<(Layout) -> Layout>): (Layout) -> Layout =
         items.shuffled(random).first()
 
-    private fun getSeed(seeds: Array<Sudoku>, difficulty: Difficulty?): Sudoku =
-        getRandomItem(getSeedsByDifficulty(seeds, difficulty))
+    private fun getSeed(seeds: Array<Sudoku>, difficulty: Difficulty): Sudoku =
+        getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, gridSize), difficulty))
 
-    private fun getSeedsByDifficulty(seeds: Array<Sudoku>, difficulty: Difficulty?): Array<Sudoku> =
-        seeds.filter { seed -> difficulty == null || seed.difficulty == difficulty }.toTypedArray()
+    private fun getSeedsByDifficulty(seeds: Array<Sudoku>, difficulty: Difficulty): Array<Sudoku> =
+        seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
+
+    private fun getSeedsBySize(seeds: Array<Sudoku>, size: Int): Array<Sudoku> =
+        seeds.filter { seed -> seed.gridSize == size }.toTypedArray()
 
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
         items[random.nextInt(items.size)]
 
     private fun getTokenMap(): TokenMap {
-        val tokenList = "ABCDEFGHI".toList()
+        val tokenList = ('A'..'Z').take(gridSize)
         val shuffledList = tokenList.shuffled(random)
         return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
     }

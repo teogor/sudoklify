@@ -13,12 +13,14 @@ fun main() = runBlocking {
     val sudokus: MutableSet<Sudoku> = mutableSetOf()
     val singleSpace = true
     if (singleSpace) {
+        // 4x4 = 4312321442314123
+        // 9x9 = 924761835658923417371485296743598621892146573516237948437652189285319764169874352
         val seed = 0L
-        repeat(10) {
+        repeat(2) {
             val sudoku = SudokuGenerator.getSudoku(
                 difficulty = Difficulty.EASY,
                 seed = seed,
-                gridSize = 9,
+                gridSize = 4,
             )
             println(sudoku.solution)
             sudokus.add(sudoku)
