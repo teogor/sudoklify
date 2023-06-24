@@ -2,6 +2,18 @@ package dev.teogor.sudoku.gen
 
 import kotlin.random.Random
 
+typealias Token = String
+typealias Board = Array<Array<Char>>
+typealias Layout = Array<IntArray>
+typealias TokenMap = Map<Token, String>
+
+enum class Difficulty {
+    EASY,
+    MEDIUM,
+    HARD,
+    EXPERT
+}
+
 data class Sudoku(val puzzle: String, val solution: String, val difficulty: Difficulty)
 
 val BASE_LAYOUT: Layout = arrayOf(
@@ -15,49 +27,36 @@ val BASE_LAYOUT: Layout = arrayOf(
     intArrayOf(63, 64, 65, 66, 67, 68, 69, 70, 71),
     intArrayOf(72, 73, 74, 75, 76, 77, 78, 79, 80)
 )
-val DIFFICULTY_RECORD: Map<Difficulty, Unit> = mapOf(
-    "easy" to Unit,
-    "medium" to Unit,
-    "hard" to Unit,
-    "expert" to Unit
-)
-val DIFFICULTY_LEVELS: List<Difficulty> = DIFFICULTY_RECORD.keys.toList()
 val GRID_SIZE: Int = 9
 val LINE_CONTAINER: List<List<String>> = List(GRID_SIZE) { emptyList() }
 val SEEDS: Array<Sudoku> = arrayOf(
     Sudoku(
         puzzle = "G--D--CAF---G----II-F--HG-BB-IAEDHGC--AFCG--D-G-B-----F-D--ABC---B------C--H-BFIA",
         solution = "GBHDIECAFACEGBFDHIIDFCAHGEBBFIAEDHGCEHAFCGIBDDGCBHIAFEFIDEGABCHHABIFCEDGCEGHDBFIA",
-        difficulty = "easy",
+        difficulty = Difficulty.EASY,
     ),
     Sudoku(
         puzzle = "G-HEDCF---I-F--A--E--A-----C--I-DEH-I-------G--G--E---A----F--C-CF-E-GI-B-------E",
         solution = "GAHEDCFBIDICFBGAEHEFBAIHCGDCBAIGDEHFIHEBFADCGFDGHCEIABAEIGHFBDCHCFDEBGIABGDCAIHFE",
-        difficulty = "medium",
+        difficulty = Difficulty.MEDIUM,
     ),
     Sudoku(
         puzzle = "-------HG-----H-D-A-G---EI--CE--DG--DBF---------BFID--HG---F----D--H---C--A-EG---",
         solution = "BEDFIACHGFICEGHBDAAHGDBCEIFICEHADGFBDBFGCEIAHGAHBFIDCEHGBCDFAEIEDIAHBFGCCFAIEGHBD",
-        difficulty = "hard",
+        difficulty = Difficulty.HARD,
     ),
     Sudoku(
         puzzle = "-BI-------C----E---------AF---EBA-----A-I-G------C--I----H-E--D-E------GC-B--F---",
         solution = "FBIAEGDHCACHDFBEGIEDGCHIBAFGICEBAFDHBHAFIDGCEDFEGCHAIBIAFHGECBDHEDBACIFGCGBIDFHEA",
-        difficulty = "expert",
+        difficulty = Difficulty.EXPERT,
     ),
 )
-
-typealias Difficulty = String
-typealias Token = String
-typealias Board = Array<Array<Char>>
-typealias Layout = Array<IntArray>
-typealias TokenMap = Map<Token, String>
 
 class SudokuGenerator(
     private val random: Random
 ) {
     companion object {
-        fun getSudoku(difficulty: Difficulty?, seed: Long): Sudoku {
+        fun getSudoku(difficulty: Difficulty, seed: Long): Sudoku {
             val sudokuGenerator = SudokuGenerator(
                 random = Random(seed)
             )
@@ -65,11 +64,7 @@ class SudokuGenerator(
         }
     }
 
-    private fun getSudoku(difficulty: Difficulty?): Sudoku {
-        if (!difficulty.isNullOrBlank() && !validateDifficulty(difficulty)) {
-            throw IllegalArgumentException("Invalid difficulty, expected one of: ${DIFFICULTY_LEVELS.joinToString(", ")}")
-        }
-
+    private fun getSudoku(difficulty: Difficulty): Sudoku {
         val seed = getSeed(SEEDS, difficulty)
         val layout = getLayout(BASE_LAYOUT)
         val tokenMap = getTokenMap()
@@ -139,7 +134,8 @@ class SudokuGenerator(
         rotateLayout270(shuffleLayoutRows(rotateLayout90(layout)))
 
     private fun shuffleLayoutRows(layout: Layout): Layout =
-        getLayoutBands(layout).map { rows -> rows.sortedWith(compareBy { sortRandom() }) }.flatMap { it.toList() }.toTypedArray()
+        getLayoutBands(layout).map { rows -> rows.sortedWith(compareBy { sortRandom() }) }.flatMap { it.toList() }
+            .toTypedArray()
 
     private fun shuffleLayoutStacks(layout: Layout): Layout =
         rotateLayout270(shuffleLayoutBands(rotateLayout90(layout)))
@@ -160,9 +156,5 @@ class SudokuGenerator(
         val tokenList = "ABCDEFGHI".toList()
         val shuffledList = tokenList.shuffled(random)
         return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
-    }
-
-    private fun validateDifficulty(difficulty: Any): Boolean {
-        return DIFFICULTY_LEVELS.contains(difficulty)
     }
 }

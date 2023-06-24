@@ -1,5 +1,6 @@
 package dev.teogor
 
+import dev.teogor.sudoku.gen.Difficulty
 import dev.teogor.sudoku.gen.Sudoku
 import dev.teogor.sudoku.gen.SudokuGenerator
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,7 @@ fun main() = runBlocking {
         val seed = 0L
         repeat(10) {
             val sudoku = SudokuGenerator.getSudoku(
-                difficulty = "easy",
+                difficulty = Difficulty.EASY,
                 seed = seed,
             )
             println(sudoku.solution)
@@ -33,7 +34,7 @@ fun main() = runBlocking {
                 launch {
                     repeat(parallelism) {
                         val sudoku = SudokuGenerator.getSudoku(
-                            difficulty = "easy",
+                            difficulty = Difficulty.EASY,
                             seed = System.currentTimeMillis(),
                         )
                         println(sudoku.solution)
