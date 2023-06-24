@@ -8,6 +8,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
+    val sudoku = SudokuGenerator.getSudoku(
+        difficulty = Difficulty.EASY,
+        seed = 0L,
+        gridSize = 16,
+    )
     val startTime = System.currentTimeMillis()
     val sudokus: MutableSet<Sudoku> = mutableSetOf()
     val singleSpace = true

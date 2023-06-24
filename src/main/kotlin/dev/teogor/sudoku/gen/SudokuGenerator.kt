@@ -69,9 +69,12 @@ class SudokuGenerator(
         return boardToSequence(populatedLayout)
     }
 
+    // todo
     private fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
         return sequence
-            .split("").joinToString("") { token -> tokenMap[token] ?: token }
+            .split("").joinToString("") { token ->
+                tokenMap[token] ?: token
+            }
     }
 
     private fun sequenceToBoard(sequence: String): Board {
