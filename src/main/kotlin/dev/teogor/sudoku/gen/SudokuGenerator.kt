@@ -12,6 +12,22 @@ typealias Board = Array<Array<Cell>>
 typealias Layout = Array<IntArray>
 typealias TokenMap = Map<Token, Cell>
 
+enum class Type(val rows: Int, val cols: Int) {
+    TWO_BY_TWO(2, 2),
+    TWO_BY_THREE(2, 3),
+    TWO_BY_FOUR(2, 4),
+    THREE_BY_THREE(3, 3),
+    TWO_BY_FIVE(2, 5),
+    THREE_BY_FOUR(3, 4),
+    THREE_BY_FIVE(3, 5),
+    FOUR_BY_FOUR(4, 4),
+    FIVE_BY_FIVE(5, 5),
+    SIX_BY_SIX(6, 6),
+    SEVEN_BY_SEVEN(7, 7),
+    EIGHT_BY_EIGHT(8, 8),
+    NINE_BY_NINE(9, 9)
+}
+
 enum class Difficulty {
     EASY,
     MEDIUM,
@@ -28,18 +44,19 @@ data class Sudoku(
 
 class SudokuGenerator(
     private val random: Random,
-    private val gridSize: Int,
+    private val type: Type,
 ) {
     companion object {
-        fun getSudoku(difficulty: Difficulty, seed: Long, gridSize: Int): Sudoku {
+        fun getSudoku(difficulty: Difficulty, seed: Long, type: Type): Sudoku {
             val sudokuGenerator = SudokuGenerator(
                 random = Random(seed),
-                gridSize = gridSize,
+                type = type,
             )
             return sudokuGenerator.getSudoku(difficulty)
         }
     }
 
+    private val gridSize = type.rows * type.cols
     private val gridArea = gridSize * gridSize
     private val baseLayout: Layout = generateBaseLayout()
 

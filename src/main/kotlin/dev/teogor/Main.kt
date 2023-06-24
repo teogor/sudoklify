@@ -3,6 +3,7 @@ package dev.teogor
 import dev.teogor.sudoku.gen.Difficulty
 import dev.teogor.sudoku.gen.Sudoku
 import dev.teogor.sudoku.gen.SudokuGenerator
+import dev.teogor.sudoku.gen.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -11,14 +12,14 @@ fun main() = runBlocking {
     val sudoku = SudokuGenerator.getSudoku(
         difficulty = Difficulty.EASY,
         seed = 0L,
-        gridSize = 16,
+        type = Type.THREE_BY_THREE,
     )
     val startTime = System.currentTimeMillis()
     val sudokus: MutableSet<Sudoku> = mutableSetOf()
     val singleSpace = true
     val sudokusSize = listOf(
-        4,
-        9
+        Type.TWO_BY_TWO,
+        Type.THREE_BY_THREE,
     )
     val sudokusResult = listOf(
         // 4x4
@@ -31,19 +32,19 @@ fun main() = runBlocking {
         // 9x9 = 924761835658923417371485296743598621892146573516237948437652189285319764169874352
         // 16x16 = todo
         val seed = 0L
-        sudokusSize.forEachIndexed { index, gridSize ->
+        sudokusSize.forEachIndexed { index, type ->
             repeat(2) {
                 val sudoku = SudokuGenerator.getSudoku(
                     difficulty = Difficulty.EASY,
                     seed = seed,
-                    gridSize = gridSize,
+                    type = type,
                 )
                 sudokus.add(sudoku)
                 val solution = sudoku.solution
                 if (solution != sudokusResult[index]) {
-                    println("test constraint failed for $gridSize")
+                    println("test constraint failed for $type")
                 } else {
-                    println("test constraint passed for $gridSize")
+                    println("test constraint passed for $type")
                 }
             }
         }
@@ -61,7 +62,7 @@ fun main() = runBlocking {
                         val sudoku = SudokuGenerator.getSudoku(
                             difficulty = Difficulty.EASY,
                             seed = System.currentTimeMillis(),
-                            gridSize = 9,
+                            type = Type.THREE_BY_THREE,
                         )
                         println(sudoku.solution)
                         sudokus.add(sudoku)
