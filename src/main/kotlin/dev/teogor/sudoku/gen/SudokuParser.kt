@@ -1,4 +1,4 @@
-package dev.teogor.sudoku.gen.file
+package dev.teogor.sudoku.gen
 
 import java.io.File
 
