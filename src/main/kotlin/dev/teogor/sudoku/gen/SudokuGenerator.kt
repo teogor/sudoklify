@@ -147,13 +147,6 @@ class SudokuGenerator(
     private fun getRandomItem(items: Array<Sudoku>): Sudoku =
         items[random.nextInt(items.size)]
 
-    @Deprecated("use getTokenMap()")
-    private fun getTokenMapLegacy(): TokenMap {
-        val tokenList = ('A'..'Z').take(gridSize)
-        val shuffledList = tokenList.shuffled(random)
-        return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
-    }
-
     fun getTokenMap(): TokenMap {
         val gridList = (1..gridSize)
         val tokenList = gridList.withIndex().map { (index, _) ->
