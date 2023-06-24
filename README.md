@@ -17,14 +17,21 @@
 Here's a simple example demonstrating how to generate a Sudoku puzzle using Sudoklify:
 
 ```kotlin
-import dev.teogor.sudoku.gen.*
+import dev.teogor.sudoklify.Difficulty
+import dev.teogor.sudoklify.Sudoku
+import dev.teogor.sudoklify.SudokuGenerator
+import dev.teogor.sudoklify.Type
 
 fun main() {
     val seed = 12345L
-    val gridSize = 9
+    val type = Type.THREE_BY_THREE
     val difficulty = Difficulty.MEDIUM
 
-    val sudoku = SudokuGenerator.getSudoku(difficulty, seed, gridSize)
+    val sudoku = SudokuGenerator.getSudoku(
+        difficulty = difficulty,
+        seed = seed,
+        type = type,
+    )
     println("Generated Sudoku Puzzle:")
     println(sudoku.puzzle)
 }
