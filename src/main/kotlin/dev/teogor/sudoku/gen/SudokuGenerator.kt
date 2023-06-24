@@ -26,23 +26,23 @@ val GRID_SIZE: Int = 9
 val LINE_CONTAINER: List<List<String>> = List(GRID_SIZE) { emptyList() }
 val SEEDS: Array<Sudoku> = arrayOf(
     Sudoku(
-        puzzle = "g--d--caf---g----ii-f--hg-bb-iaedhgc--afcg--d-g-b-----f-d--abc---b------c--h-bfia",
-        solution = "gbhdiecafacegbfdhiidfcahgebbfiaedhgcehafcgibddgcbhiafefidegabchhabifcedgceghdbfia",
+        puzzle = "G--D--CAF---G----II-F--HG-BB-IAEDHGC--AFCG--D-G-B-----F-D--ABC---B------C--H-BFIA",
+        solution = "GBHDIECAFACEGBFDHIIDFCAHGEBBFIAEDHGCEHAFCGIBDDGCBHIAFEFIDEGABCHHABIFCEDGCEGHDBFIA",
         difficulty = "easy",
     ),
     Sudoku(
-        puzzle = "g-hedcf---i-f--a--e--a-----c--i-deh-i-------g--g--e---a----f--c-cf-e-gi-b-------e",
-        solution = "gahedcfbidicfbgaehefbaihcgdcbaigdehfihebfadcgfdghceiabaeighfbdchcfdebgiabgdcaihfe",
+        puzzle = "G-HEDCF---I-F--A--E--A-----C--I-DEH-I-------G--G--E---A----F--C-CF-E-GI-B-------E",
+        solution = "GAHEDCFBIDICFBGAEHEFBAIHCGDCBAIGDEHFIHEBFADCGFDGHCEIABAEIGHFBDCHCFDEBGIABGDCAIHFE",
         difficulty = "medium",
     ),
     Sudoku(
-        puzzle = "-------hg-----h-d-a-g---ei--ce--dg--dbf---------bfid--hg---f----d--h---c--a-eg---",
-        solution = "bedfiachgficeghbdaahgdbceificehadgfbdbfgceiahgahbfidcehgbcdfaeiediahbfgccfaieghbd",
+        puzzle = "-------HG-----H-D-A-G---EI--CE--DG--DBF---------BFID--HG---F----D--H---C--A-EG---",
+        solution = "BEDFIACHGFICEGHBDAAHGDBCEIFICEHADGFBDBFGCEIAHGAHBFIDCEHGBCDFAEIEDIAHBFGCCFAIEGHBD",
         difficulty = "hard",
     ),
     Sudoku(
-        puzzle = "-bi-------c----e---------af---eba-----a-i-g------c--i----h-e--d-e------gc-b--f---",
-        solution = "fbiaegdhcachdfbegiedgchibafgicebafdhbhafidgcedfegchaibiafhgecbdhedbacifgcgbidfhea",
+        puzzle = "-BI-------C----E---------AF---EBA-----A-I-G------C--I----H-E--D-E------GC-B--F---",
+        solution = "FBIAEGDHCACHDFBEGIEDGCHIBAFGICEBAFDHBHAFIDGCEDFEGCHAIBIAFHGECBDHEDBACIFGCGBIDFHEA",
         difficulty = "expert",
     ),
 )
@@ -157,7 +157,7 @@ class SudokuGenerator(
         items[random.nextInt(items.size)]
 
     private fun getTokenMap(): TokenMap {
-        val tokenList = "abcdefghi".toList()
+        val tokenList = "ABCDEFGHI".toList()
         val shuffledList = tokenList.shuffled(random)
         return shuffledList.withIndex().associate { (index, token) -> token.toString() to (index + 1).toString() }
     }
