@@ -2,6 +2,9 @@ package dev.teogor.sudoku.gen
 
 import kotlin.random.Random
 
+typealias SudokuString = String
+typealias PuzzleString = SudokuString
+typealias SolutionString = SudokuString
 typealias Token = String
 typealias Board = Array<Array<Char>>
 typealias Layout = Array<IntArray>
@@ -14,7 +17,11 @@ enum class Difficulty {
     EXPERT
 }
 
-data class Sudoku(val puzzle: String, val solution: String, val difficulty: Difficulty)
+data class Sudoku(
+    val puzzle: PuzzleString,
+    val solution: SolutionString,
+    val difficulty: Difficulty
+)
 
 val BASE_LAYOUT: Layout = arrayOf(
     intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8),
