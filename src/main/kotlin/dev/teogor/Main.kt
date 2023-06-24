@@ -6,7 +6,6 @@ import dev.teogor.sudoku.gen.SudokuGenerator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import toFormattedTime
 
 fun main() = runBlocking {
     val startTime = System.currentTimeMillis()
@@ -73,5 +72,29 @@ fun main() = runBlocking {
     println()
     println("Sudoku List Generation Time: ${generationTime.toFormattedTime()}")
     println("Sudokus size ${sudokus.size}")
+}
+
+fun Long.toFormattedTime(): String {
+    val seconds = (this / 1000) % 60
+    val minutes = (this / (1000 * 60)) % 60
+    val hours = (this / (1000 * 60 * 60))
+
+    val timeStringBuilder = StringBuilder()
+
+    if (hours > 0) {
+        timeStringBuilder.append("${hours}h ")
+    }
+
+    if (minutes > 0) {
+        timeStringBuilder.append("${minutes}m ")
+    }
+
+    if (seconds > 0 && (hours == 0L && minutes == 0L)) {
+        timeStringBuilder.append("${seconds}s")
+    } else {
+        timeStringBuilder.append("${this % 1000}ms")
+    }
+
+    return timeStringBuilder.toString().trimEnd(',', ' ')
 }
 
