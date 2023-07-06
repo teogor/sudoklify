@@ -11,9 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.8.9")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation(project(mapOf("path" to ":sudoklify")))
 
     testImplementation(kotlin("test"))
 }
