@@ -1,4 +1,4 @@
-package dev.teogor.demo
+package dev.teogor.sudoklify.demo
 
 import dev.teogor.sudoklify.Difficulty
 import dev.teogor.sudoklify.Sudoku
