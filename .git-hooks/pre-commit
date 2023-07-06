@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Running Spotless plugin..."
+
+./gradlew --init-script gradle/init.gradle.kts spotlessApply
+
+# If the plugin command exits with a non-zero status, the commit will be aborted
+if [ $? -ne 0 ]; then
+    echo "Spotless plugin failed. Aborting commit."
+    exit 1
+fi
+
+# If the plugin command completes successfully, the commit will proceed
+echo "Spotless plugin completed successfully."
+exit 0
