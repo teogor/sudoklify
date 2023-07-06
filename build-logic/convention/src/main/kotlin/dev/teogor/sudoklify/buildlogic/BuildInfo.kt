@@ -35,7 +35,7 @@ object BuildInfo {
     val minorVersion: Int,
     val patchVersion: Int,
     val preReleaseVersion: Int,
-    val flags: Flags
+    val flags: Flags,
   ) {
     val code: Int = 1
 
@@ -44,14 +44,14 @@ object BuildInfo {
       minorVersion,
       patchVersion,
       preReleaseVersion,
-      flags
+      flags,
     )
     val snapshotName: String = VersionImplementation.snapshotVersionNameImpl(
       majorVersion,
       minorVersion,
       patchVersion,
       preReleaseVersion,
-      flags
+      flags,
     )
 
     internal object VersionImplementation {
@@ -60,7 +60,7 @@ object BuildInfo {
         minorVersion: Int,
         patchVersion: Int,
         preReleaseVersion: Int,
-        flags: Flags
+        flags: Flags,
       ): String {
         val baseVersionName = "$majorVersion.$minorVersion.$patchVersion"
         return when (flags) {
@@ -75,7 +75,7 @@ object BuildInfo {
         minorVersion: Int,
         patchVersion: Int,
         preReleaseVersion: Int,
-        flags: Flags
+        flags: Flags,
       ): String {
         val baseVersionName = "$majorVersion.$minorVersion.${patchVersion + 1}-SNAPSHOT"
         return when (flags) {
