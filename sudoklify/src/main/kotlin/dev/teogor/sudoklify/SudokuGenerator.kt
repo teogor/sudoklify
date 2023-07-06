@@ -58,7 +58,7 @@ data class Sudoku(
   val type: Type,
 )
 
-class SudokuGenerator(
+class SudokuGenerator private constructor(
   private val random: Random,
   private val type: Type,
 ) {
