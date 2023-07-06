@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 Teogor (Teodor Grigor)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.teogor.sudoklify
 
 import kotlin.math.sqrt
@@ -25,14 +41,14 @@ enum class Type(val rows: Int, val cols: Int) {
   SIX_BY_SIX(6, 6),
   SEVEN_BY_SEVEN(7, 7),
   EIGHT_BY_EIGHT(8, 8),
-  NINE_BY_NINE(9, 9)
+  NINE_BY_NINE(9, 9),
 }
 
 enum class Difficulty {
   EASY,
   MEDIUM,
   HARD,
-  EXPERT
+  EXPERT,
 }
 
 data class Sudoku(
@@ -148,7 +164,9 @@ class SudokuGenerator(
     return Sudoku(puzzle, solution, seed.difficulty, type)
   }
 
-  private fun boardToSequence(board: Board): String = board.joinToString("") { it.joinToString("") }
+  private fun boardToSequence(board: Board): String = board.joinToString("") {
+    it.joinToString("")
+  }
 
   private fun <T> getRandomItem(items: List<T>): T = items.random(random)
 

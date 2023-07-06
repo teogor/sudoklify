@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 Teogor (Teodor Grigor)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.teogor.sudoklify.demo
 
 import dev.teogor.sudoklify.Difficulty
@@ -17,10 +33,10 @@ fun main() = runBlocking {
     Type.THREE_BY_THREE,
   )
   val sudokusResult = listOf(
-      // 4x4
-      "4312321442314123",
-      // 9x9
-      "924761835658923417371485296743598621892146573516237948437652189285319764169874352",
+    // 4x4
+    "4312321442314123",
+    // 9x9
+    "924761835658923417371485296743598621892146573516237948437652189285319764169874352",
   )
   if (singleSpace) {
     // 4x4 = 4312321442314123
@@ -98,4 +114,3 @@ fun Long.toFormattedTime(): String {
 
   return timeStringBuilder.toString().trimEnd(',', ' ')
 }
-

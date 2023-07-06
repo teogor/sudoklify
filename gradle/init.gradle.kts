@@ -23,6 +23,9 @@ rootProject {
         targetExclude("**/build/**/*.kt")
         ktlint(ktlintVersion).userData(mapOf("android" to "true"))
         licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
+
+        // we exclude it because we have seeds that are way to long
+        targetExclude("**/Seeds.kt")
       }
       format("kts") {
         target("**/*.kts")
