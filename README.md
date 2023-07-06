@@ -1,7 +1,10 @@
 # 🧩 Sudoklify 🧩
+
 ## A Powerful Sudoku Puzzle Generation Library
 
-🧩 Sudoklify is a versatile and intuitive Sudoku puzzle generation library written in Kotlin. It provides a comprehensive set of tools and algorithms for generating Sudoku puzzles of various grid sizes and difficulty levels.
+🧩 Sudoklify is a versatile and intuitive Sudoku puzzle generation library written in Kotlin. It
+provides a comprehensive set of tools and algorithms for generating Sudoku puzzles of various grid
+sizes and difficulty levels.
 
 ## Key Features
 
@@ -39,13 +42,18 @@ fun main() {
 
 ## Contributing
 
-Contributions to Sudoklify are welcome! If you have any ideas, bug reports, or feature requests, please open an issue or submit a pull request. For more information, please refer to our [Contributing Guidelines](CONTRIBUTING.md).
+Contributions to Sudoklify are welcome! If you have any ideas, bug reports, or feature requests,
+please open an issue or submit a pull request. For more information, please refer to
+our [Contributing Guidelines](CONTRIBUTING.md).
 
 ## Find this repository useful? :heart:
-Support it by joining __[stargazers](https://github.com/teogor/sudoklify/stargazers)__ for this repository. :star: <br>
+
+Support it by joining __[stargazers](https://github.com/teogor/sudoklify/stargazers)__ for this
+repository. :star: <br>
 Also, __[follow me](https://github.com/teogor)__ on GitHub for my next creations! 🤩
 
 ## License
+
 ```xml
   Designed and developed by 2023 teogor (Teodor Grigor)
 

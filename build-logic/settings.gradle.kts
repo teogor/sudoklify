@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Teogor (Teodor Grigor)
+ * Copyright 2022 Teogor (Teodor Grigor)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dev.teogor.sudoklify.buildlogic.BuildInfo
 
-plugins {
-  id("sudoklify.kotlin.library")
+dependencyResolutionManagement {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  versionCatalogs {
+    create("libs") {
+      from(files("../gradle/libs.versions.toml"))
+    }
+  }
 }
 
-group = BuildInfo.group.fullName
-version = BuildInfo.version.name
-
-tasks.test {
-  useJUnitPlatform()
-}
+rootProject.name = "build-logic"
+include(":convention")
