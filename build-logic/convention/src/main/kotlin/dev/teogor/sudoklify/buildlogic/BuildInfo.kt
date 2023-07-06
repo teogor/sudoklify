@@ -17,72 +17,77 @@
 package dev.teogor.sudoklify.buildlogic
 
 object BuildInfo {
-
-  val domain = "dev.teogor"
-  val libName = "sudoklify"
-  val group = "$domain.$libName"
-
-  val flags = Flags.ALPHA
-  val name = VersionImplementation.versionNameImpl()
-  val snapshotName = VersionImplementation.snapshotVersionNameImpl()
-  
-  private const val majorVersion = 1
-  private const val minorVersion = 0
-  private const val patchVersion = 0
-  private const val preReleaseVersion = 1
-  const val code = 1
+  val group: Group = Group("dev.teogor", "sudoklify")
+  val version: Version = Version(1, 0, 0, 1, Flags.ALPHA)
 
   enum class Flags {
     NO,
     ALPHA,
-    BETA,
+    BETA
   }
 
-  /**
-   * Internal helper class for [BuildInfo].
-   *
-   * @hide
-   */
-  internal object VersionImplementation {
+  class Group(val domain: String, val name: String) {
+    val fullName: String = "$domain.$name"
+  }
 
-    /**
-     * Build a version name based on [majorVersion], [minorVersion],
-     * [patchVersion], and [preReleaseVersion].
-     *
-     * @return The version name based on version flags.
-     */
-    internal fun versionNameImpl(): String {
-      val baseVersionName = "$majorVersion.$minorVersion.$patchVersion"
-      return when (flags) {
-        Flags.NO -> baseVersionName
-        Flags.ALPHA -> "$baseVersionName-alpha${preReleaseVersionImpl()}"
-        Flags.BETA -> "$baseVersionName-beta${preReleaseVersionImpl()}"
+  class Version(
+    val majorVersion: Int,
+    val minorVersion: Int,
+    val patchVersion: Int,
+    val preReleaseVersion: Int,
+    val flags: Flags
+  ) {
+    val code: Int = 1
+
+    val name: String = VersionImplementation.versionNameImpl(
+      majorVersion,
+      minorVersion,
+      patchVersion,
+      preReleaseVersion,
+      flags
+    )
+    val snapshotName: String = VersionImplementation.snapshotVersionNameImpl(
+      majorVersion,
+      minorVersion,
+      patchVersion,
+      preReleaseVersion,
+      flags
+    )
+
+    internal object VersionImplementation {
+      fun versionNameImpl(
+        majorVersion: Int,
+        minorVersion: Int,
+        patchVersion: Int,
+        preReleaseVersion: Int,
+        flags: Flags
+      ): String {
+        val baseVersionName = "$majorVersion.$minorVersion.$patchVersion"
+        return when (flags) {
+          Flags.NO -> baseVersionName
+          Flags.ALPHA -> "$baseVersionName-alpha${preReleaseVersionImpl(preReleaseVersion)}"
+          Flags.BETA -> "$baseVersionName-beta${preReleaseVersionImpl(preReleaseVersion)}"
+        }
       }
-    }
 
-    /**
-     * Build a snapshot version name based on [majorVersion],
-     * [minorVersion], [patchVersion], and [preReleaseVersion].
-     *
-     * @return The snapshot version name based on version flags.
-     */
-    internal fun snapshotVersionNameImpl(): String {
-      val baseVersionName = "$majorVersion.$minorVersion.${patchVersion + 1}-SNAPSHOT"
-      return when (flags) {
-        Flags.NO -> baseVersionName
-        Flags.ALPHA -> "$baseVersionName-alpha${preReleaseVersionImpl()}"
-        Flags.BETA -> "$baseVersionName-beta${preReleaseVersionImpl()}"
+      fun snapshotVersionNameImpl(
+        majorVersion: Int,
+        minorVersion: Int,
+        patchVersion: Int,
+        preReleaseVersion: Int,
+        flags: Flags
+      ): String {
+        val baseVersionName = "$majorVersion.$minorVersion.${patchVersion + 1}-SNAPSHOT"
+        return when (flags) {
+          Flags.NO -> baseVersionName
+          Flags.ALPHA -> "$baseVersionName-alpha${preReleaseVersionImpl(preReleaseVersion)}"
+          Flags.BETA -> "$baseVersionName-beta${preReleaseVersionImpl(preReleaseVersion)}"
+        }
       }
-    }
 
-    /**
-     * Get the formatted pre-release version.
-     *
-     * @return The formatted pre-release version.
-     */
-    private fun preReleaseVersionImpl(): String {
-      return preReleaseVersion.toString().padStart(3, '0')
+      private fun preReleaseVersionImpl(preReleaseVersion: Int): String {
+        return preReleaseVersion.toString().padStart(3, '0')
+      }
     }
   }
 }
-

@@ -21,10 +21,13 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.kotlin
 
-class KotlinLibraryConventionPlugin : Plugin<Project> {
+class KotlinApplicationConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
     with(target) {
-      pluginManager.apply("kotlin")
+      with(pluginManager) {
+        apply("kotlin")
+        apply("application")
+      }
 
       val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
       dependencies {

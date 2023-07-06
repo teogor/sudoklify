@@ -1,26 +1,22 @@
+import dev.teogor.sudoklify.buildlogic.BuildInfo
+
 plugins {
-    kotlin("jvm") version "1.8.21"
-    application
+  id("sudoklify.kotlin.application")
 }
 
-group = "dev.teogor"
+group = BuildInfo.group.fullName
+version = BuildInfo.version.name
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.8.9")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation(project(mapOf("path" to ":sudoklify")))
+  implementation(libs.gson)
 
-    testImplementation(kotlin("test"))
+  implementation(project(mapOf("path" to ":sudoklify")))
 }
 
 tasks.test {
-    useJUnitPlatform()
-}
-
-kotlin {
-    jvmToolchain(11)
+  useJUnitPlatform()
 }
 
 application {
-    mainClass.set("MainKt")
+  mainClass.set("MainKt")
 }

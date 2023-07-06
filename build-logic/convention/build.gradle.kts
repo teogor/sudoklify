@@ -39,6 +39,10 @@ dependencies {
 
 gradlePlugin {
   plugins {
+    register("kotlinApplication") {
+      id = "sudoklify.kotlin.application"
+      implementationClass = "KotlinApplicationConventionPlugin"
+    }
     register("kotlinLibrary") {
       id = "sudoklify.kotlin.library"
       implementationClass = "KotlinLibraryConventionPlugin"

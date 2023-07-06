@@ -4,14 +4,9 @@ plugins {
     id("sudoklify.kotlin.library")
 }
 
-
-group = "dev.teogor"
-version = BuildInfo.name
+group = BuildInfo.group.fullName
+version = BuildInfo.version.name
 
 tasks.test {
     useJUnitPlatform()
-}
-
-kotlin {
-    jvmToolchain(11)
 }
