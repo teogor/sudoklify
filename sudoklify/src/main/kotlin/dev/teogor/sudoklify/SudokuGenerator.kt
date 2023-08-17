@@ -72,8 +72,6 @@ class SudokuGenerator private constructor(
     }
   }
 
-  private val gridSize = type.rows * type.cols
-
   internal open class Tokenizer {
     open fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
       return ""
@@ -84,14 +82,15 @@ class SudokuGenerator private constructor(
     }
   }
 
-  private val gridArea = gridSize * gridSize
+  private val boxDigits = type.rows * type.cols
+  private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
   private val tokenizer: Tokenizer = getTokenizerImpl()
 
-  private fun getTokenizerImpl(): Tokenizer = if (gridSize < 10) {
+  private fun getTokenizerImpl(): Tokenizer = if (boxDigits < 10) {
     SingleDigitTokenizer()
   } else {
-    MultiDigitTokenizer(gridSize)
+    MultiDigitTokenizer(boxDigits)
   }
 
   private class SingleDigitTokenizer : Tokenizer() {
@@ -148,8 +147,8 @@ class SudokuGenerator private constructor(
   }
 
   private fun generateBaseLayout(): Layout {
-    return Array(gridSize) { i ->
-      IntArray(gridSize) { j -> i * gridSize + j }
+    return Array(boxDigits) { i ->
+      IntArray(boxDigits) { j -> i * boxDigits + j }
     }
   }
 
@@ -180,7 +179,7 @@ class SudokuGenerator private constructor(
   }
 
   private fun sequenceToBoard(sequence: SudokuString): Board {
-    return sequence.chunked(gridSize)
+    return sequence.chunked(boxDigits)
       .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
       .toTypedArray()
   }
@@ -190,9 +189,9 @@ class SudokuGenerator private constructor(
   private fun getLayout(baseLayout: Layout): Layout = shuffleLayout(rotateLayout(baseLayout))
 
   private fun getLayoutBands(layout: Layout): Array<Array<IntArray>> {
-    val bandSize = sqrt(gridSize.toDouble()).toInt()
+    val bandSize = sqrt(boxDigits.toDouble()).toInt()
     val bands = mutableListOf<Array<IntArray>>()
-    for (i in 0 until gridSize step bandSize) {
+    for (i in 0 until boxDigits step bandSize) {
       val band = layout.slice(i until i + bandSize).toTypedArray()
       bands.add(band)
     }
@@ -239,7 +238,7 @@ class SudokuGenerator private constructor(
     items.shuffled(random).first()
 
   private fun getSeed(seeds: Array<Sudoku>, difficulty: Difficulty): Sudoku =
-    getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, gridSize), difficulty))
+    getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
 
   private fun getSeedsByDifficulty(seeds: Array<Sudoku>, difficulty: Difficulty): Array<Sudoku> =
     seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
@@ -251,15 +250,15 @@ class SudokuGenerator private constructor(
     items[random.nextInt(items.size)]
 
   private fun getTokenMap(): TokenMap {
-    val gridList = (1..gridSize)
+    val gridList = (1..boxDigits)
     val tokenList = gridList.withIndex().map { (index, _) ->
-      val value = if (index < gridSize) (index + 1) else (index - gridSize + 1)
+      val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
       numberToToken(value)
     }.shuffled(random)
 
     val tokenMap = tokenList.withIndex().associate { (index, token) ->
       val value =
-        if (index < gridSize) (index + 1).toString() else (index - gridSize + 1).toString()
+        if (index < boxDigits) (index + 1).toString() else (index - boxDigits + 1).toString()
       token to value
     }
     return tokenMap
