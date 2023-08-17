@@ -16,47 +16,16 @@
 
 package dev.teogor.sudoklify
 
+import dev.teogor.sudoklify.types.Board
+import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.types.Layout
+import dev.teogor.sudoklify.model.Sudoku
+import dev.teogor.sudoklify.types.SudokuString
+import dev.teogor.sudoklify.types.Token
+import dev.teogor.sudoklify.types.TokenMap
+import dev.teogor.sudoklify.model.Type
 import kotlin.math.sqrt
 import kotlin.random.Random
-
-typealias Cell = String
-typealias SudokuString = String
-typealias PuzzleString = SudokuString
-typealias SolutionString = SudokuString
-typealias Token = String
-typealias Board = Array<Array<Cell>>
-typealias Layout = Array<IntArray>
-typealias TokenMap = Map<Token, Cell>
-
-enum class Type(val rows: Int, val cols: Int) {
-  TWO_BY_TWO(2, 2),
-  TWO_BY_THREE(2, 3),
-  TWO_BY_FOUR(2, 4),
-  THREE_BY_THREE(3, 3),
-  TWO_BY_FIVE(2, 5),
-  THREE_BY_FOUR(3, 4),
-  THREE_BY_FIVE(3, 5),
-  FOUR_BY_FOUR(4, 4),
-  FIVE_BY_FIVE(5, 5),
-  SIX_BY_SIX(6, 6),
-  SEVEN_BY_SEVEN(7, 7),
-  EIGHT_BY_EIGHT(8, 8),
-  NINE_BY_NINE(9, 9),
-}
-
-enum class Difficulty {
-  EASY,
-  MEDIUM,
-  HARD,
-  EXPERT,
-}
-
-data class Sudoku(
-  val puzzle: PuzzleString,
-  val solution: SolutionString,
-  val difficulty: Difficulty,
-  val type: Type,
-)
 
 class SudokuGenerator private constructor(
   private val random: Random,
