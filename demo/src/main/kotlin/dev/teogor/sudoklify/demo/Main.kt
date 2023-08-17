@@ -31,12 +31,15 @@ fun main() = runBlocking {
   val sudokusSize = listOf(
     Type.TWO_BY_TWO,
     Type.THREE_BY_THREE,
+    Type.FOUR_BY_FOUR,
   )
   val sudokusResult = listOf(
     // 4x4
     "4312321442314123",
     // 9x9
     "924761835658923417371485296743598621892146573516237948437652189285319764169874352",
+    // 16x16
+    "31127813914516611041215311278139145166110412158610161245111915214713351512927101131314461681610134151212711814953161114512987616431511021316311541113109526712148213145710119812163411561381611012147415115236915591411163862171213104101271161542133981614159782143165121101315641112161161584151413932710741583212161651013119141931013146152741158161214141316615310871211952",
   )
   if (singleSpace) {
     // 4x4 = 4312321442314123
@@ -44,19 +47,18 @@ fun main() = runBlocking {
     // 16x16 = todo
     val seed = 0L
     sudokusSize.forEachIndexed { index, type ->
-      repeat(2) {
-        val sudoku = SudokuGenerator.getSudoku(
-          difficulty = Difficulty.EASY,
-          seed = seed,
-          type = type,
-        )
-        sudokus.add(sudoku)
-        val solution = sudoku.solution
-        if (solution != sudokusResult[index]) {
-          println("test constraint failed for $type")
-        } else {
-          println("test constraint passed for $type")
-        }
+      val sudoku = SudokuGenerator.getSudoku(
+        difficulty = Difficulty.EASY,
+        seed = seed,
+        type = type,
+      )
+      sudokus.add(sudoku)
+      val solution = sudoku.solution
+      println(sudoku)
+      if (solution != sudokusResult[index]) {
+        println("test constraint failed for $type")
+      } else {
+        println("test constraint passed for $type")
       }
     }
   } else {
