@@ -1,5 +1,9 @@
 package dev.teogor.sudoklify
 
+import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.Sudoku
+import dev.teogor.sudoklify.model.Type
+
 val SEEDS: Array<Sudoku> = arrayOf(
   // 4x4, digits from 1 to 4
   Sudoku(

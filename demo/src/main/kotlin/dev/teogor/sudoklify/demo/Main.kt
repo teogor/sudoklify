@@ -16,10 +16,10 @@
 
 package dev.teogor.sudoklify.demo
 
-import dev.teogor.sudoklify.Difficulty
-import dev.teogor.sudoklify.Sudoku
 import dev.teogor.sudoklify.SudokuGenerator
-import dev.teogor.sudoklify.Type
+import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.Sudoku
+import dev.teogor.sudoklify.model.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
