@@ -16,14 +16,17 @@
 
 package dev.teogor.sudoklify
 
-import dev.teogor.sudoklify.types.Board
 import dev.teogor.sudoklify.model.Difficulty
-import dev.teogor.sudoklify.types.Layout
 import dev.teogor.sudoklify.model.Sudoku
+import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.tokenizer.MultiDigitTokenizer
+import dev.teogor.sudoklify.tokenizer.Tokenizer
+import dev.teogor.sudoklify.tokenizer.tokenizer
+import dev.teogor.sudoklify.types.Board
+import dev.teogor.sudoklify.types.Layout
 import dev.teogor.sudoklify.types.SudokuString
 import dev.teogor.sudoklify.types.Token
 import dev.teogor.sudoklify.types.TokenMap
-import dev.teogor.sudoklify.model.Type
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -41,79 +44,10 @@ class SudokuGenerator private constructor(
     }
   }
 
-  internal open class Tokenizer {
-    open fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
-      return ""
-    }
-
-    open fun populateLayout(layout: Layout, sequence: String): Board {
-      return emptyArray()
-    }
-  }
-
   private val boxDigits = type.rows * type.cols
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
-  private val tokenizer: Tokenizer = getTokenizerImpl()
-
-  private fun getTokenizerImpl(): Tokenizer = if (boxDigits < 10) {
-    SingleDigitTokenizer()
-  } else {
-    MultiDigitTokenizer(boxDigits)
-  }
-
-  private class SingleDigitTokenizer : Tokenizer() {
-    override fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
-      return sequence
-        .split("").joinToString("") { token ->
-          tokenMap[token] ?: token
-        }
-    }
-
-    override fun populateLayout(layout: Layout, sequence: String): Board {
-      return layout.map { row ->
-        row.map { cell ->
-          sequence[cell].toString()
-        }.toTypedArray()
-      }.toTypedArray()
-    }
-  }
-
-  private class MultiDigitTokenizer(val gridSize: Int) : Tokenizer() {
-    override fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
-      val regex = Regex("([A-I][a-z]+)|-|[A-I][A-I]+")
-      return regex.replace(sequence) { matchResult ->
-        val token = matchResult.value
-        tokenMap[token] ?: token
-      }
-    }
-
-    override fun populateLayout(layout: Layout, sequence: String): Board {
-      return layout.map { row ->
-        row.map { cell ->
-          sequence[cell].toString()
-        }.toTypedArray()
-      }.toTypedArray()
-    }
-
-    fun populateLayout(layout: Layout, sequence: String, tokenMap: TokenMap): Board {
-      val regex = Regex("([A-I][a-j]+)|-|[A-I]")
-      val elements = mutableListOf<String>()
-      regex.findAll(sequence)
-        .map { it.value }
-        .joinToString("") { token ->
-          val e = tokenMap[token] ?: token
-          elements.add(e)
-          e
-        }
-      return layout.map { row ->
-        row.map { cell ->
-          val index = if (cell < gridSize) cell else cell - gridSize
-          elements[index]
-        }.toTypedArray()
-      }.toTypedArray()
-    }
-  }
+  private val tokenizer: Tokenizer = boxDigits.tokenizer
 
   private fun generateBaseLayout(): Layout {
     return Array(boxDigits) { i ->
