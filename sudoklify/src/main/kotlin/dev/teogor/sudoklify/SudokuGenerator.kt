@@ -91,7 +91,7 @@ class SudokuGenerator private constructor(
   private fun getTokenizerImpl(): Tokenizer = if (gridSize < 10) {
     SingleDigitTokenizer()
   } else {
-    MultiDigitTokenizer()
+    MultiDigitTokenizer(gridSize)
   }
 
   private class SingleDigitTokenizer : Tokenizer() {
@@ -111,14 +111,13 @@ class SudokuGenerator private constructor(
     }
   }
 
-  private class MultiDigitTokenizer : Tokenizer() {
+  private class MultiDigitTokenizer(val gridSize: Int) : Tokenizer() {
     override fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
-      val regex = Regex("([A-I][a-z]+)|-|[A-I]")
-      return regex.findAll(sequence)
-        .map { it.value }
-        .joinToString("") { token ->
-          tokenMap[token] ?: token
-        }
+      val regex = Regex("([A-I][a-z]+)|-|[A-I][A-I]+")
+      return regex.replace(sequence) { matchResult ->
+        val token = matchResult.value
+        tokenMap[token] ?: token
+      }
     }
 
     override fun populateLayout(layout: Layout, sequence: String): Board {
@@ -130,7 +129,7 @@ class SudokuGenerator private constructor(
     }
 
     fun populateLayout(layout: Layout, sequence: String, tokenMap: TokenMap): Board {
-      val regex = Regex("([A-I][a-z]+)|-|[A-I]")
+      val regex = Regex("([A-I][a-j]+)|-|[A-I]")
       val elements = mutableListOf<String>()
       regex.findAll(sequence)
         .map { it.value }
@@ -141,7 +140,8 @@ class SudokuGenerator private constructor(
         }
       return layout.map { row ->
         row.map { cell ->
-          elements[cell]
+          val index = if (cell < gridSize) cell else cell - gridSize
+          elements[index]
         }.toTypedArray()
       }.toTypedArray()
     }
@@ -164,22 +164,22 @@ class SudokuGenerator private constructor(
     return Sudoku(puzzle, solution, seed.difficulty, type)
   }
 
-  private fun boardToSequence(board: Board): String = board.joinToString("") {
-    it.joinToString("")
-  }
-
   private fun <T> getRandomItem(items: List<T>): T = items.random(random)
 
-  private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): String {
-    val populatedLayout = if (tokenizer is MultiDigitTokenizer) {
+  private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): SudokuString {
+    val grid = if (tokenizer is MultiDigitTokenizer) {
       tokenizer.populateLayout(layout, seedSequence, tokenMap)
     } else {
       tokenizer.populateLayout(layout, tokenizer.replaceTokens(seedSequence, tokenMap))
     }
-    return boardToSequence(populatedLayout)
+    return boardToSequence(grid)
   }
 
-  private fun sequenceToBoard(sequence: String): Board {
+  private fun boardToSequence(board: Board): SudokuString = board.joinToString("") {
+    it.joinToString("")
+  }
+
+  private fun sequenceToBoard(sequence: SudokuString): Board {
     return sequence.chunked(gridSize)
       .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
       .toTypedArray()
