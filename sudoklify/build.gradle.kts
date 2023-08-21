@@ -25,3 +25,7 @@ version = BuildInfo.version.name
 tasks.test {
   useJUnitPlatform()
 }
+
+dependencies {
+  testImplementation("junit:junit:4.13.2")
+}
