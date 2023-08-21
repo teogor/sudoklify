@@ -16,6 +16,7 @@
 
 package dev.teogor.sudoklify
 
+import dev.teogor.sudoklify.exntensions.sortRandom
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.Type
@@ -25,8 +26,8 @@ import dev.teogor.sudoklify.tokenizer.tokenizer
 import dev.teogor.sudoklify.types.Board
 import dev.teogor.sudoklify.types.Layout
 import dev.teogor.sudoklify.types.SudokuString
-import dev.teogor.sudoklify.types.Token
 import dev.teogor.sudoklify.types.TokenMap
+import dev.teogor.sudoklify.types.toToken
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -66,8 +67,6 @@ class SudokuGenerator private constructor(
     return Sudoku(puzzle, solution, seed.difficulty, type)
   }
 
-  private fun <T> getRandomItem(items: List<T>): T = items.random(random)
-
   private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): SudokuString {
     val grid = if (tokenizer is MultiDigitTokenizer) {
       tokenizer.populateLayout(layout, seedSequence, tokenMap)
@@ -86,8 +85,6 @@ class SudokuGenerator private constructor(
       .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
       .toTypedArray()
   }
-
-  private fun sortRandom(): Int = if (random.nextDouble() < 0.5) 1 else -1
 
   private fun getLayout(baseLayout: Layout): Layout = shuffleLayout(rotateLayout(baseLayout))
 
@@ -123,14 +120,14 @@ class SudokuGenerator private constructor(
     shuffleLayoutColumns(shuffleLayoutRows(shuffleLayoutStacks(shuffleLayoutBands(layout))))
 
   private fun shuffleLayoutBands(layout: Layout): Layout =
-    getLayoutBands(layout).sortedWith(compareBy { sortRandom() }).flatMap { it.toList() }
+    getLayoutBands(layout).sortedWith(compareBy { random.sortRandom() }).flatMap { it.toList() }
       .toTypedArray()
 
   private fun shuffleLayoutColumns(layout: Layout): Layout =
     rotateLayout270(shuffleLayoutRows(rotateLayout90(layout)))
 
   private fun shuffleLayoutRows(layout: Layout): Layout =
-    getLayoutBands(layout).map { rows -> rows.sortedWith(compareBy { sortRandom() }) }
+    getLayoutBands(layout).map { rows -> rows.sortedWith(compareBy { random.sortRandom() }) }
       .flatMap { it.toList() }
       .toTypedArray()
 
@@ -156,7 +153,7 @@ class SudokuGenerator private constructor(
     val gridList = (1..boxDigits)
     val tokenList = gridList.withIndex().map { (index, _) ->
       val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
-      numberToToken(value)
+      value.toToken()
     }.shuffled(random)
 
     val tokenMap = tokenList.withIndex().associate { (index, token) ->
@@ -165,23 +162,5 @@ class SudokuGenerator private constructor(
       token to value
     }
     return tokenMap
-  }
-
-  private fun numberToToken(value: Int): Token {
-    var valueCopy = value
-    val charList = mutableListOf<Char>()
-    while (valueCopy > 0) {
-      val digit = (valueCopy % 10)
-      val char = if (digit == 0) {
-        ('a' + 9)
-      } else {
-        ('a'.code + digit - 1).toChar()
-      }
-      charList.add(0, char)
-      valueCopy /= 10
-    }
-
-    charList[0] = charList[0].uppercaseChar()
-    return charList.joinToString("")
   }
 }
