@@ -25,8 +25,8 @@ import dev.teogor.sudoklify.tokenizer.tokenizer
 import dev.teogor.sudoklify.types.Board
 import dev.teogor.sudoklify.types.Layout
 import dev.teogor.sudoklify.types.SudokuString
-import dev.teogor.sudoklify.types.Token
 import dev.teogor.sudoklify.types.TokenMap
+import dev.teogor.sudoklify.types.toToken
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -156,7 +156,7 @@ class SudokuGenerator private constructor(
     val gridList = (1..boxDigits)
     val tokenList = gridList.withIndex().map { (index, _) ->
       val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
-      numberToToken(value)
+      value.toToken()
     }.shuffled(random)
 
     val tokenMap = tokenList.withIndex().associate { (index, token) ->
@@ -165,23 +165,5 @@ class SudokuGenerator private constructor(
       token to value
     }
     return tokenMap
-  }
-
-  private fun numberToToken(value: Int): Token {
-    var valueCopy = value
-    val charList = mutableListOf<Char>()
-    while (valueCopy > 0) {
-      val digit = (valueCopy % 10)
-      val char = if (digit == 0) {
-        ('a' + 9)
-      } else {
-        ('a'.code + digit - 1).toChar()
-      }
-      charList.add(0, char)
-      valueCopy /= 10
-    }
-
-    charList[0] = charList[0].uppercaseChar()
-    return charList.joinToString("")
   }
 }
