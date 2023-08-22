@@ -16,10 +16,14 @@
 
 package dev.teogor.sudoklify.demo
 
-import dev.teogor.sudoklify.SudokuGenerator
+import dev.teogor.sudoklify.difficulty
+import dev.teogor.sudoklify.getSudoku
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.seed
+import dev.teogor.sudoklify.sudokuBuilder
+import dev.teogor.sudoklify.type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -47,11 +51,20 @@ fun main() = runBlocking {
     // 16x16 = todo
     val seed = 0L
     sudokusSize.forEachIndexed { index, type ->
-      val sudoku = SudokuGenerator.getSudoku(
-        difficulty = Difficulty.EASY,
-        seed = seed,
-        type = type,
-      )
+      val sudokuBuilder = sudokuBuilder {
+        seed {
+          seed
+        }
+
+        type {
+          type
+        }
+
+        difficulty {
+          Difficulty.EASY
+        }
+      }
+      val sudoku = sudokuBuilder.getSudoku()
       sudokus.add(sudoku)
       val solution = sudoku.solution
       println(sudoku)
@@ -72,11 +85,20 @@ fun main() = runBlocking {
       for (range in ranges) {
         launch {
           repeat(parallelism) {
-            val sudoku = SudokuGenerator.getSudoku(
-              difficulty = Difficulty.EASY,
-              seed = System.currentTimeMillis(),
-              type = Type.THREE_BY_THREE,
-            )
+            val sudokuBuilder = sudokuBuilder {
+              seed {
+                System.currentTimeMillis()
+              }
+
+              type {
+                Type.THREE_BY_THREE
+              }
+
+              difficulty {
+                Difficulty.EASY
+              }
+            }
+            val sudoku = sudokuBuilder.getSudoku()
             println(sudoku.solution)
             sudokus.add(sudoku)
           }

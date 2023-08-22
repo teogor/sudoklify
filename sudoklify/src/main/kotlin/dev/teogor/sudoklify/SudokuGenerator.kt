@@ -31,19 +31,13 @@ import dev.teogor.sudoklify.types.toToken
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-class SudokuGenerator private constructor(
+fun SudokuGenerator.getSudoku() = composeSudokuPuzzle()
+
+class SudokuGenerator internal constructor(
   private val random: Random,
   private val type: Type,
+  private val difficulty: Difficulty,
 ) {
-  companion object {
-    fun getSudoku(difficulty: Difficulty, seed: Long, type: Type): Sudoku {
-      val sudokuGenerator = SudokuGenerator(
-        random = Random(seed),
-        type = type,
-      )
-      return sudokuGenerator.getSudoku(difficulty)
-    }
-  }
 
   private val boxDigits = type.rows * type.cols
   private val totalDigits = boxDigits * boxDigits
@@ -56,7 +50,7 @@ class SudokuGenerator private constructor(
     }
   }
 
-  private fun getSudoku(difficulty: Difficulty): Sudoku {
+  internal fun composeSudokuPuzzle(): Sudoku {
     val seed = getSeed(SEEDS, difficulty)
     val layout = getLayout(baseLayout)
     val tokenMap = getTokenMap()
