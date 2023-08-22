@@ -31,7 +31,7 @@ import dev.teogor.sudoklify.types.toToken
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-class SudokuGenerator internal constructor(
+internal class SudokuGenerator internal constructor(
   private val random: Random,
   private val type: Type,
   private val difficulty: Difficulty,
