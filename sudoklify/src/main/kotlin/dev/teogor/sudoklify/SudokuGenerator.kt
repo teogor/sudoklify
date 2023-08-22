@@ -17,6 +17,8 @@
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.exntensions.sortRandom
+import dev.teogor.sudoklify.exntensions.toBoard
+import dev.teogor.sudoklify.exntensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.SudokuBlueprint
@@ -54,8 +56,8 @@ internal class SudokuGenerator internal constructor(
     val layout = getLayout(baseLayout)
     val tokenMap = getTokenMap()
 
-    val puzzle = getSequence(layout, boardToSequence(seed.puzzle), tokenMap)
-    val solution = getSequence(layout, boardToSequence(seed.solution), tokenMap)
+    val puzzle = getSequence(layout, seed.puzzle.toSequenceString(), tokenMap)
+    val solution = getSequence(layout, seed.solution.toSequenceString(), tokenMap)
 
     return Sudoku(puzzle, solution, seed.difficulty, type)
   }
@@ -69,10 +71,12 @@ internal class SudokuGenerator internal constructor(
     return grid
   }
 
+  @Deprecated(message = "toSequenceString")
   private fun boardToSequence(board: Board): SudokuString = board.joinToString("") {
     it.joinToString("")
   }
 
+  @Deprecated(message = "toBoard")
   private fun sequenceToBoard(sequence: SudokuString): Board {
     return sequence.chunked(boxDigits)
       .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
@@ -133,8 +137,8 @@ internal class SudokuGenerator internal constructor(
   private fun getSeed(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Sudoku {
     val randomItem = getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
     return Sudoku(
-      puzzle = sequenceToBoard(randomItem.puzzle),
-      solution = sequenceToBoard(randomItem.solution),
+      puzzle = randomItem.puzzle.toBoard(boxDigits),
+      solution = randomItem.solution.toBoard(boxDigits),
       difficulty = randomItem.difficulty,
       type = randomItem.type,
     )

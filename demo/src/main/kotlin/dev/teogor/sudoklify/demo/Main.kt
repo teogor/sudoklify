@@ -18,6 +18,7 @@ package dev.teogor.sudoklify.demo
 
 import dev.teogor.sudoklify.difficulty
 import dev.teogor.sudoklify.exntensions.generateSudoku
+import dev.teogor.sudoklify.exntensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.Type
@@ -67,8 +68,7 @@ fun main() = runBlocking {
       val sudoku = sudokuParams.generateSudoku()
       sudokus.add(sudoku)
       val solution = sudoku.solution
-      println(sudoku)
-      if (solution != sudokusResult[index]) {
+      if (solution.toSequenceString() != sudokusResult[index]) {
         println("test constraint failed for $type")
       } else {
         println("test constraint passed for $type")
