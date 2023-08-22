@@ -17,8 +17,11 @@
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.exntensions.sortRandom
+import dev.teogor.sudoklify.exntensions.toBoard
+import dev.teogor.sudoklify.exntensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
+import dev.teogor.sudoklify.model.SudokuBlueprint
 import dev.teogor.sudoklify.model.Type
 import dev.teogor.sudoklify.tokenizer.MultiDigitTokenizer
 import dev.teogor.sudoklify.tokenizer.Tokenizer
@@ -31,19 +34,11 @@ import dev.teogor.sudoklify.types.toToken
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-class SudokuGenerator private constructor(
+internal class SudokuGenerator internal constructor(
   private val random: Random,
   private val type: Type,
+  private val difficulty: Difficulty,
 ) {
-  companion object {
-    fun getSudoku(difficulty: Difficulty, seed: Long, type: Type): Sudoku {
-      val sudokuGenerator = SudokuGenerator(
-        random = Random(seed),
-        type = type,
-      )
-      return sudokuGenerator.getSudoku(difficulty)
-    }
-  }
 
   private val boxDigits = type.rows * type.cols
   private val totalDigits = boxDigits * boxDigits
@@ -56,30 +51,32 @@ class SudokuGenerator private constructor(
     }
   }
 
-  private fun getSudoku(difficulty: Difficulty): Sudoku {
+  internal fun composeSudokuPuzzle(): Sudoku {
     val seed = getSeed(SEEDS, difficulty)
     val layout = getLayout(baseLayout)
     val tokenMap = getTokenMap()
 
-    val puzzle = getSequence(layout, seed.puzzle, tokenMap)
-    val solution = getSequence(layout, seed.solution, tokenMap)
+    val puzzle = getSequence(layout, seed.puzzle.toSequenceString(), tokenMap)
+    val solution = getSequence(layout, seed.solution.toSequenceString(), tokenMap)
 
     return Sudoku(puzzle, solution, seed.difficulty, type)
   }
 
-  private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): SudokuString {
+  private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): Board {
     val grid = if (tokenizer is MultiDigitTokenizer) {
       tokenizer.populateLayout(layout, seedSequence, tokenMap)
     } else {
       tokenizer.populateLayout(layout, tokenizer.replaceTokens(seedSequence, tokenMap))
     }
-    return boardToSequence(grid)
+    return grid
   }
 
+  @Deprecated(message = "toSequenceString")
   private fun boardToSequence(board: Board): SudokuString = board.joinToString("") {
     it.joinToString("")
   }
 
+  @Deprecated(message = "toBoard")
   private fun sequenceToBoard(sequence: SudokuString): Board {
     return sequence.chunked(boxDigits)
       .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
@@ -137,16 +134,23 @@ class SudokuGenerator private constructor(
   private fun getRandomItem(items: List<(Layout) -> Layout>): (Layout) -> Layout =
     items.shuffled(random).first()
 
-  private fun getSeed(seeds: Array<Sudoku>, difficulty: Difficulty): Sudoku =
-    getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
+  private fun getSeed(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Sudoku {
+    val randomItem = getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
+    return Sudoku(
+      puzzle = randomItem.puzzle.toBoard(boxDigits),
+      solution = randomItem.solution.toBoard(boxDigits),
+      difficulty = randomItem.difficulty,
+      type = randomItem.type,
+    )
+  }
 
-  private fun getSeedsByDifficulty(seeds: Array<Sudoku>, difficulty: Difficulty): Array<Sudoku> =
+  private fun getSeedsByDifficulty(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Array<SudokuBlueprint> =
     seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
 
-  private fun getSeedsBySize(seeds: Array<Sudoku>, size: Int): Array<Sudoku> =
+  private fun getSeedsBySize(seeds: Array<SudokuBlueprint>, size: Int): Array<SudokuBlueprint> =
     seeds.filter { seed -> seed.type.cols * seed.type.rows == size }.toTypedArray()
 
-  private fun getRandomItem(items: Array<Sudoku>): Sudoku =
+  private fun getRandomItem(items: Array<SudokuBlueprint>): SudokuBlueprint =
     items[random.nextInt(items.size)]
 
   private fun getTokenMap(): TokenMap {

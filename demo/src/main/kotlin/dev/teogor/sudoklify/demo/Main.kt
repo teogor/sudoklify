@@ -16,10 +16,15 @@
 
 package dev.teogor.sudoklify.demo
 
-import dev.teogor.sudoklify.SudokuGenerator
+import dev.teogor.sudoklify.difficulty
+import dev.teogor.sudoklify.exntensions.generateSudoku
+import dev.teogor.sudoklify.exntensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.seed
+import dev.teogor.sudoklify.sudokuParamsBuilder
+import dev.teogor.sudoklify.type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -47,15 +52,23 @@ fun main() = runBlocking {
     // 16x16 = todo
     val seed = 0L
     sudokusSize.forEachIndexed { index, type ->
-      val sudoku = SudokuGenerator.getSudoku(
-        difficulty = Difficulty.EASY,
-        seed = seed,
-        type = type,
-      )
+      val sudokuParams = sudokuParamsBuilder {
+        seed {
+          seed
+        }
+
+        type {
+          type
+        }
+
+        difficulty {
+          Difficulty.EASY
+        }
+      }
+      val sudoku = sudokuParams.generateSudoku()
       sudokus.add(sudoku)
       val solution = sudoku.solution
-      println(sudoku)
-      if (solution != sudokusResult[index]) {
+      if (solution.toSequenceString() != sudokusResult[index]) {
         println("test constraint failed for $type")
       } else {
         println("test constraint passed for $type")
@@ -72,11 +85,20 @@ fun main() = runBlocking {
       for (range in ranges) {
         launch {
           repeat(parallelism) {
-            val sudoku = SudokuGenerator.getSudoku(
-              difficulty = Difficulty.EASY,
-              seed = System.currentTimeMillis(),
-              type = Type.THREE_BY_THREE,
-            )
+            val sudokuParams = sudokuParamsBuilder {
+              seed {
+                System.currentTimeMillis()
+              }
+
+              type {
+                Type.THREE_BY_THREE
+              }
+
+              difficulty {
+                Difficulty.EASY
+              }
+            }
+            val sudoku = sudokuParams.generateSudoku()
             println(sudoku.solution)
             sudokus.add(sudoku)
           }
