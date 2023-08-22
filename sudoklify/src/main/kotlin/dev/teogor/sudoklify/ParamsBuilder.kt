@@ -1,13 +1,13 @@
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.SudokuParams
 import dev.teogor.sudoklify.model.Type
-import kotlin.random.Random
 
 /**
  * A builder class for configuring and creating instances of [SudokuGenerator].
  */
-class Builder {
+class ParamsBuilder {
   private var difficulty: Difficulty = Difficulty.EASY
   private var seed: Long = 0
   private var type: Type = Type.THREE_BY_THREE
@@ -34,10 +34,16 @@ class Builder {
   internal fun setType(type: Type) = apply { this.type = type }
 
   /**
-   * Build and return a [SudokuGenerator] instance using the configured settings.
-   * @return A configured [SudokuGenerator] instance.
+   * Build and return a [SudokuParams] instance using the configured settings.
+   *
+   * @return A [SudokuParams] instance containing the configured difficulty, seed,
+   *  and type for generating Sudoku puzzles.
    */
-  fun build() = SudokuGenerator(Random(seed), type, difficulty)
+  fun build() = SudokuParams(
+    difficulty,
+    seed,
+    type,
+  )
 }
 
 /**
@@ -45,13 +51,13 @@ class Builder {
  * @param block Lambda for configuring the builder.
  * @return [SudokuGenerator] instance.
  */
-inline fun sudokuBuilder(crossinline block: Builder.() -> Unit) = Builder().apply(block).build()
+inline fun paramsBuilder(crossinline block: ParamsBuilder.() -> Unit) = ParamsBuilder().apply(block).build()
 
 /**
  * Set the difficulty level of the Sudoku puzzle using a lambda.
  * @param block Lambda providing the difficulty level.
  */
-fun Builder.difficulty(block: () -> Difficulty) {
+fun ParamsBuilder.difficulty(block: () -> Difficulty) {
   setDifficulty(block())
 }
 
@@ -59,7 +65,7 @@ fun Builder.difficulty(block: () -> Difficulty) {
  * Set the seed for generating random numbers using a lambda.
  * @param block Lambda providing the seed.
  */
-fun Builder.seed(block: () -> Long) {
+fun ParamsBuilder.seed(block: () -> Long) {
   setSeed(block())
 }
 
@@ -67,6 +73,6 @@ fun Builder.seed(block: () -> Long) {
  * Set the type of the Sudoku grid using a lambda.
  * @param block Lambda providing the type.
  */
-fun Builder.type(block: () -> Type) {
+fun ParamsBuilder.type(block: () -> Type) {
   setType(block())
 }

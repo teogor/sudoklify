@@ -17,12 +17,12 @@
 package dev.teogor.sudoklify.demo
 
 import dev.teogor.sudoklify.difficulty
-import dev.teogor.sudoklify.getSudoku
+import dev.teogor.sudoklify.exntensions.generateSudoku
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.Type
 import dev.teogor.sudoklify.seed
-import dev.teogor.sudoklify.sudokuBuilder
+import dev.teogor.sudoklify.paramsBuilder
 import dev.teogor.sudoklify.type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,7 +51,7 @@ fun main() = runBlocking {
     // 16x16 = todo
     val seed = 0L
     sudokusSize.forEachIndexed { index, type ->
-      val sudokuBuilder = sudokuBuilder {
+      val sudokuParams = paramsBuilder {
         seed {
           seed
         }
@@ -64,7 +64,7 @@ fun main() = runBlocking {
           Difficulty.EASY
         }
       }
-      val sudoku = sudokuBuilder.getSudoku()
+      val sudoku = sudokuParams.generateSudoku()
       sudokus.add(sudoku)
       val solution = sudoku.solution
       println(sudoku)
@@ -85,7 +85,7 @@ fun main() = runBlocking {
       for (range in ranges) {
         launch {
           repeat(parallelism) {
-            val sudokuBuilder = sudokuBuilder {
+            val sudokuParams = paramsBuilder {
               seed {
                 System.currentTimeMillis()
               }
@@ -98,7 +98,7 @@ fun main() = runBlocking {
                 Difficulty.EASY
               }
             }
-            val sudoku = sudokuBuilder.getSudoku()
+            val sudoku = sudokuParams.generateSudoku()
             println(sudoku.solution)
             sudokus.add(sudoku)
           }
