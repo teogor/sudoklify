@@ -5,6 +5,10 @@ import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.SudokuParams
 import kotlin.random.Random
 
-fun SudokuParams.generateSudoku() : Sudoku {
-  return SudokuGenerator(Random(seed), type, difficulty).composeSudokuPuzzle()
+fun SudokuParams.generateSudoku(): Sudoku {
+  return SudokuGenerator(
+    random = Random(seed),
+    type = type,
+    difficulty = difficulty,
+  ).composeSudokuPuzzle()
 }
