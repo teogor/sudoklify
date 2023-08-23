@@ -3,13 +3,14 @@ package dev.teogor.sudoklify
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.SudokuParams
 import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.types.Seed
 
 /**
  * A builder class for configuring and creating instances of [SudokuGenerator].
  */
 class ParamsBuilder {
   private var difficulty: Difficulty = Difficulty.EASY
-  private var seed: Long = 0
+  private var seed: Seed = 0
   private var type: Type = Type.THREE_BY_THREE
 
   /**
@@ -24,7 +25,7 @@ class ParamsBuilder {
    * @param seed The seed to set.
    * @return This builder instance for chaining.
    */
-  internal fun setSeed(seed: Long) = apply { this.seed = seed }
+  internal fun setSeed(seed: Seed) = apply { this.seed = seed }
 
   /**
    * Set the type of the Sudoku grid.
@@ -67,7 +68,7 @@ fun ParamsBuilder.difficulty(block: () -> Difficulty) {
  * Set the seed for generating random numbers using a lambda.
  * @param block Lambda providing the seed.
  */
-fun ParamsBuilder.seed(block: () -> Long) {
+fun ParamsBuilder.seed(block: () -> Seed) {
   setSeed(block())
 }
 

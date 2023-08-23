@@ -3,7 +3,6 @@ package dev.teogor.sudoklify.exntensions
 import dev.teogor.sudoklify.types.Board
 import dev.teogor.sudoklify.types.SudokuString
 
-
 fun Board.toSequenceString(): SudokuString = joinToString("") {
   it.joinToString("")
 }
