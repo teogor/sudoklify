@@ -15,29 +15,51 @@ sizes and difficulty levels.
 - Intuitive API for puzzle generation, population, and solution retrieval 🧩
 - Randomization techniques for puzzle layout and digit placement 🔀
 
-### Usage
+## Usage
 
-Here's a simple example demonstrating how to generate a Sudoku puzzle using Sudoklify:
+### Generating Sudoku Puzzles
+
+To generate Sudoku puzzles using Sudoklify, follow these steps:
+
+1. Add Sudoklify as a dependency in your project.
+
+2. Create a `ParamsBuilder` to configure the puzzle generation parameters.
 
 ```kotlin
-import dev.teogor.sudoklify.Difficulty
-import dev.teogor.sudoklify.Sudoku
-import dev.teogor.sudoklify.SudokuGenerator
-import dev.teogor.sudoklify.Type
+import dev.teogor.sudoklify.sudokuParamsBuilder
+import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.Type
 
-fun main() {
-    val seed = 12345L
-    val type = Type.THREE_BY_THREE
-    val difficulty = Difficulty.MEDIUM
-
-    val sudoku = SudokuGenerator.getSudoku(
-        difficulty = difficulty,
-        seed = seed,
-        type = type,
-    )
-    println("Generated Sudoku Puzzle:")
-    println(sudoku.puzzle)
+// Configure puzzle generation parameters
+val params = sudokuParamsBuilder {
+    difficulty { Difficulty.MEDIUM }
+    seed { 12345L }
+    type { Type.THREE_BY_THREE }
 }
+```
+3. Generate the Sudoku puzzle using the `generateSudoku` extension function.
+
+```kotlin
+import dev.teogor.sudoklify.exntensions.generateSudoku
+
+val generatedSudoku = sudokuParams.generateSudoku()
+```
+
+### Accessing Generated Sudoku
+
+The `generatedSudoku` instance contains the puzzle and solution strings, difficulty level, and grid type. You can access these properties as follows:
+
+```kotlin
+val puzzleString = generatedSudoku.puzzle
+val solutionString = generatedSudoku.solution
+val difficulty = generatedSudoku.difficulty
+val type = generatedSudoku.type
+
+// Print the properties
+println("Puzzle: $puzzleString")
+println("Solution: $solutionString")
+println("Difficulty: $difficulty")
+println("Grid Type: $type")
 ```
 
 ## Contributing
