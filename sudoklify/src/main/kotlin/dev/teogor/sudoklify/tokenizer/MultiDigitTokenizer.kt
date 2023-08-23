@@ -5,7 +5,7 @@ import dev.teogor.sudoklify.types.Layout
 import dev.teogor.sudoklify.types.TokenMap
 
 internal class MultiDigitTokenizer(
-  private val boxDigits: Int
+  private val boxDigits: Int,
 ) : Tokenizer() {
   override fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
     val regex = Regex("([A-I][a-z]+)|-|[A-I][A-I]+")
