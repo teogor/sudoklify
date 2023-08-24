@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import com.vanniktech.maven.publish.SonatypeHost
 import dev.teogor.sudoklify.buildlogic.BuildInfo
 
 plugins {
   id("sudoklify.kotlin.library")
+  id("sudoklify.maven.publish.library")
 }
 
 group = BuildInfo.group.fullName
@@ -28,4 +30,39 @@ tasks.test {
 
 dependencies {
   testImplementation("junit:junit:4.13.2")
+}
+
+@Suppress("UnstableApiUsage")
+mavenPublishing {
+  publishToMavenCentral(SonatypeHost.S01)
+
+  signAllPublications()
+
+  coordinates("dev.teogor.sudoklify", "sudoklify", "1.0.0-alpha01")
+
+  pom {
+    name.set("Sudoklify")
+    description.set("Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease.")
+    inceptionYear.set("2023")
+    url.set("https://github.com/teogor/sudoklify/") // Update this URL
+    licenses {
+      license {
+        name.set("The Apache License, Version 2.0")
+        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+        distribution.set("repo")
+      }
+    }
+    developers {
+      developer {
+        id.set("teogor") // Update your GitHub username
+        name.set("Teodor Grigor") // Update your name
+        url.set("https://github.com/teogor/")
+      }
+    }
+    scm {
+      url.set("https://github.com/teogor/sudoklify/") // Update this URL
+      connection.set("scm:git:https://github.com/teogor/sudoklify.git") // Update this connection URL
+      developerConnection.set("scm:git:git@github.com:teogor/sudoklify.git") // Update this developer connection URL
+    }
+  }
 }
