@@ -56,7 +56,7 @@ import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Type
 
 // Configure puzzle generation parameters
-val params = sudokuParamsBuilder {
+val sudokuParams = sudokuParamsBuilder {
     difficulty { Difficulty.MEDIUM }
     seed { 12345L }
     type { Type.THREE_BY_THREE }
@@ -75,14 +75,14 @@ val generatedSudoku = sudokuParams.generateSudoku()
 The `generatedSudoku` instance contains the puzzle and solution strings, difficulty level, and grid type. You can access these properties as follows:
 
 ```kotlin
-val puzzleString = generatedSudoku.puzzle
-val solutionString = generatedSudoku.solution
+val puzzleBoard = generatedSudoku.puzzle
+val solutionBoard = generatedSudoku.solution
 val difficulty = generatedSudoku.difficulty
 val type = generatedSudoku.type
 
 // Print the properties
-println("Puzzle: $puzzleString")
-println("Solution: $solutionString")
+println("Puzzle Board: $puzzleBoard")
+println("Solution Board: $solutionBoard")
 println("Difficulty: $difficulty")
 println("Grid Type: $type")
 ```
