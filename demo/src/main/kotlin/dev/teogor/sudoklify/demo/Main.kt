@@ -17,8 +17,8 @@
 package dev.teogor.sudoklify.demo
 
 import dev.teogor.sudoklify.difficulty
-import dev.teogor.sudoklify.exntensions.generateSudoku
-import dev.teogor.sudoklify.exntensions.toSequenceString
+import dev.teogor.sudoklify.extensions.generateSudoku
+import dev.teogor.sudoklify.extensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.Type

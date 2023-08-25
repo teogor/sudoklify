@@ -16,9 +16,9 @@
 
 package dev.teogor.sudoklify
 
-import dev.teogor.sudoklify.exntensions.sortRandom
-import dev.teogor.sudoklify.exntensions.toBoard
-import dev.teogor.sudoklify.exntensions.toSequenceString
+import dev.teogor.sudoklify.extensions.sortRandom
+import dev.teogor.sudoklify.extensions.toBoard
+import dev.teogor.sudoklify.extensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.SudokuBlueprint

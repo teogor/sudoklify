@@ -65,7 +65,7 @@ val params = sudokuParamsBuilder {
 3. Generate the Sudoku puzzle using the `generateSudoku` extension function.
 
 ```kotlin
-import dev.teogor.sudoklify.exntensions.generateSudoku
+import dev.teogor.sudoklify.extensions.generateSudoku
 
 val generatedSudoku = sudokuParams.generateSudoku()
 ```
