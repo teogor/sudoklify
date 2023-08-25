@@ -1,4 +1,4 @@
-package dev.teogor.sudoklify.exntensions
+package dev.teogor.sudoklify.extensions
 
 import kotlin.random.Random
 

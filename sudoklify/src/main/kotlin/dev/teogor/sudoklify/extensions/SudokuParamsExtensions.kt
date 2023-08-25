@@ -1,4 +1,4 @@
-package dev.teogor.sudoklify.exntensions
+package dev.teogor.sudoklify.extensions
 
 import dev.teogor.sudoklify.SudokuGenerator
 import dev.teogor.sudoklify.model.Sudoku
