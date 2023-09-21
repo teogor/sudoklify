@@ -9,11 +9,11 @@ import dev.teogor.sudoklify.types.SolutionString
  * @property puzzle The puzzle layout as a [PuzzleString].
  * @property solution The solution layout as a [SolutionString].
  * @property difficulty The difficulty level of the Sudoku puzzle.
- * @property type The type of the Sudoku grid.
+ * @property gameType The type of the Sudoku grid.
  */
 data class SudokuBlueprint(
   val puzzle: PuzzleString,
   val solution: SolutionString,
   val difficulty: Difficulty,
-  val type: Type,
+  val gameType: GameType,
 )

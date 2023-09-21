@@ -1,8 +1,8 @@
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.model.SudokuParams
-import dev.teogor.sudoklify.model.Type
 import dev.teogor.sudoklify.types.Seed
 
 /**
@@ -11,7 +11,7 @@ import dev.teogor.sudoklify.types.Seed
 class ParamsBuilder {
   private var difficulty: Difficulty = Difficulty.EASY
   private var seed: Seed = 0
-  private var type: Type = Type.THREE_BY_THREE
+  private var gameType: GameType = GameType.Unspecified
 
   /**
    * Set the difficulty level of the Sudoku puzzle.
@@ -29,10 +29,10 @@ class ParamsBuilder {
 
   /**
    * Set the type of the Sudoku grid.
-   * @param type The type to set.
+   * @param gameType The type to set.
    * @return This builder instance for chaining.
    */
-  internal fun setType(type: Type) = apply { this.type = type }
+  internal fun setGameType(gameType: GameType) = apply { this.gameType = gameType }
 
   /**
    * Build and return a [SudokuParams] instance using the configured settings.
@@ -43,7 +43,7 @@ class ParamsBuilder {
   fun build() = SudokuParams(
     difficulty,
     seed,
-    type,
+    gameType,
   )
 }
 
@@ -76,6 +76,6 @@ fun ParamsBuilder.seed(block: () -> Seed) {
  * Set the type of the Sudoku grid using a lambda.
  * @param block Lambda providing the type.
  */
-fun ParamsBuilder.type(block: () -> Type) {
-  setType(block())
+fun ParamsBuilder.gameType(block: () -> GameType) {
+  setGameType(block())
 }

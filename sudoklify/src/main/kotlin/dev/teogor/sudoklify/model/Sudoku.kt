@@ -6,7 +6,7 @@ data class Sudoku(
   val puzzle: Board,
   val solution: Board,
   val difficulty: Difficulty,
-  val type: Type,
+  val gameType: GameType,
 ) {
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
@@ -17,7 +17,7 @@ data class Sudoku(
     if (!puzzle.contentDeepEquals(other.puzzle)) return false
     if (!solution.contentDeepEquals(other.solution)) return false
     if (difficulty != other.difficulty) return false
-    if (type != other.type) return false
+    if (gameType != other.gameType) return false
 
     return true
   }
@@ -26,7 +26,7 @@ data class Sudoku(
     var result = puzzle.contentDeepHashCode()
     result = 31 * result + solution.contentDeepHashCode()
     result = 31 * result + difficulty.hashCode()
-    result = 31 * result + type.hashCode()
+    result = 31 * result + gameType.hashCode()
     return result
   }
 }
