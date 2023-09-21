@@ -35,3 +35,4 @@ tasks.test {
 application {
   mainClass.set("MainKt")
 }
+

@@ -16,6 +16,7 @@
 
 package dev.teogor.sudoklify.demo
 
+import dev.teogor.sudoklify.SEEDS
 import dev.teogor.sudoklify.difficulty
 import dev.teogor.sudoklify.extensions.generateSudoku
 import dev.teogor.sudoklify.extensions.toSequenceString
@@ -30,6 +31,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
+  val _2x2Seeds = SEEDS.filter { it.type == Type.TWO_BY_TWO }
+  println("2x2 seeds ${_2x2Seeds.size}")
+  Difficulty.values().forEach { difficulty ->
+    val size = _2x2Seeds.filter { it.difficulty == difficulty }.size
+    println("${difficulty.name} size $size")
+  }
+
   val startTime = System.currentTimeMillis()
   val sudokus: MutableSet<Sudoku> = mutableSetOf()
   val singleSpace = true
@@ -40,16 +48,13 @@ fun main() = runBlocking {
   )
   val sudokusResult = listOf(
     // 4x4
-    "4312321442314123",
+    "4123321423411432",
     // 9x9
     "924761835658923417371485296743598621892146573516237948437652189285319764169874352",
     // 16x16
     "31127813914516611041215311278139145166110412158610161245111915214713351512927101131314461681610134151212711814953161114512987616431511021316311541113109526712148213145710119812163411561381611012147415115236915591411163862171213104101271161542133981614159782143165121101315641112161161584151413932710741583212161651013119141931013146152741158161214141316615310871211952",
   )
   if (singleSpace) {
-    // 4x4 = 4312321442314123
-    // 9x9 = 924761835658923417371485296743598621892146573516237948437652189285319764169874352
-    // 16x16 = todo
     val seed = 0L
     sudokusSize.forEachIndexed { index, type ->
       val sudokuParams = sudokuParamsBuilder {
