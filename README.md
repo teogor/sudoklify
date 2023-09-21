@@ -17,15 +17,21 @@ sizes and difficulty levels.
 
 ## Sudoklify: Redefining Puzzle Generation
 
-Sudoklify reimagines the way Sudoku puzzles are generated, delivering a lightning-fast experience without compromising quality. Here's a glimpse into what makes Sudoklify stand out:
+Sudoklify reimagines the way Sudoku puzzles are generated, delivering a lightning-fast experience
+without compromising quality. Here's a glimpse into what makes Sudoklify stand out:
 
 ### Innovative Puzzle Creation
 
-Traditional Sudoku generators rely on gradually removing numbers from a solved grid, often requiring extensive time and backend resources. Sudoklify, however, operates differently. It starts with a solvable "seed" puzzle and applies a series of ingenious transformations to craft new puzzles. This approach ensures rapid puzzle creation without the need for a complex backend infrastructure.
+Traditional Sudoku generators rely on gradually removing numbers from a solved grid, often requiring
+extensive time and backend resources. Sudoklify, however, operates differently. It starts with a
+solvable "seed" puzzle and applies a series of ingenious transformations to craft new puzzles. This
+approach ensures rapid puzzle creation without the need for a complex backend infrastructure.
 
 ### Unparalleled Puzzle Diversity
 
-Every seed used by Sudoklify unlocks a staggering number of unique puzzles—over 2.4 trillion! To put this into perspective, if you were to solve a puzzle every 3 minutes, it would take more than 13 million lifetimes to exhaust a single seed. 🎉
+Every seed used by Sudoklify unlocks a staggering number of unique puzzles—over 2.4 trillion! To put
+this into perspective, if you were to solve a puzzle every 3 minutes, it would take more than 13
+million lifetimes to exhaust a single seed. 🎉
 
 ### Transformative Algorithms at Play
 
@@ -38,7 +44,9 @@ Sudoklify leverages a diverse set of transformations to create distinctive puzzl
 - **Row Shuffle**: Adds another 216 permutations (3! x 3! x 3!).
 - **Number Swapping**: Introduces an incredible 362,880 permutations (9!).
 
-Combining these transformations results in a staggering number of permutations per seed—2,437,996,216,320. This extensive variety guarantees that each puzzle is a uniquely captivating challenge. 🧠🧩🚀
+Combining these transformations results in a staggering number of permutations per
+seed—2,437,996,216,320. This extensive variety guarantees that each puzzle is a uniquely captivating
+challenge. 🧠🧩🚀
 
 ## Usage
 
@@ -53,38 +61,40 @@ To generate Sudoku puzzles using Sudoklify, follow these steps:
 ```kotlin
 import dev.teogor.sudoklify.sudokuParamsBuilder
 import dev.teogor.sudoklify.model.Difficulty
-import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.model.GameType
 
 // Configure puzzle generation parameters
 val sudokuParams = sudokuParamsBuilder {
-    difficulty { Difficulty.MEDIUM }
-    seed { 12345L }
-    type { Type.THREE_BY_THREE }
+  difficulty { Difficulty.MEDIUM }
+  seed { 2023L }
+  type { GameType.ThreeByThree }
 }
 ```
+
 3. Generate the Sudoku puzzle using the `generateSudoku` extension function.
 
 ```kotlin
 import dev.teogor.sudoklify.extensions.generateSudoku
 
-val generatedSudoku = sudokuParams.generateSudoku()
+val sudoku = sudokuParams.generateSudoku()
 ```
 
 ### Accessing Generated Sudoku
 
-The `generatedSudoku` instance contains the puzzle and solution strings, difficulty level, and grid type. You can access these properties as follows:
+The `generatedSudoku` instance contains the puzzle and solution strings, difficulty level, and grid
+type. You can access these properties as follows:
 
 ```kotlin
-val puzzleBoard = generatedSudoku.puzzle
-val solutionBoard = generatedSudoku.solution
-val difficulty = generatedSudoku.difficulty
-val type = generatedSudoku.type
+val puzzleBoard = sudoku.puzzle
+val solutionBoard = sudoku.solution
+val difficulty = sudoku.difficulty
+val gameType = sudoku.gameType
 
 // Print the properties
 println("Puzzle Board: $puzzleBoard")
 println("Solution Board: $solutionBoard")
 println("Difficulty: $difficulty")
-println("Grid Type: $type")
+println("Grid Type: $gameType")
 ```
 
 ## Contributing
