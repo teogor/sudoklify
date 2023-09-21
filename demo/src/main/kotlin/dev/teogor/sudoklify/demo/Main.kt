@@ -20,18 +20,18 @@ import dev.teogor.sudoklify.SEEDS
 import dev.teogor.sudoklify.difficulty
 import dev.teogor.sudoklify.extensions.generateSudoku
 import dev.teogor.sudoklify.extensions.toSequenceString
+import dev.teogor.sudoklify.gameType
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.seed
 import dev.teogor.sudoklify.sudokuParamsBuilder
-import dev.teogor.sudoklify.gameType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-  val _2x2Seeds = SEEDS.filter { it.gameType == GameType.TWO_BY_TWO }
+  val _2x2Seeds = SEEDS.filter { it.gameType == GameType.TwoByTwo }
   println("2x2 seeds ${_2x2Seeds.size}")
   Difficulty.values().forEach { difficulty ->
     val size = _2x2Seeds.filter { it.difficulty == difficulty }.size
@@ -42,9 +42,9 @@ fun main() = runBlocking {
   val sudokus: MutableSet<Sudoku> = mutableSetOf()
   val singleSpace = true
   val sudokusSize = listOf(
-    GameType.TWO_BY_TWO,
-    GameType.THREE_BY_THREE,
-    GameType.FOUR_BY_FOUR,
+    GameType.TwoByTwo,
+    GameType.ThreeByThree,
+    GameType.FourByFour,
   )
   val sudokusResult = listOf(
     // 4x4
@@ -96,7 +96,7 @@ fun main() = runBlocking {
               }
 
               gameType {
-                GameType.THREE_BY_THREE
+                GameType.ThreeByThree
               }
 
               difficulty {

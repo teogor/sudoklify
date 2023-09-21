@@ -11,7 +11,7 @@ import dev.teogor.sudoklify.types.Seed
 class ParamsBuilder {
   private var difficulty: Difficulty = Difficulty.EASY
   private var seed: Seed = 0
-  private var gameType: GameType = GameType.THREE_BY_THREE
+  private var gameType: GameType = GameType.Unspecified
 
   /**
    * Set the difficulty level of the Sudoku puzzle.

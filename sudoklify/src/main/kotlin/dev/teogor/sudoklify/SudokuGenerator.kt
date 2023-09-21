@@ -40,7 +40,7 @@ internal class SudokuGenerator internal constructor(
   private val difficulty: Difficulty,
 ) {
 
-  private val boxDigits = gameType.rows * gameType.cols
+  private val boxDigits = gameType.sectionHeight * gameType.sectionWidth
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
   private val tokenizer: Tokenizer = boxDigits.tokenizer
@@ -148,7 +148,7 @@ internal class SudokuGenerator internal constructor(
     seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
 
   private fun getSeedsBySize(seeds: Array<SudokuBlueprint>, size: Int): Array<SudokuBlueprint> =
-    seeds.filter { seed -> seed.gameType.cols * seed.gameType.rows == size }.toTypedArray()
+    seeds.filter { seed -> seed.gameType.sectionWidth * seed.gameType.sectionHeight == size }.toTypedArray()
 
   private fun getRandomItem(items: Array<SudokuBlueprint>): SudokuBlueprint =
     items[random.nextInt(items.size)]

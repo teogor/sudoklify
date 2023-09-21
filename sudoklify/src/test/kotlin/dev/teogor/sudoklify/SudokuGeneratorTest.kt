@@ -18,8 +18,8 @@ class SudokuGeneratorTest {
     assertEquals(gameType, sudoku.type)
 
     // Verify that the puzzle and solution have the correct lengths
-    assertEquals(gameType.rows * gameType.cols * gameType.rows * gameType.cols, sudoku.puzzle.length)
-    assertEquals(gameType.rows * gameType.cols * gameType.rows * gameType.cols, sudoku.solution.length)
+    assertEquals(gameType.sectionHeight * gameType.sectionWidth * gameType.sectionHeight * gameType.sectionWidth, sudoku.puzzle.length)
+    assertEquals(gameType.sectionHeight * gameType.sectionWidth * gameType.sectionHeight * gameType.sectionWidth, sudoku.solution.length)
   }
 
   @Test

@@ -1,20 +1,28 @@
 package dev.teogor.sudoklify.model
 
 enum class GameType(
-  val rows: Int,
-  val cols: Int,
+  val sectionHeight: Int,
+  val sectionWidth: Int,
 ) {
-  TWO_BY_TWO(2, 2),
-  TWO_BY_THREE(2, 3),
-  TWO_BY_FOUR(2, 4),
-  THREE_BY_THREE(3, 3),
-  TWO_BY_FIVE(2, 5),
-  THREE_BY_FOUR(3, 4),
-  THREE_BY_FIVE(3, 5),
-  FOUR_BY_FOUR(4, 4),
-  FIVE_BY_FIVE(5, 5),
-  SIX_BY_SIX(6, 6),
-  SEVEN_BY_SEVEN(7, 7),
-  EIGHT_BY_EIGHT(8, 8),
-  NINE_BY_NINE(9, 9),
+  Unspecified(1, 1),
+  TwoByTwo(2, 2),
+  TwoByThree(2, 3),
+  TwoByFour(2, 4),
+  ThreeByThree(3, 3),
+  TwoByFive(2, 5),
+  ThreeByFour(3, 4),
+  ThreeByFive(3, 5),
+  FourByFour(4, 4),
+  FiveByFive(5, 5),
+  SixBySix(6, 6),
+  SevenBySeven(7, 7),
+  EightByEight(8, 8),
+  NineByNine(9, 9);
+
+  val size: Int
+    get() = sectionHeight * sectionWidth
+
+  override fun toString(): String {
+    return "${sectionHeight}x${sectionWidth}"
+  }
 }
