@@ -38,7 +38,7 @@ mavenPublishing {
 
   signAllPublications()
 
-  coordinates("dev.teogor.sudoklify", "sudoklify", "1.0.0-alpha02")
+  coordinates("dev.teogor.sudoklify", "sudoklify", "1.0.0-alpha03")
 
   pom {
     name.set("sudoklify")
