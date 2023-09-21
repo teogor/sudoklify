@@ -41,10 +41,10 @@ mavenPublishing {
   coordinates("dev.teogor.sudoklify", "sudoklify", "1.0.0-alpha02")
 
   pom {
-    name.set("Sudoklify")
+    name.set("sudoklify")
     description.set("Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease.")
     inceptionYear.set("2023")
-    url.set("https://github.com/teogor/sudoklify/") // Update this URL
+    url.set("https://github.com/teogor/sudoklify/")
     licenses {
       license {
         name.set("The Apache License, Version 2.0")
@@ -54,15 +54,15 @@ mavenPublishing {
     }
     developers {
       developer {
-        id.set("teogor") // Update your GitHub username
-        name.set("Teodor Grigor") // Update your name
+        id.set("teogor")
+        name.set("Teodor Grigor")
         url.set("https://github.com/teogor/")
       }
     }
     scm {
-      url.set("https://github.com/teogor/sudoklify/") // Update this URL
-      connection.set("scm:git:https://github.com/teogor/sudoklify.git") // Update this connection URL
-      developerConnection.set("scm:git:git@github.com:teogor/sudoklify.git") // Update this developer connection URL
+      url.set("https://github.com/teogor/sudoklify/")
+      connection.set("scm:git:https://github.com/teogor/sudoklify.git")
+      developerConnection.set("scm:git:git@github.com:teogor/sudoklify.git")
     }
   }
 }
