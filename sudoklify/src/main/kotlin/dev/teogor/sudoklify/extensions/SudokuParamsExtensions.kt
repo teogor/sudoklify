@@ -8,7 +8,7 @@ import kotlin.random.Random
 fun SudokuParams.generateSudoku(): Sudoku {
   return SudokuGenerator(
     random = Random(seed),
-    type = type,
+    gameType = gameType,
     difficulty = difficulty,
   ).composeSudokuPuzzle()
 }

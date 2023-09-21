@@ -1,7 +1,7 @@
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.model.Difficulty
-import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.types.toNumber
 import dev.teogor.sudoklify.types.toToken
 import org.junit.Assert.assertEquals
@@ -11,15 +11,15 @@ class SudokuGeneratorTest {
 
   @Test
   fun testGenerateSudoku() {
-    val type = Type.THREE_BY_THREE
-    val sudoku = SudokuGenerator.getSudoku(Difficulty.MEDIUM, 12345, type)
+    val gameType = GameType.THREE_BY_THREE
+    val sudoku = SudokuGenerator.getSudoku(Difficulty.MEDIUM, 12345, gameType)
 
     // Verify that the generated sudoku has the correct type
-    assertEquals(type, sudoku.type)
+    assertEquals(gameType, sudoku.type)
 
     // Verify that the puzzle and solution have the correct lengths
-    assertEquals(type.rows * type.cols * type.rows * type.cols, sudoku.puzzle.length)
-    assertEquals(type.rows * type.cols * type.rows * type.cols, sudoku.solution.length)
+    assertEquals(gameType.rows * gameType.cols * gameType.rows * gameType.cols, sudoku.puzzle.length)
+    assertEquals(gameType.rows * gameType.cols * gameType.rows * gameType.cols, sudoku.solution.length)
   }
 
   @Test

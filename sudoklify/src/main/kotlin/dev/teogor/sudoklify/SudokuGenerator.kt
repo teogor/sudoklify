@@ -22,7 +22,7 @@ import dev.teogor.sudoklify.extensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.SudokuBlueprint
-import dev.teogor.sudoklify.model.Type
+import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.tokenizer.MultiDigitTokenizer
 import dev.teogor.sudoklify.tokenizer.Tokenizer
 import dev.teogor.sudoklify.tokenizer.tokenizer
@@ -36,11 +36,11 @@ import kotlin.random.Random
 
 internal class SudokuGenerator internal constructor(
   private val random: Random,
-  private val type: Type,
+  private val gameType: GameType,
   private val difficulty: Difficulty,
 ) {
 
-  private val boxDigits = type.rows * type.cols
+  private val boxDigits = gameType.rows * gameType.cols
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
   private val tokenizer: Tokenizer = boxDigits.tokenizer
@@ -59,7 +59,7 @@ internal class SudokuGenerator internal constructor(
     val puzzle = getSequence(layout, seed.puzzle.toSequenceString(), tokenMap)
     val solution = getSequence(layout, seed.solution.toSequenceString(), tokenMap)
 
-    return Sudoku(puzzle, solution, seed.difficulty, type)
+    return Sudoku(puzzle, solution, seed.difficulty, gameType)
   }
 
   private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): Board {
@@ -140,7 +140,7 @@ internal class SudokuGenerator internal constructor(
       puzzle = randomItem.puzzle.toBoard(boxDigits),
       solution = randomItem.solution.toBoard(boxDigits),
       difficulty = randomItem.difficulty,
-      type = randomItem.type,
+      gameType = randomItem.gameType,
     )
   }
 
@@ -148,7 +148,7 @@ internal class SudokuGenerator internal constructor(
     seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
 
   private fun getSeedsBySize(seeds: Array<SudokuBlueprint>, size: Int): Array<SudokuBlueprint> =
-    seeds.filter { seed -> seed.type.cols * seed.type.rows == size }.toTypedArray()
+    seeds.filter { seed -> seed.gameType.cols * seed.gameType.rows == size }.toTypedArray()
 
   private fun getRandomItem(items: Array<SudokuBlueprint>): SudokuBlueprint =
     items[random.nextInt(items.size)]

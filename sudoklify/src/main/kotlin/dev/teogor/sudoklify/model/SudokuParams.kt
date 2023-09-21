@@ -7,10 +7,10 @@ import dev.teogor.sudoklify.types.Seed
  *
  * @property difficulty The difficulty level of the Sudoku puzzle.
  * @property seed The seed for generating random numbers.
- * @property type The type of the Sudoku grid.
+ * @property gameType The type of the Sudoku grid.
  */
 data class SudokuParams(
   val difficulty: Difficulty,
   val seed: Seed,
-  val type: Type,
+  val gameType: GameType,
 )

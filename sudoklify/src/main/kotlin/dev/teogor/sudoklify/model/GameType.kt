@@ -1,6 +1,9 @@
 package dev.teogor.sudoklify.model
 
-enum class Type(val rows: Int, val cols: Int) {
+enum class GameType(
+  val rows: Int,
+  val cols: Int,
+) {
   TWO_BY_TWO(2, 2),
   TWO_BY_THREE(2, 3),
   TWO_BY_FOUR(2, 4),
