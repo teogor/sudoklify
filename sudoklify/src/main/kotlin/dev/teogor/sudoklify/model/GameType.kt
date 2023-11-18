@@ -1,5 +1,6 @@
 package dev.teogor.sudoklify.model
 
+// TODO get box size and row/col size
 /**
  * Represents the different game types available in the Sudoku game.
  *

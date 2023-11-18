@@ -4,6 +4,7 @@ import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.model.SudokuBlueprint
 
+// TODO use JSON and versioning for different seeds like Version 1 version 2 etc
 /**
  * An array of `SudokuBlueprint` objects representing easy 4x4 Sudoku puzzles.
  */
