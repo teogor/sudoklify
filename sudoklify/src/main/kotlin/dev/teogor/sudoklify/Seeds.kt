@@ -6,6 +6,7 @@ import dev.teogor.sudoklify.model.SudokuBlueprint
 
 val SEEDS: Array<SudokuBlueprint> = arrayOf(
   // 4x4, digits from 1 to 4
+  // Easy
   SudokuBlueprint(
     puzzle = "-BCDCDA-BAD--CBA",
     solution = "ABCDCDABBADCDCBA",
@@ -54,6 +55,8 @@ val SEEDS: Array<SudokuBlueprint> = arrayOf(
     difficulty = Difficulty.EASY,
     gameType = GameType.TwoByTwo,
   ),
+
+  // Medium
   SudokuBlueprint(
     puzzle = "D--B-CA--DB-C--A",
     solution = "DACBBCADADBCCBDA",
@@ -102,6 +105,8 @@ val SEEDS: Array<SudokuBlueprint> = arrayOf(
     difficulty = Difficulty.MEDIUM,
     gameType = GameType.TwoByTwo,
   ),
+
+  // Hard
   SudokuBlueprint(
     puzzle = "-CD-D--CC--A-AC-",
     solution = "ACDBDBACCDBABACD",
@@ -150,52 +155,54 @@ val SEEDS: Array<SudokuBlueprint> = arrayOf(
     difficulty = Difficulty.HARD,
     gameType = GameType.TwoByTwo,
   ),
+
+  // VERY_HARD
   SudokuBlueprint(
     puzzle = "-AC---------CDBA",
     solution = "BACDDCABABDCCDBA",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "-C-A--B---C--D-B",
     solution = "BCDADABCABCDCDAB",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "BDCA-----AB-----",
     solution = "BDCAACDBCABDDBAC",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "----ABCD-DB-----",
     solution = "DCABABCDCDBABADC",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "C----A-B-CD-A---",
     solution = "CBADDACBBCDAADBC",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "-CB--A---DA--B--",
     solution = "DCBABACDCDABABDC",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "A--D---B---CD--A",
     solution = "ABCDCDABBADCDCBA",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
   SudokuBlueprint(
     puzzle = "----DACB-BA-----",
     solution = "BCDADACBCBADADBC",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.TwoByTwo,
   ),
 
@@ -221,7 +228,7 @@ val SEEDS: Array<SudokuBlueprint> = arrayOf(
   SudokuBlueprint(
     puzzle = "-BI-------C----E---------AF---EBA-----A-I-G------C--I----H-E--D-E------GC-B--F---",
     solution = "FBIAEGDHCACHDFBEGIEDGCHIBAFGICEBAFDHBHAFIDGCEDFEGCHAIBIAFHGECBDHEDBACIFGCGBIDFHEA",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.ThreeByThree,
   ),
 
@@ -247,7 +254,7 @@ val SEEDS: Array<SudokuBlueprint> = arrayOf(
   SudokuBlueprint(
     puzzle = "----Ad---Ae----AfDCAc--G-AAjF--CAd-AbH-C--BG--D--HAb--Ae--Ae-D-B--Af-Ac--Ad-A--Ab-D--Ae-----Aj-AfAjA-AeHAbIC---EAa-AdFAfDB--G-AaAjAd--AbAI----IAAfAdAj-Aa-D-Ae-BD-Ad-Af-H-ABAjCI----BAfE--AGD-Aa--HAbAdIH-AAj---EAeAbGAf-CAaG-C-----Ad--H-Ac--F-D--H-A--E-Ad-Aj--C--EAj--G--AfH--Ac-EG-AcF--HAjI-Ae--DBAcAj----Af---Ae----",
     solution = "AbAjHFAdIAaAcAeEBAGAfDCAcAfAaGAeAAjFIDCAdBAbHECAdABGEAfDAaFHAbAcIAeAjEAeIDAbBCHAfGAcAjFAdAaAAdFAbAaDAcBAeCHAIEAjGAfAjAAcAeHAbICBAfGEAaDAdFAfDBCFGEAaAjAdAeAcAbAIHHGEIAAfAdAjAbAaFDCAeAcBDAaAdAcAfAeHAbABAjCIEFGAeBAfEICAGDAcAaFAjHAbAdIHFAAjDAcAdEAeAbGAfBCAaGAbCAjBAaFEAdIAfHDAcAAeFIDAfAaHAeAAcCEBAdGAjAbAaCAeAbEAjDIGAAdAfHFBAcAEGAdAcFAbBHAjIAaAeCAfDBAcAjHCAdGAfFAbDAeAAaEI",
-    difficulty = Difficulty.EXPERT,
+    difficulty = Difficulty.VERY_HARD,
     gameType = GameType.FourByFour,
   ),
 )

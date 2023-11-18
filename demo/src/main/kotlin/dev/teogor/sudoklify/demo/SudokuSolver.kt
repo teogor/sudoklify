@@ -142,7 +142,7 @@ fun getSudokuString(): String {
 
 fun main() {
   val size = 9
-  val difficulty = Difficulty.EXPERT
+  val difficulty = Difficulty.VERY_HARD
 
   val sudokuString = getSudokuString()
 
