@@ -47,9 +47,5 @@ gradlePlugin {
       id = "sudoklify.kotlin.library"
       implementationClass = "KotlinLibraryConventionPlugin"
     }
-    register("mavenPublishLibrary") {
-      id = "sudoklify.maven.publish.library"
-      implementationClass = "MavenPublishLibraryConventionPlugin"
-    }
   }
 }

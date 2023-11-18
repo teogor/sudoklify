@@ -13,14 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import dev.teogor.sudoklify.buildlogic.BuildInfo
-
 plugins {
   id("sudoklify.kotlin.application")
 }
-
-group = BuildInfo.group.fullName
-version = BuildInfo.version.name
 
 dependencies {
   implementation(libs.gson)
