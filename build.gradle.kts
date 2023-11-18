@@ -9,6 +9,8 @@ import dev.teogor.winds.api.model.Version
 import dev.teogor.winds.api.provider.Scm
 import dev.teogor.winds.gradle.utils.afterWindsPluginConfiguration
 import dev.teogor.winds.gradle.utils.attachTo
+import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -154,4 +156,20 @@ apiValidation {
    * Subprojects that are excluded from API validation
    */
   ignoredProjects.addAll(listOf("demo", "build-logic", "Sudoklify"))
+}
+
+
+subprojects {
+  if (project.name == "sudoklify") {
+    apply<DokkaPlugin>()
+    tasks.withType<DokkaTask>().configureEach {
+      moduleName.set(project.name)
+      moduleVersion.set(project.version.toString())
+      outputDirectory.set(rootProject.projectDir.resolve("docs/dokka/${project.name}"))
+      failOnWarning.set(false)
+      suppressObviousFunctions.set(true)
+      suppressInheritedMembers.set(false)
+      offlineMode.set(false)
+    }
+  }
 }
