@@ -16,7 +16,7 @@ fun Difficulty.toStars(): String {
  * provided difficulty labels.
  *
  * @param labels An array of difficulty labels.
- * 
+ *
  * @return The corresponding difficulty label based on the ordinal position
  * of the `Difficulty` enum value within the array.
  */
