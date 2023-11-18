@@ -2,22 +2,18 @@
 activityCompose = "1.7.2"
 kotlin = "1.8.21"
 kotlinxCoroutines = "1.7.1"
-junitBom = "5.9.1"
 gson = "2.9.0"
+winds = "1.0.0-alpha02"
+vanniktech-maven = "0.25.3"
+kotlin-jvm = "1.8.21"
 
 [libraries]
-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 
 [plugins]
-
-[bundles]
-
-#[test]
-#junit-bom = { group = "org.junit", name = "junit-bom", version = "junitBom" }
-
-#[libraries.test]
-#junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
+winds = { id = "dev.teogor.winds", version.ref = "winds" }
+vanniktech-maven = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven" }
