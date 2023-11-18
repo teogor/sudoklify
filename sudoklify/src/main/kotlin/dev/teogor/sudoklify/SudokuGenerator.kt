@@ -20,9 +20,9 @@ import dev.teogor.sudoklify.extensions.sortRandom
 import dev.teogor.sudoklify.extensions.toBoard
 import dev.teogor.sudoklify.extensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.SudokuBlueprint
-import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.tokenizer.MultiDigitTokenizer
 import dev.teogor.sudoklify.tokenizer.Tokenizer
 import dev.teogor.sudoklify.tokenizer.tokenizer
@@ -137,8 +137,8 @@ internal class SudokuGenerator internal constructor(
   private fun getSeed(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Sudoku {
     val randomItem = getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
     return Sudoku(
-      puzzle = randomItem.puzzle.toBoard(boxDigits),
-      solution = randomItem.solution.toBoard(boxDigits),
+      puzzle = randomItem.puzzle.toBoard(gameType),
+      solution = randomItem.solution.toBoard(gameType),
       difficulty = randomItem.difficulty,
       gameType = randomItem.gameType,
     )
