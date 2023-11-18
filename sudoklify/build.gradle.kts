@@ -31,5 +31,9 @@ winds {
     displayName = "Sudoklify"
     name = "sudoklify"
     description = ""
+
+    // TODO winds
+    //  required by dokka
+    project.version = version!!.toString()
   }
 }

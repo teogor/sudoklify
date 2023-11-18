@@ -1,10 +1,11 @@
 package dev.teogor.sudoklify
-import dev.teogor.sudoklify.demo.gen.impl.comparePuzzles
+
 import dev.teogor.sudoklify.extensions.generateSudoku
 import dev.teogor.sudoklify.extensions.toBoard
 import dev.teogor.sudoklify.extensions.toSequenceString
 import dev.teogor.sudoklify.model.Difficulty
 import dev.teogor.sudoklify.model.GameType
+import dev.teogor.sudoklify.types.Board
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -65,5 +66,24 @@ class SudokuTest {
 
       assertEquals(true, isValid, "Invalid puzzle for seed ${sudoku.solution}")
     }
+  }
+
+  private fun comparePuzzles(puzzle: Board, solution: Board): Boolean {
+    if (puzzle.size != solution.size || puzzle[0].size != solution[0].size) {
+      return false
+    }
+
+    for (row in puzzle.indices) {
+      for (col in 0 until puzzle[row].size) {
+        val puzzleValue = puzzle[row][col]
+        val solvedValue = solution[row][col]
+
+        if (puzzleValue != "-" && puzzleValue != solvedValue) {
+          return false
+        }
+      }
+    }
+
+    return true
   }
 }

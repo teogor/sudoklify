@@ -16,26 +16,7 @@
 
 package dev.teogor.sudoklify.demo
 
-import dev.teogor.sudoklify.SEEDS
-import dev.teogor.sudoklify.demo.gen.impl.comparePuzzles
-import dev.teogor.sudoklify.extensions.toBoard
-import dev.teogor.sudoklify.model.GameType
-import dev.teogor.sudoklify.utils.countRemainingCells
 import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
-  SEEDS
-    .filter { it.gameType == GameType.NineDigits }
-    .forEach {
-      println("- [${it.difficulty}, ${it.gameType}]: ${it.puzzle.countRemainingCells()} empty cells")
-    }
-
-  SEEDS.forEach { sudoku ->
-    val isValid = comparePuzzles(
-      puzzle = sudoku.puzzle.toBoard(sudoku.gameType),
-      solution = sudoku.solution.toBoard(sudoku.gameType),
-    )
-    if (!isValid)
-      println("invalid puzzles")
-  }
 }

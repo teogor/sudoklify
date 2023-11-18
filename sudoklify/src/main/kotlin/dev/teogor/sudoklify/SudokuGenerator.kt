@@ -135,7 +135,8 @@ internal class SudokuGenerator internal constructor(
     items.shuffled(random).first()
 
   private fun getSeed(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Sudoku {
-    val randomItem = getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
+    val randomItem =
+      getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
     return Sudoku(
       puzzle = randomItem.puzzle.toBoard(gameType),
       solution = randomItem.solution.toBoard(gameType),
@@ -144,14 +145,23 @@ internal class SudokuGenerator internal constructor(
     )
   }
 
-  private fun getSeedsByDifficulty(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Array<SudokuBlueprint> =
-    seeds.filter { seed -> seed.difficulty == difficulty }.toTypedArray()
+  private fun getSeedsByDifficulty(
+    seeds: Array<SudokuBlueprint>,
+    difficulty: Difficulty,
+  ): Array<SudokuBlueprint> = seeds.filter { seed ->
+    seed.difficulty == difficulty
+  }.toTypedArray()
 
-  private fun getSeedsBySize(seeds: Array<SudokuBlueprint>, size: Int): Array<SudokuBlueprint> =
-    seeds.filter { seed -> seed.gameType.gridWidth * seed.gameType.gridHeight == size }.toTypedArray()
+  private fun getSeedsBySize(
+    seeds: Array<SudokuBlueprint>,
+    size: Int,
+  ): Array<SudokuBlueprint> = seeds.filter { seed ->
+    seed.gameType.gridWidth * seed.gameType.gridHeight == size
+  }.toTypedArray()
 
-  private fun getRandomItem(items: Array<SudokuBlueprint>): SudokuBlueprint =
-    items[random.nextInt(items.size)]
+  private fun getRandomItem(
+    items: Array<SudokuBlueprint>,
+  ): SudokuBlueprint = items[random.nextInt(items.size)]
 
   private fun getTokenMap(): TokenMap {
     val gridList = (1..boxDigits)
