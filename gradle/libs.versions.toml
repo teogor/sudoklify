@@ -1,19 +1,25 @@
 [versions]
 activityCompose = "1.7.2"
+api-validator = "0.13.2"
 kotlin = "1.8.21"
-kotlinxCoroutines = "1.7.1"
+dokka = "1.9.0"
 gson = "2.9.0"
-winds = "1.0.0-alpha02"
-vanniktech-maven = "0.25.3"
+kotlinx-coroutines = "1.7.1"
 kotlin-jvm = "1.8.21"
+vanniktech-maven = "0.25.3"
+spotless = "6.21.0"
+winds = "1.0.0-alpha02"
 
 [libraries]
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 
 [plugins]
+api-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "api-validator" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
-winds = { id = "dev.teogor.winds", version.ref = "winds" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 vanniktech-maven = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven" }
+winds = { id = "dev.teogor.winds", version.ref = "winds" }

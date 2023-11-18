@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 Teogor (Teodor Grigor)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package dev.teogor.sudoklify.demo.gen
 
 import kotlin.math.sqrt
@@ -97,29 +113,34 @@ class Generator(private val size: Int, private val removeableCells: Int) {
       i += 1
       j = 0
     }
-    if (i >= size && j >= size)
+    if (i >= size && j >= size) {
       return true
+    }
 
     if (i < sqrSize) {
-      if (j < sqrSize)
+      if (j < sqrSize) {
         j = sqrSize
+      }
     } else if (i < size - sqrSize) {
-      if (j == (i / sqrSize) * sqrSize)
+      if (j == (i / sqrSize) * sqrSize) {
         j += sqrSize
+      }
     } else {
       if (j == size - sqrSize) {
         i += 1
         j = 0
-        if (i >= size)
+        if (i >= size) {
           return true
+        }
       }
     }
 
     (1..size).shuffled().forEach { num ->
       if (canFill(i, j, num)) {
         board[i][j] = num
-        if (fillRemaining(i, j + 1))
+        if (fillRemaining(i, j + 1)) {
           return true
+        }
 
         board[i][j] = 0
       }
@@ -140,7 +161,6 @@ class Generator(private val size: Int, private val removeableCells: Int) {
       board[i][j] = 0
     }
   }
-
 }
 
 fun main() {
