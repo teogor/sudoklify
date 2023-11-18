@@ -12,6 +12,6 @@ import dev.teogor.sudoklify.model.GameType
 fun findBySize(rows: Int, cols: Int): GameType {
   return GameType.values()
     .find {
-      it.sectionHeight == rows && it.sectionWidth == cols
+      it.gridHeight == rows && it.gridWidth == cols
     } ?: GameType.Unspecified
 }

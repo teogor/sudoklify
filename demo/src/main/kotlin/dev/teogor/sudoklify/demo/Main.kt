@@ -29,9 +29,19 @@ import dev.teogor.sudoklify.sudokuParamsBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+fun countHyphens(puzzle: String): Int {
+  return puzzle.count { it == '-' }
+}
 
 fun main() = runBlocking {
-  val _2x2Seeds = SEEDS.filter { it.gameType == GameType.TwoByTwo }
+  SEEDS
+    .filter { it.gameType == GameType.NineDigits }
+    .forEach {
+      println("Puzzle ${it.difficulty}: ${countHyphens(it.puzzle)} hyphens")
+    }
+
+  return@runBlocking
+  val _2x2Seeds = SEEDS.filter { it.gameType == GameType.FourDigits }
   println("2x2 seeds ${_2x2Seeds.size}")
   Difficulty.values().forEach { difficulty ->
     val size = _2x2Seeds.filter { it.difficulty == difficulty }.size
@@ -42,9 +52,9 @@ fun main() = runBlocking {
   val sudokus: MutableSet<Sudoku> = mutableSetOf()
   val singleSpace = true
   val sudokusSize = listOf(
-    GameType.TwoByTwo,
-    GameType.ThreeByThree,
-    GameType.FourByFour,
+    GameType.FourDigits,
+    GameType.NineDigits,
+    GameType.SixteenDigits,
   )
   val sudokusResult = listOf(
     // 4x4
@@ -96,7 +106,7 @@ fun main() = runBlocking {
               }
 
               gameType {
-                GameType.ThreeByThree
+                GameType.NineDigits
               }
 
               difficulty {
