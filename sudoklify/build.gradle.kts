@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 plugins {
-  id("sudoklify.kotlin.library")
+  alias(libs.plugins.kotlin.jvm)
   alias(libs.plugins.winds)
 }
 
@@ -30,7 +30,6 @@ winds {
   mavenPublish {
     displayName = "Sudoklify"
     name = "sudoklify"
-    description = ""
 
     // TODO winds
     //  required by dokka

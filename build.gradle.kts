@@ -28,6 +28,11 @@ tasks.withType<KotlinCompile>().configureEach {
   dependsOn("updateGitHooks")
 }
 
+val excludedProjects = listOf(
+    project.name,
+    "demo",
+)
+
 winds {
   buildFeatures {
     mavenPublish = true
@@ -39,7 +44,8 @@ winds {
 
     canBePublished = false
 
-    description = "Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease."
+    description =
+      "Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease."
 
     groupId = "dev.teogor.sudoklify"
 
@@ -155,21 +161,12 @@ apiValidation {
   /**
    * Subprojects that are excluded from API validation
    */
-  ignoredProjects.addAll(listOf("demo", "build-logic", "Sudoklify"))
+  ignoredProjects.addAll(excludedProjects)
 }
 
 
 subprojects {
-  if (project.name == "sudoklify") {
+  if (!excludedProjects.contains(this.name)) {
     apply<DokkaPlugin>()
-    tasks.withType<DokkaTask>().configureEach {
-      moduleName.set(project.name)
-      moduleVersion.set(project.version.toString())
-      outputDirectory.set(rootProject.projectDir.resolve("docs/dokka/${project.name}"))
-      failOnWarning.set(false)
-      suppressObviousFunctions.set(true)
-      suppressInheritedMembers.set(false)
-      offlineMode.set(false)
-    }
   }
 }

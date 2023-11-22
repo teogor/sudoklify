@@ -13,14 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 plugins {
-  id("sudoklify.kotlin.application")
+  alias(libs.plugins.kotlin.jvm)
+  id("application")
 }
 
 dependencies {
-  implementation(libs.gson)
-
   implementation(project(mapOf("path" to ":sudoklify")))
+
+  implementation(libs.kotlin.stdlib)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.gson)
 }
 
 tasks.test {
