@@ -1,8 +1,4 @@
 pluginManagement {
-  includeBuild("build-logic") {
-    // Change the name to 'buildlogic'
-    name = "buildlogic"
-  }
   repositories {
     google()
     mavenCentral()
@@ -24,6 +20,3 @@ include("demo")
 
 // library module
 include("sudoklify")
-
-// library module
-include("build-logic")
