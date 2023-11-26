@@ -121,6 +121,23 @@ public final class dev/teogor/sudoklify/model/SudokuParams {
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class dev/teogor/sudoklify/model/SudokuSolution {
+	public fun <init> (JZI[[I)V
+	public final fun component1 ()J
+	public final fun component2 ()Z
+	public final fun component3 ()I
+	public final fun component4 ()[[I
+	public final fun copy (JZI[[I)Ldev/teogor/sudoklify/model/SudokuSolution;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/model/SudokuSolution;JZI[[IILjava/lang/Object;)Ldev/teogor/sudoklify/model/SudokuSolution;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getElapsedTime ()J
+	public final fun getSolutionFound ()Z
+	public final fun getSolvedGrid ()[[I
+	public final fun getStepCount ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class dev/teogor/sudoklify/seeds/FourDigitsSeedsKt {
 	public static final fun getFourDigitsSeeds ()[Ldev/teogor/sudoklify/model/SudokuBlueprint;
 }
@@ -145,6 +162,11 @@ public final class dev/teogor/sudoklify/utils/DifficultyExtensionsKt {
 
 public final class dev/teogor/sudoklify/utils/GameTypeUtilsKt {
 	public static final fun findBySize (II)Ldev/teogor/sudoklify/model/GameType;
+}
+
+public final class dev/teogor/sudoklify/utils/SudokuSolver {
+	public fun <init> ([[ILdev/teogor/sudoklify/model/GameType;)V
+	public final fun solve ()Ldev/teogor/sudoklify/model/SudokuSolution;
 }
 
 public final class dev/teogor/sudoklify/utils/SudokuStringExtensionsKt {
