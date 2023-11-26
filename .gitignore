@@ -44,3 +44,6 @@ sudokus.json
 local.properties
 
 /docs/dokka/
+demo/src/main/resources/raw/sudoku-solved.txt
+demo/src/main/resources/raw/sudoku-converted.txt
+demo/src/main/resources/raw/sudoku-puzzle.txt
