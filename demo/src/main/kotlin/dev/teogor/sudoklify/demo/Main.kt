@@ -18,5 +18,6 @@ package dev.teogor.sudoklify.demo
 
 import kotlinx.coroutines.runBlocking
 
-fun main() = runBlocking {
-}
+fun main() =
+  runBlocking {
+  }

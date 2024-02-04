@@ -25,7 +25,10 @@ import dev.teogor.sudoklify.model.GameType
  * @param cols The number of columns in the Sudoku grid.
  * @return The matching GameType, or GameType.Unspecified if no match is found.
  */
-fun findBySize(rows: Int, cols: Int): GameType {
+fun findBySize(
+  rows: Int,
+  cols: Int,
+): GameType {
   return GameType.values()
     .find {
       it.gridHeight == rows && it.gridWidth == cols

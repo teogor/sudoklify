@@ -41,11 +41,12 @@ class Generator(private val size: Int, private val removeableCells: Int) {
   fun print() {
     for (i in 0 until size) {
       for (j in 0 until size) {
-        val value = if (board[i][j] == 0) {
-          "."
-        } else {
-          board[i][j].toString()
-        }
+        val value =
+          if (board[i][j] == 0) {
+            "."
+          } else {
+            board[i][j].toString()
+          }
         print("$value")
       }
       println()
@@ -59,7 +60,10 @@ class Generator(private val size: Int, private val removeableCells: Int) {
     }
   }
 
-  private fun fillBox(row: Int, col: Int) {
+  private fun fillBox(
+    row: Int,
+    col: Int,
+  ) {
     var num: Int
     for (i in 0 until sqrSize) {
       for (j in 0 until sqrSize) {
@@ -72,7 +76,11 @@ class Generator(private val size: Int, private val removeableCells: Int) {
     }
   }
 
-  private fun canFillBox(rowStart: Int, colStart: Int, num: Int): Boolean {
+  private fun canFillBox(
+    rowStart: Int,
+    colStart: Int,
+    num: Int,
+  ): Boolean {
     for (i in 0 until sqrSize) {
       for (j in 0 until sqrSize) {
         if (board[rowStart + i][colStart + j] == num) return false
@@ -85,27 +93,40 @@ class Generator(private val size: Int, private val removeableCells: Int) {
     return (1..max).shuffled().first()
   }
 
-  private fun canFill(i: Int, j: Int, num: Int): Boolean {
+  private fun canFill(
+    i: Int,
+    j: Int,
+    num: Int,
+  ): Boolean {
     return canFillRow(i, num) &&
       canFillCol(j, num) &&
       canFillBox(i - i % sqrSize, j - j % sqrSize, num)
   }
 
-  private fun canFillRow(i: Int, num: Int): Boolean {
+  private fun canFillRow(
+    i: Int,
+    num: Int,
+  ): Boolean {
     for (j in 0 until size) {
       if (board[i][j] == num) return false
     }
     return true
   }
 
-  private fun canFillCol(j: Int, num: Int): Boolean {
+  private fun canFillCol(
+    j: Int,
+    num: Int,
+  ): Boolean {
     for (i in 0 until size) {
       if (board[i][j] == num) return false
     }
     return true
   }
 
-  private fun fillRemaining(argI: Int = 0, argJ: Int = sqrSize): Boolean {
+  private fun fillRemaining(
+    argI: Int = 0,
+    argJ: Int = sqrSize,
+  ): Boolean {
     var i = argI
     var j = argJ
 

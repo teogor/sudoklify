@@ -37,10 +37,11 @@ fun main() {
   val sudokuSolved = getParsedPuzzle(sudokuSolvedFile)
   val difficulty = Difficulty.VERY_HARD
   val gameType = GameType.TwentyFiveDigits
-  val validPuzzles = comparePuzzles(
-    puzzle = sudokuPuzzle.toBoard(gameType),
-    solution = sudokuSolved.toBoard(gameType),
-  )
+  val validPuzzles =
+    comparePuzzles(
+      puzzle = sudokuPuzzle.toBoard(gameType),
+      solution = sudokuSolved.toBoard(gameType),
+    )
   if (validPuzzles) {
     File(outputFile) write {
       buildString {
@@ -64,11 +65,12 @@ fun main() {
   if (originalSize != uniquesSize) {
     println("Duplicates detected! Unique seeds: $uniquesSize")
   }
-  val difficultyCounts = rootDigitsSeeds
-    .groupBy { it.difficulty }
-    .map { (difficulty, blueprints) ->
-      "$difficulty: ${blueprints.size}"
-    }
+  val difficultyCounts =
+    rootDigitsSeeds
+      .groupBy { it.difficulty }
+      .map { (difficulty, blueprints) ->
+        "$difficulty: ${blueprints.size}"
+      }
 
   println()
   println("Difficulty distribution:")
@@ -94,7 +96,10 @@ fun main() {
   println()
 }
 
-private fun comparePuzzles(puzzle: Board, solution: Board): Boolean {
+private fun comparePuzzles(
+  puzzle: Board,
+  solution: Board,
+): Boolean {
   if (puzzle.size != solution.size || puzzle[0].size != solution[0].size) {
     return false
   }

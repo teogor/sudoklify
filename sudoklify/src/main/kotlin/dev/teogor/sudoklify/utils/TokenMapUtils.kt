@@ -33,15 +33,17 @@ import dev.teogor.sudoklify.types.toToken
  */
 fun generateTokenMap(boxDigits: Int): TokenMap {
   val gridList = (1..boxDigits)
-  val tokenList = gridList.withIndex().map { (index, _) ->
-    val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
-    value.toToken()
-  }
+  val tokenList =
+    gridList.withIndex().map { (index, _) ->
+      val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
+      value.toToken()
+    }
 
-  val tokenMap = tokenList.withIndex().associate { (index, token) ->
-    val value =
-      if (index < boxDigits) (index + 1).toString() else (index - boxDigits + 1).toString()
-    token to value
-  }
+  val tokenMap =
+    tokenList.withIndex().associate { (index, token) ->
+      val value =
+        if (index < boxDigits) (index + 1).toString() else (index - boxDigits + 1).toString()
+      token to value
+    }
   return tokenMap
 }

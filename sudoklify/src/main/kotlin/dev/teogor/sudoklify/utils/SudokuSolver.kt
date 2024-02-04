@@ -20,7 +20,6 @@ import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.model.SudokuSolution
 
 class SudokuSolver(private val grid: Array<IntArray>, private val gameType: GameType) {
-
   private val steps: ArrayList<Pair<Int, Int>> = ArrayList()
   private var stepCount = 0
 
@@ -44,7 +43,10 @@ class SudokuSolver(private val grid: Array<IntArray>, private val gameType: Game
     return SudokuSolution(elapsedTime, solved, stepCount, workingGrid)
   }
 
-  private fun copyGrid(sourceGrid: Array<IntArray>, destinationGrid: Array<IntArray>) {
+  private fun copyGrid(
+    sourceGrid: Array<IntArray>,
+    destinationGrid: Array<IntArray>,
+  ) {
     for (row in sourceGrid.indices) {
       for (col in sourceGrid[row].indices) {
         destinationGrid[row][col] = sourceGrid[row][col]
@@ -84,7 +86,12 @@ class SudokuSolver(private val grid: Array<IntArray>, private val gameType: Game
     return true // Puzzle solved
   }
 
-  private fun isValid(grid: Array<IntArray>, row: Int, col: Int, num: Int): Boolean {
+  private fun isValid(
+    grid: Array<IntArray>,
+    row: Int,
+    col: Int,
+    num: Int,
+  ): Boolean {
     for (i in 0 until gameType.cells) {
       if (grid[row][i] == num || grid[i][col] == num) return false
     }

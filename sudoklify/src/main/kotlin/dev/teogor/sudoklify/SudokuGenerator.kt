@@ -39,7 +39,6 @@ internal class SudokuGenerator internal constructor(
   private val gameType: GameType,
   private val difficulty: Difficulty,
 ) {
-
   private val boxDigits = gameType.gridHeight * gameType.gridWidth
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
@@ -62,19 +61,25 @@ internal class SudokuGenerator internal constructor(
     return Sudoku(puzzle, solution, seed.difficulty, gameType)
   }
 
-  private fun getSequence(layout: Layout, seedSequence: String, tokenMap: TokenMap): Board {
-    val grid = if (tokenizer is MultiDigitTokenizer) {
-      tokenizer.populateLayout(layout, seedSequence, tokenMap)
-    } else {
-      tokenizer.populateLayout(layout, tokenizer.replaceTokens(seedSequence, tokenMap))
-    }
+  private fun getSequence(
+    layout: Layout,
+    seedSequence: String,
+    tokenMap: TokenMap,
+  ): Board {
+    val grid =
+      if (tokenizer is MultiDigitTokenizer) {
+        tokenizer.populateLayout(layout, seedSequence, tokenMap)
+      } else {
+        tokenizer.populateLayout(layout, tokenizer.replaceTokens(seedSequence, tokenMap))
+      }
     return grid
   }
 
   @Deprecated(message = "toSequenceString")
-  private fun boardToSequence(board: Board): SudokuString = board.joinToString("") {
-    it.joinToString("")
-  }
+  private fun boardToSequence(board: Board): SudokuString =
+    board.joinToString("") {
+      it.joinToString("")
+    }
 
   @Deprecated(message = "toBoard")
   private fun sequenceToBoard(sequence: SudokuString): Board {
@@ -134,7 +139,10 @@ internal class SudokuGenerator internal constructor(
   private fun getRandomItem(items: List<(Layout) -> Layout>): (Layout) -> Layout =
     items.shuffled(random).first()
 
-  private fun getSeed(seeds: Array<SudokuBlueprint>, difficulty: Difficulty): Sudoku {
+  private fun getSeed(
+    seeds: Array<SudokuBlueprint>,
+    difficulty: Difficulty,
+  ): Sudoku {
     val randomItem =
       getRandomItem(getSeedsByDifficulty(getSeedsBySize(seeds, boxDigits), difficulty))
     return Sudoku(
@@ -148,33 +156,36 @@ internal class SudokuGenerator internal constructor(
   private fun getSeedsByDifficulty(
     seeds: Array<SudokuBlueprint>,
     difficulty: Difficulty,
-  ): Array<SudokuBlueprint> = seeds.filter { seed ->
-    seed.difficulty == difficulty
-  }.toTypedArray()
+  ): Array<SudokuBlueprint> =
+    seeds.filter { seed ->
+      seed.difficulty == difficulty
+    }.toTypedArray()
 
   private fun getSeedsBySize(
     seeds: Array<SudokuBlueprint>,
     size: Int,
-  ): Array<SudokuBlueprint> = seeds.filter { seed ->
-    seed.gameType.gridWidth * seed.gameType.gridHeight == size
-  }.toTypedArray()
+  ): Array<SudokuBlueprint> =
+    seeds.filter { seed ->
+      seed.gameType.gridWidth * seed.gameType.gridHeight == size
+    }.toTypedArray()
 
-  private fun getRandomItem(
-    items: Array<SudokuBlueprint>,
-  ): SudokuBlueprint = items[random.nextInt(items.size)]
+  private fun getRandomItem(items: Array<SudokuBlueprint>): SudokuBlueprint =
+    items[random.nextInt(items.size)]
 
   private fun getTokenMap(): TokenMap {
     val gridList = (1..boxDigits)
-    val tokenList = gridList.withIndex().map { (index, _) ->
-      val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
-      value.toToken()
-    }.shuffled(random)
+    val tokenList =
+      gridList.withIndex().map { (index, _) ->
+        val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
+        value.toToken()
+      }.shuffled(random)
 
-    val tokenMap = tokenList.withIndex().associate { (index, token) ->
-      val value =
-        if (index < boxDigits) (index + 1).toString() else (index - boxDigits + 1).toString()
-      token to value
-    }
+    val tokenMap =
+      tokenList.withIndex().associate { (index, token) ->
+        val value =
+          if (index < boxDigits) (index + 1).toString() else (index - boxDigits + 1).toString()
+        token to value
+      }
     return tokenMap
   }
 }

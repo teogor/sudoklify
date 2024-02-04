@@ -5,12 +5,11 @@ import dev.teogor.winds.api.MavenPublish
 import dev.teogor.winds.api.getValue
 import dev.teogor.winds.api.model.Developer
 import dev.teogor.winds.api.model.LicenseType
-import dev.teogor.winds.api.model.Version
+import dev.teogor.winds.api.model.createVersion
 import dev.teogor.winds.api.provider.Scm
 import dev.teogor.winds.gradle.utils.afterWindsPluginConfiguration
 import dev.teogor.winds.gradle.utils.attachTo
 import org.jetbrains.dokka.gradle.DokkaPlugin
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -60,11 +59,13 @@ winds {
       ),
     )
 
-    version = Version(
-      major = 1,
-      minor = 0,
-      patch = 0,
-    ).setAlphaRelease(4)
+    version = createVersion(1, 0, 0) {
+      alphaRelease(4)
+    }
+
+    // TODO winds
+    //  required by dokka
+    project.version = version!!.toString()
 
     addLicense(LicenseType.APACHE_2_0)
 
@@ -115,7 +116,7 @@ subprojects {
       )
 
       ktlint()
-        .userData(
+        .editorConfigOverride(
           mapOf(
             "ktlint_code_style" to "official",
             "ij_kotlin_allow_trailing_comma" to "true",
