@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Teogor (Teodor Grigor)
+ * Copyright 2024 Teogor (Teodor Grigor)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
   alias(libs.plugins.kotlin.jvm)
   alias(libs.plugins.winds)
@@ -23,16 +26,23 @@ tasks.test {
 }
 
 dependencies {
-  testImplementation("junit:junit:4.13.2")
+  testImplementation(libs.junit.jupiter)
+}
+
+val javaVersion = JavaVersion.VERSION_11
+java {
+  sourceCompatibility = javaVersion
+  targetCompatibility = javaVersion
+}
+
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+  jvmTarget = javaVersion.toString()
 }
 
 winds {
   mavenPublish {
     displayName = "Sudoklify"
     name = "sudoklify"
-
-    // TODO winds
-    //  required by dokka
-    project.version = version!!.toString()
   }
 }

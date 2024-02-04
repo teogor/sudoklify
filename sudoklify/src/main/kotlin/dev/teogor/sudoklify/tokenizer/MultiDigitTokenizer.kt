@@ -23,7 +23,10 @@ import dev.teogor.sudoklify.types.TokenMap
 internal class MultiDigitTokenizer(
   private val boxDigits: Int,
 ) : Tokenizer() {
-  override fun replaceTokens(sequence: String, tokenMap: TokenMap): String {
+  override fun replaceTokens(
+    sequence: String,
+    tokenMap: TokenMap,
+  ): String {
     val regex = Regex("([A-I][a-z]+)|-|[A-I][A-I]+")
     return regex.replace(sequence) { matchResult ->
       val token = matchResult.value
@@ -31,7 +34,10 @@ internal class MultiDigitTokenizer(
     }
   }
 
-  override fun populateLayout(layout: Layout, sequence: String): Board {
+  override fun populateLayout(
+    layout: Layout,
+    sequence: String,
+  ): Board {
     return layout.map { row ->
       row.map { cell ->
         sequence[cell].toString()
@@ -39,7 +45,11 @@ internal class MultiDigitTokenizer(
     }.toTypedArray()
   }
 
-  fun populateLayout(layout: Layout, sequence: String, tokenMap: TokenMap): Board {
+  fun populateLayout(
+    layout: Layout,
+    sequence: String,
+    tokenMap: TokenMap,
+  ): Board {
     val regex = Regex("([A-I][a-j]+)|-|[A-I]")
     val elements = mutableListOf<String>()
     regex.findAll(sequence)

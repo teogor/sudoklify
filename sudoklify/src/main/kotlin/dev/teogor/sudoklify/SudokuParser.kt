@@ -45,14 +45,15 @@ class SudokuParser(
 
     for (row in puzzleBoard.indices) {
       for (col in puzzleBoard[row].indices) {
-        convertedPuzzle[row][col] = if (puzzleBoard[row][col] != "-") {
-          val value = puzzleBoard[row][col]
-          tokenMap[value]?.toInt() ?: throw IllegalArgumentException(
-            "Invalid token '$value' found in Sudoku puzzle.",
-          )
-        } else {
-          0
-        }
+        convertedPuzzle[row][col] =
+          if (puzzleBoard[row][col] != "-") {
+            val value = puzzleBoard[row][col]
+            tokenMap[value]?.toInt() ?: throw IllegalArgumentException(
+              "Invalid token '$value' found in Sudoku puzzle.",
+            )
+          } else {
+            0
+          }
       }
     }
 

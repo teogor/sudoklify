@@ -56,11 +56,12 @@ class ParamsBuilder {
    * @return A [SudokuParams] instance containing the configured difficulty, seed,
    *  and type for generating Sudoku puzzles.
    */
-  fun build() = SudokuParams(
-    difficulty,
-    seed,
-    gameType,
-  )
+  fun build() =
+    SudokuParams(
+      difficulty,
+      seed,
+      gameType,
+    )
 }
 
 /**
@@ -68,9 +69,8 @@ class ParamsBuilder {
  * @param block Lambda for configuring the builder.
  * @return [SudokuGenerator] instance.
  */
-inline fun sudokuParamsBuilder(
-  crossinline block: ParamsBuilder.() -> Unit,
-) = ParamsBuilder().apply(block).build()
+inline fun sudokuParamsBuilder(crossinline block: ParamsBuilder.() -> Unit) =
+  ParamsBuilder().apply(block).build()
 
 /**
  * Set the difficulty level of the Sudoku puzzle using a lambda.

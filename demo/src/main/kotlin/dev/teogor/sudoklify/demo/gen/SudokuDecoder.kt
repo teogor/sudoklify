@@ -31,11 +31,12 @@ class SudokuDecoder {
     while (matchResults.find()) {
       matchCount++
       val cellContent = matchResults.group(1)
-      val parsedNumber = if (cellContent == "&nbsp;") {
-        "-"
-      } else {
-        cellContent.toInt().toToken()
-      }
+      val parsedNumber =
+        if (cellContent == "&nbsp;") {
+          "-"
+        } else {
+          cellContent.toInt().toToken()
+        }
       puzzleBuilder.append(parsedNumber)
     }
 
