@@ -20,5 +20,7 @@ import dev.teogor.sudoklify.model.SudokuBlueprint
 import dev.teogor.sudoklify.seeds.fourDigitsSeeds
 import dev.teogor.sudoklify.seeds.nineDigitsSeeds
 import dev.teogor.sudoklify.seeds.sixteenDigitsSeeds
+import dev.teogor.sudoklify.seeds.twentyFiveDigitsSeeds
 
-val SEEDS: Array<SudokuBlueprint> = fourDigitsSeeds + nineDigitsSeeds + sixteenDigitsSeeds
+val SEEDS: Array<SudokuBlueprint> =
+  fourDigitsSeeds + nineDigitsSeeds + sixteenDigitsSeeds + twentyFiveDigitsSeeds

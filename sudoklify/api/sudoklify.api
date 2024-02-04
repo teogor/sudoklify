@@ -44,6 +44,7 @@ public final class dev/teogor/sudoklify/model/Difficulty : java/lang/Enum {
 	public static final field MEDIUM Ldev/teogor/sudoklify/model/Difficulty;
 	public static final field VERY_EASY Ldev/teogor/sudoklify/model/Difficulty;
 	public static final field VERY_HARD Ldev/teogor/sudoklify/model/Difficulty;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/model/Difficulty;
 	public static fun values ()[Ldev/teogor/sudoklify/model/Difficulty;
 }
@@ -64,6 +65,7 @@ public final class dev/teogor/sudoklify/model/GameType : java/lang/Enum {
 	public static final field TwentyFiveDigits Ldev/teogor/sudoklify/model/GameType;
 	public static final field Unspecified Ldev/teogor/sudoklify/model/GameType;
 	public final fun getCells ()I
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getGridHeight ()I
 	public final fun getGridWidth ()I
 	public final fun isSquare ()Z
@@ -148,6 +150,10 @@ public final class dev/teogor/sudoklify/seeds/NineDigitsSeedsKt {
 
 public final class dev/teogor/sudoklify/seeds/SixteenDigitsSeedsKt {
 	public static final fun getSixteenDigitsSeeds ()[Ldev/teogor/sudoklify/model/SudokuBlueprint;
+}
+
+public final class dev/teogor/sudoklify/seeds/TwentyFiveDigitsSeedsKt {
+	public static final fun getTwentyFiveDigitsSeeds ()[Ldev/teogor/sudoklify/model/SudokuBlueprint;
 }
 
 public final class dev/teogor/sudoklify/types/TokenKt {
