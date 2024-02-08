@@ -74,6 +74,10 @@ public final class dev/teogor/sudoklify/model/GameType : java/lang/Enum {
 	public static fun values ()[Ldev/teogor/sudoklify/model/GameType;
 }
 
+public final class dev/teogor/sudoklify/model/GameTypeKt {
+	public static final fun supportsDifficulty (Ldev/teogor/sudoklify/model/GameType;Ldev/teogor/sudoklify/model/Difficulty;)Z
+}
+
 public final class dev/teogor/sudoklify/model/Sudoku {
 	public fun <init> ([[Ljava/lang/String;[[Ljava/lang/String;Ldev/teogor/sudoklify/model/Difficulty;Ldev/teogor/sudoklify/model/GameType;)V
 	public final fun component1 ()[[Ljava/lang/String;
