@@ -49,9 +49,8 @@ winds {
       "Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease."
 
     groupId = "dev.teogor.sudoklify"
-
+    url = "https://source.teogor.dev/sudoklify"
     artifactIdElements = 1
-
     inceptionYear = 2023
 
     sourceControlManagement(
