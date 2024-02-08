@@ -16,6 +16,8 @@
 
 package dev.teogor.sudoklify.model
 
+import dev.teogor.sudoklify.SEEDS
+
 // TODO get box size and row/col size
 
 /**
@@ -122,3 +124,15 @@ enum class GameType(
     return "${cells}x$cells"
   }
 }
+
+/**
+ * Checks if this game type supports the specified difficulty level.
+ *
+ * @param difficulty The difficulty level to check for.
+ * @return True if the game type supports the given difficulty,
+ * false otherwise.
+ */
+fun GameType.supportsDifficulty(difficulty: Difficulty) =
+  SEEDS.any {
+    it.gameType == this && it.difficulty == difficulty
+  }
