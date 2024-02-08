@@ -30,7 +30,7 @@ import dev.teogor.sudoklify.types.Board
 import dev.teogor.sudoklify.types.Layout
 import dev.teogor.sudoklify.types.SudokuString
 import dev.teogor.sudoklify.types.TokenMap
-import dev.teogor.sudoklify.types.toToken
+import dev.teogor.sudoklify.utils.toToken
 import kotlin.math.sqrt
 import kotlin.random.Random
 

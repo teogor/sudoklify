@@ -16,4 +16,6 @@
 
 package dev.teogor.sudoklify.types
 
+import dev.teogor.sudoklify.utils.Token
+
 typealias TokenMap = Map<Token, Cell>
