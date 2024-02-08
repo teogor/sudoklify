@@ -4,7 +4,7 @@
 
 ### Latest Version
 
-The latest release is [`1.0.0-alpha03`](../releases.md)
+The latest release is [`1.0.0-alpha04`](../releases.md)
 
 ### Releases
 
@@ -12,6 +12,7 @@ Here's a summary of the latest versions:
 
 |    Version    |               Release Notes                | Release Date |
 |:-------------:|:------------------------------------------:|:------------:|
+| 1.0.0-alpha04 | [changelog 🔗](changelog/1.0.0-alpha04.md) | 08 Feb 2024  |
 | 1.0.0-alpha03 | [changelog 🔗](changelog/1.0.0-alpha03.md) | 21 Sep 2023  |
 | 1.0.0-alpha02 | [changelog 🔗](changelog/1.0.0-alpha02.md) | 25 Aug 2023  |
 | 1.0.0-alpha01 | [changelog 🔗](changelog/1.0.0-alpha01.md) | 24 Aug 2023  |
@@ -27,7 +28,7 @@ libraries, in TOML format.
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    sudoklify = "1.0.0-alpha03"
+    sudoklify = "1.0.0-alpha04"
 
     [libraries]
     sudoklify = { group = "dev.teogor.sudoklify", name = "sudoklify", version.ref = "sudoklify" }

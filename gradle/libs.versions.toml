@@ -7,8 +7,8 @@ kotlinx-coroutines = "1.7.3"
 kotlin-jvm = "1.9.22"
 vanniktech-maven = "0.27.0"
 spotless = "6.25.0"
-winds = "1.0.0-alpha04"
 junit = "5.10.1"
+winds = "1.0.0-beta01"
 
 [libraries]
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
@@ -18,8 +18,8 @@ junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.r
 
 [plugins]
 api-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "api-validator" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
+jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 vanniktech-maven = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven" }
 winds = { id = "dev.teogor.winds", version.ref = "winds" }

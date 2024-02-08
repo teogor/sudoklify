@@ -3,6 +3,7 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.vanniktech.maven.publish.SonatypeHost
 import dev.teogor.winds.api.MavenPublish
 import dev.teogor.winds.api.getValue
+import dev.teogor.winds.api.model.DependencyType
 import dev.teogor.winds.api.model.Developer
 import dev.teogor.winds.api.model.LicenseType
 import dev.teogor.winds.api.model.createVersion
@@ -13,10 +14,10 @@ import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  alias(libs.plugins.kotlin.jvm)
+  alias(libs.plugins.jetbrains.kotlin.jvm)
   alias(libs.plugins.winds)
   alias(libs.plugins.vanniktech.maven)
-  alias(libs.plugins.dokka)
+  alias(libs.plugins.jetbrains.dokka)
   alias(libs.plugins.spotless)
   alias(libs.plugins.api.validator)
 }
@@ -35,6 +36,7 @@ val excludedProjects = listOf(
 winds {
   buildFeatures {
     mavenPublish = true
+    docsGenerator = true
   }
 
   mavenPublish {
@@ -70,6 +72,11 @@ winds {
     addLicense(LicenseType.APACHE_2_0)
 
     addDeveloper(TeogorDeveloper())
+  }
+
+  docsGenerator {
+    name = "Sudoklify"
+    dependencyGatheringType = DependencyType.NONE
   }
 }
 
