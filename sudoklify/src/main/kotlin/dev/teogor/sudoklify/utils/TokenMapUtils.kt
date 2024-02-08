@@ -17,7 +17,6 @@
 package dev.teogor.sudoklify.utils
 
 import dev.teogor.sudoklify.types.TokenMap
-import dev.teogor.sudoklify.types.toToken
 
 /**
  * Generates a mapping between token values and their corresponding

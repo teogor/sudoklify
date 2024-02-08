@@ -160,7 +160,9 @@ public final class dev/teogor/sudoklify/seeds/TwentyFiveDigitsSeedsKt {
 	public static final fun getTwentyFiveDigitsSeeds ()[Ldev/teogor/sudoklify/model/SudokuBlueprint;
 }
 
-public final class dev/teogor/sudoklify/types/TokenKt {
+public final class dev/teogor/sudoklify/utils/BoardSerializationKt {
+	public static final fun decodeAsBoard (Ljava/lang/String;Ldev/teogor/sudoklify/model/GameType;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun encodeAsString (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
 	public static final fun toNumber (Ljava/lang/String;)I
 	public static final fun toToken (I)Ljava/lang/String;
 }
