@@ -21,20 +21,6 @@ plugins {
   id("application")
 }
 
-dependencies {
-  implementation(project(mapOf("path" to ":sudoklify-common")))
-  implementation(project(mapOf("path" to ":sudoklify-core")))
-  implementation(project(mapOf("path" to ":sudoklify-seeds")))
-
-  implementation(libs.kotlin.stdlib)
-  implementation(libs.kotlinx.coroutines.core)
-  implementation(libs.gson)
-}
-
-tasks.test {
-  useJUnitPlatform()
-}
-
 application {
   mainClass.set("MainKt")
 }
@@ -48,5 +34,21 @@ java {
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
   jvmTarget = javaVersion.toString()
+}
+
+dependencies {
+  implementation(project(mapOf("path" to ":sudoklify-common")))
+  implementation(project(mapOf("path" to ":sudoklify-core")))
+  implementation(project(mapOf("path" to ":sudoklify-seeds")))
+
+  implementation(libs.kotlin.stdlib)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.gson)
+
+  testImplementation(libs.junit.jupiter)
+}
+
+tasks.test {
+  useJUnitPlatform()
 }
 
