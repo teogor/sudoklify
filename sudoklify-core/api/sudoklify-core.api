@@ -38,28 +38,29 @@ public final class dev/teogor/sudoklify/core/solver/SudokuSolver {
 	public final fun solve ()Ldev/teogor/sudoklify/common/model/SudokuSolution;
 }
 
-public final class dev/teogor/sudoklify/core/tokenizer/MultiDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
-	public fun <init> (I)V
-	public fun populateLayout ([[ILjava/lang/String;)[[Ljava/lang/String;
-	public final fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
-	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
-}
-
-public final class dev/teogor/sudoklify/core/tokenizer/SingleDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
-	public fun <init> ()V
-	public fun populateLayout ([[ILjava/lang/String;)[[Ljava/lang/String;
-	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
-}
-
-public class dev/teogor/sudoklify/core/tokenizer/Tokenizer {
+public abstract class dev/teogor/sudoklify/core/tokenizer/Tokenizer {
 	public static final field Companion Ldev/teogor/sudoklify/core/tokenizer/Tokenizer$Companion;
-	public fun <init> ()V
-	public fun populateLayout ([[ILjava/lang/String;)[[Ljava/lang/String;
-	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+	public abstract fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
+	public abstract fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
 }
 
 public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$Companion {
 	public final fun create (I)Ldev/teogor/sudoklify/core/tokenizer/Tokenizer;
+}
+
+public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$MultiDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
+	public fun <init> (I)V
+	public fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
+	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$SingleDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
+	public static final field INSTANCE Ldev/teogor/sudoklify/core/tokenizer/Tokenizer$SingleDigitTokenizer;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
+	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class dev/teogor/sudoklify/core/util/BoardConversionsKt {

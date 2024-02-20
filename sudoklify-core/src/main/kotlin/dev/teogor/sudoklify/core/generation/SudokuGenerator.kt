@@ -27,7 +27,6 @@ import dev.teogor.sudoklify.common.types.Layout
 import dev.teogor.sudoklify.common.types.SudokuString
 import dev.teogor.sudoklify.common.types.TokenMap
 import dev.teogor.sudoklify.core.io.toToken
-import dev.teogor.sudoklify.core.tokenizer.MultiDigitTokenizer
 import dev.teogor.sudoklify.core.tokenizer.Tokenizer
 import dev.teogor.sudoklify.core.util.sortRandom
 import dev.teogor.sudoklify.core.util.toBoard
@@ -41,7 +40,7 @@ internal class SudokuGenerator internal constructor(
   private val gameType: GameType,
   private val difficulty: Difficulty,
 ) {
-  private val random: Random
+  private val random: Random = Random(seed)
   private val boxDigits = gameType.gridHeight * gameType.gridWidth
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
@@ -60,10 +59,6 @@ internal class SudokuGenerator internal constructor(
     gameType: GameType,
     difficulty: Difficulty,
   ) : this(seeds, 0L, gameType, difficulty)
-
-  init {
-    random = Random(seed)
-  }
 
   private fun generateBaseLayout(): Layout {
     return Array(boxDigits) { i ->
@@ -130,15 +125,7 @@ internal class SudokuGenerator internal constructor(
     layout: Layout,
     seedSequence: String,
     tokenMap: TokenMap,
-  ): Board {
-    val grid =
-      if (tokenizer is MultiDigitTokenizer) {
-        tokenizer.populateLayout(layout, seedSequence, tokenMap)
-      } else {
-        tokenizer.populateLayout(layout, tokenizer.replaceTokens(seedSequence, tokenMap))
-      }
-    return grid
-  }
+  ): Board = tokenizer.populateLayout(layout, seedSequence, tokenMap)
 
   @Deprecated(message = "toSequenceString")
   private fun boardToSequence(board: Board): SudokuString =

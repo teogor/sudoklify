@@ -20,29 +20,123 @@ import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Layout
 import dev.teogor.sudoklify.common.types.TokenMap
 
-// TODO: convert to Sealed Class
-open class Tokenizer {
-  open fun replaceTokens(
+/**
+ * Represents a tokenizer responsible for replacing tokens in sequences and populating
+ * layouts.
+ *
+ * @constructor Creates a Tokenizer instance with the specified number of digits.
+ */
+sealed class Tokenizer {
+  /**
+   * Replaces tokens in a given sequence using a token map.
+   *
+   * @param sequence The input sequence containing tokens.
+   * @param tokenMap A map of tokens to their replacement values.
+   * @return The sequence with replaced tokens.
+   */
+  abstract fun replaceTokens(
     sequence: String,
     tokenMap: TokenMap,
-  ): String {
-    return ""
-  }
+  ): String
 
-  open fun populateLayout(
+  /**
+   * Populates a layout with values from a sequence, replacing tokens as needed.
+   *
+   * @param layout The layout to be populated.
+   * @param sequence The input sequence containing tokens.
+   * @param tokenMap A map of tokens to their replacement values.
+   * @return The populated board.
+   */
+  abstract fun populateLayout(
     layout: Layout,
     sequence: String,
-  ): Board {
-    return emptyArray()
-  }
+    tokenMap: TokenMap,
+  ): Board
 
   companion object {
+    /**
+     * Creates a Tokenizer instance based on the number of digits.
+     *
+     * @param digits The number of digits used for tokenization.
+     * @return A SingleDigitTokenizer for 1-9 digits, or a MultiDigitTokenizer otherwise.
+     */
     fun create(digits: Int): Tokenizer {
-      return if (digits < 10) {
-        SingleDigitTokenizer()
-      } else {
-        MultiDigitTokenizer(digits)
+      return when (digits) {
+        in 1..9 -> SingleDigitTokenizer
+        else -> MultiDigitTokenizer(digits)
       }
+    }
+  }
+
+  /**
+   * A tokenizer for sequences with single-digit tokens.
+   */
+  data object SingleDigitTokenizer : Tokenizer() {
+    override fun replaceTokens(
+      sequence: String,
+      tokenMap: TokenMap,
+    ): String {
+      val result = StringBuilder()
+      sequence.forEach { char ->
+        result.append(tokenMap[char.toString()] ?: char)
+      }
+      return result.toString()
+    }
+
+    override fun populateLayout(
+      layout: Layout,
+      sequence: String,
+      tokenMap: TokenMap,
+    ): Board {
+      with(replaceTokens(sequence, tokenMap)) {
+        return layout.map { row ->
+          row.map { cell ->
+            this[cell].toString()
+          }.toTypedArray()
+        }.toTypedArray()
+      }
+    }
+  }
+
+  /**
+   * A tokenizer for sequences with multi-digit tokens.
+   */
+  class MultiDigitTokenizer(
+    private val digits: Int,
+  ) : Tokenizer() {
+    override fun replaceTokens(
+      sequence: String,
+      tokenMap: TokenMap,
+    ): String {
+      val regex = Regex("([A-I][a-z]+)|-|[A-I][A-I]+")
+      return regex.replace(sequence) { matchResult ->
+        val token = matchResult.value
+        tokenMap[token] ?: token
+      }
+    }
+
+    override fun populateLayout(
+      layout: Layout,
+      sequence: String,
+      tokenMap: TokenMap,
+    ): Board {
+      val tokens = extractTokens(sequence, tokenMap)
+      return layout.map { row ->
+        row.map { cell ->
+          val index = if (cell < digits) cell else cell - digits
+          tokens[index]
+        }.toTypedArray()
+      }.toTypedArray()
+    }
+
+    private fun extractTokens(
+      sequence: String,
+      tokenMap: TokenMap,
+    ): List<String> {
+      val regex = Regex("([A-I][a-j]+)|-|[A-I]")
+      return regex.findAll(sequence).map { match ->
+        tokenMap[match.value] ?: match.value
+      }.toList()
     }
   }
 }
