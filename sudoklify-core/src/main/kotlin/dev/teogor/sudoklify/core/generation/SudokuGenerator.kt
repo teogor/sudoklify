@@ -24,6 +24,7 @@ import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.GameType
 import dev.teogor.sudoklify.common.types.Layout
+import dev.teogor.sudoklify.common.types.Seed
 import dev.teogor.sudoklify.common.types.SudokuString
 import dev.teogor.sudoklify.common.types.TokenMap
 import dev.teogor.sudoklify.core.io.toToken
@@ -31,16 +32,17 @@ import dev.teogor.sudoklify.core.tokenizer.Tokenizer
 import dev.teogor.sudoklify.core.util.sortRandom
 import dev.teogor.sudoklify.core.util.toBoard
 import dev.teogor.sudoklify.core.util.toSequenceString
+import dev.teogor.sudoklify.ktx.createSeed
 import kotlin.math.sqrt
 import kotlin.random.Random
 
 internal class SudokuGenerator internal constructor(
   private val seeds: Array<SudokuBlueprint>,
-  private val seed: Long,
+  private val seed: Seed,
   private val gameType: GameType,
   private val difficulty: Difficulty,
 ) {
-  private val random: Random = Random(seed)
+  private val random: Random = seed.toRandom()
   private val boxDigits = gameType.gridHeight * gameType.gridWidth
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
@@ -58,7 +60,7 @@ internal class SudokuGenerator internal constructor(
     random: Random,
     gameType: GameType,
     difficulty: Difficulty,
-  ) : this(seeds, 0L, gameType, difficulty)
+  ) : this(seeds, createSeed(0L), gameType, difficulty)
 
   private fun generateBaseLayout(): Layout {
     return Array(boxDigits) { i ->
@@ -84,8 +86,6 @@ internal class SudokuGenerator internal constructor(
 
     val puzzle = getSequence(layout, seed.puzzle.toSequenceString(), tokenMap)
     val solution = getSequence(layout, seed.solution.toSequenceString(), tokenMap)
-    println(puzzle.flatten())
-    println(solution.flatten())
 
     return SudokuPuzzle(
       difficulty = seed.difficulty,
@@ -245,7 +245,7 @@ internal class SudokuGenerator internal constructor(
 fun SudokuParams.generateSudoku(): Sudoku {
   return SudokuGenerator(
     seeds = seeds,
-    random = Random(seed),
+    random = seed.toRandom(),
     gameType = gameType,
     difficulty = difficulty,
   ).composeSudokuPuzzle()

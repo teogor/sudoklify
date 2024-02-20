@@ -27,6 +27,7 @@ import dev.teogor.sudoklify.core.generation.seeds
 import dev.teogor.sudoklify.core.generation.sudokuParamsBuilder
 import dev.teogor.sudoklify.core.util.toBoard
 import dev.teogor.sudoklify.core.util.toSequenceString
+import dev.teogor.sudoklify.ktx.createSeed
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -39,7 +40,7 @@ class SudokuSeedsTest {
     val gameType = GameType.FourDigits
     val sudokuParams = sudokuParamsBuilder {
       seeds { combinedSeeds }
-      seed { 0L }
+      seed { createSeed(0L) }
       gameType { gameType }
       difficulty { Difficulty.EASY }
     }
@@ -56,7 +57,7 @@ class SudokuSeedsTest {
     val gameType = GameType.NineDigits
     val sudokuParams = sudokuParamsBuilder {
       seeds { combinedSeeds }
-      seed { 0L }
+      seed { createSeed(0L) }
       gameType { gameType }
       difficulty { Difficulty.EASY }
     }
@@ -73,7 +74,7 @@ class SudokuSeedsTest {
     val gameType = GameType.SixteenDigits
     val sudokuParams = sudokuParamsBuilder {
       seeds { combinedSeeds }
-      seed { 0L }
+      seed { createSeed(0L) }
       gameType { gameType }
       difficulty { Difficulty.EASY }
     }
@@ -89,7 +90,7 @@ class SudokuSeedsTest {
 
     val gameType = GameType.TwentyFiveDigits
     val sudokuParams = sudokuParamsBuilder {
-      seed { 0L }
+      seed { createSeed(0L) }
       gameType { gameType }
       difficulty { Difficulty.EASY }
     }

@@ -16,7 +16,9 @@ copyright: Copyright &copy; 2023 Teodor Grigor (Teogor)
 
 # Page tree
 nav:
-  - Home: index.md
+  - Home:
+    - Overview: index.md
+    - Seed: seed.md
   - Releases:
     - releases.md
     - Implementation: releases/implementation.md
