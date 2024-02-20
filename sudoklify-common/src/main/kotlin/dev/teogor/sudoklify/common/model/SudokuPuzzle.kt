@@ -18,11 +18,12 @@ package dev.teogor.sudoklify.common.model
 
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.Seed
 
 data class SudokuPuzzle(
   val difficulty: Difficulty,
   val gameType: GameType,
-  val seed: Long,
+  val seed: Seed,
   val givens: List<Givens>,
   val solution: List<List<Int>>,
   val hints: List<Hint> = emptyList(),

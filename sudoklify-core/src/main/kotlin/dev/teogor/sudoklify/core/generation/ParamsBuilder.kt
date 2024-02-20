@@ -21,6 +21,7 @@ import dev.teogor.sudoklify.common.model.SudokuParams
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.GameType
 import dev.teogor.sudoklify.common.types.Seed
+import dev.teogor.sudoklify.ktx.createSeed
 
 /**
  * A builder class for configuring and creating instances of [SudokuGenerator].
@@ -28,7 +29,7 @@ import dev.teogor.sudoklify.common.types.Seed
 class ParamsBuilder {
   private var seeds: Array<SudokuBlueprint> = emptyArray()
   private var difficulty: Difficulty = Difficulty.EASY
-  private var seed: Seed = 0
+  private var seed: Seed = createSeed(0)
   private var gameType: GameType = GameType.Unspecified
 
   /**

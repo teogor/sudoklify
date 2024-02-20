@@ -73,7 +73,7 @@ import dev.teogor.sudoklify.model.GameType
 // Configure puzzle generation parameters
 val sudokuParams = sudokuParamsBuilder {
   difficulty { Difficulty.MEDIUM }
-  seed { 2023L }
+  seed { createSeed(2024) }
   type { GameType.ThreeByThree }
 }
 ```

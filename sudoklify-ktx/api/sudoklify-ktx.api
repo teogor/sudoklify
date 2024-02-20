@@ -7,3 +7,8 @@ public final class dev/teogor/sudoklify/ktx/PuzzleStringExtensionsKt {
 	public static final fun countRemainingCells (Ljava/lang/String;)I
 }
 
+public final class dev/teogor/sudoklify/ktx/SeedExtensionsKt {
+	public static final fun createSeed (J)Ldev/teogor/sudoklify/common/types/Seed;
+	public static final fun toSeed (J)Ldev/teogor/sudoklify/common/types/Seed;
+}
+
