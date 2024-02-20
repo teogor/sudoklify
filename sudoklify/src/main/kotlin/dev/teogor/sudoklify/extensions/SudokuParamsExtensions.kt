@@ -17,8 +17,12 @@
 package dev.teogor.sudoklify.extensions
 
 import dev.teogor.sudoklify.SudokuGenerator
+import dev.teogor.sudoklify.SudokuPuzzle
+import dev.teogor.sudoklify.model.Difficulty
+import dev.teogor.sudoklify.model.GameType
 import dev.teogor.sudoklify.model.Sudoku
 import dev.teogor.sudoklify.model.SudokuParams
+import dev.teogor.sudoklify.types.Seed
 import kotlin.random.Random
 
 fun SudokuParams.generateSudoku(): Sudoku {
@@ -27,4 +31,28 @@ fun SudokuParams.generateSudoku(): Sudoku {
     gameType = gameType,
     difficulty = difficulty,
   ).composeSudokuPuzzle()
+}
+
+/**
+ * Generates a Sudoku puzzle with the specified parameters.
+ *
+ * This function creates a [SudokuPuzzle] object using the provided [SudokuParams].
+ * The created puzzle will have the specified difficulty level, seed, and game type.
+ *
+ * @receiver The `SudokuParams` object containing generation parameters.
+ * @return A `SudokuPuzzle` object representing the generated puzzle.
+ *
+ * @throws [IllegalArgumentException] if any of the parameters are invalid.
+ *
+ * @see Difficulty
+ * @see Seed
+ * @see GameType
+ * @see SudokuPuzzle
+ */
+fun SudokuParams.createPuzzle(): SudokuPuzzle {
+  return SudokuGenerator(
+    seed = seed,
+    gameType = gameType,
+    difficulty = difficulty,
+  ).createPuzzle()
 }

@@ -16,7 +16,7 @@
 
 package dev.teogor.sudoklify.demo.gen
 
-import dev.teogor.sudoklify.types.toToken
+import dev.teogor.sudoklify.utils.toToken
 import java.util.regex.Pattern
 
 class SudokuDecoder {
