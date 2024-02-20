@@ -35,14 +35,32 @@ import kotlin.math.sqrt
 import kotlin.random.Random
 
 internal class SudokuGenerator internal constructor(
-  private val random: Random,
+  private val seed: Long,
   private val gameType: GameType,
   private val difficulty: Difficulty,
 ) {
+  private val random: Random
   private val boxDigits = gameType.gridHeight * gameType.gridWidth
   private val totalDigits = boxDigits * boxDigits
   private val baseLayout: Layout = generateBaseLayout()
   private val tokenizer: Tokenizer = boxDigits.tokenizer
+
+  @Deprecated(
+    message = """
+      This constructor is deprecated. Use the primary constructor
+      `SudokuGenerator(seed, gameType, difficulty)` instead.
+    """,
+    replaceWith = ReplaceWith("SudokuGenerator(seed, gameType, difficulty)"),
+  )
+  internal constructor(
+    random: Random,
+    gameType: GameType,
+    difficulty: Difficulty,
+  ) : this(0L, gameType, difficulty)
+
+  init {
+    random = Random(seed)
+  }
 
   private fun generateBaseLayout(): Layout {
     return Array(boxDigits) { i ->
@@ -59,6 +77,50 @@ internal class SudokuGenerator internal constructor(
     val solution = getSequence(layout, seed.solution.toSequenceString(), tokenMap)
 
     return Sudoku(puzzle, solution, seed.difficulty, gameType)
+  }
+
+  internal fun createPuzzle(): SudokuPuzzle {
+    val seed = getSeed(SEEDS, difficulty)
+    val layout = getLayout(baseLayout)
+    val tokenMap = getTokenMap()
+
+    val puzzle = getSequence(layout, seed.puzzle.toSequenceString(), tokenMap)
+    val solution = getSequence(layout, seed.solution.toSequenceString(), tokenMap)
+    println(puzzle.flatten())
+    println(solution.flatten())
+
+    return SudokuPuzzle(
+      difficulty = seed.difficulty,
+      gameType = seed.gameType,
+      seed = this.seed,
+      givens =
+        puzzle
+          .mapIndexed { rowIndex, row ->
+            row.mapIndexed { colIndex, cellValue ->
+              SudokuPuzzle.Givens(
+                value =
+                  if (cellValue == "-") {
+                    0
+                  } else {
+                    cellValue.toInt()
+                  },
+                row = rowIndex,
+                col = colIndex,
+              )
+            }
+          }.flatten().filter { it.value != 0 },
+      solution =
+        solution
+          .map { row ->
+            row.map { cellValue ->
+              if (cellValue == "-") {
+                0
+              } else {
+                cellValue.toInt()
+              }
+            }
+          },
+    )
   }
 
   private fun getSequence(
