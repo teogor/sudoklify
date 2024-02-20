@@ -1,0 +1,21 @@
+public final class dev/teogor/sudoklify/seeds/FourDigitsSeedsKt {
+	public static final fun getFourDigitsSeeds ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
+}
+
+public final class dev/teogor/sudoklify/seeds/NineDigitsSeedsKt {
+	public static final fun getNineDigitsSeeds ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
+}
+
+public final class dev/teogor/sudoklify/seeds/SeedsKt {
+	public static final fun getCombinedSeeds ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
+	public static final fun supportsDifficulty (Ldev/teogor/sudoklify/common/types/GameType;Ldev/teogor/sudoklify/common/types/Difficulty;)Z
+}
+
+public final class dev/teogor/sudoklify/seeds/SixteenDigitsSeedsKt {
+	public static final fun getSixteenDigitsSeeds ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
+}
+
+public final class dev/teogor/sudoklify/seeds/TwentyFiveDigitsSeedsKt {
+	public static final fun getTwentyFiveDigitsSeeds ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
+}
+

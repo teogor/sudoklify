@@ -5,6 +5,8 @@ pluginManagement {
     gradlePluginPortal()
   }
 }
+
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
@@ -15,8 +17,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Sudoklify"
 
-// demo module
 include("demo")
-
-// library module
-include("sudoklify")
+include(":sudoklify-common")
+include(":sudoklify-core")
+include(":sudoklify-ktx")
+include(":sudoklify-seeds")

@@ -18,25 +18,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
-  id("application")
-}
-
-dependencies {
-  implementation(project(mapOf("path" to ":sudoklify-common")))
-  implementation(project(mapOf("path" to ":sudoklify-core")))
-  implementation(project(mapOf("path" to ":sudoklify-seeds")))
-
-  implementation(libs.kotlin.stdlib)
-  implementation(libs.kotlinx.coroutines.core)
-  implementation(libs.gson)
+  alias(libs.plugins.winds)
 }
 
 tasks.test {
   useJUnitPlatform()
 }
 
-application {
-  mainClass.set("MainKt")
+dependencies {
+  testImplementation(libs.junit.jupiter)
 }
 
 val javaVersion = JavaVersion.VERSION_11
@@ -50,3 +40,13 @@ compileKotlin.kotlinOptions {
   jvmTarget = javaVersion.toString()
 }
 
+winds {
+  mavenPublish {
+    displayName = "KTX"
+    name = "ktx"
+  }
+}
+
+dependencies {
+  api(project(":sudoklify-common"))
+}

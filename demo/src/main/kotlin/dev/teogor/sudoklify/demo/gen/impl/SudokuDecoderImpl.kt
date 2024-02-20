@@ -16,16 +16,16 @@
 
 package dev.teogor.sudoklify.demo.gen.impl
 
+import dev.teogor.sudoklify.common.types.Board
+import dev.teogor.sudoklify.common.types.Difficulty
+import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.core.io.toSudokuIntArray
+import dev.teogor.sudoklify.core.solver.SudokuSolver
+import dev.teogor.sudoklify.core.util.toBoard
 import dev.teogor.sudoklify.demo.gen.SudokuDecoder
-import dev.teogor.sudoklify.extensions.toBoard
-import dev.teogor.sudoklify.model.Difficulty
-import dev.teogor.sudoklify.model.GameType
+import dev.teogor.sudoklify.ktx.countRemainingCells
 import dev.teogor.sudoklify.seeds.nineDigitsSeeds
 import dev.teogor.sudoklify.seeds.sixteenDigitsSeeds
-import dev.teogor.sudoklify.toSudokuIntArray
-import dev.teogor.sudoklify.types.Board
-import dev.teogor.sudoklify.utils.SudokuSolver
-import dev.teogor.sudoklify.utils.countRemainingCells
 import java.io.BufferedWriter
 import java.io.File
 

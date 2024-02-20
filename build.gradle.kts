@@ -50,7 +50,6 @@ winds {
 
     groupId = "dev.teogor.sudoklify"
     url = "https://source.teogor.dev/sudoklify"
-    artifactIdElements = 1
     inceptionYear = 2023
 
     sourceControlManagement(
@@ -64,8 +63,6 @@ winds {
       alphaRelease(4)
     }
 
-    // TODO winds
-    //  required by dokka
     project.version = version!!.toString()
 
     addLicense(LicenseType.APACHE_2_0)
