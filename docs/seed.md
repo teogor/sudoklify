@@ -144,8 +144,8 @@ val randomInstance = explicitSeed.toRandom()
 
 ### References
 
-* [Source code for `Seed` class](https://github.com/teogor/sudoklify/sudoklify-common/src/main/kotlin/dev/teogor/sudoklify/common/types/Seed.kt){:target="_blank"}
+* [Source code for `Seed` class](https://github.com/teogor/sudoklify/blob/main/sudoklify-common/src/main/kotlin/dev/teogor/sudoklify/common/types/Seed.kt){:target="_blank"}
 * [API documentation for `Seed` class](../html/sudoklify-common/dev.teogor.sudoklify.common.types/-seed/index.html){:target="_blank"}
-* [Source code for `SeedExtensions`](https://github.com/teogor/sudoklify/sudoklify-ktx/src/main/kotlin/dev/teogor/sudoklify/ktx/SeedExtensions.kt){:target="_blank"}
+* [Source code for `SeedExtensions`](https://github.com/teogor/sudoklify/blob/main/sudoklify-ktx/src/main/kotlin/dev/teogor/sudoklify/ktx/SeedExtensions.kt){:target="_blank"}
 * [API documentation for `SeedExtensions`](../html/sudoklify-ktx/dev.teogor.sudoklify.ktx/index.html){:target="_blank"}
 * [Full `sudoklify` library documentation](../html){:target="_blank"}

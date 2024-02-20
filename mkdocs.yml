@@ -3,7 +3,7 @@ site_description: Sudoklify is a versatile and intuitive Sudoku puzzle generatio
 site_author: Teodor Grigor (teogor)
 site_dir: build/docs/sudoklify
 site_url: https://github.com/teogor/sudoklify
-edit_uri: raw/main/docs/
+edit_uri: edit/main/docs/
 
 docs_dir: docs
 
@@ -12,7 +12,7 @@ repo_name: sudoklify
 repo_url: https://github.com/teogor/sudoklify
 
 # Copyright
-copyright: Copyright &copy; 2023 Teodor Grigor (Teogor)
+copyright: Copyright &copy; 2024 Teodor Grigor (Teogor)
 
 # Page tree
 nav:

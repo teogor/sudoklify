@@ -10,10 +10,13 @@ Our project encompasses a suite of modules, each designed to address specific fu
 the overall developer experience. To delve into the intricacies of each module, refer to the dedicated
 documentation pages:
 
-- **[Sudoklify 🔗](../reference):** Discover the heart of our project.
+### API Reference
 
-- **[Sudoklify 🔗](../reference/sudoklify):** Navigate directly to the code-specific documentation for the project's
-`:sudoklify` module
+* [`dev.teogor.sudoklify`](../html/){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-common`](../html/sudoklify-common){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-core`](../html/sudoklify-core){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-ktx`](../html/sudoklify-ktx){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-seeds`](../html/sudoklify-seeds){:target="_blank"}
 
 ### Contributions and Support
 

@@ -10,8 +10,11 @@ sizes and difficulty levels.
 
 ### API Reference
 
-* [`dev.teogor.sudoklify`](../reference)
-* [`dev.teogor.sudoklify:sudoklify`](../reference/sudoklify)
+* [`dev.teogor.sudoklify`](../html/){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-common`](../html/sudoklify-common){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-core`](../html/sudoklify-core){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-ktx`](../html/sudoklify-ktx){:target="_blank"}
+* [`dev.teogor.sudoklify:sudoklify-seeds`](../html/sudoklify-seeds){:target="_blank"}
 
 ### Release
 
