@@ -21,14 +21,6 @@ plugins {
   alias(libs.plugins.winds)
 }
 
-tasks.test {
-  useJUnitPlatform()
-}
-
-dependencies {
-  testImplementation(libs.junit.jupiter)
-}
-
 val javaVersion = JavaVersion.VERSION_11
 java {
   sourceCompatibility = javaVersion
@@ -45,4 +37,12 @@ winds {
     displayName = "Common"
     name = "common"
   }
+}
+
+dependencies {
+  testImplementation(libs.junit.jupiter)
+}
+
+tasks.test {
+  useJUnitPlatform()
 }

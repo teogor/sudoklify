@@ -29,8 +29,8 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 val excludedProjects = listOf(
-    project.name,
-    "demo",
+  project.name,
+  "demo",
 )
 
 winds {
@@ -121,7 +121,7 @@ subprojects {
       ktlint()
         .editorConfigOverride(
           mapOf(
-            "ktlint_code_style" to "official",
+            "ktlint_code_style" to "ktlint_official",
             "ij_kotlin_allow_trailing_comma" to "true",
             "disabled_rules" to
               "filename," +

@@ -21,14 +21,6 @@ plugins {
   alias(libs.plugins.winds)
 }
 
-tasks.test {
-  useJUnitPlatform()
-}
-
-dependencies {
-  testImplementation(libs.junit.jupiter)
-}
-
 val javaVersion = JavaVersion.VERSION_11
 java {
   sourceCompatibility = javaVersion
@@ -49,4 +41,9 @@ winds {
 
 dependencies {
   implementation(project(":sudoklify-core"))
+  testImplementation(libs.junit.jupiter)
+}
+
+tasks.test {
+  useJUnitPlatform()
 }
