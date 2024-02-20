@@ -10,7 +10,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/demo" />
-            <option value="$PROJECT_DIR$/sudoklify" />
+            <option value="$PROJECT_DIR$/sudoklify-common" />
+            <option value="$PROJECT_DIR$/sudoklify-core" />
+            <option value="$PROJECT_DIR$/sudoklify-ktx" />
+            <option value="$PROJECT_DIR$/sudoklify-seeds" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

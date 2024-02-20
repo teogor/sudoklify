@@ -1,0 +1,9 @@
+public final class dev/teogor/sudoklify/ktx/DifficultyExtensionsKt {
+	public static final fun toLabel (Ldev/teogor/sudoklify/common/types/Difficulty;[Ljava/lang/String;)Ljava/lang/String;
+	public static final fun toStars (Ldev/teogor/sudoklify/common/types/Difficulty;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/ktx/PuzzleStringExtensionsKt {
+	public static final fun countRemainingCells (Ljava/lang/String;)I
+}
+

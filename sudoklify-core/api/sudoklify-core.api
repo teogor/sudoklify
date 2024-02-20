@@ -1,0 +1,79 @@
+public final class dev/teogor/sudoklify/core/generation/ParamsBuilder {
+	public fun <init> ()V
+	public final fun build ()Ldev/teogor/sudoklify/common/model/SudokuParams;
+}
+
+public final class dev/teogor/sudoklify/core/generation/ParamsBuilderKt {
+	public static final fun difficulty (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
+	public static final fun gameType (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
+	public static final fun seed (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
+	public static final fun seeds (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
+	public static final fun sudokuParamsBuilder (Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/common/model/SudokuParams;
+}
+
+public final class dev/teogor/sudoklify/core/generation/SudokuGeneratorKt {
+	public static final fun createPuzzle (Ldev/teogor/sudoklify/common/model/SudokuParams;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
+	public static final fun generateSudoku (Ldev/teogor/sudoklify/common/model/SudokuParams;)Ldev/teogor/sudoklify/common/model/Sudoku;
+}
+
+public final class dev/teogor/sudoklify/core/io/BoardSerializationKt {
+	public static final fun decodeAsBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/GameType;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun encodeAsString (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
+	public static final fun generateTokenMap (I)Ljava/util/Map;
+	public static final fun toNumber (Ljava/lang/String;)I
+	public static final fun toToken (I)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/core/io/SudokuParser {
+	public fun <init> (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/GameType;)V
+	public final fun toIntArray ()[[I
+}
+
+public final class dev/teogor/sudoklify/core/io/SudokuParserKt {
+	public static final fun toSudokuIntArray (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/GameType;)[[I
+}
+
+public final class dev/teogor/sudoklify/core/solver/SudokuSolver {
+	public fun <init> ([[ILdev/teogor/sudoklify/common/types/GameType;)V
+	public final fun solve ()Ldev/teogor/sudoklify/common/model/SudokuSolution;
+}
+
+public final class dev/teogor/sudoklify/core/tokenizer/MultiDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
+	public fun <init> (I)V
+	public fun populateLayout ([[ILjava/lang/String;)[[Ljava/lang/String;
+	public final fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
+	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/core/tokenizer/SingleDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
+	public fun <init> ()V
+	public fun populateLayout ([[ILjava/lang/String;)[[Ljava/lang/String;
+	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+}
+
+public class dev/teogor/sudoklify/core/tokenizer/Tokenizer {
+	public static final field Companion Ldev/teogor/sudoklify/core/tokenizer/Tokenizer$Companion;
+	public fun <init> ()V
+	public fun populateLayout ([[ILjava/lang/String;)[[Ljava/lang/String;
+	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$Companion {
+	public final fun create (I)Ldev/teogor/sudoklify/core/tokenizer/Tokenizer;
+}
+
+public final class dev/teogor/sudoklify/core/util/BoardConversionsKt {
+	public static final fun toBoard (Ljava/lang/String;I)[[Ljava/lang/String;
+	public static final fun toBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/GameType;)[[Ljava/lang/String;
+	public static final fun toSequenceString ([[Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/core/util/GameTypeUtilsKt {
+	public static final fun findBySize (II)Ldev/teogor/sudoklify/common/types/GameType;
+}
+
+public final class dev/teogor/sudoklify/core/util/RandomExtensionsKt {
+	public static final fun getRandomItem (Lkotlin/random/Random;Ljava/util/List;)Ljava/lang/Object;
+	public static final fun sortRandom (Lkotlin/random/Random;)I
+}
+
