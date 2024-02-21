@@ -1,5 +1,12 @@
 # 🧩 Sudoklify 🧩
 
+## Overview
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.teogor.sudoklify/sudoklify-core.svg?label=Maven%20Central)](https://central.sonatype.com/search?q=g%3Adev.teogor.sudoklify+a%3Asudoklify-core&smo=true)
+[![Profile](https://source.teogor.dev/badges/teogor-github.svg)](https://github.com/teogor)
+[![Open-Source Directory](https://source.teogor.dev/badges/teogor-dev.svg)](https://source.teogor.dev)
+
 ## A Powerful Sudoku Puzzle Generation Library
 
 🧩 Sudoklify is a versatile and intuitive Sudoku puzzle generation library written in Kotlin. It

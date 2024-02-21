@@ -88,7 +88,7 @@ winds {
     )
 
     version = createVersion(1, 0, 0) {
-      alphaRelease(4)
+      betaRelease(1)
     }
 
     project.version = version!!.toString()

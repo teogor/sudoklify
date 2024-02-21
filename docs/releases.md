@@ -20,7 +20,7 @@ sizes and difficulty levels.
 
 |   Latest Update   | Stable Release | Beta Release | Alpha Release |
 |:-----------------:|:--------------:|:------------:|:-------------:|
-| February 08, 2024 |       -        |      -       | 1.0.0-alpha04 |
+| February 21, 2024 |       -        | 1.0.0-beta01 |       -       |
 
 ### Declaring dependencies
 
@@ -33,9 +33,12 @@ Add the dependencies for the artifacts you need in the `build.gradle` file for y
 
     ```kotlin
     dependencies {
-      val sudoklify_version = "1.0.0-alpha04"
+      val sudoklifyVersion = "1.0.0-beta01"
 
-      implementation("dev.teogor.sudoklify:sudoklify:sudoklify_version")
+      implementation("dev.teogor.sudoklify:sudoklify-common:$sudoklifyVersion")
+      implementation("dev.teogor.sudoklify:sudoklify-core:$sudoklifyVersion")
+      implementation("dev.teogor.sudoklify:sudoklify-ktx:$sudoklifyVersion")
+      implementation("dev.teogor.sudoklify:sudoklify-seeds:$sudoklifyVersion")
     }
     ```
 
@@ -43,9 +46,12 @@ Add the dependencies for the artifacts you need in the `build.gradle` file for y
 
     ```groovy
     dependencies {
-      def sudoklify_version = "1.0.0-alpha04"
+      def sudoklifyVersion = "1.0.0-beta01"
 
-      implementation("dev.teogor.sudoklify:sudoklify:${sudoklify_version}")
+      implementation "dev.teogor.sudoklify:sudoklify-common:$sudoklifyVersion"
+      implementation "dev.teogor.sudoklify:sudoklify-core:$sudoklifyVersion"
+      implementation "dev.teogor.sudoklify:sudoklify-ktx:$sudoklifyVersion"
+      implementation "dev.teogor.sudoklify:sudoklify-seeds:$sudoklifyVersion"
     }
     ```
 
@@ -60,6 +66,46 @@ existing issue by clicking the star button.
 [Create a new issue](https://github.com/teogor/sudoklify/issues/new){ .md-button }
 
 ### Version 1.0.0
+
+#### Version 1.0.0-beta01
+
+February 21, 2024
+
+`dev.teogor.sudoklify:sudoklify-*:1.0.0-beta01` is
+released. [Version 1.0.0-beta01 contains these commits.](https://github.com/teogor/sudoklify/compare/1.0.0-alpha04...1.0.0-beta01)
+
+**Enhancement**
+
+* Enhance Sudoku generation with improved combinedSeeds and seed-based
+  tests ([#55](https://github.com/teogor/sudoklify/pull/55)) by [@teogor](https://github.com/teogor)
+* Enable easier string conversion with default mappers in Sudoku board
+  functions ([#53](https://github.com/teogor/sudoklify/pull/53))
+  by [@teogor](https://github.com/teogor)
+* Enable encoding and decoding Sudoku boards to/from
+  strings ([#52](https://github.com/teogor/sudoklify/pull/52))
+  by [@teogor](https://github.com/teogor)
+* Introduce `SudokuType` sealed class ([#51](https://github.com/teogor/sudoklify/pull/51))
+  by [@teogor](https://github.com/teogor)
+* Refactor `Seed` type to sealed class for improved safety and
+  organization ([#49](https://github.com/teogor/sudoklify/pull/49))
+  by [@teogor](https://github.com/teogor)
+* Enhance `Tokenizer` with sealed class structure and improved token
+  handling ([#48](https://github.com/teogor/sudoklify/pull/48))
+  by [@teogor](https://github.com/teogor)
+* Enhance `SudokuParams.createPuzzle()` by introducing `SudokuPuzzle` data
+  class ([#46](https://github.com/teogor/sudoklify/pull/46)) by [@teogor](https://github.com/teogor)
+
+**Bug Fixes**
+
+* Improved accuracy and reliability of BoardCell conversions with comprehensive
+  testing ([#54](https://github.com/teogor/sudoklify/pull/54))
+  by [@teogor](https://github.com/teogor)
+
+**Others**
+
+* Upgrade JVM Target Compatibility to Java 17 (
+  Kotlin) ([#56](https://github.com/teogor/sudoklify/pull/56))
+  by [@teogor](https://github.com/teogor)
 
 #### Version 1.0.0-alpha04
 
