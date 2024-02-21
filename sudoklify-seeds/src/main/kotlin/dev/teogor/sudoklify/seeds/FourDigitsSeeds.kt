@@ -20,12 +20,14 @@ import dev.teogor.sudoklify.common.model.SudokuBlueprint
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.SudokuType
 
-// TODO use JSON and versioning for different seeds like Version 1 version 2 etc
 /**
- * An array of `SudokuBlueprint` objects representing easy 4x4 Sudoku puzzles.
+ * An array of [SudokuBlueprint] objects representing easy 4x4 Sudoku puzzles.
  */
 val fourDigitsSeeds: Array<SudokuBlueprint> = arrayOf(
-  // Easy
+  // region Difficulty - Very Easy (*)
+  // endregion
+
+  // region Difficulty - Easy (**)
   SudokuBlueprint(
     puzzle = "-BCDCDA-BAD--CBA",
     solution = "ABCDCDABBADCDCBA",
@@ -74,8 +76,9 @@ val fourDigitsSeeds: Array<SudokuBlueprint> = arrayOf(
     difficulty = Difficulty.EASY,
     sudokuType = SudokuType.Sudoku4x4,
   ),
+  // endregion
 
-  // Medium
+  // region Difficulty - MEDIUM (***)
   SudokuBlueprint(
     puzzle = "D--B-CA--DB-C--A",
     solution = "DACBBCADADBCCBDA",
@@ -124,8 +127,9 @@ val fourDigitsSeeds: Array<SudokuBlueprint> = arrayOf(
     difficulty = Difficulty.MEDIUM,
     sudokuType = SudokuType.Sudoku4x4,
   ),
+  // endregion
 
-  // Hard
+  // region Difficulty - HARD (****)
   SudokuBlueprint(
     puzzle = "-CD-D--CC--A-AC-",
     solution = "ACDBDBACCDBABACD",
@@ -174,8 +178,9 @@ val fourDigitsSeeds: Array<SudokuBlueprint> = arrayOf(
     difficulty = Difficulty.HARD,
     sudokuType = SudokuType.Sudoku4x4,
   ),
+  // endregion
 
-  // VERY_HARD
+  // region Difficulty - VERY_HARD (*****)
   SudokuBlueprint(
     puzzle = "-AC---------CDBA",
     solution = "BACDDCABABDCCDBA",
