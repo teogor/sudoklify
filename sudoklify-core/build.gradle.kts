@@ -28,7 +28,7 @@ winds {
 
 dependencies {
   api(project(":sudoklify-common"))
-  api(project(":sudoklify-ktx"))
+  implementation(project(":sudoklify-ktx"))
 
   testImplementation(libs.junit.jupiter)
 }
