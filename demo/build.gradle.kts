@@ -25,17 +25,6 @@ application {
   mainClass.set("MainKt")
 }
 
-val javaVersion = JavaVersion.VERSION_11
-java {
-  sourceCompatibility = javaVersion
-  targetCompatibility = javaVersion
-}
-
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-  jvmTarget = javaVersion.toString()
-}
-
 dependencies {
   implementation(project(mapOf("path" to ":sudoklify-common")))
   implementation(project(mapOf("path" to ":sudoklify-core")))

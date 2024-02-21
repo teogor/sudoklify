@@ -3,11 +3,14 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.vanniktech.maven.publish.SonatypeHost
 import dev.teogor.winds.api.MavenPublish
 import dev.teogor.winds.api.getValue
+import dev.teogor.winds.api.model.Contributor
 import dev.teogor.winds.api.model.DependencyType
 import dev.teogor.winds.api.model.Developer
+import dev.teogor.winds.api.model.IssueManagement
 import dev.teogor.winds.api.model.LicenseType
 import dev.teogor.winds.api.model.createVersion
 import dev.teogor.winds.api.provider.Scm
+import dev.teogor.winds.gradle.tasks.impl.subprojectChildrens
 import dev.teogor.winds.gradle.utils.afterWindsPluginConfiguration
 import dev.teogor.winds.gradle.utils.attachTo
 import org.jetbrains.dokka.gradle.DokkaPlugin
@@ -15,7 +18,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
-  alias(libs.plugins.winds)
+  alias(libs.plugins.teogor.winds)
   alias(libs.plugins.vanniktech.maven)
   alias(libs.plugins.jetbrains.dokka)
   alias(libs.plugins.spotless)
@@ -32,6 +35,24 @@ val excludedProjects = listOf(
   project.name,
   "demo",
 )
+
+subprojectChildrens {
+  val javaVersion = JavaVersion.VERSION_17
+  java {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+  }
+
+  val compileKotlin: KotlinCompile by tasks
+  compileKotlin.kotlinOptions {
+    jvmTarget = javaVersion.toString()
+  }
+
+  val compileTestKotlin: KotlinCompile by tasks
+  compileTestKotlin.kotlinOptions {
+    jvmTarget = javaVersion.toString()
+  }
+}
 
 winds {
   buildFeatures {
@@ -59,6 +80,13 @@ winds {
       ),
     )
 
+    issueManagement(
+      IssueManagement.Git(
+        owner = "teogor",
+        repo = "sudoklify",
+      ),
+    )
+
     version = createVersion(1, 0, 0) {
       alphaRelease(4)
     }
@@ -68,6 +96,8 @@ winds {
     addLicense(LicenseType.APACHE_2_0)
 
     addDeveloper(TeogorDeveloper())
+
+    addContributor(TeogorContributor())
   }
 
   docsGenerator {
@@ -106,6 +136,17 @@ data class TeogorDeveloper(
   override val organization: String = "Teogor",
   override val organizationUrl: String = "https://github.com/teogor",
 ) : Developer
+
+data class TeogorContributor(
+  override val name: String = "Teodor Grigor",
+  override val email: String = "open-source@teogor.dev",
+  override val url: String = "https://teogor.dev",
+  override val roles: List<String> = listOf("Code Owner", "Developer", "Designer", "Maintainer"),
+  override val timezone: String = "UTC+2",
+  override val organization: String = "Teogor",
+  override val organizationUrl: String = "https://github.com/teogor",
+  override val properties: Map<String, String> = emptyMap(),
+) : Contributor
 
 subprojects {
   apply<SpotlessPlugin>()

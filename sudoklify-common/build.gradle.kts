@@ -14,22 +14,9 @@
  * limitations under the License.
  */
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
-  alias(libs.plugins.winds)
-}
-
-val javaVersion = JavaVersion.VERSION_11
-java {
-  sourceCompatibility = javaVersion
-  targetCompatibility = javaVersion
-}
-
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-  jvmTarget = javaVersion.toString()
+  alias(libs.plugins.teogor.winds)
 }
 
 winds {
