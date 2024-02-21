@@ -12,3 +12,19 @@ public final class dev/teogor/sudoklify/ktx/SeedExtensionsKt {
 	public static final fun toSeed (J)Ldev/teogor/sudoklify/common/types/Seed;
 }
 
+public final class dev/teogor/sudoklify/ktx/SudokuTypeExtensionsKt {
+	public static final fun areCellsInSameBox (Ldev/teogor/sudoklify/common/types/SudokuType;II)Z
+	public static final fun areCellsInSameBox (Ldev/teogor/sudoklify/common/types/SudokuType;IIII)Z
+	public static final fun areCellsInSameColumn (Ldev/teogor/sudoklify/common/types/SudokuType;II)Z
+	public static final fun areCellsInSameRow (Ldev/teogor/sudoklify/common/types/SudokuType;II)Z
+	public static final fun areCellsRelated (Ldev/teogor/sudoklify/common/types/SudokuType;IIII)Z
+	public static final fun getAllDigits (Ldev/teogor/sudoklify/common/types/SudokuType;)Ljava/util/List;
+	public static final fun getBoxCoordinates (Ldev/teogor/sudoklify/common/types/SudokuType;II)Ldev/teogor/sudoklify/common/types/BoxCoordinates;
+	public static final fun getBoxIndex (Ldev/teogor/sudoklify/common/types/SudokuType;II)I
+	public static final fun getCellBoxColumnIndex (Ldev/teogor/sudoklify/common/types/SudokuType;I)I
+	public static final fun getCellBoxRowIndex (Ldev/teogor/sudoklify/common/types/SudokuType;I)I
+	public static final fun getCellColumnIndex (Ldev/teogor/sudoklify/common/types/SudokuType;I)I
+	public static final fun getCellRowIndex (Ldev/teogor/sudoklify/common/types/SudokuType;I)I
+	public static final fun isDigitValid (Ldev/teogor/sudoklify/common/types/SudokuType;I)Z
+}
+
