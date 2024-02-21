@@ -17,12 +17,12 @@
 package dev.teogor.sudoklify.common.model
 
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
 import dev.teogor.sudoklify.common.types.Seed
+import dev.teogor.sudoklify.common.types.SudokuType
 
 data class SudokuPuzzle(
   val difficulty: Difficulty,
-  val gameType: GameType,
+  val sudokuType: SudokuType,
   val seed: Seed,
   val givens: List<Givens>,
   val solution: List<List<Int>>,

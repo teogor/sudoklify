@@ -17,9 +17,9 @@
 package dev.teogor.sudoklify.common.model
 
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
 import dev.teogor.sudoklify.common.types.PuzzleString
 import dev.teogor.sudoklify.common.types.SolutionString
+import dev.teogor.sudoklify.common.types.SudokuType
 
 /**
  * Represents a blueprint for generating Sudoku puzzles.
@@ -27,11 +27,11 @@ import dev.teogor.sudoklify.common.types.SolutionString
  * @property puzzle The puzzle layout as a [PuzzleString].
  * @property solution The solution layout as a [SolutionString].
  * @property difficulty The difficulty level of the Sudoku puzzle.
- * @property gameType The type of the Sudoku grid.
+ * @property sudokuType The type of the Sudoku puzzle.
  */
 data class SudokuBlueprint(
   val puzzle: PuzzleString,
   val solution: SolutionString,
   val difficulty: Difficulty,
-  val gameType: GameType,
+  val sudokuType: SudokuType,
 )

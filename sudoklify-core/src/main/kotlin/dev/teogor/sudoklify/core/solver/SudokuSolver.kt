@@ -17,9 +17,12 @@
 package dev.teogor.sudoklify.core.solver
 
 import dev.teogor.sudoklify.common.model.SudokuSolution
-import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.SudokuType
 
-class SudokuSolver(private val grid: Array<IntArray>, private val gameType: GameType) {
+class SudokuSolver(
+  private val grid: Array<IntArray>,
+  private val sudokuType: SudokuType,
+) {
   private val steps: ArrayList<Pair<Int, Int>> = ArrayList()
   private var stepCount = 0
 
@@ -66,7 +69,7 @@ class SudokuSolver(private val grid: Array<IntArray>, private val gameType: Game
     for (row in grid.indices) {
       for (col in grid[row].indices) {
         if (grid[row][col] == 0) {
-          for (num in 1..gameType.cells) {
+          for (num in 1..sudokuType.cells) {
             if (isValid(grid, row, col, num)) {
               grid[row][col] = num
               steps.add(Pair(row, col))
@@ -92,14 +95,14 @@ class SudokuSolver(private val grid: Array<IntArray>, private val gameType: Game
     col: Int,
     num: Int,
   ): Boolean {
-    for (i in 0 until gameType.cells) {
+    for (i in 0 until sudokuType.cells) {
       if (grid[row][i] == num || grid[i][col] == num) return false
     }
 
-    val rowStart = (row / gameType.gridHeight) * gameType.gridHeight
-    val colStart = (col / gameType.gridWidth) * gameType.gridWidth
-    for (i in rowStart until rowStart + gameType.gridHeight) {
-      for (j in colStart until colStart + gameType.gridWidth) {
+    val rowStart = (row / sudokuType.height) * sudokuType.height
+    val colStart = (col / sudokuType.width) * sudokuType.width
+    for (i in rowStart until rowStart + sudokuType.height) {
+      for (j in colStart until colStart + sudokuType.width) {
         if (grid[i][j] == num) return false
       }
     }

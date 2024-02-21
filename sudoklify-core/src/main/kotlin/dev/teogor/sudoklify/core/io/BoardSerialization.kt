@@ -16,7 +16,7 @@
 
 package dev.teogor.sudoklify.core.io
 
-import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.common.types.Token
 import dev.teogor.sudoklify.common.types.TokenMap
 
@@ -105,14 +105,14 @@ inline fun <T> List<List<T>>.encodeAsString(crossinline valueMapper: T.() -> Int
  * cell values.
  *
  * @receiver The string representation of the grid.
- * @param gameType The game type, providing information about the expected board
+ * @param sudokuType The sudoku type, providing information about the expected board
  * size.
  * @param valueMapper A function to map each decoded integer to its corresponding
  * cell value.
  * @return The decoded board as a list of lists.
  */
 inline fun <T> String.decodeAsBoard(
-  gameType: GameType,
+  sudokuType: SudokuType,
   crossinline valueMapper: Int.() -> T,
 ): List<List<T>> {
   val regex = Regex("([A-I][a-z]+)|-|[A-I]")
@@ -120,7 +120,7 @@ inline fun <T> String.decodeAsBoard(
   val matchedTokens = ArrayList<String>()
   matches.forEach { matchedTokens.add(it.value) }
   return matchedTokens
-    .chunked(gameType.cells)
+    .chunked(sudokuType.cells)
     .map { row -> row.map { valueMapper(it.toNumber()) } }
 }
 
