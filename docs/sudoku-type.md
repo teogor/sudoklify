@@ -22,7 +22,7 @@ various Sudoku puzzle sizes and their associated properties.
 
 ## **Working with Sudoku Types**
 
-### Benefits of Using SudokuType
+### **Benefits of Using SudokuType**
 
 * **Type Safety:** Enforces correct grid size representation and prevents errors or unexpected
   behavior.
@@ -51,7 +51,7 @@ val customSize: SudokuType = SudokuType(GridSize(5, 8))
 println("Custom Sudoku size: ${customSize}")
 ```
 
-### Utilizing `SudokuType` Properties
+### **Utilizing `SudokuType` Properties**
 
 Directly access various properties available on any `SudokuType` object to gain insights into the
 grid size and structure. These properties offer convenient ways to work with different Sudoku
@@ -194,12 +194,12 @@ println("Sudoku name: $sudokuName") // Output: Sudoku name: 16x16
   - Log or store information about different Sudoku types being handled.
   - Differentiate between different Sudoku types in text output or user interfaces.
 
-## Working with Sudoku Types Extensions by Use Case
+## **Working with Sudoku Types Extensions by Use Case**
 
 These `SudokuType` extensions offer convenient methods for various common operations related to
 Sudoku grids. They are categorized by their primary use cases:
 
-### Analyzing Grid Structure
+### **Analyzing Grid Structure**
 
 * **`SudokuType.getAllDigits()`**
   * **Use Case:** Retrieve the valid range of digits (1 to `digits`) for the specific Sudoku type.
@@ -219,7 +219,7 @@ Sudoku grids. They are categorized by their primary use cases:
       val isInvalid = puzzle.isDigitValid(10) // False
       ```
 
-### Accessing Cell Information
+### **Accessing Cell Information**
 
 * **`SudokuType.getCellRowIndex(cellIndex: Int)`**
   * **Use Case:** Get the row index (0 to `height - 1`) for a given cell index.
@@ -239,7 +239,7 @@ Sudoku grids. They are categorized by their primary use cases:
       val colIndex = puzzle.getCellColumnIndex(17)
       ```
 
-### Working with Boxes
+### **Working with Boxes**
 
 * **`SudokuType.getBoxIndex(row: Int, col: Int)`**
   * **Use Case:** Get the box index (0 to `boxes - 1`) for a cell at a specific row and column.
@@ -277,7 +277,7 @@ Sudoku grids. They are categorized by their primary use cases:
       val boxColIndex = puzzle.getCellBoxColumnIndex(99)
       ```
 
-### Checking Cell Relationships
+### **Checking Cell Relationships**
 
 * **`SudokuType.areCellsInSameRow(cellIndex1: Int, cellIndex2: Int)`**
   * **Use Case:** Determine if two cells share the same row based on their indices.
@@ -321,24 +321,10 @@ Sudoku grids. They are categorized by their primary use cases:
       val areRelated = puzzle.areCellsRelated(5, 3, 2, 7)
       ```
 
-## Additional Notes
+### **References**
 
-* Remember that adding new `SudokuType` objects requires modifying the class itself.
-* Consider future-proofing the `GridSize` class to handle potential variations in size or
-  complexity.
-
-This documentation serves as a starting point for understanding and utilizing the `SudokuType` class
-effectively within your Sudoku-related projects. By leveraging its features and principles, you can
-manage different Sudoku sizes with clarity, type safety, and flexibility.
-
-### References
-
-* [Source code for `SudokuType` class](https://github.com/teogor/sudoklify/blob/main/sudoklify-common/src/main/kotlin/dev/teogor/sudoklify/common/types/SudokuType.kt){:
-  target="_blank"}
-* [API documentation for `SudokuType` class](../html/sudoklify-common/dev.teogor.sudoklify.common.types/-sudoku-type/index.html){:
-  target="_blank"}
-* [Source code for `SudokuTypeExtensions`](https://github.com/teogor/sudoklify/blob/main/sudoklify-ktx/src/main/kotlin/dev/teogor/sudoklify/ktx/SudokuTypeExtensions.kt){:
-  target="_blank"}
-* [API documentation for `SudokuTypeExtensions`](../html/sudoklify-ktx/dev.teogor.sudoklify.ktx/index.html){:
-  target="_blank"}
+* [Source code for `SudokuType` class](https://github.com/teogor/sudoklify/blob/main/sudoklify-common/src/main/kotlin/dev/teogor/sudoklify/common/types/SudokuType.kt){:target="_blank"}
+* [API documentation for `SudokuType` class](../html/sudoklify-common/dev.teogor.sudoklify.common.types/-sudoku-type/index.html){:target="_blank"}
+* [Source code for `SudokuTypeExtensions`](https://github.com/teogor/sudoklify/blob/main/sudoklify-ktx/src/main/kotlin/dev/teogor/sudoklify/ktx/SudokuTypeExtensions.kt){:target="_blank"}
+* [API documentation for `SudokuTypeExtensions`](../html/sudoklify-ktx/dev.teogor.sudoklify.ktx/index.html){:target="_blank"}
 * [Full `sudoklify` library documentation](../html){:target="_blank"}

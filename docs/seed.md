@@ -1,11 +1,11 @@
-## Managing Randomness for Sudoku Generation
+# Managing Randomness for Sudoku Generation
 
 This documentation explores the `Seed` class in the `sudoklify` library, a powerful tool for
 controlling and customizing the randomness of your Sudoku puzzles. `Seed` offers a safe and
 structured way to handle different types of seeds, ensuring reproducible and consistent puzzle
 generation while providing flexibility and control.
 
-## Key Benefits:
+## **Key Benefits**
 
 * **Type Safety and Validation:** Guarantees valid seed values, preventing errors and unexpected
   behavior.
@@ -16,47 +16,14 @@ generation while providing flexibility and control.
 * **Reproducible Puzzles:** Generate consistent Sudoku grids using the same seed for sharing or
   testing purposes.
 
-## Understanding Seed Types:
+## **Understanding Seed Types**
 
 * **`Random`:** Generates a new seed based on the system's random number generator, ensuring
   different puzzles each time.
 * **`Explicit`:** Allows you to specify a specific long value as the seed, enabling precise control
   over the generated puzzle.
 
-## Example: Generating a Sudoku with a Specific Seed:
-
-```kotlin
-// Create an explicit seed with value 42
-val puzzleSeed = 42.toSeed()
-
-// Use the seed to generate a Sudoku puzzle
-val sudoku = generateSudoku(puzzleSeed)
-
-// Solve the generated Sudoku
-solveSudoku(sudoku)
-
-// Share or test the puzzle using the seed for reproducibility
-```
-
-This revised documentation focuses on the specific context of Sudoku generation within
-the `sudoklify` library, providing clearer explanations and specific examples relevant to its
-intended use. Remember to replace the placeholder functions `generateSudoku` and `solveSudoku` with
-the actual functions from your library.
-
-I hope this enhanced documentation better serves your needs and informs users effectively about
-the `Seed` class in the `sudoklify` library.
-
-
----
-
-## **Overview:**
-
-The `Seed` class is a sealed class with two subclasses:
-
-* **`Random`:** Represents a seed generated using the system's random number generator.
-* **`Explicit`:** Represents a seed with a specific long value provided by the user.
-
-## **Key features:**
+## **Key features**
 
 * **`toRandom()` function:** Converts a `Seed` object to a `kotlin.random.Random` instance.
 * **`Explicit` constructor:** Allows creation of explicit seeds with custom values.
@@ -64,7 +31,6 @@ The `Seed` class is a sealed class with two subclasses:
   applicable).
 * **`copy()` function:** Creates a copy of the `Seed` object with an optional new value.
 * **`toString()` function:** Provides a human-readable representation of the `Seed` object.
-
 
 ## **Working with Seeds**
 
@@ -137,7 +103,7 @@ println(copiedSeed) // Output: ExplicitSeed(50)
 val randomInstance = explicitSeed.toRandom()
 ```
 
-### **Additional notes:**
+### **Additional notes**
 
 * You can use the `toRandom()` function to access the actual random number generator instance.
 * Refer to the source code for further details on specific functionalities and potential exceptions.
