@@ -18,13 +18,13 @@ package dev.teogor.sudoklify.common.model
 
 import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.SudokuType
 
 data class Sudoku(
   val puzzle: Board,
   val solution: Board,
   val difficulty: Difficulty,
-  val gameType: GameType,
+  val sudokuType: SudokuType,
 ) {
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
@@ -35,7 +35,7 @@ data class Sudoku(
     if (!puzzle.contentDeepEquals(other.puzzle)) return false
     if (!solution.contentDeepEquals(other.solution)) return false
     if (difficulty != other.difficulty) return false
-    if (gameType != other.gameType) return false
+    if (sudokuType != other.sudokuType) return false
 
     return true
   }
@@ -44,7 +44,7 @@ data class Sudoku(
     var result = puzzle.contentDeepHashCode()
     result = 31 * result + solution.contentDeepHashCode()
     result = 31 * result + difficulty.hashCode()
-    result = 31 * result + gameType.hashCode()
+    result = 31 * result + sudokuType.hashCode()
     return result
   }
 }

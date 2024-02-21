@@ -97,6 +97,7 @@ sealed class Seed(
    * greater.
    */
   override fun compareTo(other: Seed): Int {
+    println("compareTo")
     return when (this) {
       is Random -> {
         if (other is Random) 0 else 1

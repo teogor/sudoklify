@@ -18,7 +18,7 @@ package dev.teogor.sudoklify.demo.gen.impl
 
 import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.core.io.toSudokuIntArray
 import dev.teogor.sudoklify.core.solver.SudokuSolver
 import dev.teogor.sudoklify.core.util.toBoard
@@ -36,11 +36,11 @@ fun main() {
   val sudokuPuzzle = getParsedPuzzle(sudokuPuzzleFile)
   val sudokuSolved = getParsedPuzzle(sudokuSolvedFile)
   val difficulty = Difficulty.VERY_HARD
-  val gameType = GameType.TwentyFiveDigits
+  val sudokuType = SudokuType.Sudoku25x25
   val validPuzzles =
     comparePuzzles(
-      puzzle = sudokuPuzzle.toBoard(gameType),
-      solution = sudokuSolved.toBoard(gameType),
+      puzzle = sudokuPuzzle.toBoard(sudokuType),
+      solution = sudokuSolved.toBoard(sudokuType),
     )
   if (validPuzzles) {
     File(outputFile) write {
@@ -50,7 +50,7 @@ fun main() {
         appendLine("  puzzle = \"$sudokuPuzzle\",")
         appendLine("  solution = \"$sudokuSolved\",")
         appendLine("  difficulty = Difficulty.${difficulty.name},")
-        appendLine("  gameType = GameType.${gameType.name},")
+        appendLine("  gameType = GameType.${sudokuType.name},")
         appendLine("),")
       }.also { write(it) }
     }
@@ -61,7 +61,7 @@ fun main() {
   val originalSize = rootDigitsSeeds.size
   val uniquesSize = rootDigitsSeeds.distinctBy { it.solution }.size
 
-  println("Original array contains $originalSize Sudoku puzzles for $gameType.")
+  println("Original array contains $originalSize Sudoku puzzles for $sudokuType.")
   if (originalSize != uniquesSize) {
     println("Duplicates detected! Unique seeds: $uniquesSize")
   }
@@ -78,18 +78,18 @@ fun main() {
   println()
 
   val puzzle = sixteenDigitsSeeds.random()
-  val sudokuSolver = SudokuSolver(sudokuPuzzle.toSudokuIntArray(gameType), gameType)
+  val sudokuSolver = SudokuSolver(sudokuPuzzle.toSudokuIntArray(sudokuType), sudokuType)
   val solution = sudokuSolver.solve()
   println("solution=$solution")
 
   puzzle.puzzle
-    .toSudokuIntArray(GameType.SixteenDigits)
+    .toSudokuIntArray(SudokuType.Sudoku16x16)
     .also {
       it[0].forEach { cell -> print("${if (cell == 0) "/" else cell} ") }
     }
   println()
   puzzle.solution
-    .toSudokuIntArray(GameType.SixteenDigits)
+    .toSudokuIntArray(SudokuType.Sudoku16x16)
     .also {
       it[0].forEach { cell -> print("$cell ") }
     }

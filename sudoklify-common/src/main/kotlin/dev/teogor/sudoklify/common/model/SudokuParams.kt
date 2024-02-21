@@ -17,8 +17,8 @@
 package dev.teogor.sudoklify.common.model
 
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
 import dev.teogor.sudoklify.common.types.Seed
+import dev.teogor.sudoklify.common.types.SudokuType
 
 /**
  * Data class representing parameters for configuring a Sudoku puzzle generator.
@@ -26,11 +26,11 @@ import dev.teogor.sudoklify.common.types.Seed
  * @property seeds The seeds to be used.
  * @property difficulty The difficulty level of the Sudoku puzzle.
  * @property seed The seed for generating random numbers.
- * @property gameType The type of the Sudoku grid.
+ * @property sudokuType The type of the Sudoku puzzle.
  */
 data class SudokuParams(
   val seeds: Array<SudokuBlueprint>,
   val difficulty: Difficulty,
   val seed: Seed,
-  val gameType: GameType,
+  val sudokuType: SudokuType,
 )

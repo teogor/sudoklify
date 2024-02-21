@@ -18,8 +18,9 @@ package dev.teogor.sudoklify.seeds
 
 import dev.teogor.sudoklify.common.model.SudokuParams
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.core.generation.createPuzzle
+import dev.teogor.sudoklify.ktx.createSeed
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
@@ -29,30 +30,30 @@ class SudokuParamsTest {
   fun createPuzzle_returnsPuzzleWithCorrectParams() {
     val params = SudokuParams(
       difficulty = Difficulty.EASY,
-      gameType = GameType.NineDigits,
-      seed = 1234L,
+      sudokuType = SudokuType.Sudoku9x9,
+      seed = createSeed(1234L),
       seeds = combinedSeeds,
     )
 
     val puzzle = params.createPuzzle()
 
     assertEquals(Difficulty.EASY, puzzle.difficulty)
-    assertEquals(GameType.NineDigits, puzzle.gameType)
-    assertEquals(1234L, puzzle.seed)
+    assertEquals(SudokuType.Sudoku9x9, puzzle.sudokuType)
+    assertEquals(1234L, puzzle.seed.value)
   }
 
   @Test
   fun createPuzzle_generatesDifferentPuzzlesWithDifferentSeeds() {
     val params1 = SudokuParams(
       difficulty = Difficulty.EASY,
-      gameType = GameType.NineDigits,
-      seed = 1234L,
+      sudokuType = SudokuType.Sudoku9x9,
+      seed = createSeed(1234L),
       seeds = combinedSeeds,
     )
     val params2 = SudokuParams(
       difficulty = Difficulty.EASY,
-      gameType = GameType.NineDigits,
-      seed = 4321L,
+      sudokuType = SudokuType.Sudoku9x9,
+      seed = createSeed(4321L),
       seeds = combinedSeeds,
     )
 

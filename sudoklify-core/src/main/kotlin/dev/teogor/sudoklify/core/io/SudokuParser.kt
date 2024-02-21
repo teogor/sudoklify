@@ -16,22 +16,22 @@
 
 package dev.teogor.sudoklify.core.io
 
-import dev.teogor.sudoklify.common.types.GameType
 import dev.teogor.sudoklify.common.types.SudokuString
+import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.core.util.toBoard
 
 /**
  * A class responsible for parsing and manipulating Sudoku puzzle strings.
  *
  * @param puzzle The Sudoku puzzle string to parse.
- * @param gameType The game type of the Sudoku puzzle (e.g., 4x4, 9x9).
+ * @param sudokuType The sudoku type of the Sudoku puzzle (e.g., 4x4, 9x9).
  */
 class SudokuParser(
   puzzle: String,
-  gameType: GameType,
+  sudokuType: SudokuType,
 ) {
-  private val puzzleBoard = puzzle.toBoard(gameType)
-  private val boxDigits = gameType.cells
+  private val puzzleBoard = puzzle.toBoard(sudokuType)
+  private val boxDigits = sudokuType.cells
 
   /**
    * Converts the Sudoku puzzle string into a numerical representation.
@@ -62,16 +62,16 @@ class SudokuParser(
 
 /**
  * Converts the provided Sudoku puzzle string into a 2D integer array representation.
- * This method utilizes a `SudokuParser` object internally to handle the parsing and
+ * This method utilizes a [SudokuParser] object internally to handle the parsing and
  * conversion process.
  *
- * @param gameType The game type of the Sudoku puzzle (e.g., 4x4, 9x9).
+ * @param sudokuType The sudoku type of the Sudoku puzzle (e.g., 4x4, 9x9).
  *
  * @return A 2D array of integers representing the parsed Sudoku puzzle.
  *
- * @throws IllegalArgumentException if the provided Sudoku puzzle string is invalid.
+ * @throws [IllegalArgumentException] if the provided Sudoku puzzle string is invalid.
  */
-fun SudokuString.toSudokuIntArray(gameType: GameType): Array<IntArray> {
-  val parser = SudokuParser(this, gameType)
+fun SudokuString.toSudokuIntArray(sudokuType: SudokuType): Array<IntArray> {
+  val parser = SudokuParser(this, sudokuType)
   return parser.toIntArray()
 }

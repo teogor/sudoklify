@@ -17,7 +17,7 @@
 package dev.teogor.sudoklify.seeds
 
 import dev.teogor.sudoklify.common.types.Difficulty
-import dev.teogor.sudoklify.common.types.GameType
+import dev.teogor.sudoklify.common.types.SudokuType
 
 val combinedSeeds = arrayOf(
   *fourDigitsSeeds,
@@ -30,11 +30,11 @@ val combinedSeeds = arrayOf(
  * Checks if this game type supports the specified difficulty level.
  *
  * @param difficulty The difficulty level to check for.
- * @return True if the game type supports the given difficulty,
+ * @return True if the sudoku type supports the given difficulty,
  * false otherwise.
  */
-fun GameType.supportsDifficulty(
+fun SudokuType.supportsDifficulty(
   difficulty: Difficulty,
 ) = combinedSeeds.any {
-  it.gameType == this && it.difficulty == difficulty
+  it.sudokuType == this && it.difficulty == difficulty
 }
