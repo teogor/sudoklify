@@ -1,3 +1,6 @@
+public abstract interface annotation class dev/teogor/sudoklify/common/InternalSudoklifyApi : java/lang/annotation/Annotation {
+}
+
 public final class dev/teogor/sudoklify/common/model/Sudoku {
 	public fun <init> ([[Ljava/lang/String;[[Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;)V
 	public final fun component1 ()[[Ljava/lang/String;
