@@ -24,7 +24,6 @@ import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.Layout
 import dev.teogor.sudoklify.common.types.Seed
-import dev.teogor.sudoklify.common.types.SudokuString
 import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.common.types.TokenMap
 import dev.teogor.sudoklify.core.tokenizer.Tokenizer
@@ -32,6 +31,8 @@ import dev.teogor.sudoklify.core.util.sortRandom
 import dev.teogor.sudoklify.core.util.toBoard
 import dev.teogor.sudoklify.core.util.toSequenceString
 import dev.teogor.sudoklify.ktx.createSeed
+import dev.teogor.sudoklify.ktx.mapIndexedToSudokuBoard
+import dev.teogor.sudoklify.ktx.mapToSudokuBoard
 import dev.teogor.sudoklify.ktx.toJEncodedCell
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -48,9 +49,10 @@ internal class SudokuGenerator internal constructor(
   private val tokenizer: Tokenizer = Tokenizer.create(boxDigits)
 
   @Deprecated(
-    message = """
-      This constructor is deprecated. Use the primary constructor
-      `SudokuGenerator(seeds, seed, sudokuType, difficulty)` instead.
+    message =
+      """
+    This constructor is deprecated. Use the primary constructor
+    `SudokuGenerator(seeds, seed, sudokuType, difficulty)` instead.
     """,
     replaceWith = ReplaceWith("SudokuGenerator(seeds, seed, sudokuType, difficulty)"),
   )
@@ -67,6 +69,17 @@ internal class SudokuGenerator internal constructor(
     }
   }
 
+  @Deprecated(
+    message =
+      """
+    The composeSudokuPuzzle() method is deprecated. To create a Sudoku puzzle, use the more
+    versatile and efficient createPuzzle() method, which returns a SudokuPuzzle object with
+    additional features and utility methods. For compatibility with existing code,
+    composeSudokuPuzzle() also returns a Sudoku object, but it's recommended to transition to
+    using the richer functionality of SudokuPuzzle.
+    """,
+    replaceWith = ReplaceWith("createPuzzle()"),
+  )
   internal fun composeSudokuPuzzle(): Sudoku {
     val seed = getSeed(seeds, difficulty)
     val layout = getLayout(baseLayout)
@@ -91,32 +104,17 @@ internal class SudokuGenerator internal constructor(
       sudokuType = seed.sudokuType,
       seed = this.seed,
       givens =
-        puzzle
-          .mapIndexed { rowIndex, row ->
-            row.mapIndexed { colIndex, cellValue ->
-              SudokuPuzzle.Givens(
-                value =
-                  if (cellValue == "-") {
-                    0
-                  } else {
-                    cellValue.toInt()
-                  },
-                row = rowIndex,
-                col = colIndex,
-              )
-            }
+        puzzle.toSequenceString()
+          .mapIndexedToSudokuBoard(seed.sudokuType) { value, row, col ->
+            SudokuPuzzle.Givens(
+              value = value,
+              row = row,
+              col = col,
+            )
           }.flatten().filter { it.value != 0 },
       solution =
-        solution
-          .map { row ->
-            row.map { cellValue ->
-              if (cellValue == "-") {
-                0
-              } else {
-                cellValue.toInt()
-              }
-            }
-          },
+        solution.toSequenceString()
+          .mapToSudokuBoard(seed.sudokuType),
     )
   }
 
@@ -125,19 +123,6 @@ internal class SudokuGenerator internal constructor(
     seedSequence: String,
     tokenMap: TokenMap,
   ): Board = tokenizer.populateLayout(layout, seedSequence, tokenMap)
-
-  @Deprecated(message = "toSequenceString")
-  private fun boardToSequence(board: Board): SudokuString =
-    board.joinToString("") {
-      it.joinToString("")
-    }
-
-  @Deprecated(message = "toBoard")
-  private fun sequenceToBoard(sequence: SudokuString): Board {
-    return sequence.chunked(boxDigits)
-      .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
-      .toTypedArray()
-  }
 
   private fun getLayout(baseLayout: Layout): Layout = shuffleLayout(rotateLayout(baseLayout))
 
@@ -241,6 +226,15 @@ internal class SudokuGenerator internal constructor(
   }
 }
 
+@Deprecated(
+  message =
+    """
+  The `generateSudoku()` method of `SudokuParams` is deprecated as of version 1.0.0-beta01.
+  To create a Sudoku puzzle, use the more versatile and efficient `createPuzzle()` method,
+  which returns a `SudokuPuzzle` object with additional features and utility methods.
+  """,
+  replaceWith = ReplaceWith("createPuzzle()"),
+)
 fun SudokuParams.generateSudoku(): Sudoku {
   return SudokuGenerator(
     seeds = seeds,

@@ -20,6 +20,15 @@ import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.SudokuType
 
+@Deprecated(
+  message =
+    """
+  The `Sudoku` data class is deprecated as of version 1.0.0-beta01.
+  For enhanced functionality and efficient data storage, we highly recommend using the
+  more versatile `SudokuPuzzle` class instead.
+  """,
+  replaceWith = ReplaceWith("SudokuPuzzle"),
+)
 data class Sudoku(
   val puzzle: Board,
   val solution: Board,

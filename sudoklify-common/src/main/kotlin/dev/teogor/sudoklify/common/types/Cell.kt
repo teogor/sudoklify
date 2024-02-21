@@ -16,4 +16,5 @@
 
 package dev.teogor.sudoklify.common.types
 
+@Deprecated(message = "Use String directly")
 typealias Cell = String

@@ -16,4 +16,9 @@
 
 package dev.teogor.sudoklify.common.types
 
+@Deprecated(
+  message =
+    "The Board typealias is deprecated. Use the more structured and future-proof" +
+      "Board class instead.",
+)
 typealias Board = Array<Array<Cell>>
