@@ -20,7 +20,9 @@ public final class dev/teogor/sudoklify/ktx/SeedExtensionsKt {
 public final class dev/teogor/sudoklify/ktx/SudokuBoardExtensionsKt {
 	public static final fun getCells (Ljava/lang/String;)Ljava/util/ArrayList;
 	public static final fun mapIndexedToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;Lkotlin/jvm/functions/Function3;)Ljava/util/List;
+	public static final fun mapToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;)Ljava/util/List;
 	public static final fun mapToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun mapToSudokuString (Ljava/util/List;)Ljava/lang/String;
 	public static final fun mapToSudokuString (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
 }
 
