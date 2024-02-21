@@ -8,7 +8,7 @@ kotlin-jvm = "1.9.22"
 vanniktech-maven = "0.27.0"
 spotless = "6.25.0"
 junit = "5.10.1"
-winds = "1.0.0-beta01"
+teogor-winds = "1.0.0-beta02"
 
 [libraries]
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
@@ -22,4 +22,4 @@ jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-jvm" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 vanniktech-maven = { id = "com.vanniktech.maven.publish", version.ref = "vanniktech-maven" }
-winds = { id = "dev.teogor.winds", version.ref = "winds" }
+teogor-winds = { id = "dev.teogor.winds", version.ref = "teogor-winds" }
