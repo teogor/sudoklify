@@ -1,3 +1,8 @@
+public final class dev/teogor/sudoklify/ktx/BoardCellExtensionsKt {
+	public static final fun toBoardCell (I)Ljava/lang/String;
+	public static final fun toInt (Ljava/lang/String;)I
+}
+
 public final class dev/teogor/sudoklify/ktx/DifficultyExtensionsKt {
 	public static final fun toLabel (Ldev/teogor/sudoklify/common/types/Difficulty;[Ljava/lang/String;)Ljava/lang/String;
 	public static final fun toStars (Ldev/teogor/sudoklify/common/types/Difficulty;)Ljava/lang/String;
@@ -10,6 +15,13 @@ public final class dev/teogor/sudoklify/ktx/PuzzleStringExtensionsKt {
 public final class dev/teogor/sudoklify/ktx/SeedExtensionsKt {
 	public static final fun createSeed (J)Ldev/teogor/sudoklify/common/types/Seed;
 	public static final fun toSeed (J)Ldev/teogor/sudoklify/common/types/Seed;
+}
+
+public final class dev/teogor/sudoklify/ktx/SudokuBoardExtensionsKt {
+	public static final fun getCells (Ljava/lang/String;)Ljava/util/ArrayList;
+	public static final fun mapIndexedToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;Lkotlin/jvm/functions/Function3;)Ljava/util/List;
+	public static final fun mapToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun mapToSudokuString (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
 }
 
 public final class dev/teogor/sudoklify/ktx/SudokuTypeExtensionsKt {

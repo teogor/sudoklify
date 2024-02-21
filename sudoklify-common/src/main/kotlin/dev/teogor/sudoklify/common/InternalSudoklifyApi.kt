@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Teogor (Teodor Grigor)
+ * Copyright 2024 Teogor (Teodor Grigor)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
-package dev.teogor.sudoklify.common.types
+package dev.teogor.sudoklify.common
 
-typealias TokenMap = Map<BoardCell, Cell>
+@RequiresOptIn(message = "This API is internal to Sudoklify library. Do NOT use it!")
+@Retention(AnnotationRetention.BINARY)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY)
+annotation class InternalSudoklifyApi

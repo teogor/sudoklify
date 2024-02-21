@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+@file:OptIn(InternalSudoklifyApi::class)
+
 package dev.teogor.sudoklify.core.io
 
+import dev.teogor.sudoklify.common.InternalSudoklifyApi
 import dev.teogor.sudoklify.common.types.SudokuString
 import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.core.util.toBoard
