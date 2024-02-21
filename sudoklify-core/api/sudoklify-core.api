@@ -17,11 +17,7 @@ public final class dev/teogor/sudoklify/core/generation/SudokuGeneratorKt {
 }
 
 public final class dev/teogor/sudoklify/core/io/BoardSerializationKt {
-	public static final fun decodeAsBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
-	public static final fun encodeAsString (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
 	public static final fun generateTokenMap (I)Ljava/util/Map;
-	public static final fun toNumber (Ljava/lang/String;)I
-	public static final fun toToken (I)Ljava/lang/String;
 }
 
 public final class dev/teogor/sudoklify/core/io/SudokuParser {

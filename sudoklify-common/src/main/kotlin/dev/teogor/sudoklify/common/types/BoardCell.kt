@@ -19,4 +19,4 @@ package dev.teogor.sudoklify.common.types
 /**
  * Typealias for representing a single cell value in a game board.
  */
-typealias Token = String
+typealias BoardCell = String
