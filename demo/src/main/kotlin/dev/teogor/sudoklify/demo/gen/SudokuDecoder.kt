@@ -16,7 +16,7 @@
 
 package dev.teogor.sudoklify.demo.gen
 
-import dev.teogor.sudoklify.ktx.toBoardCell
+import dev.teogor.sudoklify.ktx.toJEncodedCell
 import java.util.regex.Pattern
 
 class SudokuDecoder {
@@ -35,7 +35,7 @@ class SudokuDecoder {
         if (cellContent == "&nbsp;") {
           "-"
         } else {
-          cellContent.toInt().toBoardCell()
+          cellContent.toInt().toJEncodedCell()
         }
       puzzleBuilder.append(parsedNumber)
     }

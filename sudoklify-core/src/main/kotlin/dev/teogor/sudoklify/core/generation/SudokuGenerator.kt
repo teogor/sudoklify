@@ -32,7 +32,7 @@ import dev.teogor.sudoklify.core.util.sortRandom
 import dev.teogor.sudoklify.core.util.toBoard
 import dev.teogor.sudoklify.core.util.toSequenceString
 import dev.teogor.sudoklify.ktx.createSeed
-import dev.teogor.sudoklify.ktx.toBoardCell
+import dev.teogor.sudoklify.ktx.toJEncodedCell
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -228,7 +228,7 @@ internal class SudokuGenerator internal constructor(
     val tokenList =
       gridList.withIndex().map { (index, _) ->
         val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
-        value.toBoardCell()
+        value.toJEncodedCell()
       }.shuffled(random)
 
     val tokenMap =
