@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
   id("application")
@@ -28,6 +26,7 @@ application {
 dependencies {
   implementation(project(mapOf("path" to ":sudoklify-common")))
   implementation(project(mapOf("path" to ":sudoklify-core")))
+  implementation(project(mapOf("path" to ":sudoklify-ktx")))
   implementation(project(mapOf("path" to ":sudoklify-seeds")))
 
   implementation(libs.kotlin.stdlib)
