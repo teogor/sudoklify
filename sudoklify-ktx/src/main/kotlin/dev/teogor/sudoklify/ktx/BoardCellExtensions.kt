@@ -16,23 +16,22 @@
 
 package dev.teogor.sudoklify.ktx
 
-import dev.teogor.sudoklify.common.types.BoardCell
+import dev.teogor.sudoklify.common.types.JEncodedCell
 
 /**
- * Converts an integer representing a Sudoku cell value to its corresponding string representation
- * as a [BoardCell].
+ * Converts an integer representing a Sudoku cell value to its J-Encoded string representation.
  *
  * @receiver The integer representing the Sudoku cell value.
- * @return The string representation of the cell as a [BoardCell], using a base-10 encoding with
- * letters 'a' to 'j' (where 'j' represents 0), and capitalizing the first letter.
+ * @return The [JEncodedCell] string representation of the cell, using letters 'a' to 'j'
+ * (where 'j' is used for 0), and capitalizing the first letter.
  *
  * Example:
  * ```kotlin
- * 5.toBoardCell() // Returns "E"
- * 10.toBoardCell() // Returns "Aj"
+ * 5.toJEncodedCell() // Returns "E"
+ * 10.toJEncodedCell() // Returns "Aj"
  * ```
  */
-fun Int.toBoardCell(): BoardCell {
+fun Int.toJEncodedCell(): JEncodedCell {
   return when {
     this == 0 -> "-"
 
@@ -60,11 +59,11 @@ fun Int.toBoardCell(): BoardCell {
 }
 
 /**
- * Converts a string representation of a Sudoku cell ([BoardCell], [String]) to its corresponding
- * integer value.
+ * Converts a string representation of a Sudoku cell ([JEncodedCell], [String]) to its
+ * corresponding integer value.
  *
  * @receiver The string representation of the Sudoku cell.
- * @return The integer value represented by the [BoardCell], using the base-10 encoding with
+ * @return The integer value represented by the [JEncodedCell], using the base-10 encoding with
  * letters 'a' to 'j' (where 'j' represents 0).
  *
  * Example:
@@ -73,7 +72,7 @@ fun Int.toBoardCell(): BoardCell {
  * "Aj".toInt() // Returns 10
  * ```
  */
-fun BoardCell.toInt(): Int {
+fun JEncodedCell.toInt(): Int {
   return when {
     this == "-" -> 0
 

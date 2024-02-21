@@ -17,7 +17,7 @@
 package dev.teogor.sudoklify.ktx
 
 import dev.teogor.sudoklify.common.InternalSudoklifyApi
-import dev.teogor.sudoklify.common.types.BoardCell
+import dev.teogor.sudoklify.common.types.JEncodedCell
 import dev.teogor.sudoklify.common.types.SudokuType
 
 /**
@@ -26,12 +26,12 @@ import dev.teogor.sudoklify.common.types.SudokuType
  *
  * @receiver The two-dimensional list of integers representing the Sudoku board.
  * @return The string representation of the Sudoku board, where each cell is encoded as a
- * [BoardCell] using its default encoding.
+ * [JEncodedCell] using its default encoding.
  */
 fun List<List<Int>>.mapToSudokuString(): String {
   return flatMap { cells ->
     cells.map { cell ->
-      cell.toBoardCell()
+      cell.toJEncodedCell()
     }
   }.joinToString("")
 }
@@ -49,7 +49,7 @@ fun List<List<Int>>.mapToSudokuString(): String {
 inline fun <T> List<List<T>>.mapToSudokuString(crossinline valueMapper: T.() -> Int): String {
   return flatMap { cells ->
     cells.map { cell ->
-      valueMapper(cell).toBoardCell()
+      valueMapper(cell).toJEncodedCell()
     }
   }.joinToString("")
 }

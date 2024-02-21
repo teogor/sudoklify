@@ -18,7 +18,7 @@ package dev.teogor.sudoklify.core.io
 
 import dev.teogor.sudoklify.common.InternalSudoklifyApi
 import dev.teogor.sudoklify.common.types.TokenMap
-import dev.teogor.sudoklify.ktx.toBoardCell
+import dev.teogor.sudoklify.ktx.toJEncodedCell
 
 /**
  * Generates a mapping between token values and their corresponding
@@ -36,7 +36,7 @@ fun generateTokenMap(boxDigits: Int): TokenMap {
   val tokenList =
     gridList.withIndex().map { (index, _) ->
       val value = if (index < boxDigits) (index + 1) else (index - boxDigits + 1)
-      value.toBoardCell()
+      value.toJEncodedCell()
     }
 
   val tokenMap =

@@ -16,4 +16,4 @@
 
 package dev.teogor.sudoklify.common.types
 
-typealias TokenMap = Map<BoardCell, Cell>
+typealias TokenMap = Map<JEncodedCell, Cell>

@@ -6,25 +6,25 @@ import org.junit.jupiter.api.Test
 class BoardCellExtensionsTest {
   @Test
   fun testZeroToBoardCell() {
-    val cell = 0.toBoardCell()
+    val cell = 0.toJEncodedCell()
     assertEquals("-", cell)
   }
 
   @Test
   fun testSingleDigitToBoardCell() {
-    assertEquals("E", 5.toBoardCell())
+    assertEquals("E", 5.toJEncodedCell())
     assertEquals(2, "B".toInt())
   }
 
   @Test
   fun testDoubleDigitToBoardCell() {
-    assertEquals("Bc", 23.toBoardCell())
+    assertEquals("Bc", 23.toJEncodedCell())
     assertEquals(64, "Fd".toInt())
   }
 
   @Test
   fun testTripleDigitToBoardCell() {
-    assertEquals("Gdc", 743.toBoardCell())
+    assertEquals("Gdc", 743.toJEncodedCell())
     assertEquals(409, "Dji".toInt())
   }
 
