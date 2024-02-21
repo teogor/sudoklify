@@ -18,20 +18,38 @@ package dev.teogor.sudoklify.ktx
 
 import dev.teogor.sudoklify.common.types.BoardCell
 
+/**
+ * Converts an integer representing a Sudoku cell value to its corresponding string representation
+ * as a [BoardCell].
+ *
+ * @receiver The integer representing the Sudoku cell value.
+ * @return The string representation of the cell as a [BoardCell], using a base-10 encoding with
+ * letters 'a' to 'j' (where 'j' represents 0), and capitalizing the first letter.
+ *
+ * Example:
+ * ```kotlin
+ * 5.toBoardCell() // Returns "E"
+ * 10.toBoardCell() // Returns "Aj"
+ * ```
+ */
 fun Int.toBoardCell(): BoardCell {
   return when {
     this == 0 -> "-"
+
+    this in 1..9 -> ('a' + this - 1).uppercase()
 
     else -> {
       var valueCopy = this
       buildString {
         while (valueCopy > 0) {
-          val char =
-            when (val digit = (valueCopy % 10)) {
-              0 -> 'j'
-              else -> ('a' + digit - 1)
-            }
-          append(char)
+          val digit = valueCopy % 10
+          append(
+            if (digit != 0) {
+              ('a' + digit - 1)
+            } else {
+              'j'
+            },
+          )
           valueCopy /= 10
         }
         reverse()
@@ -41,6 +59,20 @@ fun Int.toBoardCell(): BoardCell {
   }
 }
 
+/**
+ * Converts a string representation of a Sudoku cell ([BoardCell], [String]) to its corresponding
+ * integer value.
+ *
+ * @receiver The string representation of the Sudoku cell.
+ * @return The integer value represented by the [BoardCell], using the base-10 encoding with
+ * letters 'a' to 'j' (where 'j' represents 0).
+ *
+ * Example:
+ * ```kotlin
+ * "E".toInt() // Returns 5
+ * "Aj".toInt() // Returns 10
+ * ```
+ */
 fun BoardCell.toInt(): Int {
   return when {
     this == "-" -> 0
@@ -48,6 +80,10 @@ fun BoardCell.toInt(): Int {
     else ->
       map { char ->
         when {
+          char == 'j' || char == 'J' -> {
+            0
+          }
+
           char.isUpperCase() -> {
             char - 'A' + 1
           }
