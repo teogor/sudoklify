@@ -26,6 +26,10 @@ public final class dev/teogor/sudoklify/ktx/SudokuBoardExtensionsKt {
 	public static final fun mapToSudokuString (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
 }
 
+public final class dev/teogor/sudoklify/ktx/SudokuPuzzleExtensionsKt {
+	public static final fun generateGridWithGivens (Ldev/teogor/sudoklify/common/model/SudokuPuzzle;)Ljava/util/List;
+}
+
 public final class dev/teogor/sudoklify/ktx/SudokuTypeExtensionsKt {
 	public static final fun areCellsInSameBox (Ldev/teogor/sudoklify/common/types/SudokuType;II)Z
 	public static final fun areCellsInSameBox (Ldev/teogor/sudoklify/common/types/SudokuType;IIII)Z
