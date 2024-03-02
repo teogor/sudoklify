@@ -34,7 +34,7 @@ class SudokuParser(
   sudokuType: SudokuType,
 ) {
   private val puzzleBoard = puzzle.toBoard(sudokuType)
-  private val boxDigits = sudokuType.digits
+  private val boxDigits = sudokuType.uniqueDigitsCount
 
   /**
    * Converts the Sudoku puzzle string into a numerical representation.

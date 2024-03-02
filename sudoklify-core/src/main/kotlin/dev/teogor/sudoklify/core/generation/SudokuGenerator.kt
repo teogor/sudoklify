@@ -20,7 +20,6 @@ import dev.teogor.sudoklify.common.model.Sudoku
 import dev.teogor.sudoklify.common.model.SudokuBlueprint
 import dev.teogor.sudoklify.common.model.SudokuParams
 import dev.teogor.sudoklify.common.model.SudokuPuzzle
-import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.Layout
 import dev.teogor.sudoklify.common.types.Seed
@@ -44,13 +43,13 @@ internal class SudokuGenerator internal constructor(
   private val difficulty: Difficulty,
 ) {
   private val random: Random = seed.toRandom()
-  private val boxDigits = sudokuType.digits
+  private val boxDigits = sudokuType.uniqueDigitsCount
   private val baseLayout: Layout = generateBaseLayout()
   private val tokenizer: Tokenizer = Tokenizer.create(boxDigits)
 
   @Deprecated(
     message =
-      """
+    """
     This constructor is deprecated. Use the primary constructor
     `SudokuGenerator(seeds, seed, sudokuType, difficulty)` instead.
     """,
@@ -71,7 +70,7 @@ internal class SudokuGenerator internal constructor(
 
   @Deprecated(
     message =
-      """
+    """
     The composeSudokuPuzzle() method is deprecated. To create a Sudoku puzzle, use the more
     versatile and efficient createPuzzle() method, which returns a SudokuPuzzle object with
     additional features and utility methods. For compatibility with existing code,
@@ -122,7 +121,7 @@ internal class SudokuGenerator internal constructor(
     layout: Layout,
     seedSequence: String,
     tokenMap: TokenMap,
-  ): Board = tokenizer.populateLayout(layout, seedSequence, tokenMap)
+  ): Array<Array<String>> = tokenizer.populateLayout(layout, seedSequence, tokenMap)
 
   private fun getLayout(baseLayout: Layout): Layout = shuffleLayout(rotateLayout(baseLayout))
 
@@ -202,7 +201,7 @@ internal class SudokuGenerator internal constructor(
     size: Int,
   ): Array<SudokuBlueprint> =
     seeds.filter { seed ->
-      seed.sudokuType.digits == size
+      seed.sudokuType.uniqueDigitsCount == size
     }.toTypedArray()
 
   private fun getRandomItem(items: Array<SudokuBlueprint>): SudokuBlueprint =

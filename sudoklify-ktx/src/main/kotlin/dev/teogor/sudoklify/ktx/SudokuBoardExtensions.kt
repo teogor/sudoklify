@@ -66,7 +66,7 @@ inline fun <T> List<List<T>>.mapToSudokuString(crossinline valueMapper: T.() -> 
 @OptIn(InternalSudoklifyApi::class)
 fun String.mapToSudokuBoard(sudokuType: SudokuType): List<List<Int>> {
   return getCells()
-    .chunked(sudokuType.digits)
+    .chunked(sudokuType.uniqueDigitsCount)
     .map { row -> row.map { it.toInt() } }
 }
 
@@ -88,7 +88,7 @@ inline fun <T> String.mapToSudokuBoard(
   crossinline valueMapper: Int.() -> T,
 ): List<List<T>> {
   return getCells()
-    .chunked(sudokuType.digits)
+    .chunked(sudokuType.uniqueDigitsCount)
     .map { row -> row.map { valueMapper(it.toInt()) } }
 }
 
@@ -110,7 +110,7 @@ inline fun <T> String.mapIndexedToSudokuBoard(
   crossinline valueMapper: (value: Int, row: Int, column: Int) -> T,
 ): List<List<T>> {
   return getCells()
-    .chunked(sudokuType.digits)
+    .chunked(sudokuType.uniqueDigitsCount)
     .mapIndexed { row, rowElements ->
       rowElements.mapIndexed { column, value ->
         valueMapper(value.toInt(), row, column)

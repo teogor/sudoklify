@@ -23,13 +23,13 @@ import dev.teogor.sudoklify.common.types.SudokuType
  * Returns a list containing all valid digits (1 to [SudokuType.digits]) for the
  * Sudoku.
  */
-fun SudokuType.getAllDigits(): List<Int> = (1..digits).toList()
+fun SudokuType.getAllDigits(): List<Int> = (1..uniqueDigitsCount).toList()
 
 /**
  * Checks if a given digit is valid within the range of allowed digits for this Sudoku
  * (1 to [SudokuType.digits]).
  */
-fun SudokuType.isDigitValid(digit: Int): Boolean = digit in 1..digits
+fun SudokuType.isDigitValid(digit: Int): Boolean = digit in 1..uniqueDigitsCount
 
 /**
  * Returns the box index (within the range 0 to [SudokuType.boxes - 1]) for a given cell
@@ -265,7 +265,7 @@ private fun SudokuType.requireValidCellIndex(
   cellIndex: Int,
   message: String = "Invalid cell index",
 ) {
-  require(cellIndex in 0..<cells) {
+  require(cellIndex in 0..<totalCells) {
     "Invalid index ($cellIndex): $message"
   }
 }

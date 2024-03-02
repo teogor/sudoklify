@@ -21,8 +21,8 @@ package dev.teogor.sudoklify.common.types
  *
  * @property gridSize The size of the Sudoku grid (width and height).
  *
- * @property digits The total number of digits used in the Sudoku (width * height).
- * @property cells The total number of cells in the Sudoku (digits squared).
+ * @property uniqueDigitsCount The total number of digits used in the Sudoku (width * height).
+ * @property totalCells The total number of cells in the Sudoku (digits squared).
  * @property isSquare Whether the grid size is square (width == height).
  * @property width The width of the Sudoku grid.
  * @property height The height of the Sudoku grid.
@@ -34,14 +34,34 @@ sealed class SudokuType(
   val gridSize: GridSize,
 ) {
   /**
-   * The total number of digits used in the Sudoku (width * height).
+   * The number of distinct digits used in the Sudoku grid. This represents the total
+   * number of unique symbols that can be placed within a single cell of the Sudoku.
+   * It is calculated as the product of the grid width and height.
    */
-  val digits: Int = gridSize.width * gridSize.height
+  val uniqueDigitsCount: Int = gridSize.width * gridSize.height
+
+  @Deprecated(
+    message = """Consider using 'uniqueDigitsCount' for better clarity. This variable provides
+      |the same information but emphasizes the distinct nature of the digits used in the Sudoku
+      |grid.""",
+    replaceWith = ReplaceWith("uniqueDigitsCount"),
+  )
+  val digits: Int = uniqueDigitsCount
 
   /**
-   * The total number of cells in the Sudoku (digits squared).
+   * The total number of cells in the Sudoku grid. This is calculated by squaring the
+   * [uniqueDigitsCount]. Each cell within the grid can hold one of the [uniqueDigitsCount]
+   * distinct digits (or symbols).
    */
-  val cells: Int = digits * digits
+  val totalCells: Int = uniqueDigitsCount * uniqueDigitsCount
+
+  @Deprecated(
+    message = """Consider using 'totalCells' for better clarity. This variable represents the
+      |same information but emphasizes the total number of individual squares or cells within
+      |the Sudoku grid.""",
+    replaceWith = ReplaceWith("totalCells"),
+  )
+  val cells = totalCells
 
   /**
    * Whether the grid size is square (width == height).
@@ -51,12 +71,12 @@ sealed class SudokuType(
   /**
    * The width of the Sudoku grid.
    */
-  val width: Int = digits
+  val width: Int = uniqueDigitsCount
 
   /**
    * The height of the Sudoku grid.
    */
-  val height: Int = digits
+  val height: Int = uniqueDigitsCount
 
   /**
    * The width of a single box in the grid.
@@ -76,7 +96,7 @@ sealed class SudokuType(
   /**
    * Returns a string representation of the Sudoku type.
    */
-  final override fun toString(): String = "$width x $height ($digits digits)"
+  final override fun toString(): String = "$width x $height ($uniqueDigitsCount digits)"
 
   /**
    * Data class representing the size of a Sudoku grid.

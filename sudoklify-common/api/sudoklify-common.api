@@ -220,6 +220,8 @@ public abstract class dev/teogor/sudoklify/common/types/SudokuType {
 	public final fun getGridSize ()Ldev/teogor/sudoklify/common/types/SudokuType$GridSize;
 	public final fun getHeight ()I
 	public final fun getName ()Ljava/lang/String;
+	public final fun getTotalCells ()I
+	public final fun getUniqueDigitsCount ()I
 	public final fun getWidth ()I
 	public final fun isSquare ()Z
 	public final fun toString ()Ljava/lang/String;
