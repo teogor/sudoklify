@@ -30,8 +30,6 @@ import dev.teogor.sudoklify.core.util.sortRandom
 import dev.teogor.sudoklify.core.util.toBoard
 import dev.teogor.sudoklify.core.util.toSequenceString
 import dev.teogor.sudoklify.ktx.createSeed
-import dev.teogor.sudoklify.ktx.mapIndexedToSudokuBoard
-import dev.teogor.sudoklify.ktx.mapToSudokuBoard
 import dev.teogor.sudoklify.ktx.toJEncodedCell
 import kotlin.math.sqrt
 import kotlin.random.Random
@@ -102,17 +100,27 @@ class SudokuGenerator internal constructor(
       sudokuType = seed.sudokuType,
       seed = this.seed,
       givens =
-        puzzle.toSequenceString()
-          .mapIndexedToSudokuBoard(seed.sudokuType) { value, row, col ->
-            SudokuPuzzle.Givens(
-              value = value,
-              row = row,
-              col = col,
-            )
-          }.flatten().filter { it.value != 0 },
+        puzzle
+          .map { it.toList() }
+          .mapIndexed { row, cols ->
+            cols.mapIndexed { col, value ->
+              SudokuPuzzle.Givens(
+                value = value.toIntOrNull() ?: 0,
+                row = row,
+                col = col,
+              )
+            }
+          }
+          .flatten()
+          .filter { it.value != 0 },
       solution =
-        solution.toSequenceString()
-          .mapToSudokuBoard(seed.sudokuType),
+        solution
+          .map { it.toList() }
+          .map { cols ->
+            cols.map { value ->
+              value.toIntOrNull() ?: 0
+            }
+          },
     )
   }
 
