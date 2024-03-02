@@ -11,6 +11,12 @@ public final class dev/teogor/sudoklify/core/generation/ParamsBuilderKt {
 	public static final fun sudokuType (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
 }
 
+public final class dev/teogor/sudoklify/core/generation/SudokuGenerator {
+	public fun <init> ([Ldev/teogor/sudoklify/common/model/SudokuBlueprint;Lkotlin/random/Random;Ldev/teogor/sudoklify/common/types/SudokuType;Ldev/teogor/sudoklify/common/types/Difficulty;)V
+	public final fun composeSudokuPuzzle ()Ldev/teogor/sudoklify/common/model/Sudoku;
+	public final fun createPuzzle ()Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
+}
+
 public final class dev/teogor/sudoklify/core/generation/SudokuGeneratorKt {
 	public static final fun createPuzzle (Ldev/teogor/sudoklify/common/model/SudokuParams;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
 	public static final fun generateSudoku (Ldev/teogor/sudoklify/common/model/SudokuParams;)Ldev/teogor/sudoklify/common/model/Sudoku;
