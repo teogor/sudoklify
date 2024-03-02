@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.demo.gen.impl
 
-import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Difficulty
 import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.core.io.toSudokuIntArray
@@ -97,8 +96,8 @@ fun main() {
 }
 
 private fun comparePuzzles(
-  puzzle: Board,
-  solution: Board,
+  puzzle: Array<Array<String>>,
+  solution: Array<Array<String>>,
 ): Boolean {
   if (puzzle.size != solution.size || puzzle[0].size != solution[0].size) {
     return false

@@ -1,4 +1,5 @@
 public final class dev/teogor/sudoklify/ktx/BoardCellExtensionsKt {
+	public static final fun convertToSudokuSymbol (I)Ljava/lang/String;
 	public static final fun toInt (Ljava/lang/String;)I
 	public static final fun toJEncodedCell (I)Ljava/lang/String;
 }

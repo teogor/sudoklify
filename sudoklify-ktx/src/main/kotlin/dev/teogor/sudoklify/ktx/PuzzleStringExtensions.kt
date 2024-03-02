@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package dev.teogor.sudoklify.ktx
 
 import dev.teogor.sudoklify.common.types.PuzzleString

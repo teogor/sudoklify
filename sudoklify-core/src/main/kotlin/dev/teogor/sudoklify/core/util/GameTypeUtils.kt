@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package dev.teogor.sudoklify.core.util
 
 import dev.teogor.sudoklify.common.types.GameType
