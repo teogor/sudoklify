@@ -69,7 +69,7 @@ class SudokuSolver(
     for (row in grid.indices) {
       for (col in grid[row].indices) {
         if (grid[row][col] == 0) {
-          for (num in 1..sudokuType.cells) {
+          for (num in 1..sudokuType.uniqueDigitsCount) {
             if (isValid(grid, row, col, num)) {
               grid[row][col] = num
               steps.add(Pair(row, col))
@@ -95,7 +95,7 @@ class SudokuSolver(
     col: Int,
     num: Int,
   ): Boolean {
-    for (i in 0 until sudokuType.cells) {
+    for (i in 0 until sudokuType.totalCells) {
       if (grid[row][i] == num || grid[i][col] == num) return false
     }
 

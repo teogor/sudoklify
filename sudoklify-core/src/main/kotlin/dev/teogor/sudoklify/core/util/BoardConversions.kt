@@ -61,7 +61,7 @@ fun SudokuString.toBoard(sudokuType: SudokuType): Board {
   val matchedTokens = ArrayList<String>()
   matches.forEach { matchedTokens.add(it.value) }
   return matchedTokens
-    .chunked(sudokuType.digits)
+    .chunked(sudokuType.uniqueDigitsCount)
     .map { row -> row.map { it }.toTypedArray() }
     .toTypedArray()
 }
