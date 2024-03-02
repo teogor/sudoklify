@@ -94,3 +94,12 @@ fun JEncodedCell.toInt(): Int {
       }.fold(0) { acc, digit -> acc * 10 + digit }
   }
 }
+
+/**
+ * Converts the integer to a Sudoku symbol or digit.
+ *
+ * @return The string representation of the integer in base 10, converted to uppercase.
+ */
+fun Int.convertToSudokuSymbol(): String {
+  return toString(10).uppercase()
+}
