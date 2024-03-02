@@ -36,7 +36,7 @@ import dev.teogor.sudoklify.ktx.toJEncodedCell
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-internal class SudokuGenerator internal constructor(
+class SudokuGenerator internal constructor(
   private val seeds: Array<SudokuBlueprint>,
   private val seed: Seed,
   private val sudokuType: SudokuType,
@@ -48,14 +48,13 @@ internal class SudokuGenerator internal constructor(
   private val tokenizer: Tokenizer = Tokenizer.create(boxDigits)
 
   @Deprecated(
-    message =
-    """
-    This constructor is deprecated. Use the primary constructor
-    `SudokuGenerator(seeds, seed, sudokuType, difficulty)` instead.
-    """,
+    message = """
+      |This constructor is deprecated. Use the primary constructor
+      |`SudokuGenerator(seeds, seed, sudokuType, difficulty)` instead.
+      |""",
     replaceWith = ReplaceWith("SudokuGenerator(seeds, seed, sudokuType, difficulty)"),
   )
-  internal constructor(
+  constructor(
     seeds: Array<SudokuBlueprint>,
     random: Random,
     sudokuType: SudokuType,
@@ -70,16 +69,16 @@ internal class SudokuGenerator internal constructor(
 
   @Deprecated(
     message =
-    """
-    The composeSudokuPuzzle() method is deprecated. To create a Sudoku puzzle, use the more
-    versatile and efficient createPuzzle() method, which returns a SudokuPuzzle object with
-    additional features and utility methods. For compatibility with existing code,
-    composeSudokuPuzzle() also returns a Sudoku object, but it's recommended to transition to
-    using the richer functionality of SudokuPuzzle.
+      """
+    |The composeSudokuPuzzle() method is deprecated. To create a Sudoku puzzle, use the more
+    |versatile and efficient createPuzzle() method, which returns a SudokuPuzzle object with
+    |additional features and utility methods. For compatibility with existing code,
+    |composeSudokuPuzzle() also returns a Sudoku object, but it's recommended to transition to
+    |using the richer functionality of SudokuPuzzle.
     """,
     replaceWith = ReplaceWith("createPuzzle()"),
   )
-  internal fun composeSudokuPuzzle(): Sudoku {
+  fun composeSudokuPuzzle(): Sudoku {
     val seed = getSeed(seeds, difficulty)
     val layout = getLayout(baseLayout)
     val tokenMap = getTokenMap()
@@ -90,7 +89,7 @@ internal class SudokuGenerator internal constructor(
     return Sudoku(puzzle, solution, seed.difficulty, sudokuType)
   }
 
-  internal fun createPuzzle(): SudokuPuzzle {
+  fun createPuzzle(): SudokuPuzzle {
     val seed = getSeed(seeds, difficulty)
     val layout = getLayout(baseLayout)
     val tokenMap = getTokenMap()
