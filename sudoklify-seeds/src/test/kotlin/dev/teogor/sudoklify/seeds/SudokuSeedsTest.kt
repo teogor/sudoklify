@@ -17,21 +17,20 @@
 package dev.teogor.sudoklify.seeds
 
 import dev.teogor.sudoklify.common.model.SudokuBlueprint
-import dev.teogor.sudoklify.common.types.Board
+import dev.teogor.sudoklify.core.generation.createPuzzle
 import dev.teogor.sudoklify.core.generation.difficulty
-import dev.teogor.sudoklify.core.generation.generateSudoku
 import dev.teogor.sudoklify.core.generation.seed
 import dev.teogor.sudoklify.core.generation.seeds
 import dev.teogor.sudoklify.core.generation.sudokuParamsBuilder
 import dev.teogor.sudoklify.core.generation.sudokuType
 import dev.teogor.sudoklify.core.util.toBoard
-import dev.teogor.sudoklify.core.util.toSequenceString
 import dev.teogor.sudoklify.ktx.createSeed
+import dev.teogor.sudoklify.seeds.utils.comparePuzzles
+import dev.teogor.sudoklify.seeds.utils.toSequenceString
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ArgumentsSource
-
 
 class SudokuSeedsTest {
   @Test
@@ -62,7 +61,7 @@ class SudokuSeedsTest {
       sudokuType { blueprint.sudokuType }
       difficulty { blueprint.difficulty }
     }
-    val sudoku = sudokuParams.generateSudoku()
+    val sudoku = sudokuParams.createPuzzle()
 
     assertEquals(
       blueprint.sudokuType,
@@ -74,9 +73,10 @@ class SudokuSeedsTest {
       sudoku.difficulty,
       "Difficulty level mismatch",
     )
+
     assertEquals(
       blueprint.puzzle,
-      sudoku.puzzle.toSequenceString(),
+      toSequenceString(sudoku),
       "Puzzle generation error",
     )
     assertEquals(
@@ -84,24 +84,5 @@ class SudokuSeedsTest {
       sudoku.solution.toSequenceString(),
       "Solution generation error",
     )
-  }
-
-  private fun comparePuzzles(puzzle: Board, solution: Board): Boolean {
-    if (puzzle.size != solution.size || puzzle[0].size != solution[0].size) {
-      return false
-    }
-
-    for (row in puzzle.indices) {
-      for (col in 0..<puzzle[row].size) {
-        val puzzleValue = puzzle[row][col]
-        val solvedValue = solution[row][col]
-
-        if (puzzleValue != "-" && puzzleValue != solvedValue) {
-          return false
-        }
-      }
-    }
-
-    return true
   }
 }
