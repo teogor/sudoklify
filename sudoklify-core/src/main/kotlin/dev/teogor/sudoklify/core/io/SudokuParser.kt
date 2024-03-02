@@ -19,7 +19,6 @@
 package dev.teogor.sudoklify.core.io
 
 import dev.teogor.sudoklify.common.InternalSudoklifyApi
-import dev.teogor.sudoklify.common.types.SudokuString
 import dev.teogor.sudoklify.common.types.SudokuType
 import dev.teogor.sudoklify.core.util.toBoard
 
@@ -74,7 +73,7 @@ class SudokuParser(
  *
  * @throws [IllegalArgumentException] if the provided Sudoku puzzle string is invalid.
  */
-fun SudokuString.toSudokuIntArray(sudokuType: SudokuType): Array<IntArray> {
+fun String.toSudokuIntArray(sudokuType: SudokuType): Array<IntArray> {
   val parser = SudokuParser(this, sudokuType)
   return parser.toIntArray()
 }

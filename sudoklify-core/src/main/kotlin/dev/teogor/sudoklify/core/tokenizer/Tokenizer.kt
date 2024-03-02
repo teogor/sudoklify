@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.core.tokenizer
 
-import dev.teogor.sudoklify.common.types.Board
 import dev.teogor.sudoklify.common.types.Layout
 import dev.teogor.sudoklify.common.types.TokenMap
 
@@ -51,7 +50,7 @@ sealed class Tokenizer {
     layout: Layout,
     sequence: String,
     tokenMap: TokenMap,
-  ): Board
+  ): Array<Array<String>>
 
   companion object {
     /**
@@ -87,7 +86,7 @@ sealed class Tokenizer {
       layout: Layout,
       sequence: String,
       tokenMap: TokenMap,
-    ): Board {
+    ): Array<Array<String>> {
       with(replaceTokens(sequence, tokenMap)) {
         return layout.map { row ->
           row.map { cell ->
@@ -119,7 +118,7 @@ sealed class Tokenizer {
       layout: Layout,
       sequence: String,
       tokenMap: TokenMap,
-    ): Board {
+    ): Array<Array<String>> {
       val tokens = extractTokens(sequence, tokenMap)
       return layout.map { row ->
         row.map { cell ->

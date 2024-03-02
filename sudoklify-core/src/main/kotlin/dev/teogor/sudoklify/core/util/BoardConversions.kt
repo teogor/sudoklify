@@ -16,8 +16,6 @@
 
 package dev.teogor.sudoklify.core.util
 
-import dev.teogor.sudoklify.common.types.Board
-import dev.teogor.sudoklify.common.types.SudokuString
 import dev.teogor.sudoklify.common.types.SudokuType
 
 /**
@@ -25,7 +23,7 @@ import dev.teogor.sudoklify.common.types.SudokuType
  *
  * @return A `SudokuString` representing the board.
  */
-fun Board.toSequenceString(): SudokuString =
+fun Array<Array<String>>.toSequenceString(): String =
   joinToString("") {
     it.joinToString("")
   }
@@ -40,7 +38,7 @@ fun Board.toSequenceString(): SudokuString =
  * @return A `Board` representing the Sudoku puzzle.
  */
 @Deprecated("Use the `toBoard(sudokuType: SudokuType)` function instead.")
-fun SudokuString.toBoard(boxDigits: Int): Board {
+fun String.toBoard(boxDigits: Int): Array<Array<String>> {
   return chunked(boxDigits)
     .map { chunk -> chunk.map { it.toString() }.toTypedArray() }
     .toTypedArray()
@@ -55,7 +53,7 @@ fun SudokuString.toBoard(boxDigits: Int): Board {
  *
  * @return A list of lists of strings representing the Sudoku puzzle.
  */
-fun SudokuString.toBoard(sudokuType: SudokuType): Board {
+fun String.toBoard(sudokuType: SudokuType): Array<Array<String>> {
   val regex = Regex("([A-I][a-z]+)|-|[A-I]")
   val matches = regex.findAll(this)
   val matchedTokens = ArrayList<String>()
