@@ -21,9 +21,9 @@ API Reference
 
 [//]: # (REGION-RELEASE-TABLE)
 
-| Latest Update       |  Stable Release  |  Release Candidate  |  Beta Release  |  Alpha Release  |
-|:--------------------|:----------------:|:-------------------:|:--------------:|:---------------:|
-| February 21, 2024   |        -         |          -          |  1.0.0-beta01  |        -        |
+| Latest Update    |  Stable Release  |  Release Candidate  |  Beta Release  |  Alpha Release  |
+|:-----------------|:----------------:|:-------------------:|:--------------:|:---------------:|
+| March 04, 2024   |        -         |          -          |  1.0.0-beta02  |        -        |
 
 [//]: # (REGION-RELEASE-TABLE)
 
@@ -37,7 +37,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```groovy title="build.gradle"
     dependencies {
-        def teogorSudoklify = "1.0.0-beta01"
+        def teogorSudoklify = "1.0.0-beta02"
         
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
@@ -50,7 +50,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        val teogorSudoklify = "1.0.0-beta01"
+        val teogorSudoklify = "1.0.0-beta02"
         
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
@@ -78,6 +78,28 @@ for this library before you create a new one.
 [//]: # (REGION-VERSION-CHANGELOG)
 
 ### Version 1.0.0
+
+#### Version 1.0.0-beta02
+
+March 04, 2024
+
+[`dev.teogor.sudoklify:sudoklify-*:1.0.0-beta02`](https://github.com/teogor/sudoklify/releases/1.0.0-beta02) is released. [Version 1.0.0-beta02 contains these commits](https://github.com/teogor/sudoklify/compare/1.0.0-beta01...1.0.0-beta02)
+
+**Enhancement**
+
+* Enable Consistent Sudoku Symbol Representation with `convertToSudokuSymbol` ([#63](https://github.com/teogor/sudoklify/issues/63)) by [@teogor](https://github.com/teogor)
+* Enhance SudokuPuzzle with Grid Generation from Given Cells ([#62](https://github.com/teogor/sudoklify/issues/62)) by [@teogor](https://github.com/teogor)
+* Enable User-Driven Sudoku Generation with Public SudokuGenerator ([#60](https://github.com/teogor/sudoklify/issues/60)) by [@teogor](https://github.com/teogor)
+* Improve Variable Naming for Clarity: uniqueDigitsCount & totalCells ([#59](https://github.com/teogor/sudoklify/issues/59)) by [@teogor](https://github.com/teogor)
+
+**Bug Fixes**
+
+* Ensure Compatibility During Deprecation: Replace Deprecated Functions in createPuzzle() ([#61](https://github.com/teogor/sudoklify/issues/61)) by [@teogor](https://github.com/teogor)
+* Improve Variable Naming for Clarity: uniqueDigitsCount & totalCells ([#59](https://github.com/teogor/sudoklify/issues/59)) by [@teogor](https://github.com/teogor)
+
+**Documentation**
+
+* Improve Documentation Clarity and User Guidance ([#64](https://github.com/teogor/sudoklify/issues/64)) by [@teogor](https://github.com/teogor)
 
 #### Version 1.0.0-beta01
 
