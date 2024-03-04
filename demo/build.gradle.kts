@@ -16,7 +16,16 @@
 
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
+  alias(libs.plugins.teogor.winds)
   id("application")
+}
+
+winds {
+  moduleMetadata {
+    publishingOptions {
+      publish = false
+    }
+  }
 }
 
 application {

@@ -1,0 +1,78 @@
+1.0.0-alpha01:
+  info: "August 24, 2023"
+  content: >
+    # 🎉 Introducing Sudoklify v1.0.0-alpha01 🧩
+
+
+    Sudoklify, the Sudoku puzzle generation library, is here with its exciting release! Crafted with love in Kotlin, Sudoklify empowers you to effortlessly generate, manipulate, and solve Sudoku puzzles of varying grid sizes and difficulty levels. Dive into the world of puzzles and challenge your logic with Sudoklify. Let the Sudoku adventures begin! 🚀🧠
+1.0.0-alpha02:
+  info: "August 25, 2023"
+  sections:
+  - Bug Fixes:
+    - "Corrected Data Types in Accessing Generated Sudoku (#21) by @teogor"
+    - "Update Package Name from `exntensions` to `extensions` (#20) by @teogor"
+  - Maintenance:
+    - "Bump Maven Publish Version to 1.0.0-alpha02 (#22) by @teogor"
+    - "Adding Code of Conduct for a Respectful Community (#19) by @teogor"
+    - "Redefining Puzzle Generation: Sudoklify's Innovative Approach (#18) by @teogor"
+  - Documentation:
+    - "Corrected Data Types in Accessing Generated Sudoku (#21) by @teogor"
+    - "Adding Code of Conduct for a Respectful Community (#19) by @teogor"
+    - "Redefining Puzzle Generation: Sudoklify's Innovative Approach (#18) by @teogor"
+1.0.0-alpha03:
+  info: "September 21, 2023"
+  sections:
+  - Enhancement:
+    - "Refactor GameType Enum and Add Utility Functions (#26) by @teogor"
+  - Bug Fixes:
+    - "Refactor GameType Enum and Add Utility Functions (#26) by @teogor"
+    - "Fix Inconsistency in Sudoku Puzzle Patterns and Solutions (#24) by @teogor"
+  - Maintenance:
+    - "Update Dependency Versions and Build Configuration (#27) by @teogor"
+    - "Update Maven Publishing Configuration (#25) by @teogor"
+  - Documentation:
+    - "Update Dependency Versions and Build Configuration (#27) by @teogor"
+    - "Refactor GameType Enum and Add Utility Functions (#26) by @teogor"
+    - "Update Maven Publishing Configuration (#25) by @teogor"
+1.0.0-alpha04:
+  info: "February 08, 2024"
+  sections:
+  - Enhancement:
+    - "Introduce more descriptive Cell type and board serialization (#40) by @teogor"
+    - "Add `supportsDifficulty` function for GameType compatibility (#39) by @teogor"
+    - "Enhance Sudoku seed generation for smaller puzzle sizes (#38) by @teogor"
+    - "Implement Sudoku puzzle parsing and decoding (#37) by @teogor"
+    - "Enhance Sudoku Solver with Thorough Test Suite (#34) by @teogor"
+    - "Enable Sudoku puzzle parsing and conversion with SudokuParser (#33) by @teogor"
+    - "Enhance Sudoku Seeds with Additional Game Types and Difficulties (#32) by @teogor"
+    - "Enhance Difficulty Representation with Stars and Text Options (#31) by @teogor"
+    - "Refactor GameType enum for improved readability and clarity (#30) by @teogor"
+    - "Improve Difficulty Enum with Percentages and Documentation (#29) by @teogor"
+  - Bug Fixes:
+    - "Enhance Sudoku seed generation for smaller puzzle sizes (#38) by @teogor"
+  - Maintenance:
+    - "Enhance Sudoku Solver with Thorough Test Suite (#34) by @teogor"
+  - Documentation:
+    - "Introduce MkDocs for documentation generation (#36) by @teogor"
+    - "Enhance Code Quality and Maintainability with Dokka, Spotless, and API Validator (#35) by @teogor"
+1.0.0-beta01:
+  info: "February 21, 2024"
+  sections:
+  - Enhancement:
+    - "Enhance Sudoku generation with improved combinedSeeds and seed-based tests (#55) by @teogor"
+    - "Enable easier string conversion with default mappers in Sudoku board functions (#53) by @teogor"
+    - "Enable encoding and decoding Sudoku boards to/from strings (#52) by @teogor"
+    - "Introduce `SudokuType` sealed class (#51) by @teogor"
+    - "Refactor `Seed` type to `sealed class` for improved safety and organization (#49) by @teogor"
+    - "Enhance Tokenizer with sealed class structure and improved token handling (#48) by @teogor"
+    - "Enhance `SudokuParams.createPuzzle()` by introducing `SudokuPuzzle` data class (#46) by @teogor"
+  - Bug Fixes:
+    - "Improved accuracy and reliability of BoardCell conversions with comprehensive testing (#54) by @teogor"
+  - Documentation:
+    - "Future-Proofing Sudoku: Deprecate Legacy Flow Types, Migrate to `SudokuPuzzle` (#57) by @teogor"
+    - "Updated Docs (#50) by @teogor"
+    - "Modularize Project Structure: Core, Common, Ktx, Seeds Modules (#47) by @teogor"
+  - Others:
+    - "Upgrade JVM Target Compatibility to Java 17 (Kotlin) (#56) by @teogor"
+    - "Missing project URL in pom causing Sonatype service stop failure (#43) by @teogor"
+    - "Ensure successful `publishAllPublicationsToMavenCentral` execution (#42) by @teogor"

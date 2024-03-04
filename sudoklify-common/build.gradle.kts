@@ -20,9 +20,10 @@ plugins {
 }
 
 winds {
-  mavenPublish {
-    displayName = "Common"
-    name = "common"
+  moduleMetadata {
+    artifactDescriptor {
+      name = "Common"
+    }
   }
 }
 

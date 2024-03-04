@@ -20,9 +20,10 @@ plugins {
 }
 
 winds {
-  mavenPublish {
-    displayName = "Core"
-    name = "core"
+  moduleMetadata {
+    artifactDescriptor {
+      name = "Core"
+    }
   }
 }
 

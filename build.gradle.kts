@@ -1,19 +1,34 @@
+/*
+ * Copyright 2024 Teogor (Teodor Grigor)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.vanniktech.maven.publish.SonatypeHost
-import dev.teogor.winds.api.MavenPublish
-import dev.teogor.winds.api.getValue
-import dev.teogor.winds.api.model.Contributor
-import dev.teogor.winds.api.model.DependencyType
-import dev.teogor.winds.api.model.Developer
-import dev.teogor.winds.api.model.IssueManagement
-import dev.teogor.winds.api.model.LicenseType
-import dev.teogor.winds.api.model.createVersion
-import dev.teogor.winds.api.provider.Scm
-import dev.teogor.winds.gradle.tasks.impl.subprojectChildrens
-import dev.teogor.winds.gradle.utils.afterWindsPluginConfiguration
-import dev.teogor.winds.gradle.utils.attachTo
+import dev.teogor.winds.api.ArtifactIdFormat
+import dev.teogor.winds.api.License
+import dev.teogor.winds.api.NameFormat
+import dev.teogor.winds.api.Person
+import dev.teogor.winds.api.Scm.GitHub
+import dev.teogor.winds.api.TicketSystem
+import dev.teogor.winds.ktx.createVersion
+import dev.teogor.winds.ktx.person
+import dev.teogor.winds.ktx.scm
+import dev.teogor.winds.ktx.ticketSystem
 import org.jetbrains.dokka.gradle.DokkaPlugin
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -36,117 +51,92 @@ val excludedProjects = listOf(
   "demo",
 )
 
-subprojectChildrens {
-  val javaVersion = JavaVersion.VERSION_17
-  java {
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
+allprojects {
+  if (extensions.findByType<JavaPluginExtension>() != null) {
+    java {
+      sourceCompatibility = JavaVersion.VERSION_17
+      targetCompatibility = JavaVersion.VERSION_17
+    }
+    java {
+      toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+      }
+    }
   }
-
-  val compileKotlin: KotlinCompile by tasks
-  compileKotlin.kotlinOptions {
-    jvmTarget = javaVersion.toString()
-  }
-
-  val compileTestKotlin: KotlinCompile by tasks
-  compileTestKotlin.kotlinOptions {
-    jvmTarget = javaVersion.toString()
+  if (extensions.findByType<KotlinJvmProjectExtension>() != null) {
+    kotlin {
+      jvmToolchain(17)
+    }
   }
 }
 
 winds {
-  buildFeatures {
-    mavenPublish = true
+  windsFeatures {
+    mavenPublishing = true
     docsGenerator = true
+    workflowSynthesizer = true
   }
 
-  mavenPublish {
-    displayName = "Sudoklify"
-    name = "sudoklify"
-
-    canBePublished = false
-
-    description =
-      "Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease."
-
-    groupId = "dev.teogor.sudoklify"
-    url = "https://source.teogor.dev/sudoklify"
-    inceptionYear = 2023
-
-    sourceControlManagement(
-      Scm.Git(
-        owner = "teogor",
-        repo = "sudoklify",
-      ),
-    )
-
-    issueManagement(
-      IssueManagement.Git(
-        owner = "teogor",
-        repo = "sudoklify",
-      ),
-    )
-
-    version = createVersion(1, 0, 0) {
-      betaRelease(1)
-    }
-
-    project.version = version!!.toString()
-
-    addLicense(LicenseType.APACHE_2_0)
-
-    addDeveloper(TeogorDeveloper())
-
-    addContributor(TeogorContributor())
-  }
-
-  docsGenerator {
+  moduleMetadata {
     name = "Sudoklify"
-    dependencyGatheringType = DependencyType.NONE
-  }
-}
+    description = """
+    |Sudoklify stands as a versatile and user-friendly Sudoku puzzle generation library crafted in Kotlin. Effortlessly generate, manipulate, and solve Sudoku puzzles with ease.
+    |""".trimMargin()
 
-afterWindsPluginConfiguration { winds ->
-  val mavenPublish: MavenPublish by winds
-  if (mavenPublish.canBePublished) {
-    mavenPublishing {
-      publishToMavenCentral(SonatypeHost.S01)
-      signAllPublications()
+    yearCreated = 2023
+    websiteUrl = "https://source.teogor.dev/sudoklify/"
+    apiDocsUrl = "https://source.teogor.dev/sudoklify/html/"
 
-      @Suppress("UnstableApiUsage")
-      pom {
-        coordinates(
-          groupId = mavenPublish.groupId!!,
-          artifactId = mavenPublish.artifactId!!,
-          version = mavenPublish.version!!.toString(),
-        )
-        mavenPublish attachTo this
+    artifactDescriptor {
+      group = "dev.teogor.sudoklify"
+      name = "sudoklify"
+      version = createVersion(1, 0, 0) {
+        betaRelease(1)
       }
+      nameFormat = NameFormat.FULL
+      artifactIdFormat = ArtifactIdFormat.MODULE_NAME_ONLY
+    }
+
+    // Providing SCM (Source Control Management)
+    scm<GitHub> {
+      owner = "teogor"
+      repository = "sudoklify"
+    }
+
+    // Providing Ticket System
+    ticketSystem<TicketSystem.GitHub> {
+      owner = "teogor"
+      repository = "sudoklify"
+    }
+
+    // Providing Licenses
+    licensedUnder(License.Apache2())
+
+    // Providing Persons
+    person<Person.DeveloperContributor> {
+      id = "teogor"
+      name = "Teodor Grigor"
+      email = "open-source@teogor.dev"
+      url = "https://teogor.dev"
+      roles = listOf("Code Owner", "Developer", "Designer", "Maintainer")
+      timezone = "UTC+2"
+      organization = "Teogor"
+      organizationUrl = "https://github.com/teogor"
     }
   }
+
+  publishingOptions {
+    publish = false
+    enablePublicationSigning = true
+    optInForVanniktechPlugin = true
+    cascadePublish = true
+    sonatypeHost = SonatypeHost.S01
+  }
+
+  documentationBuilder {
+    htmlPath = "html/"
+  }
 }
-
-data class TeogorDeveloper(
-  override val id: String = "teogor",
-  override val name: String = "Teodor Grigor",
-  override val email: String = "open-source@teogor.dev",
-  override val url: String = "https://teogor.dev",
-  override val roles: List<String> = listOf("Code Owner", "Developer", "Designer", "Maintainer"),
-  override val timezone: String = "UTC+2",
-  override val organization: String = "Teogor",
-  override val organizationUrl: String = "https://github.com/teogor",
-) : Developer
-
-data class TeogorContributor(
-  override val name: String = "Teodor Grigor",
-  override val email: String = "open-source@teogor.dev",
-  override val url: String = "https://teogor.dev",
-  override val roles: List<String> = listOf("Code Owner", "Developer", "Designer", "Maintainer"),
-  override val timezone: String = "UTC+2",
-  override val organization: String = "Teogor",
-  override val organizationUrl: String = "https://github.com/teogor",
-  override val properties: Map<String, String> = emptyMap(),
-) : Contributor
 
 subprojects {
   apply<SpotlessPlugin>()

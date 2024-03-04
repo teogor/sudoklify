@@ -1,4 +1,4 @@
-## 🧩 Sudoklify 🧩
+# 🧩 Sudoklify 🧩
 
 ## Overview
 
@@ -55,60 +55,111 @@ Combining these transformations results in a staggering number of permutations p
 seed—2,437,996,216,320. This extensive variety guarantees that each puzzle is a uniquely captivating
 challenge. 🧠🧩🚀
 
-## Usage
+[//]: # (REGION-DEPENDENCIES)
 
-### Generating Sudoku Puzzles
+## Getting Started with Sudoklify
 
-To generate Sudoku puzzles using Sudoklify, follow these steps:
+**Adding Dependencies:**
 
-1. Add Sudoklify as a dependency in your project.
+* **Manual Setup:**  This section guides you through adding Sudoklify dependencies directly to your project's `build.gradle` files. ([Link to Manual Dependency Setup Section](#adding-sudoklify-dependencies-manually))
+* **Version Catalog (Recommended):** For a more streamlined approach, consider integrating a version catalog. This allows for centralized version management and easier updates. ([Link to Version Catalog Section](#managing-sudoklify-versions-with-version-catalog-recommended))
 
-2. Create a `ParamsBuilder` to configure the puzzle generation parameters.
+**Note:** If you prefer manual dependency setup, follow the instructions in the "Manual Setup" section. Otherwise, jump to the "Version Catalog" section for centralized management.
 
-```kotlin
-import dev.teogor.sudoklify.sudokuParamsBuilder
-import dev.teogor.sudoklify.model.Difficulty
-import dev.teogor.sudoklify.model.GameType
+For information on using the KAPT plugin, see the [KAPT documentation](https://kotlinlang.org/docs/kapt.html).  
+For information on using the KSP plugin, see the [KSP quick-start documentation](https://kotlinlang.org/docs/ksp-quickstart.html).  
+For more information about dependencies, see [Add Build Dependencies](https://developer.android.com/studio/build/dependencies).  
 
-// Configure puzzle generation parameters
-val sudokuParams = sudokuParamsBuilder {
-  difficulty { Difficulty.MEDIUM }
-  seed { createSeed(2024) }
-  type { GameType.ThreeByThree }
-}
-```
+### Adding Sudoklify Dependencies Manually
 
-3. Generate the Sudoku puzzle using the `generateSudoku` extension function.
+To use Sudoklify in your app, add the following dependencies to your app's `build.gradle` file:
 
-```kotlin
-import dev.teogor.sudoklify.extensions.generateSudoku
+=== "Groovy"
 
-val sudoku = sudokuParams.generateSudoku()
-```
+    ```groovy title="build.gradle"
+    dependencies {
+        def teogorSudoklify = "1.0.0-beta01"
+        
+        implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-seeds:$teogorSudoklify"
+    }
+    ```
 
-### Accessing Generated Sudoku
+=== "Kotlin"
 
-The `generatedSudoku` instance contains the puzzle and solution strings, difficulty level, and grid
-type. You can access these properties as follows:
+    ```kotlin title="build.gradle.kts"
+    dependencies {
+        val teogorSudoklify = "1.0.0-beta01"
+        
+        implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-seeds:$teogorSudoklify")
+    }
+    ```
 
-```kotlin
-val puzzleBoard = sudoku.puzzle
-val solutionBoard = sudoku.solution
-val difficulty = sudoku.difficulty
-val gameType = sudoku.gameType
+### Managing Sudoklify Versions with Version Catalog (Recommended)
 
-// Print the properties
-println("Puzzle Board: $puzzleBoard")
-println("Solution Board: $solutionBoard")
-println("Difficulty: $difficulty")
-println("Grid Type: $gameType")
-```
+This section guides you through utilizing a version catalog for centralized management of Sudoklify dependencies in your project. This approach simplifies updates and ensures consistency.
 
-**Getting Started**
+First, define the dependencies in the `libs.versions.toml` file:
 
-To get started with Sudoklify, refer to the comprehensive documentation available at
-[source.teogor.dev/sudoklify](https://source.teogor.dev/sudoklify). The documentation provides
-detailed explanations, examples, and best practices for using the library effectively.
+- **Group-Name Based:** This approach is used for declaring libraries referenced by group and artifact name.
+- **Module Based:** This approach is used for declaring libraries referenced by their module.
+
+=== "Group-Name Based"
+
+    ```toml title="gradle/libs.versions.toml"
+    [versions]
+    teogor-sudoklify = "1.0.0-beta01"
+    
+    [libraries]
+    teogor-sudoklify-common = { group = "dev.teogor.sudoklify", name = "sudoklify-common", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-core = { group = "dev.teogor.sudoklify", name = "sudoklify-core", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-ktx = { group = "dev.teogor.sudoklify", name = "sudoklify-ktx", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-seeds = { group = "dev.teogor.sudoklify", name = "sudoklify-seeds", version.ref = "teogor-sudoklify" }
+    ```
+
+=== "Module Based"
+
+    ```toml title="gradle/libs.versions.toml"
+    [versions]
+    teogor-sudoklify = "1.0.0-beta01"
+    
+    [libraries]
+    teogor-sudoklify-common = { module = "dev.teogor.sudoklify:sudoklify-common", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-core = { module = "dev.teogor.sudoklify:sudoklify-core", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-ktx = { module = "dev.teogor.sudoklify:sudoklify-ktx", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-seeds = { module = "dev.teogor.sudoklify:sudoklify-seeds", version.ref = "teogor-sudoklify" }
+    ```
+
+Then, add these dependencies in your app's `build.gradle` file:
+
+=== "Groovy"
+
+    ```groovy title="build.gradle"
+    dependencies {
+        implementation libs.teogor.sudoklify.common
+        implementation libs.teogor.sudoklify.core
+        implementation libs.teogor.sudoklify.ktx
+        implementation libs.teogor.sudoklify.seeds
+    }
+    ```
+
+=== "Kotlin"
+
+    ```kotlin title="build.gradle.kts"
+    dependencies {
+        implementation(libs.teogor.sudoklify.common)
+        implementation(libs.teogor.sudoklify.core)
+        implementation(libs.teogor.sudoklify.ktx)
+        implementation(libs.teogor.sudoklify.seeds)
+    }
+    ```
+
+[//]: # (REGION-DEPENDENCIES)
 
 ## Find this repository useful? 🩷
 
