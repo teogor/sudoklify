@@ -78,7 +78,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```groovy title="build.gradle"
     dependencies {
-        def teogorSudoklify = "1.0.0-beta01"
+        def teogorSudoklify = "1.0.0-beta02"
         
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
@@ -91,7 +91,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        val teogorSudoklify = "1.0.0-beta01"
+        val teogorSudoklify = "1.0.0-beta02"
         
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
@@ -113,7 +113,7 @@ First, define the dependencies in the `libs.versions.toml` file:
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    teogor-sudoklify = "1.0.0-beta01"
+    teogor-sudoklify = "1.0.0-beta02"
     
     [libraries]
     teogor-sudoklify-common = { group = "dev.teogor.sudoklify", name = "sudoklify-common", version.ref = "teogor-sudoklify" }
@@ -126,7 +126,7 @@ First, define the dependencies in the `libs.versions.toml` file:
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    teogor-sudoklify = "1.0.0-beta01"
+    teogor-sudoklify = "1.0.0-beta02"
     
     [libraries]
     teogor-sudoklify-common = { module = "dev.teogor.sudoklify:sudoklify-common", version.ref = "teogor-sudoklify" }
