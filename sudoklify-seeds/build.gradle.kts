@@ -20,15 +20,17 @@ plugins {
 }
 
 winds {
-  mavenPublish {
-    displayName = "Seeds"
-    name = "seeds"
+  moduleMetadata {
+    artifactDescriptor {
+      name = "Seeds"
+    }
   }
 }
 
 dependencies {
   implementation(project(":sudoklify-core"))
   implementation(project(":sudoklify-ktx"))
+
   testImplementation(libs.junit.jupiter)
 }
 

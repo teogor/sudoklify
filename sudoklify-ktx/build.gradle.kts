@@ -20,9 +20,10 @@ plugins {
 }
 
 winds {
-  mavenPublish {
-    displayName = "KTX"
-    name = "ktx"
+  moduleMetadata {
+    artifactDescriptor {
+      name = "KTX"
+    }
   }
 }
 
