@@ -16,12 +16,12 @@
 
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
-import com.vanniktech.maven.publish.SonatypeHost
 import dev.teogor.winds.api.ArtifactIdFormat
 import dev.teogor.winds.api.License
 import dev.teogor.winds.api.NameFormat
 import dev.teogor.winds.api.Person
 import dev.teogor.winds.api.Scm.GitHub
+import dev.teogor.winds.api.SonatypeHost
 import dev.teogor.winds.api.TicketSystem
 import dev.teogor.winds.ktx.createVersion
 import dev.teogor.winds.ktx.person
@@ -33,11 +33,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
+  alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
   alias(libs.plugins.teogor.winds)
   alias(libs.plugins.vanniktech.maven)
   alias(libs.plugins.jetbrains.dokka)
-  alias(libs.plugins.spotless)
-  alias(libs.plugins.api.validator)
+  alias(libs.plugins.diffplug.spotless)
+  alias(libs.plugins.jetbrains.kotlinx.binary.compatibility)
 }
 
 apply(from = "githooks.gradle.kts")
@@ -71,7 +72,7 @@ allprojects {
 }
 
 winds {
-  windsFeatures {
+  features {
     mavenPublishing = true
     docsGenerator = true
     workflowSynthesizer = true
@@ -125,11 +126,11 @@ winds {
     }
   }
 
-  publishingOptions {
-    publish = false
+  publishing {
+    enabled = false
     enablePublicationSigning = true
     optInForVanniktechPlugin = true
-    cascadePublish = true
+    cascade = true
     sonatypeHost = SonatypeHost.S01
   }
 
