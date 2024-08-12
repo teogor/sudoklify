@@ -21,6 +21,8 @@ sizes and difficulty levels.
 - Flexible token mapping system for personalized puzzle representation 🎨
 - Intuitive API for puzzle generation, population, and solution retrieval 🧩
 - Randomization techniques for puzzle layout and digit placement 🔀
+- Kotlin Multiplatform Support: Now available for JVM, WASM, iOS, macOS, Linux, TVOS, and WatchOS
+  platforms 🌍
 
 ## Sudoklify: Redefining Puzzle Generation
 
@@ -55,6 +57,19 @@ Combining these transformations results in a staggering number of permutations p
 seed—2,437,996,216,320. This extensive variety guarantees that each puzzle is a uniquely captivating
 challenge. 🧠🧩🚀
 
+## Kotlin Multiplatform Support
+
+Sudoklify is now available as a Kotlin Multiplatform project, supporting the following platforms:
+
+- **JVM**: Full support for JVM with Kotlin toolchain version 11.
+- **WASM**: WebAssembly support for browser and Node.js environments.
+- **iOS**: Native support for iOS devices, including x64, Arm64, and Simulator Arm64.
+- **macOS**: Native support for macOS devices, including x64 and Arm64.
+- **Linux**: Native support for Linux devices, including x64 and Arm64.
+- **TVOS**: Native support for tvOS devices, including x64, Arm64, and Simulator Arm64.
+- **WatchOS**: Native support for watchOS devices, including x64, Arm32, Arm64, Device Arm64, and
+  Simulator Arm64.
+
 [//]: # (REGION-DEPENDENCIES)
 
 ## Getting Started with Sudoklify
@@ -78,7 +93,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```groovy title="build.gradle"
     dependencies {
-        def teogorSudoklify = "1.0.0-beta02"
+        def teogorSudoklify = "1.0.0-beta03"
         
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
@@ -91,7 +106,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        val teogorSudoklify = "1.0.0-beta02"
+        val teogorSudoklify = "1.0.0-beta03"
         
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
@@ -113,7 +128,7 @@ First, define the dependencies in the `libs.versions.toml` file:
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    teogor-sudoklify = "1.0.0-beta02"
+    teogor-sudoklify = "1.0.0-beta03"
     
     [libraries]
     teogor-sudoklify-common = { group = "dev.teogor.sudoklify", name = "sudoklify-common", version.ref = "teogor-sudoklify" }
@@ -126,7 +141,7 @@ First, define the dependencies in the `libs.versions.toml` file:
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    teogor-sudoklify = "1.0.0-beta02"
+    teogor-sudoklify = "1.0.0-beta03"
     
     [libraries]
     teogor-sudoklify-common = { module = "dev.teogor.sudoklify:sudoklify-common", version.ref = "teogor-sudoklify" }
