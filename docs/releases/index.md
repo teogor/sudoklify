@@ -21,9 +21,9 @@ API Reference
 
 [//]: # (REGION-RELEASE-TABLE)
 
-| Latest Update    |  Stable Release  |  Release Candidate  |  Beta Release  |  Alpha Release  |
-|:-----------------|:----------------:|:-------------------:|:--------------:|:---------------:|
-| March 04, 2024   |        -         |          -          |  1.0.0-beta02  |        -        |
+| Latest Update     |  Stable Release  |  Release Candidate  |  Beta Release  |  Alpha Release  |
+|:------------------|:----------------:|:-------------------:|:--------------:|:---------------:|
+| August 12, 2024   |        -         |          -          |  1.0.0-beta03  |        -        |
 
 [//]: # (REGION-RELEASE-TABLE)
 
@@ -37,7 +37,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```groovy title="build.gradle"
     dependencies {
-        def teogorSudoklify = "1.0.0-beta02"
+        def teogorSudoklify = "1.0.0-beta03"
         
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
@@ -50,7 +50,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        val teogorSudoklify = "1.0.0-beta02"
+        val teogorSudoklify = "1.0.0-beta03"
         
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
@@ -78,6 +78,16 @@ for this library before you create a new one.
 [//]: # (REGION-VERSION-CHANGELOG)
 
 ### Version 1.0.0
+
+#### Version 1.0.0-beta03
+
+August 12, 2024
+
+[`dev.teogor.sudoklify:sudoklify-*:1.0.0-beta03`](https://github.com/teogor/sudoklify/releases/1.0.0-beta03) is released. [Version 1.0.0-beta03 contains these commits](https://github.com/teogor/sudoklify/compare/1.0.0-beta02...1.0.0-beta03)
+
+**Enhancement**
+
+* Convert JVM Library to Kotlin Multiplatform: Added support for JVM, WASM, iOS, macOS, Linux, TVOS, and WatchOS ([#68](https://github.com/teogor/sudoklify/issues/68)) by [@teogor](https://github.com/teogor)
 
 #### Version 1.0.0-beta02
 

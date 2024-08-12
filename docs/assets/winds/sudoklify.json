@@ -112,5 +112,62 @@
         "date": 1709527948
       }
     ]
+  },
+  {
+    "module": "dev.teogor.sudoklify:sudoklify",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0,
+      "flag": "Beta",
+      "versionQualifier": 3
+    },
+    "date": 1723462487,
+    "dependencies": [
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-common",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 3
+        },
+        "date": 1723462487
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-core",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 3
+        },
+        "date": 1723462487
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-ktx",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 3
+        },
+        "date": 1723462487
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-seeds",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 3
+        },
+        "date": 1723462487
+      }
+    ]
   }
 ]

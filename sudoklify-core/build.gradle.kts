@@ -25,7 +25,7 @@ plugins {
 winds {
   moduleMetadata {
     artifactDescriptor {
-      name = "KTX"
+      name = "Core"
     }
   }
 }

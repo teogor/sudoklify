@@ -92,7 +92,7 @@ winds {
       group = "dev.teogor.sudoklify"
       name = "sudoklify"
       version = createVersion(1, 0, 0) {
-        betaRelease(2)
+        betaRelease(3)
       }
       nameFormat = NameFormat.FULL
       artifactIdFormat = ArtifactIdFormat.MODULE_NAME_ONLY

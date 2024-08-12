@@ -79,13 +79,18 @@
 1.0.0-beta02:
   info: "March 04, 2024"
   sections:
-  - Enhancement:
-    - "Enable Consistent Sudoku Symbol Representation with `convertToSudokuSymbol` (#63) by @teogor"
-    - "Enhance SudokuPuzzle with Grid Generation from Given Cells (#62) by @teogor"
-    - "Enable User-Driven Sudoku Generation with Public SudokuGenerator (#60) by @teogor"
-    - "Improve Variable Naming for Clarity: uniqueDigitsCount & totalCells (#59) by @teogor"
-  - Bug Fixes:
-    - "Ensure Compatibility During Deprecation: Replace Deprecated Functions in createPuzzle() (#61) by @teogor"
-    - "Improve Variable Naming for Clarity: uniqueDigitsCount & totalCells (#59) by @teogor"
-  - Documentation:
-    - "Improve Documentation Clarity and User Guidance (#64) by @teogor"
+    - Enhancement:
+        - "Enable Consistent Sudoku Symbol Representation with `convertToSudokuSymbol` (#63) by @teogor"
+        - "Enhance SudokuPuzzle with Grid Generation from Given Cells (#62) by @teogor"
+        - "Enable User-Driven Sudoku Generation with Public SudokuGenerator (#60) by @teogor"
+        - "Improve Variable Naming for Clarity: uniqueDigitsCount & totalCells (#59) by @teogor"
+    - Bug Fixes:
+        - "Ensure Compatibility During Deprecation: Replace Deprecated Functions in createPuzzle() (#61) by @teogor"
+        - "Improve Variable Naming for Clarity: uniqueDigitsCount & totalCells (#59) by @teogor"
+    - Documentation:
+        - "Improve Documentation Clarity and User Guidance (#64) by @teogor"
+1.0.0-beta03:
+  info: "August 12, 2024"
+  sections:
+    - Enhancement:
+        - "Convert JVM Library to Kotlin Multiplatform: Added support for JVM, WASM, iOS, macOS, Linux, TVOS, and WatchOS (#68) by @teogor"
