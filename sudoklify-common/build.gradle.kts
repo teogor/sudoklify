@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+
 plugins {
-  alias(libs.plugins.jetbrains.kotlin.jvm)
+  alias(libs.plugins.jetbrains.kotlin.multiplatform)
   alias(libs.plugins.teogor.winds)
 }
 
@@ -27,10 +30,45 @@ winds {
   }
 }
 
-dependencies {
-  testImplementation(libs.junit.jupiter)
-}
+kotlin {
+  jvm {
+    kotlin {
+      jvmToolchain(11)
+    }
+  }
 
-tasks.test {
-  useJUnitPlatform()
+  @OptIn(ExperimentalWasmDsl::class)
+  wasmJs {
+    browser()
+    nodejs()
+  }
+
+  iosX64()
+  iosArm64()
+  iosSimulatorArm64()
+  macosX64()
+  macosArm64()
+  linuxX64()
+  linuxArm64()
+  tvosX64()
+  tvosArm64()
+  tvosSimulatorArm64()
+  watchosX64()
+  watchosArm32()
+  watchosArm64()
+  watchosDeviceArm64()
+  watchosSimulatorArm64()
+
+  sourceSets {
+    val commonTest by getting {
+      dependencies {
+        implementation(libs.jetbrains.kotlin.test)
+      }
+    }
+  }
+
+  @OptIn(ExperimentalKotlinGradlePluginApi::class)
+  compilerOptions {
+    freeCompilerArgs.add("-Xexpect-actual-classes")
+  }
 }

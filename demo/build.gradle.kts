@@ -17,35 +17,23 @@
 plugins {
   alias(libs.plugins.jetbrains.kotlin.jvm)
   alias(libs.plugins.teogor.winds)
-  id("application")
 }
 
 winds {
   moduleMetadata {
-    publishingOptions {
-      publish = false
+    publishing {
+      enabled = false
     }
   }
 }
 
-application {
-  mainClass.set("MainKt")
-}
-
 dependencies {
-  implementation(project(mapOf("path" to ":sudoklify-common")))
-  implementation(project(mapOf("path" to ":sudoklify-core")))
-  implementation(project(mapOf("path" to ":sudoklify-ktx")))
-  implementation(project(mapOf("path" to ":sudoklify-seeds")))
+  implementation(projects.sudoklifyCommon)
+  implementation(projects.sudoklifyCore)
+  implementation(projects.sudoklifyKtx)
+  implementation(projects.sudoklifySeeds)
 
-  implementation(libs.kotlin.stdlib)
-  implementation(libs.kotlinx.coroutines.core)
-  implementation(libs.gson)
-
-  testImplementation(libs.junit.jupiter)
+  implementation(libs.jetbrains.kotlin.stdlib)
+  implementation(libs.jetbrains.kotlinx.coroutines.core)
+  implementation(libs.google.gson)
 }
-
-tasks.test {
-  useJUnitPlatform()
-}
-
