@@ -28,12 +28,10 @@ winds {
 }
 
 dependencies {
-  implementation(projects.sudoklifyCommon)
   implementation(projects.sudoklifyCore)
-  implementation(projects.sudoklifyKtx)
-  implementation(projects.sudoklifySeeds)
+  implementation(projects.sudoklifyCommon)
+  implementation(projects.sudoklifyPresets)
 
   implementation(libs.jetbrains.kotlin.stdlib)
   implementation(libs.jetbrains.kotlinx.coroutines.core)
-  implementation(libs.google.gson)
 }

@@ -60,6 +60,11 @@ kotlin {
   watchosSimulatorArm64()
 
   sourceSets {
+    val commonMain by getting {
+      dependencies {
+        // Empty
+      }
+    }
     val commonTest by getting {
       dependencies {
         implementation(libs.jetbrains.kotlin.test)

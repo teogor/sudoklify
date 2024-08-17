@@ -1,147 +1,20 @@
-public abstract interface annotation class dev/teogor/sudoklify/common/InternalSudoklifyApi : java/lang/annotation/Annotation {
+public abstract interface annotation class dev/teogor/sudoklify/ExperimentalSudoklifyApi : java/lang/annotation/Annotation {
 }
 
-public final class dev/teogor/sudoklify/common/model/Sudoku {
-	public fun <init> ([[Ljava/lang/String;[[Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;)V
-	public final fun component1 ()[[Ljava/lang/String;
-	public final fun component2 ()[[Ljava/lang/String;
-	public final fun component3 ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun component4 ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public final fun copy ([[Ljava/lang/String;[[Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;)Ldev/teogor/sudoklify/common/model/Sudoku;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/Sudoku;[[Ljava/lang/String;[[Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;ILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/Sudoku;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDifficulty ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun getPuzzle ()[[Ljava/lang/String;
-	public final fun getSolution ()[[Ljava/lang/String;
-	public final fun getSudokuType ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public abstract interface annotation class dev/teogor/sudoklify/InternalSudoklifyApi : java/lang/annotation/Annotation {
 }
 
-public final class dev/teogor/sudoklify/common/model/SudokuBlueprint {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun component4 ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;)Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/SudokuBlueprint;Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;ILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDifficulty ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun getPuzzle ()Ljava/lang/String;
-	public final fun getSolution ()Ljava/lang/String;
-	public final fun getSudokuType ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public abstract interface annotation class dev/teogor/sudoklify/SudoklifyDsl : java/lang/annotation/Annotation {
 }
 
-public final class dev/teogor/sudoklify/common/model/SudokuParams {
-	public fun <init> ([Ldev/teogor/sudoklify/common/model/SudokuBlueprint;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/Seed;Ldev/teogor/sudoklify/common/types/SudokuType;)V
-	public final fun component1 ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
-	public final fun component2 ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun component3 ()Ldev/teogor/sudoklify/common/types/Seed;
-	public final fun component4 ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public final fun copy ([Ldev/teogor/sudoklify/common/model/SudokuBlueprint;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/Seed;Ldev/teogor/sudoklify/common/types/SudokuType;)Ldev/teogor/sudoklify/common/model/SudokuParams;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/SudokuParams;[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/Seed;Ldev/teogor/sudoklify/common/types/SudokuType;ILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/SudokuParams;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDifficulty ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun getSeed ()Ldev/teogor/sudoklify/common/types/Seed;
-	public final fun getSeeds ()[Ldev/teogor/sudoklify/common/model/SudokuBlueprint;
-	public final fun getSudokuType ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class dev/teogor/sudoklify/common/model/SudokuPuzzle {
-	public fun <init> (Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;Ldev/teogor/sudoklify/common/types/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
-	public synthetic fun <init> (Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;Ldev/teogor/sudoklify/common/types/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun component2 ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public final fun component3 ()Ldev/teogor/sudoklify/common/types/Seed;
-	public final fun component4 ()Ljava/util/List;
-	public final fun component5 ()Ljava/util/List;
-	public final fun component6 ()Ljava/util/List;
-	public final fun copy (Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;Ldev/teogor/sudoklify/common/types/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/SudokuPuzzle;Ldev/teogor/sudoklify/common/types/Difficulty;Ldev/teogor/sudoklify/common/types/SudokuType;Ldev/teogor/sudoklify/common/types/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getDifficulty ()Ldev/teogor/sudoklify/common/types/Difficulty;
-	public final fun getGivens ()Ljava/util/List;
-	public final fun getHints ()Ljava/util/List;
-	public final fun getSeed ()Ldev/teogor/sudoklify/common/types/Seed;
-	public final fun getSolution ()Ljava/util/List;
-	public final fun getSudokuType ()Ldev/teogor/sudoklify/common/types/SudokuType;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class dev/teogor/sudoklify/common/model/SudokuPuzzle$Givens {
-	public fun <init> (III)V
-	public final fun component1 ()I
-	public final fun component2 ()I
-	public final fun component3 ()I
-	public final fun copy (III)Ldev/teogor/sudoklify/common/model/SudokuPuzzle$Givens;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/SudokuPuzzle$Givens;IIIILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle$Givens;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCol ()I
-	public final fun getRow ()I
-	public final fun getValue ()I
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class dev/teogor/sudoklify/common/model/SudokuPuzzle$Hint {
-	public fun <init> (Ljava/lang/String;IILdev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;)V
-	public synthetic fun <init> (Ljava/lang/String;IILdev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()I
-	public final fun component3 ()I
-	public final fun component4 ()Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public final fun copy (Ljava/lang/String;IILdev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle$Hint;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/SudokuPuzzle$Hint;Ljava/lang/String;IILdev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;ILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle$Hint;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getCol ()I
-	public final fun getMessage ()Ljava/lang/String;
-	public final fun getRow ()I
-	public final fun getType ()Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class dev/teogor/sudoklify/common/model/SudokuPuzzle$HintType : java/lang/Enum {
-	public static final field BLOCK_ELIMINATION Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public static final field COL_ELIMINATION Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public static final field GUESS Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public static final field ROW_ELIMINATION Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-	public static fun values ()[Ldev/teogor/sudoklify/common/model/SudokuPuzzle$HintType;
-}
-
-public final class dev/teogor/sudoklify/common/model/SudokuSolution {
-	public fun <init> (JZI[[I)V
-	public final fun component1 ()J
-	public final fun component2 ()Z
-	public final fun component3 ()I
-	public final fun component4 ()[[I
-	public final fun copy (JZI[[I)Ldev/teogor/sudoklify/common/model/SudokuSolution;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/model/SudokuSolution;JZI[[IILjava/lang/Object;)Ldev/teogor/sudoklify/common/model/SudokuSolution;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getElapsedTime ()J
-	public final fun getSolutionFound ()Z
-	public final fun getSolvedGrid ()[[I
-	public final fun getStepCount ()I
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class dev/teogor/sudoklify/common/types/BoxCoordinates {
+public final class dev/teogor/sudoklify/components/BoxCoordinates {
 	public fun <init> (IIII)V
 	public final fun component1 ()I
 	public final fun component2 ()I
 	public final fun component3 ()I
 	public final fun component4 ()I
-	public final fun copy (IIII)Ldev/teogor/sudoklify/common/types/BoxCoordinates;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/types/BoxCoordinates;IIIIILjava/lang/Object;)Ldev/teogor/sudoklify/common/types/BoxCoordinates;
+	public final fun copy (IIII)Ldev/teogor/sudoklify/components/BoxCoordinates;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/components/BoxCoordinates;IIIIILjava/lang/Object;)Ldev/teogor/sudoklify/components/BoxCoordinates;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBottomRight ()Lkotlin/Pair;
 	public final fun getBottomRightCol ()I
@@ -155,69 +28,41 @@ public final class dev/teogor/sudoklify/common/types/BoxCoordinates {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/common/types/Difficulty : java/lang/Enum {
-	public static final field EASY Ldev/teogor/sudoklify/common/types/Difficulty;
-	public static final field HARD Ldev/teogor/sudoklify/common/types/Difficulty;
-	public static final field MEDIUM Ldev/teogor/sudoklify/common/types/Difficulty;
-	public static final field VERY_EASY Ldev/teogor/sudoklify/common/types/Difficulty;
-	public static final field VERY_HARD Ldev/teogor/sudoklify/common/types/Difficulty;
+public final class dev/teogor/sudoklify/components/BoxCoordinatesKt {
+	public static final fun contains (Ldev/teogor/sudoklify/components/BoxCoordinates;II)Z
+	public static final fun expand (Ldev/teogor/sudoklify/components/BoxCoordinates;II)Ldev/teogor/sudoklify/components/BoxCoordinates;
+	public static final fun intersect (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/BoxCoordinates;)Ldev/teogor/sudoklify/components/BoxCoordinates;
+	public static final fun toFormattedString (Ldev/teogor/sudoklify/components/BoxCoordinates;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/components/Difficulty : java/lang/Enum {
+	public static final field EASY Ldev/teogor/sudoklify/components/Difficulty;
+	public static final field HARD Ldev/teogor/sudoklify/components/Difficulty;
+	public static final field MEDIUM Ldev/teogor/sudoklify/components/Difficulty;
+	public static final field VERY_EASY Ldev/teogor/sudoklify/components/Difficulty;
+	public static final field VERY_HARD Ldev/teogor/sudoklify/components/Difficulty;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/common/types/Difficulty;
-	public static fun values ()[Ldev/teogor/sudoklify/common/types/Difficulty;
+	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/components/Difficulty;
+	public static fun values ()[Ldev/teogor/sudoklify/components/Difficulty;
 }
 
-public final class dev/teogor/sudoklify/common/types/GameType : java/lang/Enum {
-	public static final field EightDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field EightyOneDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field FifteenDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field FortyNineDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field FourDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field NineDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field SixDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field SixteenDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field SixtyFourDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field TenDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field ThirtySixDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field TwelveDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field TwentyFiveDigits Ldev/teogor/sudoklify/common/types/GameType;
-	public static final field Unspecified Ldev/teogor/sudoklify/common/types/GameType;
-	public final fun getCells ()I
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public final fun getGridHeight ()I
-	public final fun getGridWidth ()I
-	public final fun isSquare ()Z
-	public fun toString ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/common/types/GameType;
-	public static fun values ()[Ldev/teogor/sudoklify/common/types/GameType;
+public final class dev/teogor/sudoklify/components/DifficultyKt {
+	public static final fun toLabel (Ldev/teogor/sudoklify/components/Difficulty;[Ljava/lang/String;)Ljava/lang/String;
+	public static final fun toStars (Ldev/teogor/sudoklify/components/Difficulty;)Ljava/lang/String;
 }
 
-public abstract class dev/teogor/sudoklify/common/types/Seed : java/lang/Comparable {
-	public synthetic fun <init> (JLkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun compareTo (Ldev/teogor/sudoklify/common/types/Seed;)I
-	public synthetic fun compareTo (Ljava/lang/Object;)I
-	public final fun copy (Ljava/lang/Long;)Ldev/teogor/sudoklify/common/types/Seed;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/types/Seed;Ljava/lang/Long;ILjava/lang/Object;)Ldev/teogor/sudoklify/common/types/Seed;
-	public final fun getValue ()J
-	public fun nextSeed ()Ldev/teogor/sudoklify/common/types/Seed;
-	public final fun toRandom ()Lkotlin/random/Random;
-	public fun toString ()Ljava/lang/String;
+public final class dev/teogor/sudoklify/components/DifficultyLabelOutOfBoundsException : java/lang/IndexOutOfBoundsException {
+	public fun <init> (II)V
 }
 
-public final class dev/teogor/sudoklify/common/types/Seed$Explicit : dev/teogor/sudoklify/common/types/Seed {
-	public fun <init> (J)V
-}
-
-public final class dev/teogor/sudoklify/common/types/Seed$Random : dev/teogor/sudoklify/common/types/Seed {
-	public fun <init> ()V
-}
-
-public abstract class dev/teogor/sudoklify/common/types/SudokuType {
-	public synthetic fun <init> (Ldev/teogor/sudoklify/common/types/SudokuType$GridSize;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+public abstract class dev/teogor/sudoklify/components/Dimension {
+	public static final field Companion Ldev/teogor/sudoklify/components/Dimension$Companion;
+	public synthetic fun <init> (Ldev/teogor/sudoklify/components/Dimension$GridSize;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getBoxHeight ()I
 	public final fun getBoxWidth ()I
 	public final fun getCells ()I
 	public final fun getDigits ()I
-	public final fun getGridSize ()Ldev/teogor/sudoklify/common/types/SudokuType$GridSize;
+	public final fun getGridSize ()Ldev/teogor/sudoklify/components/Dimension$GridSize;
 	public final fun getHeight ()I
 	public final fun getName ()Ljava/lang/String;
 	public final fun getTotalCells ()I
@@ -227,12 +72,46 @@ public abstract class dev/teogor/sudoklify/common/types/SudokuType {
 	public final fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$GridSize {
+public final class dev/teogor/sudoklify/components/Dimension$Companion {
+	public final fun fromDigitCount (I)Ldev/teogor/sudoklify/components/Dimension;
+}
+
+public final class dev/teogor/sudoklify/components/Dimension$EightByEight : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$EightByEight;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+}
+
+public final class dev/teogor/sudoklify/components/Dimension$EightyOneByEightyOne : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$EightyOneByEightyOne;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+}
+
+public final class dev/teogor/sudoklify/components/Dimension$FifteenByFifteen : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$FifteenByFifteen;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+}
+
+public final class dev/teogor/sudoklify/components/Dimension$FortyNineByFortyNine : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$FortyNineByFortyNine;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+}
+
+public final class dev/teogor/sudoklify/components/Dimension$FourByFour : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$FourByFour;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+}
+
+public final class dev/teogor/sudoklify/components/Dimension$GridSize {
 	public fun <init> (II)V
 	public final fun component1 ()I
 	public final fun component2 ()I
-	public final fun copy (II)Ldev/teogor/sudoklify/common/types/SudokuType$GridSize;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/common/types/SudokuType$GridSize;IIILjava/lang/Object;)Ldev/teogor/sudoklify/common/types/SudokuType$GridSize;
+	public final fun copy (II)Ldev/teogor/sudoklify/components/Dimension$GridSize;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/components/Dimension$GridSize;IIILjava/lang/Object;)Ldev/teogor/sudoklify/components/Dimension$GridSize;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getHeight ()I
 	public final fun getWidth ()I
@@ -241,87 +120,117 @@ public final class dev/teogor/sudoklify/common/types/SudokuType$GridSize {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku10x10 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku10x10;
+public final class dev/teogor/sudoklify/components/Dimension$NineByNine : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$NineByNine;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku12x12 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku12x12;
+public final class dev/teogor/sudoklify/components/Dimension$SixBySix : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$SixBySix;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku15x15 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku15x15;
+public final class dev/teogor/sudoklify/components/Dimension$SixteenBySixteen : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$SixteenBySixteen;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku16x16 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku16x16;
+public final class dev/teogor/sudoklify/components/Dimension$SixtyFourBySixtyFour : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$SixtyFourBySixtyFour;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku25x25 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku25x25;
+public final class dev/teogor/sudoklify/components/Dimension$TenByTen : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$TenByTen;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku36x36 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku36x36;
+public final class dev/teogor/sudoklify/components/Dimension$ThirtySixByThirtySix : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$ThirtySixByThirtySix;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku49x49 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku49x49;
+public final class dev/teogor/sudoklify/components/Dimension$TwelveByTwelve : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$TwelveByTwelve;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku4x4 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku4x4;
+public final class dev/teogor/sudoklify/components/Dimension$TwentyFiveByTwentyFive : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$TwentyFiveByTwentyFive;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku64x64 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku64x64;
+public final class dev/teogor/sudoklify/components/Dimension$Unspecified : dev/teogor/sudoklify/components/Dimension {
+	public static final field INSTANCE Ldev/teogor/sudoklify/components/Dimension$Unspecified;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku6x6 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku6x6;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
+public final class dev/teogor/sudoklify/components/DimensionKt {
+	public static final fun Dimension (I)Ldev/teogor/sudoklify/components/Dimension;
+	public static final fun areCellsInSameBox (Ldev/teogor/sudoklify/components/Dimension;II)Z
+	public static final fun areCellsInSameBox (Ldev/teogor/sudoklify/components/Dimension;IIII)Z
+	public static final fun areCellsInSameColumn (Ldev/teogor/sudoklify/components/Dimension;II)Z
+	public static final fun areCellsInSameRow (Ldev/teogor/sudoklify/components/Dimension;II)Z
+	public static final fun areCellsRelated (Ldev/teogor/sudoklify/components/Dimension;IIII)Z
+	public static final fun getAllDigits (Ldev/teogor/sudoklify/components/Dimension;)Ljava/util/List;
+	public static final fun getBoxCoordinates (Ldev/teogor/sudoklify/components/Dimension;II)Ldev/teogor/sudoklify/components/BoxCoordinates;
+	public static final fun getBoxIndex (Ldev/teogor/sudoklify/components/Dimension;II)I
+	public static final fun getCellBoxColumnIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
+	public static final fun getCellBoxRowIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
+	public static final fun getCellColumnIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
+	public static final fun getCellRowIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
+	public static final fun isDigitValid (Ldev/teogor/sudoklify/components/Dimension;I)Z
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku81x81 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku81x81;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
+public final class dev/teogor/sudoklify/components/InvalidCellIndexException : java/lang/IllegalArgumentException {
+	public fun <init> (Ljava/lang/String;)V
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku8x8 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku8x8;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
+public final class dev/teogor/sudoklify/components/InvalidDimensionException : java/lang/IllegalArgumentException {
+	public fun <init> (I)V
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Sudoku9x9 : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Sudoku9x9;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
+public final class dev/teogor/sudoklify/components/InvalidRowOrColumnIndexException : java/lang/IllegalArgumentException {
+	public fun <init> (Ljava/lang/String;)V
 }
 
-public final class dev/teogor/sudoklify/common/types/SudokuType$Unspecified : dev/teogor/sudoklify/common/types/SudokuType {
-	public static final field INSTANCE Ldev/teogor/sudoklify/common/types/SudokuType$Unspecified;
+public final class dev/teogor/sudoklify/components/InvalidSeedException : java/lang/IllegalArgumentException {
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public abstract class dev/teogor/sudoklify/components/Seed : java/lang/Comparable {
+	public synthetic fun <init> (JLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun compareTo (Ldev/teogor/sudoklify/components/Seed;)I
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public final fun copy (Ljava/lang/Long;)Ldev/teogor/sudoklify/components/Seed;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/components/Seed;Ljava/lang/Long;ILjava/lang/Object;)Ldev/teogor/sudoklify/components/Seed;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()J
 	public fun hashCode ()I
+	public fun nextSeed ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun toRandom ()Lkotlin/random/Random;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/components/Seed$Explicit : dev/teogor/sudoklify/components/Seed {
+	public fun <init> (J)V
+}
+
+public final class dev/teogor/sudoklify/components/Seed$Random : dev/teogor/sudoklify/components/Seed {
+	public fun <init> ()V
+}
+
+public final class dev/teogor/sudoklify/components/SeedKt {
+	public static final fun createSeed (J)Ldev/teogor/sudoklify/components/Seed;
+	public static final fun toSeed (J)Ldev/teogor/sudoklify/components/Seed;
 }
 

@@ -34,8 +34,10 @@ dependencyResolutionManagement {
   }
 }
 
-include("demo")
+include(":demo")
 include(":sudoklify-common")
 include(":sudoklify-core")
-include(":sudoklify-ktx")
-include(":sudoklify-seeds")
+include(":sudoklify-io")
+include(":sudoklify-presets")
+include(":sudoklify-solver")
+include(":sudoklify-tokenizer")

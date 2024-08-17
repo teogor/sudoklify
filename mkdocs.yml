@@ -19,11 +19,13 @@ nav:
   - Home:
     - Overview: index.md
     - Seed: seed.md
-    - Sudoku Type: sudoku-type.md
+    - Components:
+      - Sudoku Dimension: dimension.md
     - J-Encoding For Sudoku Cells: j-encoding-for-sudoku-cells.md
   - Releases:
     - releases/index.md
     - Changelog:
+      - 1.0.0-beta03: releases/changelog/1.0.0-beta03.md
       - 1.0.0-beta02: releases/changelog/1.0.0-beta02.md
       - 1.0.0-beta01: releases/changelog/1.0.0-beta01.md
       - 1.0.0-alpha04: releases/changelog/1.0.0-alpha04.md

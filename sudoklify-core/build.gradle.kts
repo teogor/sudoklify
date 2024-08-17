@@ -25,7 +25,7 @@ plugins {
 winds {
   moduleMetadata {
     artifactDescriptor {
-      name = "Core"
+      name = "Beta"
     }
   }
 }
@@ -62,10 +62,10 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(projects.sudoklifyCommon)
-        api(projects.sudoklifyKtx)
-
         implementation(libs.jetbrains.kotlinx.datetime)
+        api(projects.sudoklifyCommon)
+        implementation(projects.sudoklifySolver)
+        api(projects.sudoklifyTokenizer)
       }
     }
     val commonTest by getting {
