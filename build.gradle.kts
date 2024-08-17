@@ -146,8 +146,8 @@ subprojects {
       target("**/*.kt")
       targetExclude(
         "**/build/**/*.kt",
-        "**/test/**",
         "**/seeds/**",
+        "**/dev/teogor/sudoklify/presets/**",
       )
 
       ktlint()

@@ -14,10 +14,48 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalSudoklifyApi::class)
+
 package dev.teogor.sudoklify.demo
 
-import kotlinx.coroutines.runBlocking
+import dev.teogor.sudoklify.ExperimentalSudoklifyApi
+import dev.teogor.sudoklify.SudoklifyArchitect
+import dev.teogor.sudoklify.components.Difficulty
+import dev.teogor.sudoklify.components.Dimension
+import dev.teogor.sudoklify.components.toSeed
+import dev.teogor.sudoklify.mapToSudokuBoard
+import dev.teogor.sudoklify.mapToSudokuString
+import dev.teogor.sudoklify.presets.loadPresetSchemas
+import dev.teogor.sudoklify.puzzle.SudokuSpec
+import dev.teogor.sudoklify.puzzle.generateGridWithGivens
+import dev.teogor.sudoklify.schema.SudokuSchemas
 
-fun main() =
-  runBlocking {
+fun main() {
+  val architect =
+    SudoklifyArchitect {
+      SudokuSchemas(loadPresetSchemas()) {
+        // TODO Optional: Add own schemas.
+        //  addAll(*), add(*)
+      }
+    }
+
+  val sudokuSpec =
+    SudokuSpec {
+      seed = 2024L.toSeed()
+      type = Dimension.NineByNine
+      difficulty = Difficulty.EASY
+    }
+  val sudokuPuzzle1 = architect.constructSudoku(sudokuSpec)
+  val sudokuPuzzle2 =
+    architect.constructSudoku {
+      seed = 2025L.toSeed()
+    }
+
+  val puzzles = listOf(sudokuPuzzle1, sudokuPuzzle2)
+  puzzles.forEach { puzzle ->
+    println(puzzle.generateGridWithGivens().mapToSudokuString())
+    println(
+      puzzle.generateGridWithGivens().mapToSudokuString().mapToSudokuBoard(puzzle.type),
+    )
   }
+}

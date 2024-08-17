@@ -1,82 +1,299 @@
-public final class dev/teogor/sudoklify/core/generation/ParamsBuilder {
+public final class dev/teogor/sudoklify/EmptySudokuSchemasException : java/lang/Exception {
 	public fun <init> ()V
-	public final fun build ()Ldev/teogor/sudoklify/common/model/SudokuParams;
 }
 
-public final class dev/teogor/sudoklify/core/generation/ParamsBuilderKt {
-	public static final fun difficulty (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
-	public static final fun seed (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
-	public static final fun seeds (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
-	public static final fun sudokuParamsBuilder (Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/common/model/SudokuParams;
-	public static final fun sudokuType (Ldev/teogor/sudoklify/core/generation/ParamsBuilder;Lkotlin/jvm/functions/Function0;)V
+public final class dev/teogor/sudoklify/SudoklifyArchitect {
+	public fun <init> (Ldev/teogor/sudoklify/schema/SudokuSchemas;)V
+	public final fun constructSudoku (Ldev/teogor/sudoklify/puzzle/SudokuSpec;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
+	public final fun constructSudoku (Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
 }
 
-public final class dev/teogor/sudoklify/core/generation/SudokuGenerator {
-	public fun <init> ([Ldev/teogor/sudoklify/common/model/SudokuBlueprint;Lkotlin/random/Random;Ldev/teogor/sudoklify/common/types/SudokuType;Ldev/teogor/sudoklify/common/types/Difficulty;)V
-	public final fun composeSudokuPuzzle ()Ldev/teogor/sudoklify/common/model/Sudoku;
-	public final fun createPuzzle ()Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
+public final class dev/teogor/sudoklify/SudoklifyArchitectKt {
+	public static final fun SudoklifyArchitect (Lkotlin/jvm/functions/Function0;)Ldev/teogor/sudoklify/SudoklifyArchitect;
 }
 
-public final class dev/teogor/sudoklify/core/generation/SudokuGeneratorKt {
-	public static final fun createPuzzle (Ldev/teogor/sudoklify/common/model/SudokuParams;)Ldev/teogor/sudoklify/common/model/SudokuPuzzle;
-	public static final fun generateSudoku (Ldev/teogor/sudoklify/common/model/SudokuParams;)Ldev/teogor/sudoklify/common/model/Sudoku;
+public final class dev/teogor/sudoklify/SudoklifyAssembler {
+	public fun <init> (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ldev/teogor/sudoklify/puzzle/SudokuSpec;Ldev/teogor/sudoklify/SudokuLayoutManipulator;Ldev/teogor/sudoklify/SudokuTokenMapper;Lkotlin/random/Random;)V
+	public final fun assembleSudoku ()Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
+	public final fun getSchemas ()Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun getSpec ()Ldev/teogor/sudoklify/puzzle/SudokuSpec;
 }
 
-public final class dev/teogor/sudoklify/core/io/BoardSerializationKt {
-	public static final fun generateTokenMap (I)Ljava/util/Map;
+public final class dev/teogor/sudoklify/SudoklifyAssembler$Factory {
+	public fun <init> (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ldev/teogor/sudoklify/puzzle/SudokuSpec;)V
+	public final fun createAssembler ()Ldev/teogor/sudoklify/SudoklifyAssembler;
 }
 
-public final class dev/teogor/sudoklify/core/io/SudokuParser {
-	public fun <init> (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;)V
-	public final fun toIntArray ()[[I
+public final class dev/teogor/sudoklify/SudoklifyAssemblerKt {
+	public static final fun SudoklifyAssembler (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ldev/teogor/sudoklify/puzzle/SudokuSpec;)Ldev/teogor/sudoklify/SudoklifyAssembler;
+	public static final fun SudoklifyAssembler (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ldev/teogor/sudoklify/puzzle/SudokuSpec;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
-public final class dev/teogor/sudoklify/core/io/SudokuParserKt {
-	public static final fun toSudokuIntArray (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;)[[I
+public final class dev/teogor/sudoklify/SudokuConversionsKt {
+	public static final fun mapIndexedToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/components/Dimension;Lkotlin/jvm/functions/Function3;)Ljava/util/List;
+	public static final fun mapToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/components/Dimension;)Ljava/util/List;
+	public static final fun mapToSudokuBoard (Ljava/lang/String;Ldev/teogor/sudoklify/components/Dimension;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun mapToSudokuString (Ljava/lang/Iterable;)Ljava/lang/String;
+	public static final fun mapToSudokuString (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/core/solver/SudokuSolver {
-	public fun <init> ([[ILdev/teogor/sudoklify/common/types/SudokuType;)V
-	public final fun solve ()Ldev/teogor/sudoklify/common/model/SudokuSolution;
+public abstract interface class dev/teogor/sudoklify/SudokuLayoutManipulator {
+	public static final field Companion Ldev/teogor/sudoklify/SudokuLayoutManipulator$Companion;
+	public abstract fun constructBase ()[[I
+	public abstract fun rotate ([[I)[[I
+	public abstract fun shuffle ([[I)[[I
 }
 
-public abstract class dev/teogor/sudoklify/core/tokenizer/Tokenizer {
-	public static final field Companion Ldev/teogor/sudoklify/core/tokenizer/Tokenizer$Companion;
-	public abstract fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
-	public abstract fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+public final class dev/teogor/sudoklify/SudokuLayoutManipulator$Companion {
+	public final fun default (ILkotlin/random/Random;)Ldev/teogor/sudoklify/SudokuLayoutManipulator;
 }
 
-public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$Companion {
-	public final fun create (I)Ldev/teogor/sudoklify/core/tokenizer/Tokenizer;
+public abstract interface class dev/teogor/sudoklify/SudokuTokenMapper {
+	public static final field Companion Ldev/teogor/sudoklify/SudokuTokenMapper$Companion;
+	public abstract fun getSequence-vp4DSYo ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
+	public abstract fun getTokenMap ()Ljava/util/Map;
 }
 
-public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$MultiDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
-	public fun <init> (I)V
-	public fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
-	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
+public final class dev/teogor/sudoklify/SudokuTokenMapper$Companion {
+	public final fun default (ILkotlin/random/Random;Ldev/teogor/sudoklify/tokenizer/Tokenizer;)Ldev/teogor/sudoklify/SudokuTokenMapper;
 }
 
-public final class dev/teogor/sudoklify/core/tokenizer/Tokenizer$SingleDigitTokenizer : dev/teogor/sudoklify/core/tokenizer/Tokenizer {
-	public static final field INSTANCE Ldev/teogor/sudoklify/core/tokenizer/Tokenizer$SingleDigitTokenizer;
+public final class dev/teogor/sudoklify/puzzle/SudokuPuzzle {
+	public fun <init> (Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+	public synthetic fun <init> (Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun component2 ()Ldev/teogor/sudoklify/components/Dimension;
+	public final fun component3 ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/util/List;
+	public final fun copy (Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
 	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDifficulty ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun getGivens ()Ljava/util/List;
+	public final fun getHints ()Ljava/util/List;
+	public final fun getSeed ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun getSolution ()Ljava/util/List;
+	public final fun getType ()Ldev/teogor/sudoklify/components/Dimension;
 	public fun hashCode ()I
-	public fun populateLayout ([[ILjava/lang/String;Ljava/util/Map;)[[Ljava/lang/String;
-	public fun replaceTokens (Ljava/lang/String;Ljava/util/Map;)Ljava/lang/String;
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/core/util/BoardConversionsKt {
-	public static final fun toBoard (Ljava/lang/String;I)[[Ljava/lang/String;
-	public static final fun toBoard (Ljava/lang/String;Ldev/teogor/sudoklify/common/types/SudokuType;)[[Ljava/lang/String;
-	public static final fun toSequenceString ([[Ljava/lang/String;)Ljava/lang/String;
+public final class dev/teogor/sudoklify/puzzle/SudokuPuzzle$Givens {
+	public fun <init> (III)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun copy (III)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$Givens;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$Givens;IIIILjava/lang/Object;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$Givens;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCol ()I
+	public final fun getRow ()I
+	public final fun getValue ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/core/util/GameTypeUtilsKt {
-	public static final fun findBySize (II)Ldev/teogor/sudoklify/common/types/GameType;
+public final class dev/teogor/sudoklify/puzzle/SudokuPuzzle$Hint {
+	public fun <init> (Ljava/lang/String;IILdev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;)V
+	public synthetic fun <init> (Ljava/lang/String;IILdev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4 ()Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public final fun copy (Ljava/lang/String;IILdev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$Hint;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$Hint;Ljava/lang/String;IILdev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;ILjava/lang/Object;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$Hint;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCol ()I
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getRow ()I
+	public final fun getType ()Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/core/util/RandomExtensionsKt {
-	public static final fun getRandomItem (Lkotlin/random/Random;Ljava/util/List;)Ljava/lang/Object;
+public final class dev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType : java/lang/Enum {
+	public static final field BLOCK_ELIMINATION Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public static final field COL_ELIMINATION Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public static final field GUESS Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public static final field ROW_ELIMINATION Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+	public static fun values ()[Ldev/teogor/sudoklify/puzzle/SudokuPuzzle$HintType;
+}
+
+public final class dev/teogor/sudoklify/puzzle/SudokuPuzzleKt {
+	public static final fun generateGridWithGivens (Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;)Ljava/util/List;
+}
+
+public final class dev/teogor/sudoklify/puzzle/SudokuSpec {
+	public fun <init> (Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Difficulty;)V
+	public final fun component1 ()Ldev/teogor/sudoklify/components/Dimension;
+	public final fun component2 ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun component3 ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun copy (Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Difficulty;)Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/puzzle/SudokuSpec;Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Difficulty;ILjava/lang/Object;)Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDifficulty ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun getSeed ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun getType ()Ldev/teogor/sudoklify/components/Dimension;
+	public fun hashCode ()I
+	public final fun toBuilder ()Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/puzzle/SudokuSpec$Builder {
+	public fun <init> ()V
+	public fun <init> (Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Dimension;)V
+	public synthetic fun <init> (Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Dimension;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun build ()Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+	public final fun component1 ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun component2 ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun component3 ()Ldev/teogor/sudoklify/components/Dimension;
+	public final fun copy (Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Dimension;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Seed;Ldev/teogor/sudoklify/components/Dimension;ILjava/lang/Object;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public final fun difficulty (Ldev/teogor/sudoklify/components/Difficulty;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public final fun difficulty (Lkotlin/jvm/functions/Function0;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDifficulty ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun getSeed ()Ldev/teogor/sudoklify/components/Seed;
+	public final fun getType ()Ldev/teogor/sudoklify/components/Dimension;
+	public fun hashCode ()I
+	public final fun seed (Ldev/teogor/sudoklify/components/Seed;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public final fun seed (Lkotlin/jvm/functions/Function0;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public final fun setDifficulty (Ldev/teogor/sudoklify/components/Difficulty;)V
+	public final fun setSeed (Ldev/teogor/sudoklify/components/Seed;)V
+	public final fun setType (Ldev/teogor/sudoklify/components/Dimension;)V
+	public fun toString ()Ljava/lang/String;
+	public final fun type (Ldev/teogor/sudoklify/components/Dimension;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+	public final fun type (Lkotlin/jvm/functions/Function0;)Ldev/teogor/sudoklify/puzzle/SudokuSpec$Builder;
+}
+
+public final class dev/teogor/sudoklify/puzzle/SudokuSpecKt {
+	public static final fun SudokuSpec (Ldev/teogor/sudoklify/puzzle/SudokuSpec;Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+	public static final fun SudokuSpec (Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+}
+
+public final class dev/teogor/sudoklify/random/SeededRandom : kotlin/random/Random {
+	public fun <init> (Ldev/teogor/sudoklify/components/Seed;)V
+	public fun nextBits (I)I
+	public fun nextBoolean ()Z
+	public fun nextBytes (I)[B
+	public fun nextBytes ([B)[B
+	public fun nextBytes ([BII)[B
+	public fun nextDouble ()D
+	public fun nextDouble (D)D
+	public fun nextDouble (DD)D
+	public fun nextFloat ()F
+	public fun nextInt ()I
+	public fun nextInt (I)I
+	public fun nextInt (II)I
+	public fun nextLong ()J
+	public fun nextLong (J)J
+	public fun nextLong (JJ)J
+}
+
+public final class dev/teogor/sudoklify/random/SeededRandomKt {
+	public static final fun randomItem (Ljava/lang/Iterable;Lkotlin/random/Random;)Ljava/lang/Object;
+	public static final fun randomItem ([Ljava/lang/Object;Lkotlin/random/Random;)Ljava/lang/Object;
+	public static final fun randomOrderFactor (Lkotlin/random/Random;)I
 	public static final fun sortRandom (Lkotlin/random/Random;)I
+}
+
+public final class dev/teogor/sudoklify/schema/NoSchemasForDifficultyException : java/lang/Exception {
+	public fun <init> (Ldev/teogor/sudoklify/components/Difficulty;)V
+}
+
+public final class dev/teogor/sudoklify/schema/NoSchemasForTypeException : java/lang/Exception {
+	public fun <init> (Ldev/teogor/sudoklify/components/Dimension;)V
+}
+
+public final class dev/teogor/sudoklify/schema/SudokuSchema {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun copy-az4vbBk (Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;)Ldev/teogor/sudoklify/schema/SudokuSchema;
+	public static synthetic fun copy-az4vbBk$default (Ldev/teogor/sudoklify/schema/SudokuSchema;Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;ILjava/lang/Object;)Ldev/teogor/sudoklify/schema/SudokuSchema;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDifficulty ()Ldev/teogor/sudoklify/components/Difficulty;
+	public final fun getDimension ()Ldev/teogor/sudoklify/components/Dimension;
+	public final fun getPuzzle-DKcdQMk ()Ljava/lang/String;
+	public final fun getSolution-DKcdQMk ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/schema/SudokuSchemaKt {
+	public static final fun SudokuSchema (Ljava/lang/String;Ljava/lang/String;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Dimension;)Ldev/teogor/sudoklify/schema/SudokuSchema;
+}
+
+public final class dev/teogor/sudoklify/schema/SudokuSchemas : java/util/Collection, kotlin/jvm/internal/markers/KMappedMarker {
+	public fun <init> (Ljava/util/List;)V
+	public fun add (Ldev/teogor/sudoklify/schema/SudokuSchema;)Z
+	public synthetic fun add (Ljava/lang/Object;)Z
+	public fun addAll (Ljava/util/Collection;)Z
+	public fun clear ()V
+	public fun contains (Ldev/teogor/sudoklify/schema/SudokuSchema;)Z
+	public final fun contains (Ljava/lang/Object;)Z
+	public fun containsAll (Ljava/util/Collection;)Z
+	public final fun copy (Ljava/util/List;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ljava/util/List;ILjava/lang/Object;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun countByDifficulty ()Ljava/util/Map;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun findByDifficulty (Ldev/teogor/sudoklify/components/Difficulty;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun findBySudokuType (Ldev/teogor/sudoklify/components/Dimension;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun getSeedsByDifficulty (Ldev/teogor/sudoklify/components/Difficulty;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun getSeedsBySize (Ldev/teogor/sudoklify/components/Dimension;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public fun getSize ()I
+	public final fun getUniqueSudokuTypes ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun isEmpty ()Z
+	public fun iterator ()Ljava/util/Iterator;
+	public final fun plus (Ldev/teogor/sudoklify/schema/SudokuSchema;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun plus (Ldev/teogor/sudoklify/schema/SudokuSchemas;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public final fun plus (Ljava/util/Collection;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public fun remove (Ljava/lang/Object;)Z
+	public fun removeAll (Ljava/util/Collection;)Z
+	public fun removeIf (Ljava/util/function/Predicate;)Z
+	public fun retainAll (Ljava/util/Collection;)Z
+	public final fun size ()I
+	public fun toArray ()[Ljava/lang/Object;
+	public fun toArray ([Ljava/lang/Object;)[Ljava/lang/Object;
+	public final fun toBuilder ()Ldev/teogor/sudoklify/schema/SudokuSchemas$Builder;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/schema/SudokuSchemas$Builder {
+	public fun <init> ()V
+	public final fun add (Ldev/teogor/sudoklify/schema/SudokuSchema;)Ldev/teogor/sudoklify/schema/SudokuSchemas$Builder;
+	public final fun add ([Ldev/teogor/sudoklify/schema/SudokuSchema;)Ldev/teogor/sudoklify/schema/SudokuSchemas$Builder;
+	public final fun addAll (Ljava/lang/Iterable;)Ldev/teogor/sudoklify/schema/SudokuSchemas$Builder;
+	public final fun build ()Ldev/teogor/sudoklify/schema/SudokuSchemas;
+}
+
+public final class dev/teogor/sudoklify/schema/SudokuSchemasKt {
+	public static final fun SudokuSchemas (Ldev/teogor/sudoklify/schema/SudokuSchemas;Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public static final fun SudokuSchemas (Lkotlin/jvm/functions/Function1;)Ldev/teogor/sudoklify/schema/SudokuSchemas;
+	public static final fun addAll (Ldev/teogor/sudoklify/schema/SudokuSchemas$Builder;[Ldev/teogor/sudoklify/schema/SudokuSchema;)V
+	public static final fun requireSchemasForDifficulty (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ldev/teogor/sudoklify/components/Difficulty;)V
+	public static final fun requireSchemasForType (Ldev/teogor/sudoklify/schema/SudokuSchemas;Ldev/teogor/sudoklify/components/Dimension;)V
+}
+
+public final class dev/teogor/sudoklify/util/BoardConversionsKt {
+	public static final fun toBoard (Ljava/lang/String;Ldev/teogor/sudoklify/components/Dimension;)[[Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/util/HashCodeBuilder {
+	public fun <init> ()V
+	public fun <init> (II)V
+	public synthetic fun <init> (IIILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun append (Ljava/lang/Object;)Ldev/teogor/sudoklify/util/HashCodeBuilder;
+	public final fun build ()I
+}
+
+public final class dev/teogor/sudoklify/util/HashCodeBuilderKt {
+	public static final fun buildHashCode (IILkotlin/jvm/functions/Function1;)I
+	public static synthetic fun buildHashCode$default (IILkotlin/jvm/functions/Function1;ILjava/lang/Object;)I
+	public static final fun buildLazyHashCode (Lkotlin/jvm/functions/Function1;)Lkotlin/Lazy;
+	public static final fun lazyHashCode (Lkotlin/jvm/functions/Function0;)Lkotlin/Lazy;
 }
 

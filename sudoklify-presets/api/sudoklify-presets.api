@@ -1,0 +1,20 @@
+public final class dev/teogor/sudoklify/presets/FourDigitsSchemasKt {
+	public static final fun getFourDigitsSchemas ()[Ldev/teogor/sudoklify/schema/SudokuSchema;
+}
+
+public final class dev/teogor/sudoklify/presets/NineDigitsSchemasKt {
+	public static final fun getNineDigitsSchemas ()[Ldev/teogor/sudoklify/schema/SudokuSchema;
+}
+
+public final class dev/teogor/sudoklify/presets/PresetSchemasKt {
+	public static final fun loadPresetSchemas ()Ldev/teogor/sudoklify/schema/SudokuSchemas;
+}
+
+public final class dev/teogor/sudoklify/presets/SixteenDigitsSchemasKt {
+	public static final fun getSixteenDigitsSchemas ()[Ldev/teogor/sudoklify/schema/SudokuSchema;
+}
+
+public final class dev/teogor/sudoklify/presets/TwentyFiveDigitsSchemasKt {
+	public static final fun getTwentyFiveDigitsSchemas ()[Ldev/teogor/sudoklify/schema/SudokuSchema;
+}
+

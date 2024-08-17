@@ -59,51 +59,48 @@ challenge. 🧠🧩🚀
 
 ## Usage
 
-### Generating Sudoku Puzzles
-
 To generate Sudoku puzzles using Sudoklify, follow these steps:
 
-1. Add Sudoklify as a dependency in your project.
-
-2. Create a `ParamsBuilder` to configure the puzzle generation parameters.
+1. **Initialize the Architect**: Start by creating a `SudoklifyArchitect` instance. This allows you
+   to load preset schemas and optionally add your own custom schemas.
 
 ```kotlin
-import dev.teogor.sudoklify.sudokuParamsBuilder
-import dev.teogor.sudoklify.model.Difficulty
-import dev.teogor.sudoklify.model.GameType
-
-// Configure puzzle generation parameters
-val sudokuParams = sudokuParamsBuilder {
-  difficulty { Difficulty.MEDIUM }
-  seed { createSeed(2024) }
-  type { GameType.ThreeByThree }
+val architect = SudoklifyArchitect {
+    SudokuSchemas(loadPresetSchemas()) {
+        // TODO Optional: Add own schemas using add(*), addAll(*)
+    }
 }
 ```
 
-3. Generate the Sudoku puzzle using the `generateSudoku` extension function.
+2. **Define the Sudoku Specification**: Create a `SudokuSpec` to specify the puzzle's seed, grid
+   dimension, and difficulty level.
 
 ```kotlin
-import dev.teogor.sudoklify.extensions.generateSudoku
-
-val sudoku = sudokuParams.generateSudoku()
+val sudokuSpec = SudokuSpec {
+  seed = 2024L.toSeed()
+  type = Dimension.NineByNine
+  difficulty = Difficulty.EASY
+}
 ```
 
-### Accessing Generated Sudoku
-
-The `generatedSudoku` instance contains the puzzle and solution strings, difficulty level, and grid
-type. You can access these properties as follows:
+3. **Generate Sudoku Puzzles**: Use the `SudoklifyArchitect` to construct Sudoku puzzles based on
+   the defined specifications.
 
 ```kotlin
-val puzzleBoard = sudoku.puzzle
-val solutionBoard = sudoku.solution
-val difficulty = sudoku.difficulty
-val gameType = sudoku.gameType
+val sudokuPuzzle1 = architect.constructSudoku(sudokuSpec)
+val sudokuPuzzle2 = architect.constructSudoku {
+  seed = 2025L.toSeed()
+}
+```
 
-// Print the properties
-println("Puzzle Board: $puzzleBoard")
-println("Solution Board: $solutionBoard")
-println("Difficulty: $difficulty")
-println("Grid Type: $gameType")
+4. **Process and Print the Puzzles**: Iterate through the generated puzzles and print their grids.
+
+```kotlin
+val puzzles = listOf(sudokuPuzzle1, sudokuPuzzle2)
+puzzles.forEach { puzzle ->
+  println(puzzle.generateGridWithGivens().mapToSudokuString())
+  println(puzzle.generateGridWithGivens().mapToSudokuString().mapToSudokuBoard(puzzle.type))
+}
 ```
 
 ## Kotlin Multiplatform Support

@@ -1,0 +1,13 @@
+public final class dev/teogor/sudoklify/io/BoardSerializationKt {
+	public static final fun generateTokenMap (I)Ljava/util/Map;
+}
+
+public final class dev/teogor/sudoklify/io/SudokuParser {
+	public fun <init> (Ljava/lang/String;Ldev/teogor/sudoklify/components/Dimension;)V
+	public final fun toIntArray ()[[I
+}
+
+public final class dev/teogor/sudoklify/io/SudokuParserKt {
+	public static final fun toSudokuIntArray (Ljava/lang/String;Ldev/teogor/sudoklify/components/Dimension;)[[I
+}
+

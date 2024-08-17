@@ -70,6 +70,52 @@ Sudoklify is now available as a Kotlin Multiplatform project, supporting the fol
 - **WatchOS**: Native support for watchOS devices, including x64, Arm32, Arm64, Device Arm64, and
   Simulator Arm64.
 
+## Usage
+
+To generate Sudoku puzzles using Sudoklify, follow these steps:
+
+1. **Initialize the Architect**: Start by creating a `SudoklifyArchitect` instance. This allows you
+   to load preset schemas and optionally add your own custom schemas.
+
+```kotlin
+val architect = SudoklifyArchitect {
+    SudokuSchemas(loadPresetSchemas()) {
+        // TODO Optional: Add own schemas using add(*), addAll(*)
+    }
+}
+```
+
+2. **Define the Sudoku Specification**: Create a `SudokuSpec` to specify the puzzle's seed, grid
+   dimension, and difficulty level.
+
+```kotlin
+val sudokuSpec = SudokuSpec {
+  seed = 2024L.toSeed()
+  type = Dimension.NineByNine
+  difficulty = Difficulty.EASY
+}
+```
+
+3. **Generate Sudoku Puzzles**: Use the `SudoklifyArchitect` to construct Sudoku puzzles based on
+   the defined specifications.
+
+```kotlin
+val sudokuPuzzle1 = architect.constructSudoku(sudokuSpec)
+val sudokuPuzzle2 = architect.constructSudoku {
+  seed = 2025L.toSeed()
+}
+```
+
+4. **Process and Print the Puzzles**: Iterate through the generated puzzles and print their grids.
+
+```kotlin
+val puzzles = listOf(sudokuPuzzle1, sudokuPuzzle2)
+puzzles.forEach { puzzle ->
+  println(puzzle.generateGridWithGivens().mapToSudokuString())
+  println(puzzle.generateGridWithGivens().mapToSudokuString().mapToSudokuBoard(puzzle.type))
+}
+```
+
 [//]: # (REGION-DEPENDENCIES)
 
 ## Getting Started with Sudoklify
@@ -81,9 +127,9 @@ Sudoklify is now available as a Kotlin Multiplatform project, supporting the fol
 
 **Note:** If you prefer manual dependency setup, follow the instructions in the "Manual Setup" section. Otherwise, jump to the "Version Catalog" section for centralized management.
 
-For information on using the KAPT plugin, see the [KAPT documentation](https://kotlinlang.org/docs/kapt.html).  
-For information on using the KSP plugin, see the [KSP quick-start documentation](https://kotlinlang.org/docs/ksp-quickstart.html).  
-For more information about dependencies, see [Add Build Dependencies](https://developer.android.com/studio/build/dependencies).  
+For information on using the KAPT plugin, see the [KAPT documentation](https://kotlinlang.org/docs/kapt.html).
+For information on using the KSP plugin, see the [KSP quick-start documentation](https://kotlinlang.org/docs/ksp-quickstart.html).
+For more information about dependencies, see [Add Build Dependencies](https://developer.android.com/studio/build/dependencies).
 
 ### Adding Sudoklify Dependencies Manually
 
@@ -94,7 +140,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
     ```groovy title="build.gradle"
     dependencies {
         def teogorSudoklify = "1.0.0-beta03"
-        
+
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify"
@@ -107,7 +153,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
     ```kotlin title="build.gradle.kts"
     dependencies {
         val teogorSudoklify = "1.0.0-beta03"
-        
+
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify")
@@ -129,7 +175,7 @@ First, define the dependencies in the `libs.versions.toml` file:
     ```toml title="gradle/libs.versions.toml"
     [versions]
     teogor-sudoklify = "1.0.0-beta03"
-    
+
     [libraries]
     teogor-sudoklify-common = { group = "dev.teogor.sudoklify", name = "sudoklify-common", version.ref = "teogor-sudoklify" }
     teogor-sudoklify-core = { group = "dev.teogor.sudoklify", name = "sudoklify-core", version.ref = "teogor-sudoklify" }
@@ -142,7 +188,7 @@ First, define the dependencies in the `libs.versions.toml` file:
     ```toml title="gradle/libs.versions.toml"
     [versions]
     teogor-sudoklify = "1.0.0-beta03"
-    
+
     [libraries]
     teogor-sudoklify-common = { module = "dev.teogor.sudoklify:sudoklify-common", version.ref = "teogor-sudoklify" }
     teogor-sudoklify-core = { module = "dev.teogor.sudoklify:sudoklify-core", version.ref = "teogor-sudoklify" }
