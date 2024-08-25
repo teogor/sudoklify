@@ -13,7 +13,7 @@ API Reference
 [`dev.teogor.sudoklify:sudoklify-*`](../html/)  
 [`dev.teogor.sudoklify:sudoklify`](../html/demo)  
 [`dev.teogor.sudoklify:sudoklify-common`](../html/sudoklify-common)  
-[`dev.teogor.sudoklify:sudoklify-beta`](../html/sudoklify-core)  
+[`dev.teogor.sudoklify:sudoklify-core`](../html/sudoklify-core)  
 [`dev.teogor.sudoklify:sudoklify-io`](../html/sudoklify-io)  
 [`dev.teogor.sudoklify:sudoklify-presets`](../html/sudoklify-presets)  
 [`dev.teogor.sudoklify:sudoklify-solver`](../html/sudoklify-solver)  
@@ -42,7 +42,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
         def teogorSudoklify = "1.0.0-beta04"
         
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-beta:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-io:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-presets:$teogorSudoklify"
         implementation "dev.teogor.sudoklify:sudoklify-solver:$teogorSudoklify"
@@ -57,7 +57,7 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
         val teogorSudoklify = "1.0.0-beta04"
         
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-beta:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-io:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-presets:$teogorSudoklify")
         implementation("dev.teogor.sudoklify:sudoklify-solver:$teogorSudoklify")
