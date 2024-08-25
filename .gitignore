@@ -47,6 +47,3 @@ demo/src/main/resources/raw/sudoku-puzzle.txt
 
 #Kotlin
 .kotlin
-
-# Ignore Kotlin/JS build artifacts
-kotlin-js-store/
