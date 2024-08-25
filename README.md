@@ -21,7 +21,7 @@ sizes and difficulty levels.
 - Flexible token mapping system for personalized puzzle representation 🎨
 - Intuitive API for puzzle generation, population, and solution retrieval 🧩
 - Randomization techniques for puzzle layout and digit placement 🔀
-- Kotlin Multiplatform Support: Now available for JVM, WASM, iOS, macOS, Linux, TVOS, and WatchOS
+- Kotlin Multiplatform Support: Now available for JVM, JS(IR), WASM, iOS, macOS, Linux, TVOS, and WatchOS
   platforms 🌍
 
 ## Sudoklify: Redefining Puzzle Generation
@@ -108,6 +108,7 @@ puzzles.forEach { puzzle ->
 Sudoklify is now available as a Kotlin Multiplatform project, supporting the following platforms:
 
 - **JVM**: Full support for JVM with Kotlin toolchain version 11.
+- **JavaScript (JS)**: Supports both browser and Node.js environments using Kotlin/JS IR backend.
 - **WASM**: WebAssembly support for browser and Node.js environments.
 - **iOS**: Native support for iOS devices, including x64, Arm64, and Simulator Arm64.
 - **macOS**: Native support for macOS devices, including x64 and Arm64.
