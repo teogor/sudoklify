@@ -1,6 +1,5 @@
 [versions]
 dokka = "1.9.20"
-gson = "2.11.0"
 jetbrains-kotlinx-binary-compatibility = "0.16.3"
 jetbrains-kotlinx-coroutines = "1.8.1"
 jetbrains-kotlinx-datetime = "0.6.0"
@@ -10,7 +9,6 @@ teogor-winds = "1.0.2"
 vanniktech-maven = "0.29.0"
 
 [libraries]
-google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 jetbrains-kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "jetbrains-kotlinx-coroutines" }
 jetbrains-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 jetbrains-kotlin-test = "org.jetbrains.kotlin:kotlin-test:2.0.0"

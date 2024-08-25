@@ -128,9 +128,9 @@ puzzles.forEach { puzzle ->
 
 **Note:** If you prefer manual dependency setup, follow the instructions in the "Manual Setup" section. Otherwise, jump to the "Version Catalog" section for centralized management.
 
-For information on using the KAPT plugin, see the [KAPT documentation](https://kotlinlang.org/docs/kapt.html).
-For information on using the KSP plugin, see the [KSP quick-start documentation](https://kotlinlang.org/docs/ksp-quickstart.html).
-For more information about dependencies, see [Add Build Dependencies](https://developer.android.com/studio/build/dependencies).
+For information on using the KAPT plugin, see the [KAPT documentation](https://kotlinlang.org/docs/kapt.html).  
+For information on using the KSP plugin, see the [KSP quick-start documentation](https://kotlinlang.org/docs/ksp-quickstart.html).  
+For more information about dependencies, see [Add Build Dependencies](https://developer.android.com/studio/build/dependencies).  
 
 ### Adding Sudoklify Dependencies Manually
 
@@ -140,12 +140,14 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```groovy title="build.gradle"
     dependencies {
-        def teogorSudoklify = "1.0.0-beta03"
-
+        def teogorSudoklify = "1.0.0-beta04"
+        
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-seeds:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-beta:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-io:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-presets:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-solver:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-tokenizer:$teogorSudoklify"
     }
     ```
 
@@ -153,12 +155,14 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        val teogorSudoklify = "1.0.0-beta03"
-
+        val teogorSudoklify = "1.0.0-beta04"
+        
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-seeds:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-beta:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-io:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-presets:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-solver:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-tokenizer:$teogorSudoklify")
     }
     ```
 
@@ -175,26 +179,30 @@ First, define the dependencies in the `libs.versions.toml` file:
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    teogor-sudoklify = "1.0.0-beta03"
-
+    teogor-sudoklify = "1.0.0-beta04"
+    
     [libraries]
     teogor-sudoklify-common = { group = "dev.teogor.sudoklify", name = "sudoklify-common", version.ref = "teogor-sudoklify" }
-    teogor-sudoklify-core = { group = "dev.teogor.sudoklify", name = "sudoklify-core", version.ref = "teogor-sudoklify" }
-    teogor-sudoklify-ktx = { group = "dev.teogor.sudoklify", name = "sudoklify-ktx", version.ref = "teogor-sudoklify" }
-    teogor-sudoklify-seeds = { group = "dev.teogor.sudoklify", name = "sudoklify-seeds", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-beta = { group = "dev.teogor.sudoklify", name = "sudoklify-beta", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-io = { group = "dev.teogor.sudoklify", name = "sudoklify-io", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-presets = { group = "dev.teogor.sudoklify", name = "sudoklify-presets", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-solver = { group = "dev.teogor.sudoklify", name = "sudoklify-solver", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-tokenizer = { group = "dev.teogor.sudoklify", name = "sudoklify-tokenizer", version.ref = "teogor-sudoklify" }
     ```
 
 === "Module Based"
 
     ```toml title="gradle/libs.versions.toml"
     [versions]
-    teogor-sudoklify = "1.0.0-beta03"
-
+    teogor-sudoklify = "1.0.0-beta04"
+    
     [libraries]
     teogor-sudoklify-common = { module = "dev.teogor.sudoklify:sudoklify-common", version.ref = "teogor-sudoklify" }
-    teogor-sudoklify-core = { module = "dev.teogor.sudoklify:sudoklify-core", version.ref = "teogor-sudoklify" }
-    teogor-sudoklify-ktx = { module = "dev.teogor.sudoklify:sudoklify-ktx", version.ref = "teogor-sudoklify" }
-    teogor-sudoklify-seeds = { module = "dev.teogor.sudoklify:sudoklify-seeds", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-beta = { module = "dev.teogor.sudoklify:sudoklify-beta", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-io = { module = "dev.teogor.sudoklify:sudoklify-io", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-presets = { module = "dev.teogor.sudoklify:sudoklify-presets", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-solver = { module = "dev.teogor.sudoklify:sudoklify-solver", version.ref = "teogor-sudoklify" }
+    teogor-sudoklify-tokenizer = { module = "dev.teogor.sudoklify:sudoklify-tokenizer", version.ref = "teogor-sudoklify" }
     ```
 
 Then, add these dependencies in your app's `build.gradle` file:
@@ -204,9 +212,11 @@ Then, add these dependencies in your app's `build.gradle` file:
     ```groovy title="build.gradle"
     dependencies {
         implementation libs.teogor.sudoklify.common
-        implementation libs.teogor.sudoklify.core
-        implementation libs.teogor.sudoklify.ktx
-        implementation libs.teogor.sudoklify.seeds
+        implementation libs.teogor.sudoklify.beta
+        implementation libs.teogor.sudoklify.io
+        implementation libs.teogor.sudoklify.presets
+        implementation libs.teogor.sudoklify.solver
+        implementation libs.teogor.sudoklify.tokenizer
     }
     ```
 
@@ -215,9 +225,11 @@ Then, add these dependencies in your app's `build.gradle` file:
     ```kotlin title="build.gradle.kts"
     dependencies {
         implementation(libs.teogor.sudoklify.common)
-        implementation(libs.teogor.sudoklify.core)
-        implementation(libs.teogor.sudoklify.ktx)
-        implementation(libs.teogor.sudoklify.seeds)
+        implementation(libs.teogor.sudoklify.beta)
+        implementation(libs.teogor.sudoklify.io)
+        implementation(libs.teogor.sudoklify.presets)
+        implementation(libs.teogor.sudoklify.solver)
+        implementation(libs.teogor.sudoklify.tokenizer)
     }
     ```
 
