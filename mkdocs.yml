@@ -25,6 +25,7 @@ nav:
   - Releases:
     - releases/index.md
     - Changelog:
+      - 1.0.0-beta04: releases/changelog/1.0.0-beta04.md
       - 1.0.0-beta03: releases/changelog/1.0.0-beta03.md
       - 1.0.0-beta02: releases/changelog/1.0.0-beta02.md
       - 1.0.0-beta01: releases/changelog/1.0.0-beta01.md

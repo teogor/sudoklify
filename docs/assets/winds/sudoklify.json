@@ -169,5 +169,84 @@
         "date": 1723462487
       }
     ]
+  },
+  {
+    "module": "dev.teogor.sudoklify:sudoklify",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0,
+      "flag": "Beta",
+      "versionQualifier": 4
+    },
+    "date": 1724578624,
+    "dependencies": [
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-common",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 4
+        },
+        "date": 1724578624
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-beta",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 4
+        },
+        "date": 1724578624
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-io",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 4
+        },
+        "date": 1724578624
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-presets",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 4
+        },
+        "date": 1724578624
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-solver",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 4
+        },
+        "date": 1724578624
+      },
+      {
+        "module": "dev.teogor.sudoklify:sudoklify-tokenizer",
+        "version": {
+          "major": 1,
+          "minor": 0,
+          "patch": 0,
+          "flag": "Beta",
+          "versionQualifier": 4
+        },
+        "date": 1724578624
+      }
+    ]
   }
 ]

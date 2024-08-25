@@ -13,9 +13,11 @@ API Reference
 [`dev.teogor.sudoklify:sudoklify-*`](../html/)  
 [`dev.teogor.sudoklify:sudoklify`](../html/demo)  
 [`dev.teogor.sudoklify:sudoklify-common`](../html/sudoklify-common)  
-[`dev.teogor.sudoklify:sudoklify-core`](../html/sudoklify-core)  
-[`dev.teogor.sudoklify:sudoklify-ktx`](../html/sudoklify-ktx)  
-[`dev.teogor.sudoklify:sudoklify-seeds`](../html/sudoklify-seeds)
+[`dev.teogor.sudoklify:sudoklify-beta`](../html/sudoklify-core)  
+[`dev.teogor.sudoklify:sudoklify-io`](../html/sudoklify-io)  
+[`dev.teogor.sudoklify:sudoklify-presets`](../html/sudoklify-presets)  
+[`dev.teogor.sudoklify:sudoklify-solver`](../html/sudoklify-solver)  
+[`dev.teogor.sudoklify:sudoklify-tokenizer`](../html/sudoklify-tokenizer)
 
 [//]: # (REGION-API-REFERENCE)
 
@@ -23,7 +25,7 @@ API Reference
 
 | Latest Update     |  Stable Release  |  Release Candidate  |  Beta Release  |  Alpha Release  |
 |:------------------|:----------------:|:-------------------:|:--------------:|:---------------:|
-| August 12, 2024   |        -         |          -          |  1.0.0-beta03  |        -        |
+| August 25, 2024   |        -         |          -          |  1.0.0-beta04  |        -        |
 
 [//]: # (REGION-RELEASE-TABLE)
 
@@ -37,12 +39,14 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```groovy title="build.gradle"
     dependencies {
-        def teogorSudoklify = "1.0.0-beta03"
+        def teogorSudoklify = "1.0.0-beta04"
         
         implementation "dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify"
-        implementation "dev.teogor.sudoklify:sudoklify-seeds:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-beta:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-io:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-presets:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-solver:$teogorSudoklify"
+        implementation "dev.teogor.sudoklify:sudoklify-tokenizer:$teogorSudoklify"
     }
     ```
 
@@ -50,12 +54,14 @@ To use Sudoklify in your app, add the following dependencies to your app's `buil
 
     ```kotlin title="build.gradle.kts"
     dependencies {
-        val teogorSudoklify = "1.0.0-beta03"
+        val teogorSudoklify = "1.0.0-beta04"
         
         implementation("dev.teogor.sudoklify:sudoklify-common:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-core:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-ktx:$teogorSudoklify")
-        implementation("dev.teogor.sudoklify:sudoklify-seeds:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-beta:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-io:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-presets:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-solver:$teogorSudoklify")
+        implementation("dev.teogor.sudoklify:sudoklify-tokenizer:$teogorSudoklify")
     }
     ```
 
@@ -78,6 +84,17 @@ for this library before you create a new one.
 [//]: # (REGION-VERSION-CHANGELOG)
 
 ### Version 1.0.0
+
+#### Version 1.0.0-beta04
+
+August 25, 2024
+
+[`dev.teogor.sudoklify:sudoklify-*:1.0.0-beta04`](https://github.com/teogor/sudoklify/releases/1.0.0-beta04) is released. [Version 1.0.0-beta04 contains these commits](https://github.com/teogor/sudoklify/compare/1.0.0-beta03...1.0.0-beta04)
+
+**Enhancement**
+
+* Add Kotlin Multiplatform Support for JS (IR) Targeting Browser and Node.js ([#72](https://github.com/teogor/sudoklify/issues/72)) by [@teogor](https://github.com/teogor)
+* Release Sudoklify Beta Modules - Common, Core, IO, Presets, Solver, and Tokenizer ([#71](https://github.com/teogor/sudoklify/issues/71)) by [@teogor](https://github.com/teogor)
 
 #### Version 1.0.0-beta03
 

@@ -94,3 +94,9 @@
   sections:
     - Enhancement:
         - "Convert JVM Library to Kotlin Multiplatform: Added support for JVM, WASM, iOS, macOS, Linux, TVOS, and WatchOS (#68) by @teogor"
+1.0.0-beta04:
+  info: "August 25, 2024"
+  sections:
+    - Enhancement:
+        - "Add Kotlin Multiplatform Support for JS (IR) Targeting Browser and Node.js (#72) by @teogor"
+        - "Release Sudoklify Beta Modules - Common, Core, IO, Presets, Solver, and Tokenizer (#71) by @teogor"
