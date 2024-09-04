@@ -18,12 +18,12 @@
 
 package dev.teogor.sudoklify.schema
 
+import dev.teogor.crosslens.core.buildLazyHashCode
 import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.tokenizer.SudokuString
 import dev.teogor.sudoklify.tokenizer.toSudokuString
-import dev.teogor.sudoklify.util.buildLazyHashCode
 
 /**
  * Represents a schema for generating Sudoku puzzles.

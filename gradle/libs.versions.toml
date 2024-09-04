@@ -15,6 +15,7 @@ compose-plugin = "1.7.0-alpha03"
 androidx-activity-compose = "1.9.1"
 androidx-lifecycle = "2.8.0"
 teogor-paletteon = "1.0.0-alpha01"
+teogor-crosslens = "1.0.0-alpha02"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
@@ -27,6 +28,7 @@ jetbrains-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.r
 jetbrains-kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "jetbrains-kotlinx-datetime" }
 teogor-paletteon-core = { module = "dev.teogor.paletteon:paletteon-core", version.ref = "teogor-paletteon" }
+teogor-crosslens-core = { module = "dev.teogor.crosslens:crosslens-core", version.ref = "teogor-crosslens" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

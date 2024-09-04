@@ -68,6 +68,9 @@ kotlin {
     val commonMain by getting {
       dependencies {
         implementation(libs.jetbrains.kotlinx.datetime)
+
+        implementation(libs.teogor.crosslens.core)
+
         api(projects.sudoklifyCommon)
         api(projects.sudoklifyTokenizer)
       }
