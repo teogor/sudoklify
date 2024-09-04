@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.presets
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.mapToSudokuBoard
@@ -29,7 +28,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class PresetSchemasTest {
 
   @Test
@@ -146,11 +144,11 @@ class PresetSchemasTest {
           // Optionally, add more detailed checks to validate the board's correctness
           assertTrue(
             solutionBoard.isNotEmpty(),
-            "Solution board should be valid for SudokuType $type"
+            "Solution board should be valid for SudokuType $type",
           )
           assertTrue(
             puzzleBoard.isNotEmpty(),
-            "Puzzle board should be valid for SudokuType $type"
+            "Puzzle board should be valid for SudokuType $type",
           )
         }
       }

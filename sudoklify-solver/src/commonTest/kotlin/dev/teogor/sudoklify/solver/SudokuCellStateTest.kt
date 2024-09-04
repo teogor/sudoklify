@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.solver
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.SudoklifyArchitect
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
@@ -29,7 +28,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class SudokuCellStateTest {
   private val architect = SudoklifyArchitect(loadPresetSchemas())
 

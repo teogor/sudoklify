@@ -16,4 +16,4 @@
 
 package dev.teogor.sudoklify.tokenizer
 
-typealias TokenMap = Map<JEncodedCell, String>
+public typealias TokenMap = Map<JEncodedCell, String>

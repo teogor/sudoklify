@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.schema
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import kotlin.test.Test
@@ -25,7 +24,6 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotSame
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class SudokuSchemasTest {
   private val schema1 =
     SudokuSchema(

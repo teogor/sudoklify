@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.puzzle.SudokuPuzzle
@@ -46,7 +44,7 @@ import dev.teogor.sudoklify.schema.requireSchemasForType
  * val puzzle = architect.constructSudoku(sudokuSpec)
  * ```
  */
-class SudoklifyArchitect(
+public class SudoklifyArchitect(
   private val schemas: SudokuSchemas,
 ) {
   private lateinit var spec: SudokuSpec
@@ -63,13 +61,12 @@ class SudoklifyArchitect(
    * @param specConfig A configuration block that applies settings to the [SudokuSpec] builder.
    * @return The generated [SudokuPuzzle].
    */
-  fun constructSudoku(specConfig: SudokuSpec.Builder.() -> Unit): SudokuPuzzle {
-    val localSpecBuilder =
-      if (this::spec.isInitialized) {
-        this.spec.toBuilder()
-      } else {
-        SudokuSpec.Builder()
-      }
+  public fun constructSudoku(specConfig: SudokuSpec.Builder.() -> Unit): SudokuPuzzle {
+    val localSpecBuilder = if (this::spec.isInitialized) {
+      this.spec.toBuilder()
+    } else {
+      SudokuSpec.Builder()
+    }
     val localSpec = localSpecBuilder.apply(specConfig).build()
     return constructSudoku(localSpec)
   }
@@ -80,7 +77,7 @@ class SudoklifyArchitect(
    * @param spec The specification to use for puzzle generation.
    * @return The generated [SudokuPuzzle].
    */
-  fun constructSudoku(spec: SudokuSpec): SudokuPuzzle {
+  public fun constructSudoku(spec: SudokuSpec): SudokuPuzzle {
     this.spec = spec
     return createSudokuFromSpec(spec)
   }
@@ -128,7 +125,7 @@ class SudoklifyArchitect(
  * @see SudokuSchemas.Builder.addAll
  */
 @SudoklifyDsl
-inline fun SudoklifyArchitect(crossinline block: () -> SudokuSchemas): SudoklifyArchitect {
+public inline fun SudoklifyArchitect(crossinline block: () -> SudokuSchemas): SudoklifyArchitect {
   return SudoklifyArchitect(block())
 }
 
@@ -146,7 +143,7 @@ inline fun SudoklifyArchitect(crossinline block: () -> SudokuSchemas): Sudoklify
  * For more detailed instructions and examples on providing Sudoku schemas, visit:
  * [Sudoklify Documentation - Sudoku Schemas](https://source.teogor.dev/sudoklify/sudoku-schemas)
  */
-class EmptySudokuSchemasException : Exception(
+public class EmptySudokuSchemasException : Exception(
   """
   |The Sudoku schemas list is empty.
   |

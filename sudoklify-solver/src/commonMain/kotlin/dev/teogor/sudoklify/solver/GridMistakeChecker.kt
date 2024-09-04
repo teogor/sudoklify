@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.solver
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.BoxCoordinates
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.components.getBoxCoordinates
@@ -38,7 +35,7 @@ import dev.teogor.sudoklify.components.isDigitValid
  *
  * @return The updated grid with potential mistake annotations.
  */
-inline fun <T> List<List<T>>.processGridMistakes(
+public inline fun <T> List<List<T>>.processGridMistakes(
   mistakesMethod: MistakeCheckingMode,
   dimension: Dimension,
   crossinline getValue: (T) -> Int,
@@ -57,7 +54,7 @@ inline fun <T> List<List<T>>.processGridMistakes(
   return checkedBoard.toUserGrid(updateCell, this)
 }
 
-fun List<List<SudokuCellState>>.checkMistakesAll(
+public fun List<List<SudokuCellState>>.checkMistakesAll(
   mistakesMethod: MistakeCheckingMode,
   dimension: Dimension,
 ): List<List<SudokuCellState>> {
@@ -97,7 +94,7 @@ fun List<List<SudokuCellState>>.checkMistakesAll(
   return newBoard
 }
 
-fun Dimension.doesCellValueViolateRules(
+public fun Dimension.doesCellValueViolateRules(
   row: Int,
   col: Int,
   value: Int,

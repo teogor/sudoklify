@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.puzzle
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.components.Seed
@@ -35,7 +32,7 @@ import dev.teogor.sudoklify.puzzle.SudokuPuzzle.Hint
  * @property solution The solution grid of the puzzle as a list of lists of integers.
  * @property hints Optional hints for solving the puzzle, represented as a list of [Hint].
  */
-data class SudokuPuzzle(
+public data class SudokuPuzzle(
   val difficulty: Difficulty,
   val type: Dimension,
   val seed: Seed,
@@ -50,7 +47,7 @@ data class SudokuPuzzle(
    * @property col The column index of the given cell (0-based).
    * @property value The fixed value assigned to the cell.
    */
-  data class Givens(
+  public data class Givens(
     val row: Int,
     val col: Int,
     val value: Int,
@@ -65,7 +62,7 @@ data class SudokuPuzzle(
    *                Defaults to -1 if the hint is not specific to a column.
    * @property type The type of hint, which determines the solving strategy to be used.
    */
-  data class Hint(
+  public data class Hint(
     val message: String,
     val row: Int,
     val col: Int = -1,
@@ -75,7 +72,7 @@ data class SudokuPuzzle(
   /**
    * Enumerates the types of hints that can be provided to help solve the Sudoku puzzle.
    */
-  enum class HintType {
+  public enum class HintType {
     /**
      * Indicates that the hint involves eliminating possibilities in a row.
      */
@@ -119,7 +116,7 @@ data class SudokuPuzzle(
  * @return A list of lists representing the grid, where each inner list corresponds to a row,
  * and each element in the inner list corresponds to a cell value.
  */
-fun SudokuPuzzle.generateGridWithGivens(): List<List<Int>> {
+public fun SudokuPuzzle.generateGridWithGivens(): List<List<Int>> {
   val gridSize = type.uniqueDigitsCount
   val grid = MutableList(gridSize) { MutableList(gridSize) { 0 } }
 

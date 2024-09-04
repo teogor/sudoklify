@@ -40,7 +40,7 @@ import dev.teogor.sudoklify.schema.addAll
  *
  * @return A [SudokuSchemas] object containing all predefined seeds.
  */
-fun loadPresetSchemas(): SudokuSchemas {
+public fun loadPresetSchemas(): SudokuSchemas {
   return SudokuSchemas {
     addAll(fourDigitsSchemas)
     addAll(nineDigitsSchemas)

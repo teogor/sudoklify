@@ -29,7 +29,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class SudoklifyArchitectTest {
   private val schema1 =
     SudokuSchema(

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.components
-
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 
 /**
  * Sealed class representing different Sudoku dimensions with varying grid sizes.
@@ -34,16 +30,15 @@ import dev.teogor.sudoklify.ExperimentalSudoklifyApi
  * @property boxHeight The height of a single box in the grid.
  * @property name A human-readable name for the Sudoku dimension (e.g., "4x4").
  */
-@ExperimentalSudoklifyApi
-sealed class Dimension(
-  val gridSize: GridSize,
+public sealed class Dimension(
+  public val gridSize: GridSize,
 ) {
   /**
    * The number of distinct digits used in the Sudoku grid. This represents the total
    * number of unique symbols that can be placed within a single cell of the Sudoku.
    * It is calculated as the product of the grid width and height.
    */
-  val uniqueDigitsCount: Int = gridSize.width * gridSize.height
+  public val uniqueDigitsCount: Int = gridSize.width * gridSize.height
 
   @Deprecated(
     message = """Consider using 'uniqueDigitsCount' for better clarity. This variable provides
@@ -51,14 +46,14 @@ sealed class Dimension(
       |grid.""",
     replaceWith = ReplaceWith("uniqueDigitsCount"),
   )
-  val digits: Int = uniqueDigitsCount
+  public val digits: Int = uniqueDigitsCount
 
   /**
    * The total number of cells in the Sudoku grid. This is calculated by squaring the
    * [uniqueDigitsCount]. Each cell within the grid can hold one of the [uniqueDigitsCount]
    * distinct digits (or symbols).
    */
-  val totalCells: Int = uniqueDigitsCount * uniqueDigitsCount
+  public val totalCells: Int = uniqueDigitsCount * uniqueDigitsCount
 
   @Deprecated(
     message = """Consider using 'totalCells' for better clarity. This variable represents the
@@ -66,37 +61,37 @@ sealed class Dimension(
       |the Sudoku grid.""",
     replaceWith = ReplaceWith("totalCells"),
   )
-  val cells = totalCells
+  public val cells: Int = totalCells
 
   /**
    * Whether the grid size is square (width == height).
    */
-  val isSquare: Boolean = gridSize.isSquare
+  public val isSquare: Boolean = gridSize.isSquare
 
   /**
    * The width of the Sudoku grid.
    */
-  val width: Int = uniqueDigitsCount
+  public val width: Int = uniqueDigitsCount
 
   /**
    * The height of the Sudoku grid.
    */
-  val height: Int = uniqueDigitsCount
+  public val height: Int = uniqueDigitsCount
 
   /**
    * The width of a single box in the grid.
    */
-  val boxWidth: Int = gridSize.width
+  public val boxWidth: Int = gridSize.width
 
   /**
    * The height of a single box in the grid.
    */
-  val boxHeight: Int = gridSize.height
+  public val boxHeight: Int = gridSize.height
 
   /**
    * A human-readable name for the Sudoku dimension (e.g., "4x4").
    */
-  val name: String = "${width}x$height"
+  public val name: String = "${width}x$height"
 
   /**
    * Returns a string representation of the Sudoku dimension.
@@ -111,7 +106,7 @@ sealed class Dimension(
    *
    * @property isSquare Whether the grid size is square (width == height).
    */
-  data class GridSize(
+  public data class GridSize(
     val width: Int,
     val height: Int,
   ) {
@@ -121,102 +116,102 @@ sealed class Dimension(
   /**
    * Companion object used to represent an unspecified Sudoku dimension.
    */
-  data object Unspecified : Dimension(
+  public data object Unspecified : Dimension(
     gridSize = GridSize(0, 0),
   )
 
   /**
    * Object representing a 4x4 Sudoku dimension.
    */
-  data object FourByFour : Dimension(
+  public data object FourByFour : Dimension(
     gridSize = GridSize(2, 2),
   )
 
   /**
    * Object representing a 6x6 Sudoku dimension.
    */
-  data object SixBySix : Dimension(
+  public data object SixBySix : Dimension(
     gridSize = GridSize(2, 3),
   )
 
   /**
    * Object representing a 8x8 Sudoku dimension.
    */
-  data object EightByEight : Dimension(
+  public data object EightByEight : Dimension(
     gridSize = GridSize(2, 4),
   )
 
   /**
    * Object representing a 9x9 Sudoku dimension.
    */
-  data object NineByNine : Dimension(
+  public data object NineByNine : Dimension(
     gridSize = GridSize(3, 3),
   )
 
   /**
    * Object representing a 10x10 Sudoku dimension.
    */
-  data object TenByTen : Dimension(
+  public data object TenByTen : Dimension(
     gridSize = GridSize(2, 5),
   )
 
   /**
    * Object representing a 12x12 Sudoku dimension.
    */
-  data object TwelveByTwelve : Dimension(
+  public data object TwelveByTwelve : Dimension(
     gridSize = GridSize(3, 4),
   )
 
   /**
    * Object representing a 15x15 Sudoku dimension.
    */
-  data object FifteenByFifteen : Dimension(
+  public data object FifteenByFifteen : Dimension(
     gridSize = GridSize(3, 5),
   )
 
   /**
    * Object representing a 16x16 Sudoku dimension.
    */
-  data object SixteenBySixteen : Dimension(
+  public data object SixteenBySixteen : Dimension(
     gridSize = GridSize(4, 4),
   )
 
   /**
    * Object representing a 25x25 Sudoku dimension.
    */
-  data object TwentyFiveByTwentyFive : Dimension(
+  public data object TwentyFiveByTwentyFive : Dimension(
     gridSize = GridSize(5, 5),
   )
 
   /**
    * Object representing a 36x36 Sudoku dimension.
    */
-  data object ThirtySixByThirtySix : Dimension(
+  public data object ThirtySixByThirtySix : Dimension(
     gridSize = GridSize(6, 6),
   )
 
   /**
    * Object representing a 49x49 Sudoku dimension.
    */
-  data object FortyNineByFortyNine : Dimension(
+  public data object FortyNineByFortyNine : Dimension(
     gridSize = GridSize(7, 7),
   )
 
   /**
    * Object representing a 64x64 Sudoku dimension.
    */
-  data object SixtyFourBySixtyFour : Dimension(
+  public data object SixtyFourBySixtyFour : Dimension(
     gridSize = GridSize(8, 8),
   )
 
   /**
    * Object representing a 81x81 Sudoku dimension.
    */
-  data object EightyOneByEightyOne : Dimension(
+  public data object EightyOneByEightyOne : Dimension(
     gridSize = GridSize(9, 9),
   )
 
-  companion object {
+  public companion object {
     /**
      * Returns the corresponding [Dimension] instance based on the provided digit count.
      *
@@ -257,7 +252,7 @@ sealed class Dimension(
      * - [InvalidDimensionException]: If the provided `digitCount` does not correspond to any known Sudoku dimension.
      */
     @Throws(InvalidDimensionException::class)
-    fun fromDigitCount(digitCount: Int): Dimension {
+    public fun fromDigitCount(digitCount: Int): Dimension {
       return when (digitCount) {
         4 -> FourByFour
         6 -> SixBySix
@@ -318,8 +313,7 @@ sealed class Dimension(
  * ### Throws:
  * - [InvalidDimensionException]: If the provided `digitCount` does not correspond to any known Sudoku dimension.
  */
-@ExperimentalSudoklifyApi
-fun Dimension(digitCount: Int): Dimension {
+public fun Dimension(digitCount: Int): Dimension {
   return Dimension.fromDigitCount(digitCount)
 }
 
@@ -327,15 +321,13 @@ fun Dimension(digitCount: Int): Dimension {
  * Returns a list containing all valid digits (1 to [Dimension.digits]) for the
  * Sudoku.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getAllDigits(): List<Int> = (1..uniqueDigitsCount).toList()
+public fun Dimension.getAllDigits(): List<Int> = (1..uniqueDigitsCount).toList()
 
 /**
  * Checks if a given digit is valid within the range of allowed digits for this Sudoku
  * (1 to [Dimension.digits]).
  */
-@ExperimentalSudoklifyApi
-fun Dimension.isDigitValid(digit: Int): Boolean = digit in 1..uniqueDigitsCount
+public fun Dimension.isDigitValid(digit: Int): Boolean = digit in 1..uniqueDigitsCount
 
 /**
  * Returns the box index (within the range 0 to [Dimension.boxes - 1]) for a given cell
@@ -344,8 +336,7 @@ fun Dimension.isDigitValid(digit: Int): Boolean = digit in 1..uniqueDigitsCount
  * Throws an [IllegalArgumentException] with a specific message if the provided row or
  * column index is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getBoxIndex(
+public fun Dimension.getBoxIndex(
   row: Int,
   col: Int,
 ): Int {
@@ -364,8 +355,7 @@ fun Dimension.getBoxIndex(
   return boxRowIndex + boxColumnIndex
 }
 
-@ExperimentalSudoklifyApi
-fun Dimension.getCellCoordinates(
+public fun Dimension.getCellCoordinates(
   row: Int,
   col: Int,
 ): CellCoordinates {
@@ -385,8 +375,7 @@ fun Dimension.getCellCoordinates(
  * Throws an [IllegalArgumentException] with a specific message if the provided row or
  * column index is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getBoxCoordinates(
+public fun Dimension.getBoxCoordinates(
   row: Int,
   col: Int,
 ): BoxCoordinates {
@@ -417,8 +406,7 @@ fun Dimension.getBoxCoordinates(
  * Throws an [IllegalArgumentException] with a specific message if the provided cell index
  * is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getCellRowIndex(cellIndex: Int): Int {
+public fun Dimension.getCellRowIndex(cellIndex: Int): Int {
   requireValidCellIndex(cellIndex = cellIndex, message = "Invalid cell index for row calculation")
   return cellIndex / width
 }
@@ -430,8 +418,7 @@ fun Dimension.getCellRowIndex(cellIndex: Int): Int {
  * Throws an [IllegalArgumentException] with a specific message if the provided cell index
  * is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getCellColumnIndex(cellIndex: Int): Int {
+public fun Dimension.getCellColumnIndex(cellIndex: Int): Int {
   requireValidCellIndex(
     cellIndex = cellIndex,
     message = "Invalid cell index for column calculation",
@@ -446,8 +433,7 @@ fun Dimension.getCellColumnIndex(cellIndex: Int): Int {
  * Throws an [IllegalArgumentException] with a specific message if the provided cell index
  * is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getCellBoxRowIndex(cellIndex: Int): Int {
+public fun Dimension.getCellBoxRowIndex(cellIndex: Int): Int {
   requireValidCellIndex(
     cellIndex = cellIndex,
     message = "Invalid cell index for box row",
@@ -462,8 +448,7 @@ fun Dimension.getCellBoxRowIndex(cellIndex: Int): Int {
  * Throws an [IllegalArgumentException] with a specific message if the provided cell
  * index is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.getCellBoxColumnIndex(cellIndex: Int): Int {
+public fun Dimension.getCellBoxColumnIndex(cellIndex: Int): Int {
   requireValidCellIndex(
     cellIndex = cellIndex,
     message = "Invalid cell index for box column calculation",
@@ -477,8 +462,7 @@ fun Dimension.getCellBoxColumnIndex(cellIndex: Int): Int {
  * Throws an [IllegalArgumentException] with a specific message if either cell index
  * is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.areCellsInSameRow(
+public fun Dimension.areCellsInSameRow(
   cellIndex1: Int,
   cellIndex2: Int,
 ): Boolean {
@@ -499,8 +483,7 @@ fun Dimension.areCellsInSameRow(
  * Throws an [IllegalArgumentException] with a specific message if either cell
  * index is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.areCellsInSameColumn(
+public fun Dimension.areCellsInSameColumn(
   cellIndex1: Int,
   cellIndex2: Int,
 ): Boolean {
@@ -521,8 +504,7 @@ fun Dimension.areCellsInSameColumn(
  * Throws an [IllegalArgumentException] with a specific message if either cell index
  * is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.areCellsInSameBox(
+public fun Dimension.areCellsInSameBox(
   cellIndex1: Int,
   cellIndex2: Int,
 ): Boolean {
@@ -545,8 +527,7 @@ fun Dimension.areCellsInSameBox(
  * Throws an [IllegalArgumentException] with a specific message if either row or column
  * index is invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.areCellsInSameBox(
+public fun Dimension.areCellsInSameBox(
   row1: Int,
   col1: Int,
   row2: Int,
@@ -560,8 +541,7 @@ fun Dimension.areCellsInSameBox(
  * Throws an [IllegalArgumentException] with a specific message if any of the row or
  * column indices are invalid.
  */
-@ExperimentalSudoklifyApi
-fun Dimension.areCellsRelated(
+public fun Dimension.areCellsRelated(
   row1: Int,
   col1: Int,
   row2: Int,
@@ -601,10 +581,10 @@ internal fun Dimension.requireValidCellIndex(
   }
 }
 
-class InvalidRowOrColumnIndexException(message: String) : IllegalArgumentException(message)
+public class InvalidRowOrColumnIndexException(message: String) : IllegalArgumentException(message)
 
-class InvalidCellIndexException(message: String) : IllegalArgumentException(message)
+public class InvalidCellIndexException(message: String) : IllegalArgumentException(message)
 
-class InvalidDimensionException(digitCount: Int) : IllegalArgumentException(
+public class InvalidDimensionException(digitCount: Int) : IllegalArgumentException(
   "No dimension exists for digit count: $digitCount",
 )

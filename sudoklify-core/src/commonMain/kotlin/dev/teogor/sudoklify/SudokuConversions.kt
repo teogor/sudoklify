@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.components.Dimension
@@ -46,7 +44,7 @@ import dev.teogor.sudoklify.tokenizer.toJEncodedCell
  * @see mapToSudokuString
  * @see toJEncodedCell
  */
-fun Iterable<Iterable<Int>>.mapToSudokuString(): String {
+public fun Iterable<Iterable<Int>>.mapToSudokuString(): String {
   return flatMap { innerIterable ->
     innerIterable.map { element ->
       element.toJEncodedCell()
@@ -82,7 +80,7 @@ fun Iterable<Iterable<Int>>.mapToSudokuString(): String {
  * @see mapToSudokuString
  * @see toJEncodedCell
  */
-inline fun <T> Iterable<Iterable<T>>.mapToSudokuString(
+public inline fun <T> Iterable<Iterable<T>>.mapToSudokuString(
   crossinline valueMapper: T.() -> Int,
 ): String {
   return flatMap { cells ->
@@ -126,7 +124,7 @@ inline fun <T> Iterable<Iterable<T>>.mapToSudokuString(
  * @see mapToSudokuBoard
  * @see mapIndexedToSudokuBoard
  */
-fun String.mapToSudokuBoard(dimension: Dimension): List<List<Int>> {
+public fun String.mapToSudokuBoard(dimension: Dimension): List<List<Int>> {
   return JEncodedCell.extractCells(this)
     .chunked(dimension.uniqueDigitsCount)
     .map { row -> row.map { it.toInt() } }
@@ -168,7 +166,7 @@ fun String.mapToSudokuBoard(dimension: Dimension): List<List<Int>> {
  * @see mapToSudokuBoard
  * @see mapIndexedToSudokuBoard
  */
-inline fun <T> String.mapToSudokuBoard(
+public inline fun <T> String.mapToSudokuBoard(
   dimension: Dimension,
   crossinline valueMapper: Int.() -> T,
 ): List<List<T>> {
@@ -192,7 +190,7 @@ inline fun <T> String.mapToSudokuBoard(
  *
  * @see mapToSudokuBoard
  */
-inline fun <T> String.mapIndexedToSudokuBoard(
+public inline fun <T> String.mapIndexedToSudokuBoard(
   dimension: Dimension,
   crossinline valueMapper: (value: Int, row: Int, column: Int) -> T,
 ): List<List<T>> {

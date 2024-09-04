@@ -198,7 +198,6 @@ public final class dev/teogor/sudoklify/random/SeededRandomKt {
 	public static final fun randomItem (Ljava/lang/Iterable;Lkotlin/random/Random;)Ljava/lang/Object;
 	public static final fun randomItem ([Ljava/lang/Object;Lkotlin/random/Random;)Ljava/lang/Object;
 	public static final fun randomOrderFactor (Lkotlin/random/Random;)I
-	public static final fun sortRandom (Lkotlin/random/Random;)I
 }
 
 public final class dev/teogor/sudoklify/schema/NoSchemasForDifficultyException : java/lang/Exception {

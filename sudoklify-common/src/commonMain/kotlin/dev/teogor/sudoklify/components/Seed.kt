@@ -27,8 +27,8 @@ package dev.teogor.sudoklify.components
  *
  * @throws InvalidSeedException if the initial value is negative.
  */
-sealed class Seed(
-  val value: Long,
+public sealed class Seed(
+  public val value: Long,
 ) : Comparable<Seed> {
   init {
     if (value < 0) {
@@ -43,7 +43,7 @@ sealed class Seed(
    *
    * @return A new [Seed] object with an incremented value.
    */
-  open fun nextSeed(): Seed =
+  public open fun nextSeed(): Seed =
     when (this) {
       is Random -> Random()
       is Explicit -> Explicit(value + 1)
@@ -57,7 +57,7 @@ sealed class Seed(
    *
    * @return A [kotlin.random.Random] instance.
    */
-  fun toRandom(): kotlin.random.Random = kotlin.random.Random(value)
+  public fun toRandom(): kotlin.random.Random = kotlin.random.Random(value)
 
   /**
    * Returns a string representation of the [Seed] object.
@@ -79,7 +79,7 @@ sealed class Seed(
    *
    * @return A new [Seed] object with the specified value.
    */
-  fun copy(seed: Long? = null): Seed {
+  public fun copy(seed: Long? = null): Seed {
     return when (this) {
       is Random -> Random()
       is Explicit -> Explicit(seed ?: this.value)
@@ -130,7 +130,7 @@ sealed class Seed(
    *
    * @see kotlin.random.Random
    */
-  class Random : Seed(kotlin.random.Random.nextLong(Long.MAX_VALUE))
+  public class Random : Seed(kotlin.random.Random.nextLong(Long.MAX_VALUE))
 
   /**
    * Represents an explicit seed with a specific long value.
@@ -139,7 +139,7 @@ sealed class Seed(
    *
    * @throws InvalidSeedException if the value is negative.
    */
-  class Explicit(value: Long) : Seed(value)
+  public class Explicit(value: Long) : Seed(value)
 }
 
 /**
@@ -151,7 +151,7 @@ sealed class Seed(
  * @see Seed.Explicit
  * @see createSeed
  */
-fun Long.toSeed(): Seed = createSeed(this)
+public fun Long.toSeed(): Seed = createSeed(this)
 
 /**
  * Creates a new [Seed] object with the specified [value], representing an explicit seed.
@@ -165,7 +165,7 @@ fun Long.toSeed(): Seed = createSeed(this)
  * @see Seed
  * @see Seed.Explicit
  */
-fun createSeed(value: Long): Seed {
+public fun createSeed(value: Long): Seed {
   require(value > 0) {
     throw InvalidSeedException("Seed value must be non-negative.")
   }
@@ -177,4 +177,4 @@ fun createSeed(value: Long): Seed {
  *
  * @param message The detail message explaining the reason for the exception.
  */
-class InvalidSeedException(message: String) : IllegalArgumentException(message)
+public class InvalidSeedException(message: String) : IllegalArgumentException(message)

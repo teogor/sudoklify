@@ -19,7 +19,7 @@ package dev.teogor.sudoklify.tokenizer
 import kotlin.jvm.JvmInline
 
 @JvmInline
-value class SudokuString(val value: String) {
+public value class SudokuString(public val value: String) {
   init {
     if (value.isEmpty()) {
       throw EmptySudokuStringException("Value must not be empty.")
@@ -34,10 +34,10 @@ value class SudokuString(val value: String) {
   override fun toString(): String = value
 }
 
-fun String.toSudokuString(): SudokuString {
+public fun String.toSudokuString(): SudokuString {
   return SudokuString(this)
 }
 
-class EmptySudokuStringException(message: String) : IllegalArgumentException(message)
+public class EmptySudokuStringException(message: String) : IllegalArgumentException(message)
 
-class InvalidSudokuValueException(message: String) : IllegalArgumentException(message)
+public class InvalidSudokuValueException(message: String) : IllegalArgumentException(message)

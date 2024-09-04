@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.schema
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.SudoklifyDsl
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
@@ -65,7 +62,7 @@ import dev.teogor.sudoklify.components.Dimension
  * @see SudokuSchema
  * @see Collection
  */
-class SudokuSchemas(
+public class SudokuSchemas(
   private val schemas: List<SudokuSchema>,
 ) : Collection<SudokuSchema> {
   /**
@@ -120,7 +117,7 @@ class SudokuSchemas(
    * @param schema The [SudokuSchema] to add.
    * @return A new [SudokuSchemas] collection containing the original schemas and the added schema.
    */
-  operator fun plus(schema: SudokuSchema): SudokuSchemas {
+  public operator fun plus(schema: SudokuSchema): SudokuSchemas {
     return SudokuSchemas((schemas + schema).distinct())
   }
 
@@ -130,7 +127,7 @@ class SudokuSchemas(
    * @param other The collection of [SudokuSchema] objects to add.
    * @return A new [SudokuSchemas] collection containing the original schemas and the added schemas.
    */
-  operator fun plus(other: Collection<SudokuSchema>): SudokuSchemas {
+  public operator fun plus(other: Collection<SudokuSchema>): SudokuSchemas {
     return SudokuSchemas((schemas + other).distinct())
   }
 
@@ -140,7 +137,7 @@ class SudokuSchemas(
    * @param other The [SudokuSchemas] collection to add.
    * @return A new [SudokuSchemas] collection containing the original schemas and the added schemas from the other collection.
    */
-  operator fun plus(other: SudokuSchemas): SudokuSchemas {
+  public operator fun plus(other: SudokuSchemas): SudokuSchemas {
     return SudokuSchemas((schemas + other.schemas).distinct())
   }
 
@@ -150,7 +147,7 @@ class SudokuSchemas(
    * @param type The Sudoku dimension to filter by.
    * @return A new [SudokuSchemas] instance containing only the schemas with the specified dimension.
    */
-  fun getSeedsBySize(type: Dimension): SudokuSchemas {
+  public fun getSeedsBySize(type: Dimension): SudokuSchemas {
     return schemas.filter {
       it.dimension.uniqueDigitsCount == type.uniqueDigitsCount
     }.let { schemas -> SudokuSchemas(schemas) }
@@ -162,7 +159,7 @@ class SudokuSchemas(
    * @param difficulty The difficulty level to filter by.
    * @return A new [SudokuSchemas] instance containing only the schemas with the specified difficulty.
    */
-  fun getSeedsByDifficulty(difficulty: Difficulty): SudokuSchemas {
+  public fun getSeedsByDifficulty(difficulty: Difficulty): SudokuSchemas {
     return schemas.filter {
       it.difficulty == difficulty
     }.let { schemas -> SudokuSchemas(schemas) }
@@ -177,7 +174,7 @@ class SudokuSchemas(
    * @param difficulty The difficulty level to filter by.
    * @return A [SudokuSchemas] instance containing all [SudokuSchema] instances with the specified difficulty.
    */
-  fun findByDifficulty(difficulty: Difficulty): SudokuSchemas {
+  public fun findByDifficulty(difficulty: Difficulty): SudokuSchemas {
     return schemas.filter {
       it.difficulty == difficulty
     }.let { schemas -> SudokuSchemas(schemas) }
@@ -192,7 +189,7 @@ class SudokuSchemas(
    * @param dimension The Sudoku dimension to filter by.
    * @return A [SudokuSchemas] instance containing all [SudokuSchema] instances with the specified dimension.
    */
-  fun findBySudokuType(dimension: Dimension): SudokuSchemas {
+  public fun findBySudokuType(dimension: Dimension): SudokuSchemas {
     return schemas.filter {
       it.dimension == dimension
     }.let { schemas -> SudokuSchemas(schemas) }
@@ -203,7 +200,7 @@ class SudokuSchemas(
    *
    * @return A set of unique [Dimension] instances.
    */
-  fun getUniqueSudokuTypes(): Set<Dimension> {
+  public fun getUniqueSudokuTypes(): Set<Dimension> {
     return schemas.map { it.dimension }.toSet()
   }
 
@@ -212,7 +209,7 @@ class SudokuSchemas(
    *
    * @return A map where the keys are [Difficulty] levels and the values are counts of schemas with that difficulty.
    */
-  fun countByDifficulty(): Map<Difficulty, Int> {
+  public fun countByDifficulty(): Map<Difficulty, Int> {
     return schemas.groupingBy { it.difficulty }.eachCount()
   }
 
@@ -223,7 +220,7 @@ class SudokuSchemas(
    *                the original list is used.
    * @return A new [SudokuSchemas] instance with the specified schemas.
    */
-  fun copy(schemas: List<SudokuSchema> = this.schemas): SudokuSchemas {
+  public fun copy(schemas: List<SudokuSchema> = this.schemas): SudokuSchemas {
     return SudokuSchemas(schemas)
   }
 
@@ -300,7 +297,7 @@ class SudokuSchemas(
    *
    * @return A [Builder] initialized with the schemas from this [SudokuSchemas].
    */
-  fun toBuilder(): Builder {
+  public fun toBuilder(): Builder {
     val builder = Builder()
     builder.addAll(schemas)
     return builder
@@ -332,7 +329,7 @@ class SudokuSchemas(
    * }.build()
    * ```
    */
-  class Builder {
+  public class Builder {
     private val schemas = mutableListOf<SudokuSchema>()
 
     /**
@@ -341,10 +338,9 @@ class SudokuSchemas(
      * @param schema The schema to add.
      * @return This [Builder] instance for chaining.
      */
-    fun add(schema: SudokuSchema) =
-      apply {
-        schemas.add(schema)
-      }
+    public fun add(schema: SudokuSchema): Builder = apply {
+      schemas.add(schema)
+    }
 
     /**
      * Adds multiple [SudokuSchema] instances to the set.
@@ -352,10 +348,9 @@ class SudokuSchemas(
      * @param schemas The schemas to add.
      * @return This [Builder] instance for chaining.
      */
-    fun add(vararg schemas: SudokuSchema) =
-      apply {
-        this.schemas.addAll(schemas)
-      }
+    public fun add(vararg schemas: SudokuSchema): Builder = apply {
+      this.schemas.addAll(schemas)
+    }
 
     /**
      * Adds multiple [SudokuSchema] instances to the set from an iterable.
@@ -363,17 +358,16 @@ class SudokuSchemas(
      * @param schemas The iterable of schemas to add.
      * @return This [Builder] instance for chaining.
      */
-    fun addAll(schemas: Iterable<SudokuSchema>) =
-      apply {
-        this.schemas.addAll(schemas)
-      }
+    public fun addAll(schemas: Iterable<SudokuSchema>): Builder = apply {
+      this.schemas.addAll(schemas)
+    }
 
     /**
      * Builds the [SudokuSchemas] instance using the schemas added to the builder.
      *
      * @return A new [SudokuSchemas] instance with the configured schemas.
      */
-    fun build(): SudokuSchemas = SudokuSchemas(schemas)
+    public fun build(): SudokuSchemas = SudokuSchemas(schemas)
   }
 }
 
@@ -442,7 +436,9 @@ class SudokuSchemas(
  * @see SudokuSchemas.Builder.addAll
  */
 @SudoklifyDsl
-inline fun SudokuSchemas(builder: SudokuSchemas.Builder.() -> Unit): SudokuSchemas {
+public inline fun SudokuSchemas(
+  builder: SudokuSchemas.Builder.() -> Unit,
+): SudokuSchemas {
   return SudokuSchemas.Builder().apply(builder).build()
 }
 
@@ -488,7 +484,7 @@ inline fun SudokuSchemas(builder: SudokuSchemas.Builder.() -> Unit): SudokuSchem
  * @see SudokuSchemas.Builder.addAll
  */
 @SudoklifyDsl
-inline fun SudokuSchemas(
+public inline fun SudokuSchemas(
   existingSet: SudokuSchemas,
   builder: SudokuSchemas.Builder.() -> Unit,
 ): SudokuSchemas {
@@ -501,7 +497,7 @@ inline fun SudokuSchemas(
  * @param type The Sudoku type to check for.
  * @throws NoSchemasForTypeException if no schemas are found for the type.
  */
-fun SudokuSchemas.requireSchemasForType(type: Dimension) {
+public fun SudokuSchemas.requireSchemasForType(type: Dimension) {
   if (findBySudokuType(type).isEmpty()) {
     throw NoSchemasForTypeException(type)
   }
@@ -525,7 +521,7 @@ fun SudokuSchemas.requireSchemasForType(type: Dimension) {
  * @param schemas The array of [SudokuSchema] objects to add.
  * @return This [SudokuSchemas.Builder] instance for chaining.
  */
-fun SudokuSchemas.Builder.addAll(schemas: Array<SudokuSchema>) {
+public fun SudokuSchemas.Builder.addAll(schemas: Array<SudokuSchema>) {
   addAll(schemas.toList())
 }
 
@@ -535,7 +531,7 @@ fun SudokuSchemas.Builder.addAll(schemas: Array<SudokuSchema>) {
  * @param difficulty The difficulty level to check for.
  * @throws NoSchemasForDifficultyException if no schemas are found for the difficulty.
  */
-fun SudokuSchemas.requireSchemasForDifficulty(difficulty: Difficulty) {
+public fun SudokuSchemas.requireSchemasForDifficulty(difficulty: Difficulty) {
   if (findByDifficulty(difficulty).isEmpty()) {
     throw NoSchemasForDifficultyException(difficulty)
   }
@@ -544,13 +540,13 @@ fun SudokuSchemas.requireSchemasForDifficulty(difficulty: Difficulty) {
 /**
  * Exception thrown when no Sudoku schemas are found for a given Sudoku type.
  */
-class NoSchemasForTypeException(
+public class NoSchemasForTypeException(
   type: Dimension,
 ) : Exception("No Sudoku schemas found for type: $type")
 
 /**
  * Exception thrown when no Sudoku schemas are found for a given difficulty.
  */
-class NoSchemasForDifficultyException(
+public class NoSchemasForDifficultyException(
   difficulty: Difficulty,
 ) : Exception("No Sudoku schemas found for difficulty: $difficulty")

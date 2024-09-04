@@ -17,4 +17,4 @@
 package dev.teogor.sudoklify
 
 @DslMarker
-annotation class SudoklifyDsl
+public annotation class SudoklifyDsl

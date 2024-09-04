@@ -19,7 +19,7 @@ package dev.teogor.sudoklify
 @Retention(AnnotationRetention.BINARY)
 @RequiresOptIn(
   message =
-    "This API is experimental and subject to change in future Sudoklify versions. " +
-      "Use with caution and be prepared to adapt your code if the API changes.",
+  "This API is experimental and subject to change in future Sudoklify versions. " +
+    "Use with caution and be prepared to adapt your code if the API changes.",
 )
-annotation class ExperimentalSudoklifyApi
+public annotation class ExperimentalSudoklifyApi

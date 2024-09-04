@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.presets
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.schema.SudokuSchema
@@ -26,7 +23,7 @@ import dev.teogor.sudoklify.schema.SudokuSchema
 /**
  * An array of [SudokuSchema] objects representing easy 9x9 Sudoku puzzles.
  */
-val nineDigitsSchemas: Array<SudokuSchema> = arrayOf(
+public val nineDigitsSchemas: Array<SudokuSchema> = arrayOf(
   // region Difficulty - Very Easy (*)
   // Remaining Digits 36
   SudokuSchema(

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.components
-
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 
 /**
  * Data class representing the coordinates of a box in a Sudoku grid.
@@ -37,7 +33,7 @@ import dev.teogor.sudoklify.ExperimentalSudoklifyApi
  * @property topLeft A tuple representing the top-left cell coordinates (row, column).
  * @property bottomRight A tuple representing the bottom-right cell coordinates (row, column). This takes into account the height and width of the box.
  */
-data class BoxCoordinates(
+public data class BoxCoordinates(
   val topLeftRow: Int,
   val topLeftCol: Int,
   val bottomRightRow: Int,
@@ -81,7 +77,7 @@ data class BoxCoordinates(
  * @param col The column index of the cell to check.
  * @return `true` if the cell is within the box; otherwise, `false`.
  */
-fun BoxCoordinates.contains(
+public fun BoxCoordinates.contains(
   row: Int,
   col: Int,
 ): Boolean {
@@ -95,7 +91,7 @@ fun BoxCoordinates.contains(
  * @param colExpansion The number of additional columns to add to the box.
  * @return A new [BoxCoordinates] instance with the expanded dimensions.
  */
-fun BoxCoordinates.expand(
+public fun BoxCoordinates.expand(
   rowExpansion: Int,
   colExpansion: Int,
 ): BoxCoordinates {
@@ -112,7 +108,7 @@ fun BoxCoordinates.expand(
  *
  * @return A string representing the box coordinates.
  */
-fun BoxCoordinates.toFormattedString(): String {
+public fun BoxCoordinates.toFormattedString(): String {
   return buildString {
     append("Box Coordinates:\n")
     append("  Top-Left: ($topLeftRow, $topLeftCol)\n")
@@ -128,7 +124,7 @@ fun BoxCoordinates.toFormattedString(): String {
  * @param other The other box to intersect with.
  * @return A new [BoxCoordinates] instance representing the intersection of the two boxes, or `null` if they do not intersect.
  */
-fun BoxCoordinates.intersect(other: BoxCoordinates): BoxCoordinates? {
+public fun BoxCoordinates.intersect(other: BoxCoordinates): BoxCoordinates? {
   val intersectTopLeftRow = maxOf(this.topLeftRow, other.topLeftRow)
   val intersectTopLeftCol = maxOf(this.topLeftCol, other.topLeftCol)
   val intersectBottomRightRow = minOf(this.bottomRightRow, other.bottomRightRow)
@@ -154,7 +150,7 @@ fun BoxCoordinates.intersect(other: BoxCoordinates): BoxCoordinates? {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the box is in the top-left corner; otherwise, `false`.
  */
-fun BoxCoordinates.isTopStart(dimension: Dimension): Boolean {
+public fun BoxCoordinates.isTopStart(dimension: Dimension): Boolean {
   return topLeftRow == 0 && topLeftCol == 0
 }
 
@@ -164,7 +160,7 @@ fun BoxCoordinates.isTopStart(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the box is in the top-right corner; otherwise, `false`.
  */
-fun BoxCoordinates.isTopEnd(dimension: Dimension): Boolean {
+public fun BoxCoordinates.isTopEnd(dimension: Dimension): Boolean {
   return topLeftRow == 0 && bottomRightCol == dimension.width - 1
 }
 
@@ -174,7 +170,7 @@ fun BoxCoordinates.isTopEnd(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the box is in the bottom-left corner; otherwise, `false`.
  */
-fun BoxCoordinates.isBottomStart(dimension: Dimension): Boolean {
+public fun BoxCoordinates.isBottomStart(dimension: Dimension): Boolean {
   return bottomRightRow == dimension.height - 1 && topLeftCol == 0
 }
 
@@ -184,7 +180,7 @@ fun BoxCoordinates.isBottomStart(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the box is in the bottom-right corner; otherwise, `false`.
  */
-fun BoxCoordinates.isBottomEnd(dimension: Dimension): Boolean {
+public fun BoxCoordinates.isBottomEnd(dimension: Dimension): Boolean {
   return bottomRightRow == dimension.height - 1 && bottomRightCol == dimension.width - 1
 }
 
@@ -194,9 +190,10 @@ fun BoxCoordinates.isBottomEnd(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the box should have a darker background; otherwise, `false`.
  */
-fun BoxCoordinates.isAlternateBox(dimension: Dimension): Boolean {
+public fun BoxCoordinates.isAlternateBox(dimension: Dimension): Boolean {
   // Compute the box index based on its position
-  val boxIndex = (topLeftRow / dimension.boxHeight) * (dimension.width / dimension.boxWidth) + (topLeftCol / dimension.boxWidth)
+  val boxIndex =
+    (topLeftRow / dimension.boxHeight) * (dimension.width / dimension.boxWidth) + (topLeftCol / dimension.boxWidth)
 
   // Use modulo operation to alternate the style
   return boxIndex % 2 == 1

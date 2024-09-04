@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.presets
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.schema.SudokuSchema
@@ -26,7 +23,7 @@ import dev.teogor.sudoklify.schema.SudokuSchema
 /**
  * An array of `SudokuSchema` objects representing easy 16x16 Sudoku puzzles.
  */
-val twentyFiveDigitsSchemas: Array<SudokuSchema> = arrayOf(
+public val twentyFiveDigitsSchemas: Array<SudokuSchema> = arrayOf(
   // Remaining Digits 320
   SudokuSchema(
     puzzle = "-----Ah---HAdAc--Ai-BeBb-Af-BaBj------AcC---BAgBj-BbA--HDBa-BcAfBeE-AhAiFAj-Ab-GD--Ba--AeC-AdAaBb-Ag-Ac-Be--H--BaA-BcD---IBG-Ac--Ad-AaG---Af-AgAdAiBb-AaAe-CBc-Ab--D----Af--AgG--H-E-BbB-BdAcAb----C-Ae-D---B-Ae-Ad--AbBc---Bd-Bb-AfAaHAj--A--Bd--Ai-BaAaFAc-----EDBj--B--AcFAdAbIBb-AfBc-Aj-Ag-AaA-CBe-D-BaAiAa-BeAjAe-C--FE------Ah-Ai--Ab--Ai---AaFBa-IAhDBc-B---A-E--Aj-AeF---BbB---AaAbI---Bj-----A--------AjEBdAgAiAf-A-BjBFBcHBb--------Af-----Ac---EBbAb---AeAa---BBe-Bc--Ab-Ae---G-AiAcBdAj-ICBa---Af--B--Ai-Ag------EAd--Ba-AeAbAa-BdAAe-Be-GAc-BjAj-Bd-Ab-AiAh-BcHAdBbBaE--Bb--BcAaH-----AiBaAfE-F--A--C--DCAhF-Be-Ba---AdH--Ag-Aa-I---Bj-Aa-E----BdAfA-CBj-Aj-D--BcB--Be----Ad--F-GH-ID-BeAfBdAh-C---AAb-Ah--Ad-EHI---BeB-AaAg--Bd--G-Bb-Bd-EBaB-AaAe--Ah--GBj-A-AiFBeAd-BjAiIA-AfBdBe--GE-AjAeC---FAg------AaG-Bc-AhC-Bd--AcFH---Aj-----",

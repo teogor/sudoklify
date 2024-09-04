@@ -23,7 +23,7 @@ package dev.teogor.sudoklify.solver
  * @property col The column index where the move can be made.
  * @property value The single possible value that can be placed in the cell.
  */
-data class SudokuMove(
+public data class SudokuMove(
   val row: Int,
   val col: Int,
   val value: Int,

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.components
-
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 
 /**
  * Data class representing the coordinates of a cell in a Sudoku grid.
@@ -30,7 +26,7 @@ import dev.teogor.sudoklify.ExperimentalSudoklifyApi
  *
  * @property position A tuple representing the cell coordinates (row, column).
  */
-data class CellCoordinates(
+public data class CellCoordinates(
   val row: Int,
   val col: Int,
 ) {
@@ -48,7 +44,7 @@ data class CellCoordinates(
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the cell is in the top-start corner; otherwise, `false`.
  */
-fun CellCoordinates.isTopStart(dimension: Dimension): Boolean {
+public fun CellCoordinates.isTopStart(dimension: Dimension): Boolean {
   return row == 0 && col == 0
 }
 
@@ -58,7 +54,7 @@ fun CellCoordinates.isTopStart(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the cell is in the top-end corner; otherwise, `false`.
  */
-fun CellCoordinates.isTopEnd(dimension: Dimension): Boolean {
+public fun CellCoordinates.isTopEnd(dimension: Dimension): Boolean {
   return row == 0 && col == dimension.width - 1
 }
 
@@ -68,7 +64,7 @@ fun CellCoordinates.isTopEnd(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the cell is in the bottom-start corner; otherwise, `false`.
  */
-fun CellCoordinates.isBottomStart(dimension: Dimension): Boolean {
+public fun CellCoordinates.isBottomStart(dimension: Dimension): Boolean {
   return row == dimension.height - 1 && col == 0
 }
 
@@ -78,7 +74,7 @@ fun CellCoordinates.isBottomStart(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the cell is in the bottom-end corner; otherwise, `false`.
  */
-fun CellCoordinates.isBottomEnd(dimension: Dimension): Boolean {
+public fun CellCoordinates.isBottomEnd(dimension: Dimension): Boolean {
   return row == dimension.height - 1 && col == dimension.width - 1
 }
 
@@ -88,7 +84,7 @@ fun CellCoordinates.isBottomEnd(dimension: Dimension): Boolean {
  * @param dimension The dimension of the Sudoku grid.
  * @return `true` if the cell should have an alternate style; otherwise, `false`.
  */
-fun CellCoordinates.isAlternateCell(dimension: Dimension): Boolean {
+public fun CellCoordinates.isAlternateCell(dimension: Dimension): Boolean {
   // Compute the cell index based on its position
   val cellIndex = row * dimension.width + col
 

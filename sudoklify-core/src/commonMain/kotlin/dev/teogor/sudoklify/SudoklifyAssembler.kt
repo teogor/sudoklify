@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify
 
 import dev.teogor.sudoklify.puzzle.SudokuPuzzle
@@ -68,9 +66,9 @@ import kotlin.random.Random
  * @see SudokuTokenMapper
  * @see SudokuPuzzle
  */
-class SudoklifyAssembler(
-  val schemas: SudokuSchemas,
-  val spec: SudokuSpec,
+public class SudoklifyAssembler(
+  public val schemas: SudokuSchemas,
+  public val spec: SudokuSpec,
   private val sudokuLayoutManipulator: SudokuLayoutManipulator,
   private val sudokuTokenMapper: SudokuTokenMapper,
   private val random: Random,
@@ -93,17 +91,15 @@ class SudoklifyAssembler(
    *
    * @return A [SudokuPuzzle] object containing the generated puzzle, solution, and other metadata.
    */
-  fun assembleSudoku(): SudokuPuzzle {
-    val randomItem =
-      schemas
-        .getSeedsBySize(spec.type)
-        .getSeedsByDifficulty(spec.difficulty)
-        .randomItem(random)
+  public fun assembleSudoku(): SudokuPuzzle {
+    val randomItem = schemas
+      .getSeedsBySize(spec.type)
+      .getSeedsByDifficulty(spec.difficulty)
+      .randomItem(random)
 
-    val layout =
-      sudokuLayoutManipulator.shuffle(
-        sudokuLayoutManipulator.rotate(sudokuLayoutManipulator.constructBase()),
-      )
+    val layout = sudokuLayoutManipulator.shuffle(
+      sudokuLayoutManipulator.rotate(sudokuLayoutManipulator.constructBase()),
+    )
     val tokenMap = sudokuTokenMapper.getTokenMap()
 
     val puzzle = sudokuTokenMapper.getSequence(layout, randomItem.puzzle, tokenMap)
@@ -196,7 +192,7 @@ class SudoklifyAssembler(
    *
    * @property spec The specification used to configure the [SudoklifyAssembler].
    */
-  class Factory(
+  public class Factory(
     private val schemas: SudokuSchemas,
     private val spec: SudokuSpec,
   ) {
@@ -220,10 +216,9 @@ class SudoklifyAssembler(
      * @return A [SudokuTokenMapper] instance for generating token sequences for the Sudoku puzzle.
      */
     private fun createBoardElementsFactory(): SudokuTokenMapper {
-      val tokenizer =
-        Tokenizer.create(
-          digits = spec.type.uniqueDigitsCount,
-        )
+      val tokenizer = Tokenizer.create(
+        digits = spec.type.uniqueDigitsCount,
+      )
       return SudokuTokenMapper.default(
         tokenizer = tokenizer,
         random = random,
@@ -244,7 +239,7 @@ class SudoklifyAssembler(
      *
      * @return A [SudoklifyAssembler] instance ready to generate Sudoku puzzles.
      */
-    fun createAssembler(): SudoklifyAssembler {
+    public fun createAssembler(): SudoklifyAssembler {
       return SudoklifyAssembler(
         schemas = schemas,
         spec = spec,
@@ -273,7 +268,7 @@ class SudoklifyAssembler(
  * @return A [SudoklifyAssembler] instance configured with the provided parameters.
  */
 @SudoklifyDsl
-fun SudoklifyAssembler(
+public fun SudoklifyAssembler(
   schemas: SudokuSchemas,
   spec: SudokuSpec,
 ): SudoklifyAssembler {
@@ -305,7 +300,7 @@ fun SudoklifyAssembler(
  */
 @Suppress("FunctionName")
 @SudoklifyDsl
-fun <T> SudoklifyAssembler(
+public fun <T> SudoklifyAssembler(
   schemas: SudokuSchemas,
   spec: SudokuSpec,
   block: SudoklifyAssembler.() -> T,

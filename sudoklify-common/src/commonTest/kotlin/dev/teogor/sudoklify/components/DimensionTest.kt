@@ -16,13 +16,11 @@
 
 package dev.teogor.sudoklify.components
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class DimensionTest {
   @Test
   fun constructor_shouldInitializePropertiesCorrectlyForSudoku4x4() {

@@ -42,7 +42,7 @@ import kotlin.random.Random
  * val rotatedLayout = manipulator.rotate(shuffledLayout)
  * ```
  */
-interface SudokuLayoutManipulator {
+public interface SudokuLayoutManipulator {
   /**
    * Constructs the base Sudoku layout based on the specified size.
    *
@@ -51,7 +51,7 @@ interface SudokuLayoutManipulator {
    *
    * @return A 2D array representing the base Sudoku layout.
    */
-  fun constructBase(): Layout
+  public fun constructBase(): Layout
 
   /**
    * Shuffles the given Sudoku layout by applying a series of transformations.
@@ -62,7 +62,7 @@ interface SudokuLayoutManipulator {
    * @param layout The Sudoku layout to be shuffled.
    * @return A new Sudoku layout with applied shuffling.
    */
-  fun shuffle(layout: Layout): Layout
+  public fun shuffle(layout: Layout): Layout
 
   /**
    * Rotates the given Sudoku layout by a random multiple of 90 degrees.
@@ -73,9 +73,9 @@ interface SudokuLayoutManipulator {
    * @param layout The Sudoku layout to be rotated.
    * @return The rotated Sudoku layout.
    */
-  fun rotate(layout: Layout): Layout
+  public fun rotate(layout: Layout): Layout
 
-  companion object {
+  public companion object {
     /**
      * Provides a default implementation of [SudokuLayoutManipulator].
      *
@@ -87,7 +87,7 @@ interface SudokuLayoutManipulator {
      * @param random The random number generator used for shuffling and rotation.
      * @return A [SudokuLayoutManipulator] instance with the default implementation.
      */
-    fun default(
+    public fun default(
       boxDigits: Int,
       random: Random,
     ): SudokuLayoutManipulator {
