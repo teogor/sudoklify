@@ -171,7 +171,7 @@ subprojects {
 
 val excludedProjects = listOf<DelegatingProjectDependency>(
   projects.sudoklify,
-  projects.sudoklify.demo.composeApp,
+  projects.sudoklify.demo,
 )
 
 apiValidation {
@@ -183,7 +183,6 @@ apiValidation {
 
 subprojects {
   val paths = excludedProjects.map { it.identityPath.path }
-  println("This is the path: $path for subproject: $path")
   if (!paths.contains(this.path)) {
     apply<DokkaPlugin>()
   }
