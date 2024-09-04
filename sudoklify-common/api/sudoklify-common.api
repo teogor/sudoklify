@@ -32,7 +32,34 @@ public final class dev/teogor/sudoklify/components/BoxCoordinatesKt {
 	public static final fun contains (Ldev/teogor/sudoklify/components/BoxCoordinates;II)Z
 	public static final fun expand (Ldev/teogor/sudoklify/components/BoxCoordinates;II)Ldev/teogor/sudoklify/components/BoxCoordinates;
 	public static final fun intersect (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/BoxCoordinates;)Ldev/teogor/sudoklify/components/BoxCoordinates;
+	public static final fun isAlternateBox (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isBottomEnd (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isBottomStart (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isTopEnd (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isTopStart (Ldev/teogor/sudoklify/components/BoxCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
 	public static final fun toFormattedString (Ldev/teogor/sudoklify/components/BoxCoordinates;)Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/components/CellCoordinates {
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Ldev/teogor/sudoklify/components/CellCoordinates;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/components/CellCoordinates;IIILjava/lang/Object;)Ldev/teogor/sudoklify/components/CellCoordinates;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCol ()I
+	public final fun getPosition ()Lkotlin/Pair;
+	public final fun getRow ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/components/CellCoordinatesKt {
+	public static final fun isAlternateCell (Ldev/teogor/sudoklify/components/CellCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isBottomEnd (Ldev/teogor/sudoklify/components/CellCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isBottomStart (Ldev/teogor/sudoklify/components/CellCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isTopEnd (Ldev/teogor/sudoklify/components/CellCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
+	public static final fun isTopStart (Ldev/teogor/sudoklify/components/CellCoordinates;Ldev/teogor/sudoklify/components/Dimension;)Z
 }
 
 public final class dev/teogor/sudoklify/components/Difficulty : java/lang/Enum {
@@ -187,6 +214,7 @@ public final class dev/teogor/sudoklify/components/DimensionKt {
 	public static final fun getCellBoxColumnIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
 	public static final fun getCellBoxRowIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
 	public static final fun getCellColumnIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
+	public static final fun getCellCoordinates (Ldev/teogor/sudoklify/components/Dimension;II)Ldev/teogor/sudoklify/components/CellCoordinates;
 	public static final fun getCellRowIndex (Ldev/teogor/sudoklify/components/Dimension;I)I
 	public static final fun isDigitValid (Ldev/teogor/sudoklify/components/Dimension;I)Z
 }

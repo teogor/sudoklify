@@ -1,22 +1,84 @@
-public final class dev/teogor/sudoklify/solver/SudokuSolution {
-	public fun <init> (JZI[[I)V
-	public final fun component1 ()J
-	public final fun component2 ()Z
-	public final fun component3 ()I
-	public final fun component4 ()[[I
-	public final fun copy (JZI[[I)Ldev/teogor/sudoklify/solver/SudokuSolution;
-	public static synthetic fun copy$default (Ldev/teogor/sudoklify/solver/SudokuSolution;JZI[[IILjava/lang/Object;)Ldev/teogor/sudoklify/solver/SudokuSolution;
+public final class dev/teogor/sudoklify/solver/GridMistakeCheckerKt {
+	public static final fun checkMistakesAll (Ljava/util/List;Ldev/teogor/sudoklify/solver/MistakeCheckingMode;Ldev/teogor/sudoklify/components/Dimension;)Ljava/util/List;
+	public static final fun doesCellValueViolateRules (Ldev/teogor/sudoklify/components/Dimension;IIILjava/util/List;)Z
+	public static final fun processGridMistakes (Ljava/util/List;Ldev/teogor/sudoklify/solver/MistakeCheckingMode;Ldev/teogor/sudoklify/components/Dimension;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)Ljava/util/List;
+}
+
+public final class dev/teogor/sudoklify/solver/MistakeCheckingMode : java/lang/Enum {
+	public static final field CheckAgainstSolution Ldev/teogor/sudoklify/solver/MistakeCheckingMode;
+	public static final field CheckViolations Ldev/teogor/sudoklify/solver/MistakeCheckingMode;
+	public static final field NoChecking Ldev/teogor/sudoklify/solver/MistakeCheckingMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/teogor/sudoklify/solver/MistakeCheckingMode;
+	public static fun values ()[Ldev/teogor/sudoklify/solver/MistakeCheckingMode;
+}
+
+public final class dev/teogor/sudoklify/solver/SudoklifyMoveAdvisor {
+	public fun <init> (Ldev/teogor/sudoklify/components/Dimension;)V
+	public final fun suggestNextMove ([[I)Ldev/teogor/sudoklify/solver/SudokuMove;
+}
+
+public final class dev/teogor/sudoklify/solver/SudoklifySolverEngine {
+	public fun <init> (Ldev/teogor/sudoklify/solver/SudokuGridProcessor;Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;)V
+	public final fun getMistakeCheckingMode ()Ldev/teogor/sudoklify/solver/MistakeCheckingMode;
+	public final fun processGridMistakes (Ljava/util/List;)Ljava/util/List;
+	public final fun setMistakeCheckingMode (Ldev/teogor/sudoklify/solver/MistakeCheckingMode;)V
+	public final fun suggestNextMove (Ljava/util/List;)Ldev/teogor/sudoklify/solver/SudokuMove;
+}
+
+public final class dev/teogor/sudoklify/solver/SudokuCellState {
+	public fun <init> (IIZZ)V
+	public synthetic fun <init> (IIZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun copy (IIZZ)Ldev/teogor/sudoklify/solver/SudokuCellState;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/solver/SudokuCellState;IIZZILjava/lang/Object;)Ldev/teogor/sudoklify/solver/SudokuCellState;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getElapsedTime ()J
-	public final fun getSolutionFound ()Z
-	public final fun getSolvedGrid ()[[I
-	public final fun getStepCount ()I
+	public final fun getSolution ()I
+	public final fun getValue ()I
 	public fun hashCode ()I
+	public final fun isError ()Z
+	public final fun isLocked ()Z
+	public final fun setError (Z)V
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/teogor/sudoklify/solver/SudokuSolver {
-	public fun <init> ([[ILdev/teogor/sudoklify/components/Dimension;)V
-	public final fun solve ()Ldev/teogor/sudoklify/solver/SudokuSolution;
+public final class dev/teogor/sudoklify/solver/SudokuCellStateKt {
+	public static final fun toSudokuCellStates (Ljava/util/List;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun toUserGrid (Ljava/util/List;Lkotlin/jvm/functions/Function4;Ljava/util/List;)Ljava/util/List;
+}
+
+public abstract interface class dev/teogor/sudoklify/solver/SudokuGridProcessor {
+	public abstract fun getGetSolution ()Lkotlin/jvm/functions/Function1;
+	public abstract fun getGetValue ()Lkotlin/jvm/functions/Function1;
+	public abstract fun getUpdateCell ()Lkotlin/jvm/functions/Function4;
+	public abstract fun isError ()Lkotlin/jvm/functions/Function1;
+	public abstract fun isLocked ()Lkotlin/jvm/functions/Function1;
+	public abstract fun processGridMistakes (Ljava/util/List;Ldev/teogor/sudoklify/solver/MistakeCheckingMode;Ldev/teogor/sudoklify/components/Dimension;)Ljava/util/List;
+}
+
+public final class dev/teogor/sudoklify/solver/SudokuGridProcessor$DefaultImpls {
+	public static fun processGridMistakes (Ldev/teogor/sudoklify/solver/SudokuGridProcessor;Ljava/util/List;Ldev/teogor/sudoklify/solver/MistakeCheckingMode;Ldev/teogor/sudoklify/components/Dimension;)Ljava/util/List;
+}
+
+public final class dev/teogor/sudoklify/solver/SudokuGridProcessorKt {
+	public static final fun createSudokuGridProcessor (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;)Ldev/teogor/sudoklify/solver/SudokuGridProcessor;
+}
+
+public final class dev/teogor/sudoklify/solver/SudokuMove {
+	public fun <init> (III)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun copy (III)Ldev/teogor/sudoklify/solver/SudokuMove;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/solver/SudokuMove;IIIILjava/lang/Object;)Ldev/teogor/sudoklify/solver/SudokuMove;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCol ()I
+	public final fun getRow ()I
+	public final fun getValue ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 

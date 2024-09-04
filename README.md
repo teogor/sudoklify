@@ -24,6 +24,10 @@ sizes and difficulty levels.
 - Kotlin Multiplatform Support: Now available for JVM, JS(IR), WASM, iOS, macOS, Linux, TVOS, and WatchOS
   platforms 🌍
 
+## Documentation
+
+- [Solver Documentation](https://teogor.dev/sudoklify/solver) - Detailed guide on using the `solver` package, including use cases and examples.
+
 ## Sudoklify: Redefining Puzzle Generation
 
 Sudoklify reimagines the way Sudoku puzzles are generated, delivering a lightning-fast experience

@@ -69,7 +69,6 @@ kotlin {
       dependencies {
         implementation(libs.jetbrains.kotlinx.datetime)
         api(projects.sudoklifyCommon)
-        implementation(projects.sudoklifySolver)
         api(projects.sudoklifyTokenizer)
       }
     }
