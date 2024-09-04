@@ -20,6 +20,7 @@ import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.SudoklifyArchitect
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
+import dev.teogor.sudoklify.components.areCellsInSameBox
 import dev.teogor.sudoklify.components.toSeed
 import dev.teogor.sudoklify.presets.loadPresetSchemas
 import dev.teogor.sudoklify.puzzle.SudokuPuzzle
@@ -225,29 +226,32 @@ class SudokuCellStateTest {
   fun dimension_doesCellValueViolateRules_shouldDetectConflicts() {
     // Arrange
     val dimension = Dimension.NineByNine
-    val sudokuSpec =
-      SudokuSpec {
-        seed = 2024L.toSeed()
-        type = dimension
-        difficulty = Difficulty.EASY
+    val sudokuSpec = SudokuSpec {
+      seed = 2024L.toSeed()
+      type = dimension
+      difficulty = Difficulty.EASY
+    }
+    var gameBoard = architect.constructSudoku(sudokuSpec)
+      .transformGrid {
+        SudokuCellState(
+          value = value,
+          isLocked = isGiven,
+          solution = solution,
+        )
       }
-    var gameBoard =
-      architect.constructSudoku(sudokuSpec)
-        .transformGrid {
-          SudokuCellState(
-            value = value,
-            isLocked = isGiven,
-            solution = solution,
-          )
-        }
 
-    gameBoard =
-      gameBoard.toMutableList().apply {
-        this[0] =
-          this[0].toMutableList().apply {
-            this[1] = this[0].copy(value = this[0].value)
+    gameBoard = gameBoard.toMutableList().apply {
+      forEachIndexed { rowIndex, cells ->
+        cells.forEachIndexed { colIndex, cell ->
+          val isCellInSameBox = dimension.areCellsInSameBox(0, 1, rowIndex, colIndex)
+          if (isCellInSameBox && rowIndex != 0 && colIndex != 1) {
+            this[0] = this[0].toMutableList().apply {
+              this[1] = cell
+            }
           }
+        }
       }
+    }
 
     // Act
     val hasConflicts = dimension.doesCellValueViolateRules(0, 1, gameBoard[0][1].value, gameBoard)
