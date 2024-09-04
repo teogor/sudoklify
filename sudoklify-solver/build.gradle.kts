@@ -67,11 +67,13 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        implementation(projects.sudoklifyCommon)
+        api(projects.sudoklifyCommon)
+        api(projects.sudoklifyCore)
       }
     }
     val commonTest by getting {
       dependencies {
+        implementation(projects.sudoklifyPresets)
         implementation(libs.jetbrains.kotlin.test)
       }
     }

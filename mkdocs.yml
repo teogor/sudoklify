@@ -19,6 +19,7 @@ nav:
   - Home:
     - Overview: index.md
     - Seed: seed.md
+    - Solver: solver.md
     - Components:
       - Sudoku Dimension: dimension.md
     - J-Encoding For Sudoku Cells: j-encoding-for-sudoku-cells.md

@@ -364,6 +364,20 @@ fun Dimension.getBoxIndex(
   return boxRowIndex + boxColumnIndex
 }
 
+@ExperimentalSudoklifyApi
+fun Dimension.getCellCoordinates(
+  row: Int,
+  col: Int,
+): CellCoordinates {
+  requireValidRowColIndices(
+    row = row,
+    col = col,
+    message = "Invalid coordinates for cell",
+  )
+
+  return CellCoordinates(row, col)
+}
+
 /**
  * Returns the top-left and bottom-right coordinates of the box containing the cell at the
  * specified row and column.

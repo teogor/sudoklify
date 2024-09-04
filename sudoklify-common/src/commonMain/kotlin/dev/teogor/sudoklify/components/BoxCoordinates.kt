@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalSudoklifyApi::class)
+
 package dev.teogor.sudoklify.components
+
+import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 
 /**
  * Data class representing the coordinates of a box in a Sudoku grid.
@@ -142,4 +146,58 @@ fun BoxCoordinates.intersect(other: BoxCoordinates): BoxCoordinates? {
   } else {
     null
   }
+}
+
+/**
+ * Checks if the box is in the top-left corner of the Sudoku grid.
+ *
+ * @param dimension The dimension of the Sudoku grid.
+ * @return `true` if the box is in the top-left corner; otherwise, `false`.
+ */
+fun BoxCoordinates.isTopStart(dimension: Dimension): Boolean {
+  return topLeftRow == 0 && topLeftCol == 0
+}
+
+/**
+ * Checks if the box is in the top-right corner of the Sudoku grid.
+ *
+ * @param dimension The dimension of the Sudoku grid.
+ * @return `true` if the box is in the top-right corner; otherwise, `false`.
+ */
+fun BoxCoordinates.isTopEnd(dimension: Dimension): Boolean {
+  return topLeftRow == 0 && bottomRightCol == dimension.width - 1
+}
+
+/**
+ * Checks if the box is in the bottom-left corner of the Sudoku grid.
+ *
+ * @param dimension The dimension of the Sudoku grid.
+ * @return `true` if the box is in the bottom-left corner; otherwise, `false`.
+ */
+fun BoxCoordinates.isBottomStart(dimension: Dimension): Boolean {
+  return bottomRightRow == dimension.height - 1 && topLeftCol == 0
+}
+
+/**
+ * Checks if the box is in the bottom-right corner of the Sudoku grid.
+ *
+ * @param dimension The dimension of the Sudoku grid.
+ * @return `true` if the box is in the bottom-right corner; otherwise, `false`.
+ */
+fun BoxCoordinates.isBottomEnd(dimension: Dimension): Boolean {
+  return bottomRightRow == dimension.height - 1 && bottomRightCol == dimension.width - 1
+}
+
+/**
+ * Determines if the box should have a darker background color.
+ *
+ * @param dimension The dimension of the Sudoku grid.
+ * @return `true` if the box should have a darker background; otherwise, `false`.
+ */
+fun BoxCoordinates.isAlternateBox(dimension: Dimension): Boolean {
+  // Compute the box index based on its position
+  val boxIndex = (topLeftRow / dimension.boxHeight) * (dimension.width / dimension.boxWidth) + (topLeftCol / dimension.boxWidth)
+
+  // Use modulo operation to alternate the style
+  return boxIndex % 2 == 1
 }
