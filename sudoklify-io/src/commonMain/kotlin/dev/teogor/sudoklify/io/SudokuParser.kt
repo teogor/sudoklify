@@ -14,12 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(InternalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.io
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
-import dev.teogor.sudoklify.InternalSudoklifyApi
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.tokenizer.JEncodedCell
 import dev.teogor.sudoklify.util.toBoard
@@ -30,8 +26,7 @@ import dev.teogor.sudoklify.util.toBoard
  * @param puzzle The Sudoku puzzle string to parse.
  * @param dimension The sudoku type of the Sudoku puzzle (e.g., 4x4, 9x9).
  */
-@ExperimentalSudoklifyApi
-class SudokuParser(
+public class SudokuParser(
   puzzle: String,
   dimension: Dimension,
 ) {
@@ -43,8 +38,7 @@ class SudokuParser(
    *
    * @return A 2D array of integers representing the Sudoku puzzle.
    */
-  @OptIn(InternalSudoklifyApi::class)
-  fun toIntArray(): Array<IntArray> {
+  public fun toIntArray(): Array<IntArray> {
     val tokenMap = generateTokenMap(boxDigits)
     val convertedPuzzle = Array(puzzleBoard.size) { IntArray(puzzleBoard[0].size) }
 
@@ -77,8 +71,7 @@ class SudokuParser(
  *
  * @throws [IllegalArgumentException] if the provided Sudoku puzzle string is invalid.
  */
-@ExperimentalSudoklifyApi
-fun String.toSudokuIntArray(dimension: Dimension): Array<IntArray> {
+public fun String.toSudokuIntArray(dimension: Dimension): Array<IntArray> {
   val parser = SudokuParser(this, dimension)
   return parser.toIntArray()
 }

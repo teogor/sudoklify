@@ -1,0 +1,161 @@
+public final class dev/teogor/sudoklify/multiplatform/AppKt {
+	public static final fun App (Ldev/teogor/sudoklify/multiplatform/SudokuGameViewModel;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class dev/teogor/sudoklify/multiplatform/Cell {
+	public static final field $stable I
+	public fun <init> (IZZIII)V
+	public final fun component1 ()I
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun copy (IZZIII)Ldev/teogor/sudoklify/multiplatform/Cell;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/multiplatform/Cell;IZZIIIILjava/lang/Object;)Ldev/teogor/sudoklify/multiplatform/Cell;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCol ()I
+	public final fun getRow ()I
+	public final fun getSolution ()I
+	public final fun getValue ()I
+	public fun hashCode ()I
+	public final fun isError ()Z
+	public final fun isGiven ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/Cell$Position {
+	public static final field $stable I
+	public fun <init> (II)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun copy (II)Ldev/teogor/sudoklify/multiplatform/Cell$Position;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/multiplatform/Cell$Position;IIILjava/lang/Object;)Ldev/teogor/sudoklify/multiplatform/Cell$Position;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCol ()I
+	public final fun getRow ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/ComposableSingletons$AppKt {
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/ComposableSingletons$AppKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/ComposableSingletons$MainActivityKt {
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/ComposableSingletons$MainActivityKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/ComposableSingletons$SudokuBoardKt {
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/ComposableSingletons$SudokuBoardKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$composeApp_release ()Lkotlin/jvm/functions/Function2;
+}
+
+public abstract class dev/teogor/sudoklify/multiplatform/GameState {
+	public static final field $stable I
+}
+
+public final class dev/teogor/sudoklify/multiplatform/GameState$Active : dev/teogor/sudoklify/multiplatform/GameState {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/GameState$Active;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/GameState$Completed : dev/teogor/sudoklify/multiplatform/GameState {
+	public static final field $stable I
+	public fun <init> (Z)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Ldev/teogor/sudoklify/multiplatform/GameState$Completed;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/multiplatform/GameState$Completed;ZILjava/lang/Object;)Ldev/teogor/sudoklify/multiplatform/GameState$Completed;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public final fun isWon ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/GameState$Loading : dev/teogor/sudoklify/multiplatform/GameState {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/GameState$Loading;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/GameState$NotStarted : dev/teogor/sudoklify/multiplatform/GameState {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/GameState$NotStarted;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/GameState$Paused : dev/teogor/sudoklify/multiplatform/GameState {
+	public static final field $stable I
+	public static final field INSTANCE Ldev/teogor/sudoklify/multiplatform/GameState$Paused;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/MainActivity : androidx/activity/ComponentActivity {
+	public static final field $stable I
+	public fun <init> ()V
+}
+
+public final class dev/teogor/sudoklify/multiplatform/MainActivityKt {
+	public static final fun AppAndroidPreview (Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class dev/teogor/sudoklify/multiplatform/SudokuBoardKt {
+	public static final fun SudokuBoard (Ldev/teogor/sudoklify/components/Dimension;Ljava/util/List;Ldev/teogor/sudoklify/multiplatform/Cell$Position;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
+	public static final fun SudokuCell (Ldev/teogor/sudoklify/multiplatform/Cell;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class dev/teogor/sudoklify/multiplatform/SudokuGameState {
+	public static final field $stable I
+	public fun <init> (Ljava/util/List;Ldev/teogor/sudoklify/multiplatform/Cell$Position;Ljava/util/List;Z)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ldev/teogor/sudoklify/multiplatform/Cell$Position;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Z
+	public final fun copy (Ljava/util/List;Ldev/teogor/sudoklify/multiplatform/Cell$Position;Ljava/util/List;Z)Ldev/teogor/sudoklify/multiplatform/SudokuGameState;
+	public static synthetic fun copy$default (Ldev/teogor/sudoklify/multiplatform/SudokuGameState;Ljava/util/List;Ldev/teogor/sudoklify/multiplatform/Cell$Position;Ljava/util/List;ZILjava/lang/Object;)Ldev/teogor/sudoklify/multiplatform/SudokuGameState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGrid ()Ljava/util/List;
+	public final fun getMistakes ()Ljava/util/List;
+	public final fun getSelectedCell ()Ldev/teogor/sudoklify/multiplatform/Cell$Position;
+	public fun hashCode ()I
+	public final fun isSolved ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/teogor/sudoklify/multiplatform/SudokuGameViewModel : androidx/lifecycle/ViewModel {
+	public static final field $stable I
+	public field sudokuPuzzle Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
+	public field sudokuSolver Ldev/teogor/sudoklify/solver/SudoklifySolverEngine;
+	public field sudokuSpec Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+	public fun <init> ()V
+	public final fun generateSudoku (Ldev/teogor/sudoklify/components/Dimension;Ldev/teogor/sudoklify/components/Difficulty;Ldev/teogor/sudoklify/components/Seed;)V
+	public final fun getGameState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun getSudokuGameState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun getSudokuPuzzle ()Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;
+	public final fun getSudokuSolver ()Ldev/teogor/sudoklify/solver/SudoklifySolverEngine;
+	public final fun getSudokuSpec ()Ldev/teogor/sudoklify/puzzle/SudokuSpec;
+	public final fun makeMove (III)V
+	public final fun resetGame ()V
+	public final fun selectCell (II)V
+	public final fun setSudokuPuzzle (Ldev/teogor/sudoklify/puzzle/SudokuPuzzle;)V
+	public final fun setSudokuSolver (Ldev/teogor/sudoklify/solver/SudoklifySolverEngine;)V
+	public final fun setSudokuSpec (Ldev/teogor/sudoklify/puzzle/SudokuSpec;)V
+}
+

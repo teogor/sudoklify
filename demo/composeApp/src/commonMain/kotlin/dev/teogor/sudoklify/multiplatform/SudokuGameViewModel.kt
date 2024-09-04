@@ -16,9 +16,7 @@
 
 package dev.teogor.sudoklify.multiplatform
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.SudoklifyArchitect
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
@@ -37,13 +35,8 @@ import kotlinx.coroutines.flow.update
 
 /**
  * ViewModel responsible for managing the state of the Sudoku game.
- *
- * @param savedStateHandle The handle for saving and restoring the state.
  */
-@OptIn(ExperimentalSudoklifyApi::class)
-class SudokuGameViewModel(
-  savedStateHandle: SavedStateHandle,
-) : ViewModel() {
+class SudokuGameViewModel : ViewModel() {
   private val architect = SudoklifyArchitect(loadPresetSchemas())
 
   private val _gameState = MutableStateFlow<GameState>(GameState.NotStarted)
@@ -62,10 +55,6 @@ class SudokuGameViewModel(
   lateinit var sudokuSpec: SudokuSpec
   lateinit var sudokuPuzzle: SudokuPuzzle
   lateinit var sudokuSolver: SudoklifySolverEngine<Cell>
-
-  init {
-    _gameState.value = GameState.Loading
-  }
 
   /**
    * Generates a new Sudoku puzzle based on the provided dimension, difficulty, and seed.

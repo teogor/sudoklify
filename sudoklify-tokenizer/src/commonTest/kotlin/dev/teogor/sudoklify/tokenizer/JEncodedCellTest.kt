@@ -20,7 +20,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 
-// @OptIn(InternalSudoklifyApi::class)
 class JEncodedCellTest {
   @Test
   fun testToInt_whenSingleDigit_thenCorrectInteger() {

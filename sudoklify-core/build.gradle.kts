@@ -31,6 +31,10 @@ winds {
 }
 
 kotlin {
+  explicitApi()
+
+  applyDefaultHierarchyTemplate()
+
   jvm {
     kotlin {
       jvmToolchain(11)
@@ -69,7 +73,7 @@ kotlin {
       dependencies {
         implementation(libs.jetbrains.kotlinx.datetime)
 
-        implementation(libs.teogor.crosslens.core)
+        // implementation(libs.teogor.crosslens.core)
 
         api(projects.sudoklifyCommon)
         api(projects.sudoklifyTokenizer)
@@ -85,5 +89,7 @@ kotlin {
   @OptIn(ExperimentalKotlinGradlePluginApi::class)
   compilerOptions {
     freeCompilerArgs.add("-Xexpect-actual-classes")
+    freeCompilerArgs.add("-opt-in=dev.teogor.sudoklify.InternalSudoklifyApi")
+    freeCompilerArgs.add("-opt-in=dev.teogor.sudoklify.ExperimentalSudoklifyApi")
   }
 }

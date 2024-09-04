@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.solver
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.SudoklifyDsl
 import dev.teogor.sudoklify.puzzle.SudokuPuzzle
 
@@ -29,8 +26,7 @@ import dev.teogor.sudoklify.puzzle.SudokuPuzzle
  * @property gridProcessor A [SudokuGridProcessor] instance responsible for grid processing and mistake checking.
  * @property puzzle The [SudokuPuzzle] configuration, including difficulty, type, seed, givens, solution, and hints.
  */
-@OptIn(ExperimentalSudoklifyApi::class)
-class SudoklifySolverEngine<T>(
+public class SudoklifySolverEngine<T>(
   private val gridProcessor: SudokuGridProcessor<T>,
   private val puzzle: SudokuPuzzle,
 ) {
@@ -38,7 +34,7 @@ class SudoklifySolverEngine<T>(
    * The mode used for checking mistakes during puzzle solving.
    * Default is [MistakeCheckingMode.CheckViolations].
    */
-  var mistakeCheckingMode: MistakeCheckingMode = MistakeCheckingMode.CheckViolations
+  public var mistakeCheckingMode: MistakeCheckingMode = MistakeCheckingMode.CheckViolations
 
   // Extract dimension and grid from the SudokuPuzzle
   private val dimension = puzzle.type
@@ -50,11 +46,10 @@ class SudoklifySolverEngine<T>(
    * @param grid The current grid to analyze for suggesting the next move.
    * @return A [SudokuMove] representing the row, column, and the single possible value for the next move, or `null` if no move is suggested.
    */
-  fun suggestNextMove(grid: List<List<T>>): SudokuMove? {
-    val intGrid =
-      grid.map { row ->
-        row.map { cell -> gridProcessor.getValue(cell) }.toIntArray()
-      }.toTypedArray()
+  public fun suggestNextMove(grid: List<List<T>>): SudokuMove? {
+    val intGrid = grid.map { row ->
+      row.map { cell -> gridProcessor.getValue(cell) }.toIntArray()
+    }.toTypedArray()
 
     return moveAdvisor.suggestNextMove(intGrid)
   }
@@ -65,7 +60,7 @@ class SudoklifySolverEngine<T>(
    * @param grid The grid to process.
    * @return The updated grid with potential mistake annotations.
    */
-  fun processGridMistakes(grid: List<List<T>>): List<List<T>> {
+  public fun processGridMistakes(grid: List<List<T>>): List<List<T>> {
     return gridProcessor.processGridMistakes(
       grid,
       mistakeCheckingMode,
@@ -84,7 +79,7 @@ class SudoklifySolverEngine<T>(
  * @return A new [SudoklifySolverEngine] instance.
  */
 @SudoklifyDsl
-inline fun <reified T> SudoklifySolverEngine(
+public inline fun <reified T> SudoklifySolverEngine(
   gridProcessor: SudokuGridProcessor<T>,
   puzzle: SudokuPuzzle,
   mistakeCheckingMode: MistakeCheckingMode = MistakeCheckingMode.CheckViolations,

@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.solver
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Dimension
 
 /**
@@ -26,31 +23,31 @@ import dev.teogor.sudoklify.components.Dimension
  *
  * @param T The type of the user grid cells.
  */
-interface SudokuGridProcessor<T> {
+public interface SudokuGridProcessor<T> {
   /**
    * Provides the lambda function to get the value of a cell.
    */
-  val getValue: (T) -> Int
+  public val getValue: (T) -> Int
 
   /**
    * Provides the lambda function to determine if a cell is locked.
    */
-  val isLocked: (T) -> Boolean
+  public val isLocked: (T) -> Boolean
 
   /**
    * Provides the lambda function to get the solution value of a cell.
    */
-  val getSolution: (T) -> Int
+  public val getSolution: (T) -> Int
 
   /**
    * Provides the lambda function to determine if a cell has an error state.
    */
-  val isError: (T) -> Boolean
+  public val isError: (T) -> Boolean
 
   /**
    * Provides the lambda function to update a cell in the original grid type.
    */
-  val updateCell: (row: Int, col: Int, SudokuCellState, cell: T) -> T
+  public val updateCell: (row: Int, col: Int, SudokuCellState, cell: T) -> T
 
   /**
    * Processes the grid to check for mistakes and convert it back to the original grid type.
@@ -60,7 +57,7 @@ interface SudokuGridProcessor<T> {
    * @param dimension The dimension used for Sudoku rules.
    * @return The updated grid with potential mistake annotations.
    */
-  fun processGridMistakes(
+  public fun processGridMistakes(
     grid: List<List<T>>,
     mistakesMethod: MistakeCheckingMode,
     dimension: Dimension,
@@ -93,7 +90,7 @@ interface SudokuGridProcessor<T> {
  * @param updateCell Lambda function to update a cell in the original grid type.
  * @return A [SudokuGridProcessor] implementation with the provided functions.
  */
-fun <T> createSudokuGridProcessor(
+public fun <T> createSudokuGridProcessor(
   getValue: (T) -> Int,
   isLocked: (T) -> Boolean,
   getSolution: (T) -> Int,

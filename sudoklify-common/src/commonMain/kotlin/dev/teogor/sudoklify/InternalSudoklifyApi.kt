@@ -18,9 +18,9 @@ package dev.teogor.sudoklify
 
 @RequiresOptIn(
   message =
-    "This API is for internal use only within the Sudoklify library. " +
-      "Using it in external code can lead to unexpected behavior or breakage in future Sudoklify " +
-      "versions.",
+  "This API is for internal use only within the Sudoklify library. " +
+    "Using it in external code can lead to unexpected behavior or breakage in future Sudoklify " +
+    "versions.",
 )
 @Retention(AnnotationRetention.BINARY)
-annotation class InternalSudoklifyApi
+public annotation class InternalSudoklifyApi

@@ -31,6 +31,10 @@ winds {
 }
 
 kotlin {
+  explicitApi()
+
+  applyDefaultHierarchyTemplate()
+
   jvm {
     kotlin {
       jvmToolchain(11)
@@ -82,5 +86,7 @@ kotlin {
   @OptIn(ExperimentalKotlinGradlePluginApi::class)
   compilerOptions {
     freeCompilerArgs.add("-Xexpect-actual-classes")
+    freeCompilerArgs.add("-opt-in=dev.teogor.sudoklify.InternalSudoklifyApi")
+    freeCompilerArgs.add("-opt-in=dev.teogor.sudoklify.ExperimentalSudoklifyApi")
   }
 }

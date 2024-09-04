@@ -29,13 +29,13 @@ import kotlin.jvm.JvmInline
  * ```
  */
 @JvmInline
-value class JEncodedCell(val value: String) {
+public value class JEncodedCell(public val value: String) {
   /**
    * Converts this [JEncodedCell] to its corresponding integer value.
    *
    * @return The integer value represented by the [JEncodedCell], using base-10 encoding.
    */
-  fun toInt(): Int {
+  public fun toInt(): Int {
     return when {
       value == "-" -> 0
 
@@ -60,8 +60,8 @@ value class JEncodedCell(val value: String) {
 
   override fun toString(): String = value
 
-  companion object {
-    val regex = """([A-I][a-z]+)|-|[A-I]""".toRegex()
+  public companion object {
+    public val regex: Regex = """([A-I][a-z]+)|-|[A-I]""".toRegex()
 
     /**
      * Validates if a given string contains only valid JEncodedCells.
@@ -69,7 +69,7 @@ value class JEncodedCell(val value: String) {
      * @param input The string to validate.
      * @return `true` if the string is valid, `false` otherwise.
      */
-    fun isValid(input: String): Boolean {
+    public fun isValid(input: String): Boolean {
       val matches = regex.findAll(input)
       // Join all the matched parts and compare it with the original string
       // This ensures that the entire string is composed of valid components
@@ -83,7 +83,7 @@ value class JEncodedCell(val value: String) {
      * @param input The string representing the Sudoku board.
      * @return A list of [JEncodedCell] extracted from the input string.
      */
-    fun extractCells(input: String): List<JEncodedCell> {
+    public fun extractCells(input: String): List<JEncodedCell> {
       return regex.findAll(input).map { JEncodedCell(it.value) }.toList()
     }
 
@@ -93,7 +93,7 @@ value class JEncodedCell(val value: String) {
      * @param input The string to check.
      * @return A list of invalid components found in the string.
      */
-    fun findInvalidComponents(input: String): List<String> {
+    public fun findInvalidComponents(input: String): List<String> {
       val validMatches = regex.findAll(input).map { it.range }.toList()
       val invalidComponents = mutableListOf<String>()
 
@@ -131,7 +131,7 @@ value class JEncodedCell(val value: String) {
  * @return The [JEncodedCell] string representation of the cell, using letters 'a' to 'j'
  * (where 'j' is used for 0), and capitalizing the first letter.
  */
-fun Int.toJEncodedCell(): JEncodedCell {
+public fun Int.toJEncodedCell(): JEncodedCell {
   val encodedString =
     when {
       this == 0 -> "-"
@@ -180,6 +180,6 @@ fun Int.toJEncodedCell(): JEncodedCell {
  * @receiver The string representation of the Sudoku cell.
  * @return A [JEncodedCell] instance initialized with the string.
  */
-fun String.toJEncodedCell(): JEncodedCell {
+public fun String.toJEncodedCell(): JEncodedCell {
   return JEncodedCell(this)
 }

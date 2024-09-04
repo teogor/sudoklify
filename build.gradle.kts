@@ -179,6 +179,14 @@ apiValidation {
    * Subprojects that are excluded from API validation
    */
   ignoredProjects.addAll(excludedProjects.map { it.name })
+
+  /**
+   * Non-public markers that are excluded from API validation
+   */
+  nonPublicMarkers.addAll(listOf(
+    "dev.teogor.sudoklify.ExperimentalSudoklifyApi",
+    "dev.teogor.sudoklify.InternalSudoklifyApi"
+  ))
 }
 
 subprojects {

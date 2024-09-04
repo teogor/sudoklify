@@ -31,7 +31,7 @@ import dev.teogor.sudoklify.tokenizer.toJEncodedCell
  * and their string representations.
  */
 @InternalSudoklifyApi
-fun generateTokenMap(boxDigits: Int): TokenMap {
+public fun generateTokenMap(boxDigits: Int): TokenMap {
   val gridList = (1..boxDigits)
   val tokenList =
     gridList.withIndex().map { (index, _) ->

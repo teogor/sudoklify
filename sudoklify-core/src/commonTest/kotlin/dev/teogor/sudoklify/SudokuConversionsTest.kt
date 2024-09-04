@@ -21,7 +21,6 @@ import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class SudokuConversionsTest {
   @Test
   fun mapIterableToSudokuString_shouldProduceExpectedResult() {
@@ -43,6 +42,7 @@ class SudokuConversionsTest {
   @Test
   fun mapIterableWithMapperToSudokuString_shouldProduceExpectedResult() {
     data class Cell(val number: Int)
+
     val board: Iterable<Iterable<Cell>> =
       listOf(
         listOf(Cell(1), Cell(2), Cell(3)),

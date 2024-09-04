@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.puzzle
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.components.createSeed
@@ -27,7 +26,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class SudokuPuzzleTest {
   @Test
   fun constructor_shouldSetPropertiesCorrectly() {

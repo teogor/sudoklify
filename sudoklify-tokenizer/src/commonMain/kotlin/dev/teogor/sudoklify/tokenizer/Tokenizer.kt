@@ -24,7 +24,7 @@ package dev.teogor.sudoklify.tokenizer
  *
  * @constructor Creates a Tokenizer instance with the specified number of digits.
  */
-sealed class Tokenizer {
+public sealed class Tokenizer {
   /**
    * Replaces tokens in a given sequence using a token map.
    *
@@ -32,7 +32,7 @@ sealed class Tokenizer {
    * @param tokenMap A map of tokens to their replacement values.
    * @return The sequence with replaced tokens.
    */
-  abstract fun replaceTokens(
+  public abstract fun replaceTokens(
     sequence: String,
     tokenMap: TokenMap,
   ): String
@@ -45,20 +45,20 @@ sealed class Tokenizer {
    * @param tokenMap A map of tokens to their replacement values.
    * @return The populated board.
    */
-  abstract fun populateLayout(
+  public abstract fun populateLayout(
     layout: Layout,
     sequence: String,
     tokenMap: TokenMap,
   ): Array<Array<String>>
 
-  companion object {
+  public companion object {
     /**
      * Creates a Tokenizer instance based on the number of digits.
      *
      * @param digits The number of digits used for tokenization.
      * @return A SingleDigitTokenizer for 1-9 digits, or a MultiDigitTokenizer otherwise.
      */
-    fun create(digits: Int): Tokenizer {
+    public fun create(digits: Int): Tokenizer {
       return when (digits) {
         in 1..9 -> SingleDigitTokenizer
         else -> MultiDigitTokenizer(digits)
@@ -69,8 +69,7 @@ sealed class Tokenizer {
   /**
    * A tokenizer for sequences with single-digit tokens.
    */
-  data object SingleDigitTokenizer : Tokenizer() {
-    // @OptIn(InternalSudoklifyApi::class)
+  public data object SingleDigitTokenizer : Tokenizer() {
     override fun replaceTokens(
       sequence: String,
       tokenMap: TokenMap,
@@ -100,10 +99,9 @@ sealed class Tokenizer {
   /**
    * A tokenizer for sequences with multi-digit tokens.
    */
-  class MultiDigitTokenizer(
+  public class MultiDigitTokenizer(
     private val digits: Int,
   ) : Tokenizer() {
-    // @OptIn(InternalSudoklifyApi::class)
     override fun replaceTokens(
       sequence: String,
       tokenMap: TokenMap,
@@ -130,7 +128,6 @@ sealed class Tokenizer {
       }.toTypedArray()
     }
 
-    // @OptIn(InternalSudoklifyApi::class)
     internal fun extractTokens(
       sequence: String,
       tokenMap: TokenMap,

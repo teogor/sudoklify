@@ -16,7 +16,6 @@
 
 package dev.teogor.sudoklify.util
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.tokenizer.SudokuString
 
@@ -29,8 +28,7 @@ import dev.teogor.sudoklify.tokenizer.SudokuString
  *
  * @return A list of lists of strings representing the Sudoku puzzle.
  */
-@ExperimentalSudoklifyApi
-fun String.toBoard(dimension: Dimension): Array<Array<String>> {
+public fun String.toBoard(dimension: Dimension): Array<Array<String>> {
   val regex = Regex("([A-I][a-z]+)|-|[A-I]")
   val matches = regex.findAll(this)
   val matchedTokens = ArrayList<String>()

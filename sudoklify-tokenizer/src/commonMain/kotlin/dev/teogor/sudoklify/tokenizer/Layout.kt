@@ -16,4 +16,4 @@
 
 package dev.teogor.sudoklify.tokenizer
 
-typealias Layout = Array<IntArray>
+public typealias Layout = Array<IntArray>

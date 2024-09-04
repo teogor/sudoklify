@@ -23,7 +23,7 @@ package dev.teogor.sudoklify.solver
  * Depending on the selected mode, the application will either disable mistake checking,
  * check for violations only, or check against the final solution.
  */
-enum class MistakeCheckingMode {
+public enum class MistakeCheckingMode {
   /**
    * Disables mistake checking.
    *

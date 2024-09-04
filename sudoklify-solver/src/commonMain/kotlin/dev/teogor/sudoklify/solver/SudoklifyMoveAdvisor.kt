@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.solver
 
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Dimension
 import kotlin.random.Random
 
@@ -27,7 +24,7 @@ import kotlin.random.Random
  *
  * @property dimension The dimension of the Sudoku grid, which provides size and box details.
  */
-class SudoklifyMoveAdvisor(
+public class SudoklifyMoveAdvisor(
   private val dimension: Dimension,
 ) {
   private val size = dimension.uniqueDigitsCount
@@ -39,7 +36,7 @@ class SudoklifyMoveAdvisor(
    * @param grid The current grid represented as a 2D array of integers.
    * @return A [SudokuMove] indicating the row, column, and value of the suggested move, or `null` if no move is suggested.
    */
-  fun suggestNextMove(grid: Array<IntArray>): SudokuMove? {
+  public fun suggestNextMove(grid: Array<IntArray>): SudokuMove? {
     // List of empty cells with their coordinates
     val emptyCells = mutableListOf<Pair<Int, Int>>()
     for (row in 0 until size) {

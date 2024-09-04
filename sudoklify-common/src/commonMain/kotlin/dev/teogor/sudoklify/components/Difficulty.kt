@@ -35,7 +35,7 @@ package dev.teogor.sudoklify.components
  * | HARD | 0-20 | 20-40 | No | These puzzles are designed to challenge even the most experienced solvers and require advanced Sudoku techniques. |
  * | VERY_HARD | 0-10 | 10-20 | No | These puzzles are the most difficult to solve and are intended only for Sudoku experts, requiring extreme patience and logical reasoning. |
  */
-enum class Difficulty {
+public enum class Difficulty {
   /**
    * Indicates an easy Sudoku puzzle with a large number of clues.
    */
@@ -67,7 +67,7 @@ enum class Difficulty {
  *
  * @return A string representation of the difficulty level using stars.
  */
-fun Difficulty.toStars(): String {
+public fun Difficulty.toStars(): String {
   return "★".repeat(ordinal + 1)
 }
 
@@ -83,7 +83,7 @@ fun Difficulty.toStars(): String {
  * @throws DifficultyLabelOutOfBoundsException if the ordinal is out of bounds
  * for the provided labels array.
  */
-fun Difficulty.toLabel(labels: Array<String>): String {
+public fun Difficulty.toLabel(labels: Array<String>): String {
   require(ordinal < labels.size) {
     throw DifficultyLabelOutOfBoundsException(ordinal, labels.size)
   }
@@ -98,9 +98,9 @@ fun Difficulty.toLabel(labels: Array<String>): String {
  * @param index The index that was out of bounds.
  * @param labelsSize The size of the labels array.
  */
-class DifficultyLabelOutOfBoundsException(
+public class DifficultyLabelOutOfBoundsException(
   index: Int,
   labelsSize: Int,
 ) : IndexOutOfBoundsException(
-    "Difficulty index $index is out of bounds for labels array of size $labelsSize.",
-  )
+  "Difficulty index $index is out of bounds for labels array of size $labelsSize.",
+)

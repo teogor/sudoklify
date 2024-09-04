@@ -32,7 +32,7 @@ import dev.teogor.sudoklify.components.Dimension
  * @see [Dimension] for dimensions and rules applied to Sudoku grids.
  * @see [SudokuSolver] for methods that solve Sudoku puzzles.
  */
-data class SudokuCellState(
+public data class SudokuCellState(
   /**
    * The current value of the cell in the Sudoku grid.
    */
@@ -64,7 +64,7 @@ data class SudokuCellState(
  *
  * @return A grid of `SudokuCellState`.
  */
-inline fun <T> List<List<T>>.toSudokuCellStates(
+public inline fun <T> List<List<T>>.toSudokuCellStates(
   crossinline getValue: (T) -> Int,
   crossinline isLocked: (T) -> Boolean,
   crossinline getSolution: (T) -> Int,
@@ -90,7 +90,7 @@ inline fun <T> List<List<T>>.toSudokuCellStates(
  *
  * @return The updated grid of the original type.
  */
-inline fun <T> List<List<SudokuCellState>>.toUserGrid(
+public inline fun <T> List<List<SudokuCellState>>.toUserGrid(
   crossinline updateCell: (row: Int, col: Int, SudokuCellState, T) -> T,
   originalGrid: List<List<T>>,
 ): List<List<T>> {

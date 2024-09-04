@@ -19,7 +19,7 @@ package dev.teogor.sudoklify.random
 import dev.teogor.sudoklify.components.Seed
 import kotlin.random.Random
 
-class SeededRandom(seed: Seed) : Random() {
+public class SeededRandom(seed: Seed) : Random() {
   private val internalRandom: Random = Random(seed.value)
 
   override fun nextBits(bitCount: Int): Int = internalRandom.nextBits(bitCount)
@@ -75,16 +75,8 @@ class SeededRandom(seed: Seed) : Random() {
     )
 }
 
-fun Random.randomOrderFactor(): Int = if (nextDouble() < 0.5) 1 else -1
+public fun Random.randomOrderFactor(): Int = if (nextDouble() < 0.5) 1 else -1
 
-fun <T> Iterable<T>.randomItem(random: Random): T = shuffled(random).first()
+public fun <T> Iterable<T>.randomItem(random: Random): T = shuffled(random).first()
 
-fun <T> Array<T>.randomItem(random: Random): T = random(random)
-
-// region DEPRECATED
-@Deprecated(
-  message = "Use randomOrderFactor() instead.",
-  replaceWith = ReplaceWith("randomOrderFactor()"),
-)
-fun Random.sortRandom(): Int = if (nextDouble() < 0.5) 1 else -1
-// endregion
+public fun <T> Array<T>.randomItem(random: Random): T = random(random)

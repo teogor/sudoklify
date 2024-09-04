@@ -29,7 +29,6 @@ import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSudoklifyApi::class)
 class SudoklifyAssemblerTest {
   private val schema1 =
     SudokuSchema(

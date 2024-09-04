@@ -14,12 +14,8 @@
  * limitations under the License.
  */
 
-@file:OptIn(ExperimentalSudoklifyApi::class)
-
 package dev.teogor.sudoklify.schema
 
-import dev.teogor.crosslens.core.buildLazyHashCode
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.tokenizer.SudokuString
@@ -36,13 +32,13 @@ import dev.teogor.sudoklify.tokenizer.toSudokuString
  * @property difficulty The difficulty level of the Sudoku puzzle. This is used to categorize the puzzle based on its complexity.
  * @property dimension The type of the Sudoku puzzle, defining the grid size and other characteristics (e.g., 9x9 classic Sudoku).
  */
-class SudokuSchema(
-  val puzzle: SudokuString,
-  val solution: SudokuString,
-  val difficulty: Difficulty,
-  val dimension: Dimension,
+public class SudokuSchema(
+  public val puzzle: SudokuString,
+  public val solution: SudokuString,
+  public val difficulty: Difficulty,
+  public val dimension: Dimension,
 ) {
-  fun copy(
+  public fun copy(
     puzzle: SudokuString = this.puzzle,
     solution: SudokuString = this.solution,
     difficulty: Difficulty = this.difficulty,
@@ -78,15 +74,6 @@ class SudokuSchema(
     }
   }
 
-  override fun hashCode(): Int = hash
-
-  private val hash: Int by buildLazyHashCode {
-    append(puzzle)
-    append(solution)
-    append(difficulty)
-    append(dimension)
-  }
-
   /**
    * Checks if this SudokuSchema is equal to another object.
    *
@@ -103,6 +90,22 @@ class SudokuSchema(
       solution == other.solution &&
       difficulty == other.difficulty &&
       dimension == other.dimension
+  }
+
+  // TODO
+  //  override fun hashCode(): Int = hash
+  //  private val hash: Int by buildLazyHashCode {
+  //    append(puzzle)
+  //    append(solution)
+  //    append(difficulty)
+  //    append(dimension)
+  //  }
+  override fun hashCode(): Int {
+    var result = puzzle.hashCode()
+    result = 31 * result + solution.hashCode()
+    result = 31 * result + difficulty.hashCode()
+    result = 31 * result + dimension.hashCode()
+    return result
   }
 }
 
@@ -130,7 +133,7 @@ class SudokuSchema(
  * @param dimension The type of the Sudoku puzzle, which defines the grid size and other characteristics (e.g., 9x9 classic Sudoku).
  * @return A new [SudokuSchema] instance with the specified properties.
  */
-fun SudokuSchema(
+public fun SudokuSchema(
   puzzle: String,
   solution: String,
   difficulty: Difficulty,

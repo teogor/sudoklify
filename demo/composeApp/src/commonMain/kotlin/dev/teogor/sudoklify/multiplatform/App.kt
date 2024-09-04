@@ -34,11 +34,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.teogor.paletteon.PaletteonDynamicTheme
 import dev.teogor.paletteon.ui.components.PaletteonThemedSurface
-import dev.teogor.sudoklify.ExperimentalSudoklifyApi
 import dev.teogor.sudoklify.components.Difficulty
 import dev.teogor.sudoklify.components.Dimension
 import dev.teogor.sudoklify.components.Seed
@@ -49,13 +47,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  *
  * @param sudokuGameViewModel The ViewModel managing the game state and logic. Defaults to a new instance.
  */
-@OptIn(ExperimentalSudoklifyApi::class)
 @Composable
 @Preview
 fun App(
-  sudokuGameViewModel: SudokuGameViewModel = viewModel {
-    SudokuGameViewModel(SavedStateHandle())
-  },
+  sudokuGameViewModel: SudokuGameViewModel = viewModel { SudokuGameViewModel() },
 ) {
   PaletteonDynamicTheme(
     seedColor = Color.Magenta,

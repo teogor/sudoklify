@@ -42,7 +42,7 @@ import kotlin.random.Random
  * val sequence = tokenMapper.getSequence(layout, seedSequence, tokenMap)
  * ```
  */
-interface SudokuTokenMapper {
+public interface SudokuTokenMapper {
   /**
    * Generates a map of tokens to their corresponding values.
    *
@@ -51,7 +51,7 @@ interface SudokuTokenMapper {
    *
    * @return A [TokenMap] where each token is mapped to its corresponding value.
    */
-  fun getTokenMap(): TokenMap
+  public fun getTokenMap(): TokenMap
 
   /**
    * Produces a sequence of tokens for the given Sudoku layout and seed sequence.
@@ -64,13 +64,13 @@ interface SudokuTokenMapper {
    * @param tokenMap The map of tokens to values used for tokenization.
    * @return A 2D array of tokens representing the tokenized Sudoku layout.
    */
-  fun getSequence(
+  public fun getSequence(
     layout: Layout,
     seedSequence: SudokuString,
     tokenMap: TokenMap,
   ): Array<Array<String>>
 
-  companion object {
+  public companion object {
     /**
      * Provides a default implementation of [SudokuTokenMapper].
      *
@@ -82,7 +82,7 @@ interface SudokuTokenMapper {
      * @param tokenizer The [Tokenizer] used to populate the Sudoku layout with tokens.
      * @return A [SudokuTokenMapper] instance with the default implementation.
      */
-    fun default(
+    public fun default(
       boxDigits: Int,
       random: Random,
       tokenizer: Tokenizer,
