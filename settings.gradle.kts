@@ -34,7 +34,8 @@ dependencyResolutionManagement {
   }
 }
 
-include(":demo")
+include(":demo:composeApp")
+
 include(":sudoklify-common")
 include(":sudoklify-core")
 include(":sudoklify-io")

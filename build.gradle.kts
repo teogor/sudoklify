@@ -27,13 +27,18 @@ import dev.teogor.winds.ktx.createVersion
 import dev.teogor.winds.ktx.person
 import dev.teogor.winds.ktx.scm
 import dev.teogor.winds.ktx.ticketSystem
+import org.gradle.api.internal.catalog.DelegatingProjectDependency
 import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+  alias(libs.plugins.jetbrains.compose) apply false
+  alias(libs.plugins.jetbrains.compose.compiler) apply false
   alias(libs.plugins.jetbrains.kotlin.jvm)
   alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
+  alias(libs.plugins.android.application) apply false
+
   alias(libs.plugins.teogor.winds)
   alias(libs.plugins.vanniktech.maven)
   alias(libs.plugins.jetbrains.dokka)
@@ -46,11 +51,6 @@ apply(from = "githooks.gradle.kts")
 tasks.withType<KotlinCompile>().configureEach {
   dependsOn("updateGitHooks")
 }
-
-val excludedProjects = listOf(
-  project.name,
-  "demo",
-)
 
 allprojects {
   if (extensions.findByType<JavaPluginExtension>() != null) {
@@ -150,30 +150,6 @@ subprojects {
         "**/dev/teogor/sudoklify/presets/**",
       )
 
-      ktlint()
-        .editorConfigOverride(
-          mapOf(
-            "ktlint_code_style" to "ktlint_official",
-            "ij_kotlin_allow_trailing_comma" to "true",
-            "disabled_rules" to
-              "filename," +
-              "annotation,annotation-spacing," +
-              "argument-list-wrapping," +
-              "double-colon-spacing," +
-              "enum-entry-name-case," +
-              "multiline-if-else," +
-              "no-empty-first-line-in-method-block," +
-              "package-name," +
-              "trailing-comma," +
-              "spacing-around-angle-brackets," +
-              "spacing-between-declarations-with-annotations," +
-              "spacing-between-declarations-with-comments," +
-              "unary-op-spacing," +
-              "no-trailing-spaces," +
-              "no-wildcard-imports," +
-              "max-line-length",
-          ),
-        )
       licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
       trimTrailingWhitespace()
       endWithNewline()
@@ -193,16 +169,22 @@ subprojects {
   }
 }
 
+val excludedProjects = listOf<DelegatingProjectDependency>(
+  projects.sudoklify,
+  projects.sudoklify.demo.composeApp,
+)
+
 apiValidation {
   /**
    * Subprojects that are excluded from API validation
    */
-  ignoredProjects.addAll(excludedProjects)
+  ignoredProjects.addAll(excludedProjects.map { it.name })
 }
 
-
 subprojects {
-  if (!excludedProjects.contains(this.name)) {
+  val paths = excludedProjects.map { it.identityPath.path }
+  println("This is the path: $path for subproject: $path")
+  if (!paths.contains(this.path)) {
     apply<DokkaPlugin>()
   }
 }
