@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-plugins {
-  alias(libs.plugins.jetbrains.kotlin.jvm)
-  alias(libs.plugins.teogor.winds)
-}
+package dev.teogor.sudoklify.multiplatform
 
-winds {
-  moduleMetadata {
-    publishing {
-      enabled = false
-    }
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.application
+
+fun main() = application {
+  Window(
+    onCloseRequest = ::exitApplication,
+    title = "Sudoklify Multiplatform",
+  ) {
+    App()
   }
-}
-
-dependencies {
-  implementation(projects.sudoklifyCore)
-  implementation(projects.sudoklifyCommon)
-  implementation(projects.sudoklifyPresets)
-
-  implementation(libs.jetbrains.kotlin.stdlib)
-  implementation(libs.jetbrains.kotlinx.coroutines.core)
 }
